@@ -18,4 +18,4 @@ app.use(
   // require('./resources/kb/router.js')
 );
 
-module.exports = app
+module.exports = app;
