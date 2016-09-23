@@ -3,22 +3,17 @@ import ReactDOM, { render } from 'react-dom';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import App from './components/App';
-import Provider from 'react-redux';
+import rootReducer from './reducers/rootReducer';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-//import rootReducer from './reducers';
 
-const loggerMiddleware = createLogger();
+//const loggerMiddleware = createLogger();
 
-const store = createStore(
-//  rootReducer,
-  applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware,
-  )
-)
-
+const store = createStore(rootReducer);
 
 render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('entry')
 )
