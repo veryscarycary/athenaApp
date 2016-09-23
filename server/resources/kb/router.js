@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const api = require('./controller.js');
 
-router.route('/api/kb/search')
-  .get(api.searchKb)
+//returns stub list based on search params
+router.get('/api/kb/search', api.searchKb)
 
-router.route('/api/kb/:kb/stub')
-  .get(api.getKbStub);
+//returns single stub (id, title, issuePreview)
+router.get('/api/kb/:kb/stub', api.getKbStub);
   
+//interacts with individual KB
 router.route('/api/kb/:kb')
-  .get(api.getKb)
-  .post(api.createKb)
-  .put(api.editKb)
-  .delete(api.deleteKb);
+  .get(api.getKb) //returns a KB
+  .post(api.createKb)//creates a KB
+  .put(api.editKb)//edits a KB
+  .delete(api.deleteKb);//deletes a KB
 
 module.exports = router;
