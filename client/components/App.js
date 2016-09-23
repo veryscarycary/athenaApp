@@ -3,6 +3,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import LandingPage from './LandingPage'
 import Articles from './Articles';
 
+
 const App = () => (
   <Router history={browserHistory}>
     <Route path="/" component={LandingPage} />
