@@ -1,5 +1,5 @@
 const request = require('request');
-const url = require('../../urls').ticketServer;
+const url = require('../../urls.js').ticket;
 
 module.exports = {
   getTicketStub(req, res) {

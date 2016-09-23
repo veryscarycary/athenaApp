@@ -5,7 +5,7 @@ router.route('/api/user/:username')
   .get(api.getUser);
 
 router.route('/api/user/:username/:password')
-  .get(api.checkAuth)
+  .get(api.signin)
   .post(api.createUser)
   .put(api.editUser)
   .delete(api.deleteUser);
