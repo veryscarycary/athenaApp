@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+//middleware and routes
 app.use(
   require('morgan')('dev'),
   bodyParser.json(),
@@ -18,4 +19,4 @@ app.use(
   // require('./resources/kb/router.js')
 );
 
-module.exports = app
+module.exports = app;
