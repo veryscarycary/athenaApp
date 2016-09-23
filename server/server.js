@@ -12,7 +12,7 @@ app.use(
   //   saveUninitialized: false,
   //   resave: true
   // }),
-  express.static(`${__dirname}/../public`), 
+  express.static(`${__dirname}/../client`), 
   require('./resources/user/router.js')
   // ,
   // require('./resources/ticket/router.js'),
