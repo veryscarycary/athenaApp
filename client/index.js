@@ -1,11 +1,22 @@
 import React, { PropTypes } from 'react';
 import ReactDOM, { render } from 'react-dom';
+import createLogger from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import App from './components/App';
 import Provider from 'react-redux';
-import { createStore } from 'redux';
-//import appReducers from './reducers';
+import { createStore, applyMiddleware } from 'redux';
+//import rootReducer from './reducers';
 
-//let store = crea
+const loggerMiddleware = createLogger();
+
+const store = createStore(
+//  rootReducer,
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware,
+  )
+)
+
 
 render(
   <App />,
