@@ -12,9 +12,10 @@ app.use(
   //   resave: true
   // }),
   express.static(`${__dirname}/../public`), 
-  require('./resources/user/router.js'),
-  require('./resources/ticket/router.js'),
-  require('./resources/kb/router.js')
+  require('./resources/user/router.js')
+  // ,
+  // require('./resources/ticket/router.js'),
+  // require('./resources/kb/router.js')
 );
 
 module.exports = app
