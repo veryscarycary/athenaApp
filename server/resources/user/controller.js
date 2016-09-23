@@ -1,24 +1,41 @@
 const request = require('request');
-const url = require('../../urls.js').userServer;
+const url = require('../../urls.js').user;
 
 module.exports = {
   getUser(req, res) {
-    res.status(200).send(req.params.username)
-    // request(`${url}/${req.params.username}`, (err, res, body) => err ?
-    //   res.status(404).send(err)
-    //   : res.status(200).send(res)
-    // );
+    request({
+      method: 'GET',
+      uri: `${url}/api/${req.params.username}`
+    }, (err, response, body) => err ?
+      res.status(404).send(err)
+      : res.status(200).send(body)
+    );
   },
-  checkAuth(req, res) {
-
+  signin(req, res) {
+    request(`${url}/api/${req.params.username}`, (err, response, body) => err ?
+      res.status(404).send(err)
+      : res.status(200).send(body)
+    );
   },
   createUser(req, res) {
-
+    request({
+        method: 'POST', 
+        uri: `${url}/api/${req.params.username}`
+      }, (err, response, body) => err ?
+        res.status(404).send(err)
+        : res.status(200).send(body)
+    );
   },
   editUser(req, res) {
-
+    request(`${url}/api/${req.params.username}`, (err, response, body) => err ?
+      res.status(404).send(err)
+      : res.status(200).send(body)
+    );
   },
   deleteUser(req, res) {
-
+    request(`${url}/api/${req.params.username}`, (err, response, body) => err ?
+      res.status(404).send(err)
+      : res.status(200).send(body)
+    );
   }
 };
