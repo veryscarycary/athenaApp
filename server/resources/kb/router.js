@@ -6,7 +6,7 @@ router.route('/api/kb/search')
 
 router.route('/api/kb/:kb/stub')
   .get(api.getKbStub);
-  
+
 router.route('/api/kb/:kb')
   .get(api.getKb)
   .post(api.createKb)

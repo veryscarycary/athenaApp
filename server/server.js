@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-app.use(
   require('morgan')('dev'),
   bodyParser.json(),
   bodyParser.urlencoded({extended: true}),
@@ -11,10 +10,9 @@ app.use(
   //   saveUninitialized: false,
   //   resave: true
   // }),
-  express.static(`${__dirname}/../public`), 
-  require('./resources/user/router.js'),
-  require('./resources/ticket/router.js'),
-  require('./resources/kb/router.js')
-);
+app.use(express.static(`${__dirname}/../public`)),
+  //require('./resources/user/router.js'),
+  //require('./resources/ticket/router.js'),
+  //require('./resources/kb/router.js')
 
 module.exports = app

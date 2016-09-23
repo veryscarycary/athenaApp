@@ -6,8 +6,8 @@ module.exports = {
 
   },
   searchKb(req, res) {
-  
-  }, 
+
+  },
   getKb(req, res) {
 
   },
