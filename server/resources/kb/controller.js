@@ -1,5 +1,5 @@
 const request = require('request');
-const url = require('../../urls').kbServer;
+const url = require('../../urls.js').kbServer;
 
 module.exports = {
   getKbStub(req, res) {
