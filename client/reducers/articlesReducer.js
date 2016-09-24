@@ -1,19 +1,18 @@
-import articles from '../mock/articleStubs';
-
 const article = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_ARTICLE':
       return {
         id: action.id,
         abstract: action.abstract,
-        title: action.title
+        title: action.title,
+        body: action.body
       }
     default:
       return state
   }
 }
 
-const articlesList = (state = [], action) => {
+export const articlesList = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_ARTICLE':
       return [
@@ -27,4 +26,18 @@ const articlesList = (state = [], action) => {
   }
 }
 
-export default articlesList;
+export const articleDisplay = (state = {hidden: true}, action) => {
+  switch (action.type) {
+    case 'TOGGLE_ARTICLE_DISPLAY':
+      console.log('called!');
+      return {
+        title: action.title,
+        id: action.id,
+        body: action.body,
+        hidden: !state.hidden
+      }
+    default:
+      return state
+  }
+}
+
