@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ArticleList from '../components/ArticleList';
+import ArticleList from '../ArticleList';
 
 const mapStateToProps = (state) => {
   return {

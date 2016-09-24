@@ -13,13 +13,15 @@ const article = (state = {}, action) => {
   }
 }
 
-const articlesList = (state = articles, action) => {
+const articlesList = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_ARTICLE':
       return [
         ...state,
         article(undefined, action)
       ]
+    case 'LOAD_ARTICLES':
+      return state.concat(action.tickets);
     default:
       return state
   }

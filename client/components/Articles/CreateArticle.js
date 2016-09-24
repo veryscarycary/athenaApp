@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createArticle } from '../actions';
+import { createArticle } from '../../actions';
 
 let CreateArticle = ({ dispatch }) => {
 
