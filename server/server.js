@@ -18,5 +18,4 @@ app.use(
   // require('./resources/ticket/router.js'),
   // require('./resources/kb/router.js')
 );
-
 module.exports = app;
