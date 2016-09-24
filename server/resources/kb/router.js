@@ -6,8 +6,7 @@ router.get('/api/kb/search', api.searchKb)
 
 //returns single stub (id, title, issuePreview)
 router.get('/api/kb/:kb/stub', api.getKbStub);
-  
-//interacts with individual KB
+
 router.route('/api/kb/:kb')
   .get(api.getKb) //returns a KB
   .post(api.createKb)//creates a KB
