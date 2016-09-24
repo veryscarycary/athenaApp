@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const ArticleList = ({ articles }) => (
+const ArticleListItems = ({ articles }) => (
   <div className="article-list">
     <ul>
       {articles.map(article => (
@@ -12,5 +13,15 @@ const ArticleList = ({ articles }) => (
     </ul>
   </div>
 )
+
+const mapStateToProps = (state) => {
+  return {
+    articles: state.articlesList
+  }
+}
+
+const ArticleList = connect(
+  mapStateToProps
+)(ArticleListItems);
 
 export default ArticleList;

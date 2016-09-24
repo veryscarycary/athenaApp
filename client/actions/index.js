@@ -7,6 +7,11 @@ export const createArticle = ({ abstract, text }) => ({
     text
 })
 
+export const loadArticles = (articles) => ({
+  type: 'LOAD_ARTICLES',
+  articles
+})
+
 // example action creator that returns an action for the dispatcher
 export const loadTicketState = (tickets) => ({
     // here is the type being imported in

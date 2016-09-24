@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const TicketList = ({ tickets }) => {
+const TicketListItems = ({ tickets }) => {
   return (
     <div className="ticket-list">
       <ul>
@@ -14,5 +15,15 @@ const TicketList = ({ tickets }) => {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    tickets: state.ticketsList
+  }
+}
+
+const TicketList = connect(
+  mapStateToProps
+)(TicketListItems);
 
 export default TicketList;

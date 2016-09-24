@@ -21,7 +21,7 @@ const articlesList = (state = [], action) => {
         article(undefined, action)
       ]
     case 'LOAD_ARTICLES':
-      return state.concat(action.tickets);
+      return state.concat(action.articles);
     default:
       return state
   }

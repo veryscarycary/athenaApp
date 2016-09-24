@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import tickets from '../../mock/ticketStubs';
-import TicketListItems from './containers/TicketListItems';
+import TicketList from './TicketList';
+import { connect } from 'react-redux';
+import { loadTicketState } from '../../actions/index.js';
+import { bindActionCreators } from 'redux';
 
 class TicketDisplay extends Component {
   constructor(props) {
@@ -13,9 +16,18 @@ class TicketDisplay extends Component {
   render() {
     return (
       <div>
-        <TicketListItems />
+        <TicketList />
       </div>
     )
   }
 }
-export default TicketDisplay;
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ loadTicketState }, dispatch)
+}
+
+const Tickets = connect(() => ({}),
+  mapDispatchToProps
+)(TicketDisplay);
+
+export default Tickets;
