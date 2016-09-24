@@ -1,33 +1,47 @@
-import React, { Component } from 'react';
-import tickets from '../../mock/ticketStubs';
-import TicketList from './TicketList';
+import React from 'react';
 import { connect } from 'react-redux';
-import { loadTicketState } from '../../actions/index.js';
 import { bindActionCreators } from 'redux';
 
-class TicketDisplay extends Component {
-  constructor(props) {
-    super(props)
-  }
-  componentWillMount() {
-    this.props.loadTicketState(tickets);
+
+import * as ticketActionCreators from '../../actions/index';
+import Tickets from './Tickets';
+
+class TicketDisplay extends React.Component {
+  constructor (props) {
+    super(props);
+
+  };
+
+  componentWillMount () {
+    // set tickets in state
+    this.props.loadTicketState(['ticket1', 'ticket2', 'ticket3']);
   }
 
-  render() {
+  componentDidMount () {
+    // set starting value of filteredTickets to equal tickets
+    this.props.loadFilteredTicketState(['ticket1', 'ticket2', 'ticket3']);
+  }
+
+  render () {
     return (
-      <div>
-        <TicketList />
+      <div id='ticketWindow'>
+      Ticket Window!
+        <Tickets />
       </div>
     )
-  }
+  };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ loadTicketState }, dispatch)
+const mapStateToProps = function(store) {
+  console.log('this is the store!!!', store);
+  return {
+    tickets: store.ticketsReducer.tickets,
+    filteredTickets: store.ticketsReducer.filteredTickets
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ticketActionCreators, dispatch);
 }
 
-const Tickets = connect(() => ({}),
-  mapDispatchToProps
-)(TicketDisplay);
-
-export default Tickets;
+export default connect(mapStateToProps, mapDispatchToProps)(TicketDisplay);

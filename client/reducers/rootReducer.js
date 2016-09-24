@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import articlesList from './articlesReducer';
-import ticketsList from './ticketsReducer';
+import ticketsReducer from './ticketsReducer';
 
 const rootReducer = combineReducers({
   articlesList,
-  ticketsList
+  ticketsReducer
 })
 
 export default rootReducer;
