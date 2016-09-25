@@ -21,14 +21,14 @@ class CreateTicket extends React.Component {
   render () {
     if (this.props.createTicketToggled) {
       return (
-        <div>
+        <div className='createTicketButton'>
           <button onClick={this.toggleNewTicketForm.bind(this)}>Create Ticket</button>
           <NewTicketForm />
         </div>
       )
     } else {
       return (
-        <div>
+        <div className='createTicketButton'>
           <button onClick={this.toggleNewTicketForm.bind(this)}>Create Ticket</button>
         </div>
       )
