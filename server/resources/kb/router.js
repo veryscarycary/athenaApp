@@ -1,8 +1,8 @@
-const router = require('express').Router();
+const router = require('../../config/middleware.js').router();
 const api = require('./controller.js');
 
 //returns stub list based on search params
-router.get('/api/kb/search', api.searchKb)
+router.get('/api/kb/search', api.searchKb);
 
 //returns single stub (id, title, issuePreview)
 router.get('/api/kb/:kb/stub', api.getKbStub);

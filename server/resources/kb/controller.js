@@ -1,5 +1,6 @@
-const request = require('request');
-const url = require('../../urls.js').kb;
+const mw = require('../../config/middleware.js');
+const request = mw.request
+const url = mw.urls.kb;
 
 module.exports = {
   getKbStub(req, res) {
