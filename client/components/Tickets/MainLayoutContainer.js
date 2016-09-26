@@ -14,13 +14,17 @@ class MainLayoutContainer extends React.Component {
 
   render () {
     return (
-      <div>
-        Ticket Home
-        <div className='ticketsAndSearch'>
-          <TicketDisplay />
-          <Search />
+      <div className='container bg-warning'>
+        <div className='row col-md-12'>
+          Ticket Home
+          <div className='ticketsAndSearch'>
+            <TicketDisplay />
+            <Search />
+          </div>
+          <div className='col-md-12 bg-success'>
+            <CreateTicket />
+          </div>
         </div>
-        <CreateTicket />
       </div>
     )
   }

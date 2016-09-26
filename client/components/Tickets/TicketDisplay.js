@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 
 import * as ticketActionCreators from '../../actions/index';
-import Tickets from './Tickets';
+import Ticket from './Ticket';
 
 class TicketDisplay extends React.Component {
   constructor (props) {
@@ -24,9 +24,33 @@ class TicketDisplay extends React.Component {
 
   render () {
     return (
-      <div id='ticketWindow'>
-      Ticket Window!
-        <Tickets />
+      <div className='row col-xs-6'>
+        <table className='table table-striped table-hover'>
+          <thead>
+            <tr>
+            <th>
+              #
+            </th>
+            <th>
+              Issue
+            </th>
+            <th>
+              Product
+            </th>
+            <th>
+              Customer Id
+            </th>
+            <th>
+              Status
+            </th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.filteredTickets.map(ticket => (
+              <Ticket ticket={ticket} />
+            ))}
+          </tbody>
+        </table>
       </div>
     )
   };
