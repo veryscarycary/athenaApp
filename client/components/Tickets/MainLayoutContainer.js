@@ -16,8 +16,10 @@ class MainLayoutContainer extends React.Component {
     return (
       <div>
         Ticket Home
-        <TicketDisplay />
-        <Search />
+        <div className='ticketsAndSearch'>
+          <TicketDisplay />
+          <Search />
+        </div>
         <CreateTicket />
       </div>
     )
