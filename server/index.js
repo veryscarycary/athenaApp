@@ -1,7 +1,9 @@
+'use strict'
 const text = require('./config/loadText.js');
 const mw = require('./config/middleware.js');
 const chalk = mw.chalk;
 const urls = mw.urls;
+const PING_FREQUENCY = 60000;
 
 //set port to default port or POST variable provided by user
 
@@ -13,7 +15,7 @@ console.log(text.art);
 
 //check downstream servers
 function serverCheck() {
-  console.log(new Date);
+  console.log('\n' + new Date);
   [
     ['KB', urls.kb],
     ['Ticket', urls.ticket],
@@ -27,18 +29,17 @@ function serverCheck() {
           res.on('data', data => {
             data = JSON.parse(data);
             console.log(
-            ` ${res.statusCode === '200' ? 
-              chalk.magenta.bold(String.fromCharCode(0x27A0)) + ' Database online!'
+            ` ${res.statusCode === 200 ? 
+              chalk.green.bold(String.fromCharCode(0x27A0)) + chalk.green(' Database connected!')
               : chalk.yellow(String.fromCharCode(0x27A0)) + '  ' + chalk.red.underline('Database Error') + chalk.red(': ' + data.message + ' (' + data.name + ').')
             }`);
-            console.log('')
         });
       })
   });
 }
 
 //check server status every minute
-setInterval(serverCheck, 60000);
+setInterval(serverCheck, PING_FREQUENCY);
 
 //set server to listen to port
 require('./server.js').listen(port, () => {
@@ -57,7 +58,7 @@ function serverLog(host, err, res, diff) {
     chalk.red.bold(String.fromCharCode(0x2716))
     : chalk.green.bold(String.fromCharCode(0x2714))} ${chalk.cyan.bold(`${host[0]} Server`)} <${chalk.white.bold(`${host[1]}`)}> is ${err ? 
         chalk.red.bold('offline') 
-        : `${chalk.green.bold('online')} ${chalk.cyan(String.fromCharCode(0x21e8))}  responded in ${
+        : `${chalk.green.bold('online')} ${chalk.cyan(String.fromCharCode(0x21e8))} responded in ${
             (() => diff < 500 ? 
                 diff < 100 ? 
                   chalk.green.bold(diff)

@@ -3,7 +3,8 @@ owl = chalk.cyan.bold,
 books = chalk.red.bold,
 floor = chalk.green, 
 hat = chalk.magenta,
-txt = chalk.bold,
+txt = chalk.blue.bold,
+subTxt = chalk.blue.dim.bold,
 eye = chalk.white.bold,
 pupil = chalk.blue.bold,
 beak = chalk.yellow.bold,
@@ -36,6 +37,6 @@ module.exports = {
     '\n \/  \/_\\  \\|    | \/    ~    \\    __)_  \/   |   \\  \/  \/_\\  \\ ' +
     '\n\/    |    \\    | \\    Y    \/        \\\/    |    \\\/    |    \\' +
     '\n\\____|__  \/____|  \\___|_  \/_______  \/\\____|__  \/\\____|__  \/' +
-    '\n        \\\/              \\\/        \\\/         \\\/         \\\/ ' +
-    '\n-------------------Smart Support Platform-------------------')
+    '\n        \\\/              \\\/        \\\/         \\\/         \\\/ ') +
+  subTxt('\n-------------------Smart Support Platform-------------------')
 }
