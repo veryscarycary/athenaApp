@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const LandingPage = () => (
+
+const LandingPage = ({children}) => (
   <div className="landing-page">
     <h1>Landing Page</h1>
     <div className="nav">
@@ -10,6 +11,7 @@ const LandingPage = () => (
       <Link to='/login'>Login</Link>
       <Link to='/signup'>Signup</Link>
     </div>
+    {children}
   </div>
 )
 
