@@ -1,5 +1,6 @@
 const mw = require('./config/middleware.js');
 const app = mw.express;
+const path = require('path');
 
 //middleware and routes
 module.exports = app().use(
@@ -11,9 +12,11 @@ module.exports = app().use(
   //   saveUninitialized: false,
   //   resave: true
   // }),
-  app.static(`${__dirname}/../public`), 
   require('./resources/user/router.js'),
+  app.static(`${__dirname}/../public`),
   require('./resources/ticket/router.js'),
   require('./resources/kb/router.js')
-);
-
+)
+.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public', 'index.html'));
+});

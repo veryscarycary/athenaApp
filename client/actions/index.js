@@ -1,11 +1,25 @@
 import uuid from 'uuid';
+import fetch from '../utils'
 
-export const createArticle = ({ abstract, title, body }) => ({
+export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
-    id: uuid.v4(),
-    abstract,
-    title,
-    body
+    payload: {
+      promise: fetch.postArticle(article)
+    }
+});
+
+export const requestArticlesByTerm = (term) => ({
+  type: 'REQUEST_ARTICLES_BY_TERM',
+  payload: {
+    promise: fetch.searchArticles(term)
+  }
+});
+
+export const requestAllArticles = () => ({
+  type: 'REQUEST_ALL_ARTICLES',
+  payload: {
+    promise: fetch.getArticles(),
+  }
 });
 
 export const loadArticles = (articles) => ({
