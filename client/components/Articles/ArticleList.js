@@ -11,7 +11,7 @@ const ArticleListItems = ({dispatch, articles}) => {
   return (
     <div className="article-list">
       <ul>
-        {articles.map(article => (
+        {articles.reverse().map(article => (
           <li key={article.id}>
             <h3>{article.title}</h3>
             <div>{article.abstract}</div>
