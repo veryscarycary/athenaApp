@@ -1,5 +1,6 @@
-const request = require('request');
-const url = require('../../urls.js').user;
+const mw = require('../../config/middleware.js');
+const request = mw.request
+const url = mw.urls.user;
 
 module.exports = {
   getUser(req, res) {

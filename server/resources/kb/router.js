@@ -1,15 +1,16 @@
-const router = require('express').Router();
+'use strict'
+const router = require('../../config/middleware.js').router();
 const api = require('./controller.js');
 
-//returns stub list based on search params
-router.get('/api/kb/search', api.searchKb)
+// //returns stub list based on search params from search service. also used to get individual stubs.
+// router.get('/api/kb/search', api.searchKb); TODO: PENDING IMPLEMENTATION OF SEARCH SERVICE
 
-//returns single stub (id, title, issuePreview)
-router.get('/api/kb/:kb/stub', api.getKbStub);
+router.route('/api/kb')
+  .get(api.getKb)
+  .post(api.createKb);//creates a KB
 
-router.route('/api/kb/:kb')
+router.route('/api/kb/:id')
   .get(api.getKb) //returns a KB
-  .post(api.createKb)//creates a KB
   .put(api.editKb)//edits a KB
   .delete(api.deleteKb);//deletes a KB
 
