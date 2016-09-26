@@ -4,7 +4,7 @@ const url = mw.urls.ticket;
 
 module.exports = {
   getTicketStub(req, res) {
-
+    
   },
   searchTicket(req, res) {
   

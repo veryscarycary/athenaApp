@@ -9,7 +9,6 @@ const PING_FREQUENCY = 60000;
 
 const port = process.argv[2] || urls.default; 
 
-
 //load art
 console.log(text.art);
 
