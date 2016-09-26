@@ -1,9 +1,10 @@
-const request = require('request');
-const url = require('../../urls.js').ticket;
+const mw = require('../../config/middleware.js');
+const request = mw.request
+const url = mw.urls.ticket;
 
 module.exports = {
   getTicketStub(req, res) {
-
+    
   },
   searchTicket(req, res) {
   
