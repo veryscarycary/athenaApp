@@ -1,6 +1,6 @@
 'use strict'
 const mw = require('../../config/middleware.js');
-const request = mw.request
+const request = mw.request;
 const kb = mw.urls.kb;
 
 module.exports = {
