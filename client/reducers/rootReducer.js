@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { articlesList } from './articlesReducer';
 import { articleDisplay } from './articlesReducer';
-import ticketsList from './ticketsReducer';
+import ticketsReducer from './ticketsReducer';
 
 const rootReducer = combineReducers({
   articlesList,
   articleDisplay,
-  ticketsList
+  ticketsReducer
 })
 
 export default rootReducer;

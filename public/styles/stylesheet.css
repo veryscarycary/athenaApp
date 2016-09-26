@@ -1,0 +1,26 @@
+#ticketWindow {
+  background-color: #CCCCCC;
+  width: 400px;
+  height: 300px;
+  margin: 30px;
+  border-radius: 1;
+  border-color: #666;
+  border-style: dashed;
+  border-width: medium;
+}
+
+#searchBar {
+  position: static;
+  float: right;
+  font-size: 14px;
+  width:300px;
+  height: 35px;
+}
+
+#createTicketButton {
+  margin: 30px;
+}
+
+.hidden {
+  display: none;
+}
