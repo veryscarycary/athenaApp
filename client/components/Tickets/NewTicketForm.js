@@ -24,8 +24,6 @@ class NewTicketForm extends React.Component {
         Solution <input type="text" placeholder="" /><br />
         Related Articles <input type="text" placeholder="" /><br />
         Related Products <input type="text" placeholder="" /><br />
-        Created By <input type="text" placeholder="" /><br />
-        Edited By <input type="text" placeholder="" /><br />
       </div>
     )
   }

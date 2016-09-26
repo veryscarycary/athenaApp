@@ -66,7 +66,7 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _rootReducer = __webpack_require__(271);
+	var _rootReducer = __webpack_require__(275);
 	
 	var _rootReducer2 = _interopRequireDefault(_rootReducer);
 	
@@ -21737,9 +21737,17 @@
 	
 	var _Articles2 = _interopRequireDefault(_Articles);
 	
-	var _MainLayoutContainer = __webpack_require__(274);
+	var _MainLayoutContainer = __webpack_require__(268);
 	
 	var _MainLayoutContainer2 = _interopRequireDefault(_MainLayoutContainer);
+	
+	var _LoginContainer = __webpack_require__(278);
+	
+	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
+	
+	var _SignupContainer = __webpack_require__(279);
+	
+	var _SignupContainer2 = _interopRequireDefault(_SignupContainer);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21749,7 +21757,9 @@
 	    { history: _reactRouter.browserHistory },
 	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _LandingPage2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/articles', component: _Articles2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/tickets', component: _MainLayoutContainer2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/tickets', component: _MainLayoutContainer2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _LoginContainer2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _SignupContainer2.default })
 	  );
 	};
 	
@@ -27446,6 +27456,16 @@
 	        _reactRouter.Link,
 	        { to: '/tickets' },
 	        'Tickets'
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/login' },
+	        'Login'
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/signup' },
+	        'Signup'
 	      )
 	    )
 	  );
@@ -29481,13 +29501,92 @@
 	
 	var _reactRedux = __webpack_require__(242);
 	
+	var _TicketDisplay = __webpack_require__(269);
+	
+	var _TicketDisplay2 = _interopRequireDefault(_TicketDisplay);
+	
+	var _Search = __webpack_require__(272);
+	
+	var _Search2 = _interopRequireDefault(_Search);
+	
+	var _CreateTicket = __webpack_require__(273);
+	
+	var _CreateTicket2 = _interopRequireDefault(_CreateTicket);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MainLayoutContainer = function (_React$Component) {
+	  _inherits(MainLayoutContainer, _React$Component);
+	
+	  function MainLayoutContainer(props) {
+	    _classCallCheck(this, MainLayoutContainer);
+	
+	    return _possibleConstructorReturn(this, (MainLayoutContainer.__proto__ || Object.getPrototypeOf(MainLayoutContainer)).call(this, props));
+	  }
+	
+	  _createClass(MainLayoutContainer, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'Ticket Home',
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ticketsAndSearch' },
+	          _react2.default.createElement(_TicketDisplay2.default, null),
+	          _react2.default.createElement(_Search2.default, null)
+	        ),
+	        _react2.default.createElement(_CreateTicket2.default, null)
+	      );
+	    }
+	  }]);
+	
+	  return MainLayoutContainer;
+	}(_react2.default.Component);
+	
+	;
+	
+	var mapStateToProps = function mapStateToProps(store) {
+	  console.log('this is the store!!!', store);
+	  return {
+	    tickets: store.ticketsReducer.tickets
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(MainLayoutContainer);
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(242);
+	
 	var _redux = __webpack_require__(249);
 	
 	var _index = __webpack_require__(263);
 	
 	var ticketActionCreators = _interopRequireWildcard(_index);
 	
-	var _Tickets = __webpack_require__(269);
+	var _Tickets = __webpack_require__(270);
 	
 	var _Tickets2 = _interopRequireDefault(_Tickets);
 	
@@ -29552,7 +29651,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(TicketDisplay);
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29569,7 +29668,7 @@
 	
 	var _reactRedux = __webpack_require__(242);
 	
-	var _Ticket = __webpack_require__(270);
+	var _Ticket = __webpack_require__(271);
 	
 	var _Ticket2 = _interopRequireDefault(_Ticket);
 	
@@ -29616,7 +29715,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Tickets);
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29646,228 +29745,7 @@
 	exports.default = Ticket;
 
 /***/ },
-/* 271 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _redux = __webpack_require__(249);
-	
-	var _articlesReducer = __webpack_require__(272);
-	
-	var _articlesReducer2 = _interopRequireDefault(_articlesReducer);
-	
-	var _ticketsReducer = __webpack_require__(273);
-	
-	var _ticketsReducer2 = _interopRequireDefault(_ticketsReducer);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var rootReducer = (0, _redux.combineReducers)({
-	  articlesList: _articlesReducer2.default,
-	  ticketsReducer: _ticketsReducer2.default
-	});
-	
-	exports.default = rootReducer;
-
-/***/ },
 /* 272 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _articleStubs = __webpack_require__(267);
-	
-	var _articleStubs2 = _interopRequireDefault(_articleStubs);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	var article = function article() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case 'CREATE_ARTICLE':
-	      return {
-	        id: action.id,
-	        abstract: action.abstract,
-	        title: action.title
-	      };
-	    default:
-	      return state;
-	  }
-	};
-	
-	var articlesList = function articlesList() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case 'CREATE_ARTICLE':
-	      return [].concat(_toConsumableArray(state), [article(undefined, action)]);
-	    case 'LOAD_ARTICLES':
-	      return state.concat(action.articles);
-	    default:
-	      return state;
-	  }
-	};
-	
-	exports.default = articlesList;
-
-/***/ },
-/* 273 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var initialState = {
-	  tickets: [],
-	  filteredTickets: [],
-	  searchText: '',
-	  createTicketToggled: false
-	};
-	
-	// const ticket = (state = {}, action) => {
-	//   switch (action.type) {
-	//     case 'CREATE_TICKET':
-	//       return {
-	//         id: action.id,
-	//         body: action.body,
-	//         title: action.title
-	//       }
-	//     default:
-	//       return state
-	//   }
-	// }
-	// const ticketList = (state = [], action) => {
-	//   switch (action.type) {
-	//     case 'CREATE_TICKET':
-	//       return [
-	//         ...state,
-	//         ticket(undefined, action)
-	//       ]
-	//     case 'LOAD_TICKETS':
-	//       return state.concat(action.tickets);
-	//     default:
-	//       return state
-	//   }
-	// }
-	
-	var ticketsReducer = function ticketsReducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-	  var action = arguments[1];
-	
-	
-	  switch (action.type) {
-	    case 'SET_NEW_TICKETS':
-	      return Object.assign({}, state, { tickets: action.tickets });
-	
-	    case 'SET_NEW_SEARCHTEXT':
-	      return Object.assign({}, state, { searchText: action.searchText });
-	
-	    case 'SET_FILTERED_TICKETS':
-	      return Object.assign({}, state, { filteredTickets: action.filteredTickets });
-	
-	    case 'TOGGLE_CREATE_TICKET':
-	      return Object.assign({}, state, { createTicketToggled: action.createTicketToggled });
-	
-	    default:
-	      return state;
-	  }
-	};
-	
-	exports.default = ticketsReducer;
-
-/***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(242);
-	
-	var _TicketDisplay = __webpack_require__(268);
-	
-	var _TicketDisplay2 = _interopRequireDefault(_TicketDisplay);
-	
-	var _Search = __webpack_require__(275);
-	
-	var _Search2 = _interopRequireDefault(_Search);
-	
-	var _CreateTicket = __webpack_require__(276);
-	
-	var _CreateTicket2 = _interopRequireDefault(_CreateTicket);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var MainLayoutContainer = function (_React$Component) {
-	  _inherits(MainLayoutContainer, _React$Component);
-	
-	  function MainLayoutContainer(props) {
-	    _classCallCheck(this, MainLayoutContainer);
-	
-	    return _possibleConstructorReturn(this, (MainLayoutContainer.__proto__ || Object.getPrototypeOf(MainLayoutContainer)).call(this, props));
-	  }
-	
-	  _createClass(MainLayoutContainer, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        'Ticket Home',
-	        _react2.default.createElement(_TicketDisplay2.default, null),
-	        _react2.default.createElement(_Search2.default, null),
-	        _react2.default.createElement(_CreateTicket2.default, null)
-	      );
-	    }
-	  }]);
-	
-	  return MainLayoutContainer;
-	}(_react2.default.Component);
-	
-	;
-	
-	var mapStateToProps = function mapStateToProps(store) {
-	  console.log('this is the store!!!', store);
-	  return {
-	    tickets: store.ticketsReducer.tickets
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(MainLayoutContainer);
-
-/***/ },
-/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29968,7 +29846,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Search);
 
 /***/ },
-/* 276 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29989,7 +29867,7 @@
 	
 	var _index = __webpack_require__(263);
 	
-	var _NewTicketForm = __webpack_require__(277);
+	var _NewTicketForm = __webpack_require__(274);
 	
 	var _NewTicketForm2 = _interopRequireDefault(_NewTicketForm);
 	
@@ -30026,7 +29904,7 @@
 	      if (this.props.createTicketToggled) {
 	        return _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'createTicketButton' },
 	          _react2.default.createElement(
 	            'button',
 	            { onClick: this.toggleNewTicketForm.bind(this) },
@@ -30037,7 +29915,7 @@
 	      } else {
 	        return _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'createTicketButton' },
 	          _react2.default.createElement(
 	            'button',
 	            { onClick: this.toggleNewTicketForm.bind(this) },
@@ -30067,7 +29945,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CreateTicket);
 
 /***/ },
-/* 277 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30139,12 +30017,6 @@
 	        _react2.default.createElement('br', null),
 	        'Related Products ',
 	        _react2.default.createElement('input', { type: 'text', placeholder: '' }),
-	        _react2.default.createElement('br', null),
-	        'Created By ',
-	        _react2.default.createElement('input', { type: 'text', placeholder: '' }),
-	        _react2.default.createElement('br', null),
-	        'Edited By ',
-	        _react2.default.createElement('input', { type: 'text', placeholder: '' }),
 	        _react2.default.createElement('br', null)
 	      );
 	    }
@@ -30164,6 +30036,306 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(NewTicketForm);
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _redux = __webpack_require__(249);
+	
+	var _articlesReducer = __webpack_require__(276);
+	
+	var _articlesReducer2 = _interopRequireDefault(_articlesReducer);
+	
+	var _ticketsReducer = __webpack_require__(277);
+	
+	var _ticketsReducer2 = _interopRequireDefault(_ticketsReducer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var rootReducer = (0, _redux.combineReducers)({
+	  articlesList: _articlesReducer2.default,
+	  ticketsReducer: _ticketsReducer2.default
+	});
+	
+	exports.default = rootReducer;
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _articleStubs = __webpack_require__(267);
+	
+	var _articleStubs2 = _interopRequireDefault(_articleStubs);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
+	var article = function article() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'CREATE_ARTICLE':
+	      return {
+	        id: action.id,
+	        abstract: action.abstract,
+	        title: action.title
+	      };
+	    default:
+	      return state;
+	  }
+	};
+	
+	var articlesList = function articlesList() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'CREATE_ARTICLE':
+	      return [].concat(_toConsumableArray(state), [article(undefined, action)]);
+	    case 'LOAD_ARTICLES':
+	      return state.concat(action.articles);
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = articlesList;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var initialState = {
+	  tickets: [],
+	  filteredTickets: [],
+	  searchText: '',
+	  createTicketToggled: false
+	};
+	
+	// const ticket = (state = {}, action) => {
+	//   switch (action.type) {
+	//     case 'CREATE_TICKET':
+	//       return {
+	//         id: action.id,
+	//         body: action.body,
+	//         title: action.title
+	//       }
+	//     default:
+	//       return state
+	//   }
+	// }
+	// const ticketList = (state = [], action) => {
+	//   switch (action.type) {
+	//     case 'CREATE_TICKET':
+	//       return [
+	//         ...state,
+	//         ticket(undefined, action)
+	//       ]
+	//     case 'LOAD_TICKETS':
+	//       return state.concat(action.tickets);
+	//     default:
+	//       return state
+	//   }
+	// }
+	
+	var ticketsReducer = function ticketsReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	
+	  switch (action.type) {
+	    case 'SET_NEW_TICKETS':
+	      return Object.assign({}, state, { tickets: action.tickets });
+	
+	    case 'SET_NEW_SEARCHTEXT':
+	      return Object.assign({}, state, { searchText: action.searchText });
+	
+	    case 'SET_FILTERED_TICKETS':
+	      return Object.assign({}, state, { filteredTickets: action.filteredTickets });
+	
+	    case 'TOGGLE_CREATE_TICKET':
+	      return Object.assign({}, state, { createTicketToggled: action.createTicketToggled });
+	
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = ticketsReducer;
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(242);
+	
+	var _redux = __webpack_require__(249);
+	
+	var _index = __webpack_require__(263);
+	
+	var ticketActionCreators = _interopRequireWildcard(_index);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var LoginContainer = function (_React$Component) {
+	  _inherits(LoginContainer, _React$Component);
+	
+	  function LoginContainer(props) {
+	    _classCallCheck(this, LoginContainer);
+	
+	    return _possibleConstructorReturn(this, (LoginContainer.__proto__ || Object.getPrototypeOf(LoginContainer)).call(this, props));
+	  }
+	
+	  _createClass(LoginContainer, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'loginSignupContainer' },
+	        'Username: ',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { id: 'searchBar', type: 'text', placeholder: 'username' }),
+	        'Password: ',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { id: 'searchBar', type: 'text', placeholder: '********' })
+	      );
+	    }
+	  }]);
+	
+	  return LoginContainer;
+	}(_react2.default.Component);
+	
+	;
+	
+	var mapStateToProps = function mapStateToProps(store) {
+	  console.log('this is the store!!!', store);
+	  return {
+	    tickets: store.ticketsReducer.tickets
+	  };
+	};
+	
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)(ticketActionCreators, dispatch);
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(LoginContainer);
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(242);
+	
+	var _redux = __webpack_require__(249);
+	
+	var _index = __webpack_require__(263);
+	
+	var ticketActionCreators = _interopRequireWildcard(_index);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SignupContainer = function (_React$Component) {
+	  _inherits(SignupContainer, _React$Component);
+	
+	  function SignupContainer(props) {
+	    _classCallCheck(this, SignupContainer);
+	
+	    return _possibleConstructorReturn(this, (SignupContainer.__proto__ || Object.getPrototypeOf(SignupContainer)).call(this, props));
+	  }
+	
+	  _createClass(SignupContainer, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'loginSignupContainer' },
+	        'Username: ',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { id: 'searchBar', type: 'text', placeholder: 'username' }),
+	        'Password: ',
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { id: 'searchBar', type: 'text', placeholder: '********' })
+	      );
+	    }
+	  }]);
+	
+	  return SignupContainer;
+	}(_react2.default.Component);
+	
+	;
+	
+	var mapStateToProps = function mapStateToProps(store) {
+	  console.log('this is the store!!!', store);
+	  return {
+	    tickets: store.ticketsReducer.tickets
+	  };
+	};
+	
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)(ticketActionCreators, dispatch);
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SignupContainer);
 
 /***/ }
 /******/ ]);
