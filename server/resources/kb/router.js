@@ -6,7 +6,7 @@ const api = require('./controller.js');
 // router.get('/api/kb/search', api.searchKb); TODO: PENDING IMPLEMENTATION OF SEARCH SERVICE
 
 router.route('/api/kb')
-  .get(api.getKb)
+  .get(api.getKb) //gets all KBs
   .post(api.createKb);//creates a KB
 
 router.route('/api/kb/:id')
