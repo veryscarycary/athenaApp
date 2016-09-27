@@ -1,11 +1,23 @@
 const article = (state = {}, action) => {
   switch (action.type) {
-    case 'CREATE_ARTICLE':
+    case 'CREATE_ARTICLE_REJECTED':
       return {
-        id: action.id,
-        abstract: action.abstract,
-        title: action.title,
-        body: action.body
+        ...state,
+        status: 'rejected'
+      }
+    case 'CREATE_ARTICLE_FULFILLED':
+      return {
+        id: action.payload.id,
+        issuePreview: action.issuePreview,
+        title: action.payload.title,
+        issue: action.payload.issue,
+        solution: action.payload.solution,
+        status: 'fulfilled'
+      }
+    case 'CREATE_ARTICLE_PENDING':
+      return {
+        ...state,
+        status: 'pending'
       }
     default:
       return state
@@ -19,22 +31,32 @@ export const articlesList = (state = [], action) => {
         ...state,
         article(undefined, action)
       ]
-    case 'LOAD_ARTICLES':
+    case 'GET_ARTICLES':
       return state.concat(action.articles);
     default:
       return state
   }
 }
 
-export const articleDisplay = (state = {hidden: true}, action) => {
+export const articleDisplay = (state = {hidden:true}, action) => {
   switch (action.type) {
-    case 'TOGGLE_ARTICLE_DISPLAY':
-      console.log('called!');
+    case 'GET_ARTICLE_REJECTED':
       return {
-        title: action.title,
-        id: action.id,
-        body: action.body,
-        hidden: !state.hidden
+        ...state,
+        status: 'rejected'
+      }
+    case 'GET_ARTICLE_FULFILLED':
+      return {
+        title: action.payload.title,
+        solution: action.payload.solution,
+        issue: action.payload.issue,
+        hidden: !state.hidden,
+        status: 'fulfilled'
+      }
+    case 'GET_ARTICLE_PENDING':
+      return {
+        ...state,
+        status: 'pending'
       }
     default:
       return state

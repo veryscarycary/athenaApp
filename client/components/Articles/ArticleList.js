@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleArticleDisplay } from '../../actions';
+import { getArticle } from '../../actions';
 
 
 const ArticleListItems = ({dispatch, articles}) => {
   const handleToggle = (article) => {
     console.log('pass me!', article);
-    dispatch(toggleArticleDisplay(article));
+    dispatch(getArticle(article.id));
   }
   return (
     <div className="article-list">

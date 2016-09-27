@@ -1,36 +1,37 @@
 import uuid from 'uuid';
+import articleUtils from '../utils/articleUtils';
 
-export const createArticle = ({ abstract, title, body }) => ({
+export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
-    id: uuid.v4(),
-    abstract,
-    title,
-    body
-});
-
-export const loadArticles = (articles) => ({
-  type: 'LOAD_ARTICLES',
-  articles
+    payload: articleUtils.postArticle(article)
 });
 
 export const searchArticles = (term) => ({
   type: 'SEARCH_ARTICLES',
-  term
+  payload: articleUtils.searchArticles(term)
 });
 
-export const toggleArticleDisplay = ({title, id, body}) => ({
-  type: 'TOGGLE_ARTICLE_DISPLAY',
-  title,
-  id,
-  body
+export const getArticles = () => ({
+  type: 'GET_ARTICLES',
+  payload: articleUtils.getArticles()
 });
+
+export const getArticle = (id) => ({
+  type: 'GET_ARTICLE',
+  payload: articleUtils.getArticle(id)
+});
+
+export const editArticle = (id) => ({
+  type: 'EDIT_ARTICLE',
+  payload: articleUtils.editArticle(id)
+});
+
+export const deleteArticle = (id) => ({
+  type: 'DELETE_ARTICLE',
+  payload: articleUtils.deleteArticle(id)
+})
 
 export const loadTicketState = (tickets) => ({
-    // here is the type being imported in
-//    type: 'LOAD_TICKETS',
-    // ES6 for users: users
-//    tickets
-
   type: 'SET_NEW_TICKETS',
   tickets
 })
