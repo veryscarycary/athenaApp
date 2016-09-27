@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
+import promiseMiddleware from 'redux-promise-middleware';
 import App from './components/App';
 import Articles from './components/Articles/Articles';
 import Tickets from './components/Tickets/TicketDisplay';
@@ -16,7 +17,8 @@ const store = createStore(
   rootReducer,
   applyMiddleWare(
     thunk,
-    loggerMiddleware
+    loggerMiddleware,
+    promiseMiddleware
   )
 );
 

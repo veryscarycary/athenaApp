@@ -3,48 +3,50 @@ import fetch from '../utils'
 
 export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
-    payload: {
-      promise: fetch.postArticle(article)
-    }
-});
-
-export const requestArticlesByTerm = (term) => ({
-  type: 'REQUEST_ARTICLES_BY_TERM',
-  payload: {
-    promise: fetch.searchArticles(term)
-  }
-});
-
-export const requestAllArticles = () => ({
-  type: 'REQUEST_ALL_ARTICLES',
-  payload: {
-    promise: fetch.getArticles(),
-  }
-});
-
-export const loadArticles = (articles) => ({
-  type: 'LOAD_ARTICLES',
-  articles
+    payload: fetch.postArticle(article)
 });
 
 export const searchArticles = (term) => ({
   type: 'SEARCH_ARTICLES',
-  term
+  payload: fetch.searchArticles(term)
 });
 
-export const toggleArticleDisplay = ({title, id, body}) => ({
-  type: 'TOGGLE_ARTICLE_DISPLAY',
+export const getArticles = () => ({
+  type: 'GET_ARTICLES',
+  payload: fetch.getArticles(),
+});
+
+export const getArticle = (id) => (
+  return dispatch => {
+    dispatch({
+      type: 'GET_ARTICLE',
+      payload: fetch.getArticle(id)
+    }).then((result) => dispatch(articleDisplay(result)));
+  };
+)
+
+export const editArticle = (id) => ({
+  type: 'EDIT_ARTICLE',
+  payload: fetch.editArticle(id)
+});
+
+export const deleteArticle = (id) => ({
+  type: 'DELETE_ARTICLE',
+  payload: fetch.deleteArticle(id)
+})
+
+export const toggleDisplay = () => ({
+  type: 'TOGGLE_DISPLAY',
+})
+
+export const articleDisplay = ({title, id, issue, solution}) => ({
+  type: 'ARTICLE_DISPLAY',
   title,
   id,
   body
 });
 
 export const loadTicketState = (tickets) => ({
-    // here is the type being imported in
-//    type: 'LOAD_TICKETS',
-    // ES6 for users: users
-//    tickets
-
   type: 'SET_NEW_TICKETS',
   tickets
 })
