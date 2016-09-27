@@ -11,12 +11,6 @@ class CreateTicket extends React.Component {
 
   }
 
-  // onClick, drop down a form to fill out all of the necessary info
-  // toggleNewTicketForm () {
-  //   // dispatches the opposite boolean of createTicketToggle
-  //   console.log(this.props.createTickeToggled, 'this.props.createTickeToggled')
-  //   this.props.loadCreateTicketState(!this.props.createTicketToggled);
-  // }
 
   render () {
       return (

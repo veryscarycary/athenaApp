@@ -32,9 +32,9 @@ export const deleteArticle = (id) => ({
   payload: articleUtils.deleteArticle(id)
 })
 
-export const loadTicketState = (tickets) => ({
+export const loadTicketState = () => ({
   type: 'SET_NEW_TICKETS',
-  tickets
+  payload: ticketUtils.getTickets()
 })
 
 export const loadSearchState = (searchText) => ({
@@ -44,5 +44,5 @@ export const loadSearchState = (searchText) => ({
 
 export const loadFilteredTicketState = (filteredTickets) => ({
   type: 'SET_FILTERED_TICKETS',
-  payload: ticketUtils.getTickets()
+  filteredTickets
 });
