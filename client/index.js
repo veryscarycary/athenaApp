@@ -18,7 +18,7 @@ const store = createStore(
   applyMiddleware(
     thunk,
     loggerMiddleware,
-    promiseMiddleware
+    promiseMiddleware()
   )
 );
 

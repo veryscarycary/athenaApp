@@ -13,7 +13,9 @@ export const searchArticles = (term) => ({
 
 export const getArticles = () => ({
   type: 'GET_ARTICLES',
-  payload: articleUtils.getArticles()
+  payload: {
+    promise: articleUtils.getArticles()
+  }
 });
 
 export const getArticle = (id) => ({
@@ -30,6 +32,8 @@ export const deleteArticle = (id) => ({
   type: 'DELETE_ARTICLE',
   payload: articleUtils.deleteArticle(id)
 })
+
+/*OLD STUFF*/
 
 export const loadTicketState = (tickets) => ({
   type: 'SET_NEW_TICKETS',

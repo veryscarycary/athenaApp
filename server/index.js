@@ -54,7 +54,7 @@ function serverLog(host, err, res, diff) {
     test += key + ' ';
   console.log(
   `${err ?
-    chalk.red.bold(String.fromCharCode(0x2716))
+    chalk.red.bold(String.fromCharCode(0x2716), err)
     : chalk.green.bold(String.fromCharCode(0x2714))} ${chalk.cyan.bold(`${host[0]} Server`)} <${chalk.white.bold(`${host[1]}`)}> is ${err ?
         chalk.red.bold('offline')
         : `${chalk.green.bold('online')} ${chalk.cyan(String.fromCharCode(0x21e8))} responded in ${

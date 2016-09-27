@@ -8,7 +8,7 @@ const article = (state = {}, action) => {
     case 'CREATE_ARTICLE_FULFILLED':
       return {
         id: action.payload.id,
-        issuePreview: action.issuePreview,
+        issuePreview: action.payload.issuePreview,
         title: action.payload.title,
         issue: action.payload.issue,
         solution: action.payload.solution,
@@ -27,12 +27,18 @@ const article = (state = {}, action) => {
 export const articlesList = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_ARTICLE':
+      return state.concat(article(undefined, action));
+    case 'GET_ARTICLES_REJECTED':
       return [
         ...state,
-        article(undefined, action)
       ]
-    case 'GET_ARTICLES':
-      return state.concat(action.articles);
+    case 'GET_ARTICLES_FULFILLED':
+      console.log(action.payload);
+      return state.concat(action.payload);
+    case 'GET_ARTICLES_PENDING':
+      return [
+        ...state,
+      ]
     default:
       return state
   }

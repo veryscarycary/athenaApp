@@ -18,4 +18,4 @@ module.exports = app()
     require('./resources/kb/router.js'),
     app.static(`${__dirname}/../public`)
   )
-  .get('/*', (req, res) => res.sendFile(`${__dirname}/../public/index.html`));
+  .get('/*', (req, res) => res.sendFile(path.join(__dirname, '../public', 'index.html')));
