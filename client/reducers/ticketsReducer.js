@@ -34,19 +34,19 @@ const initialState = {
 const ticketsReducer = function(state = initialState, action) {
   console.log(action,'this action is coming in')
   switch(action.type) {
-    case 'SET_NEW_TICKETS_REJECTED':
+    case 'SET_FILTERED_TICKETS_REJECTED':
       console.log('rejected')
       return {
         ...state,
         status: 'rejected'
       };
-    case 'SET_NEW_TICKETS_FULFILLED':
-      console.log(action, 'I see this action');
+    case 'SET_FILTERED_TICKETS_FULFILLED':
+      console.log(action.payload, 'FULFILLED');
       return {
-        tickets: action.tickets,
+        filteredTickets: action.payload,
         status: 'fulfilled'
       };
-    case 'SET_NEW_TICKETS_PENDING':
+    case 'SET_FILTERED_TICKETS_PENDING':
       console.log('pending')
       return {
         ...state,
@@ -61,7 +61,8 @@ const ticketsReducer = function(state = initialState, action) {
       return Object.assign({}, state, { searchText: action.searchText });
 
     case 'SET_FILTERED_TICKETS':
-      return Object.assign({}, state, { filteredTickets: action.tickets });
+    console.log('in set filtered tickets', action, 'tickets')
+      return Object.assign({}, state, { filteredTickets: action.filteredTickets });
 
     case 'TOGGLE_CREATE_TICKET':
       return Object.assign({}, state, { createTicketToggled: action.createTicketToggled });

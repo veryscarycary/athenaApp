@@ -32,13 +32,10 @@ export const deleteArticle = (id) => ({
   payload: articleUtils.deleteArticle(id)
 })
 
-export const loadTicketState = (tickets) => {
-  console.log(tickets, 'these are the tickets in the action creator');
-  return {
+export const loadTicketState = (tickets) => ({
   type: 'SET_NEW_TICKETS',
   tickets
-  };
-};
+})
 
 export const loadSearchState = (searchText) => ({
   type: 'SET_NEW_SEARCHTEXT',
@@ -47,5 +44,5 @@ export const loadSearchState = (searchText) => ({
 
 export const loadFilteredTicketState = (filteredTickets) => ({
   type: 'SET_FILTERED_TICKETS',
-  filteredTickets
+  payload: ticketUtils.getTickets()
 });
