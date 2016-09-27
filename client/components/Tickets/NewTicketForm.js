@@ -15,15 +15,44 @@ class NewTicketForm extends React.Component {
 
   render () {
     return (
-      <div id="newTicketForm">
-        Title <input type="text" placeholder="" /><br />
-        Customer Id <input type="text" placeholder="" /><br />
-        Product <input type="text" placeholder="" /><br />
-        Related Product Versions <input type="text" placeholder="" /><br />
-        Issue <input type="text" placeholder="" /><br />
-        Solution <input type="text" placeholder="" /><br />
-        Related Articles <input type="text" placeholder="" /><br />
-        Related Products <input type="text" placeholder="" /><br />
+      <div className='row col-xs-12 newTicketForm'>
+        <form action='' method=''>
+          <div className='form-group'>
+            <label htmlFor='title'>Title:</label>
+            <input type='text' className='form-control' id='title'/>
+          </div>
+          <div className='form-group'>
+          <label htmlFor='issue'>Issue:</label>
+          <input type='text' className='form-control' id='issue'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='product'>Title:</label>
+            <input type='text' className='form-control' id='product'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='customerId'>Customer Id:</label>
+            <input type='text' className='form-control' id='customerId'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='relatedArticles'>Related Articles:</label>
+            <input type='text' className='form-control' id='relatedArticles'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='relatedProducts'>Related Products:</label>
+            <input type='text' className='form-control' id='relatedProducts'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='relatedProducts'>Related Products:</label>
+            <input type='text' className='form-control' id='relatedProducts'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor="solution">Solution:</label>
+            <textarea className="form-control" rows="5" id="solution"></textarea>
+          </div>
+          <div className='form-group'>
+            <input type='submit' className='btn btn-default' id='submit' value='submit' />
+          </div>
+        </form>
       </div>
     )
   }
