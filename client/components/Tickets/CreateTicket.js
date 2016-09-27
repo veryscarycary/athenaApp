@@ -12,27 +12,23 @@ class CreateTicket extends React.Component {
   }
 
   // onClick, drop down a form to fill out all of the necessary info
-  toggleNewTicketForm () {
-    // dispatches the opposite boolean of createTicketToggle
-    console.log(this.props.createTickeToggled, 'this.props.createTickeToggled')
-    this.props.loadCreateTicketState(!this.props.createTicketToggled);
-  }
+  // toggleNewTicketForm () {
+  //   // dispatches the opposite boolean of createTicketToggle
+  //   console.log(this.props.createTickeToggled, 'this.props.createTickeToggled')
+  //   this.props.loadCreateTicketState(!this.props.createTicketToggled);
+  // }
 
   render () {
-    if (this.props.createTicketToggled) {
       return (
-        <div className='createTicketButton'>
-          <button onClick={this.toggleNewTicketForm.bind(this)}>Create Ticket</button>
-          <NewTicketForm />
+        <div>
+          <div className='row col-md-10 col-md-push-1'>
+            <button className='btn btn-default' data-toggle='collapse' data-target='#content'>Create Ticket</button>
+            <div className='collapse' id='content'>
+              <NewTicketForm className='collapse' id='content' />
+            </div>
+          </div>
         </div>
       )
-    } else {
-      return (
-        <div className='createTicketButton'>
-          <button onClick={this.toggleNewTicketForm.bind(this)}>Create Ticket</button>
-        </div>
-      )
-    }
   }
 };
 

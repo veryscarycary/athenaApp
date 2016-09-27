@@ -1,11 +1,8 @@
-#ticketWindow {
-  background-color: #CCCCCC;
-  width: 400px;
-  height: 300px;
-  border-radius: 1;
-  border-color: #666;
-  border-style: dashed;
-  border-width: medium;
+.newTicketForm {
+  background-color: #FFEDD3;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 2px;
 }
 
 #searchBar {
