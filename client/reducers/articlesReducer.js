@@ -3,19 +3,20 @@ const article = (state = {}, action) => {
     case 'CREATE_ARTICLE_REJECTED':
       return {
         ...state,
-        status: 'error'
+        status: 'rejected'
       }
     case 'CREATE_ARTICLE_FULFILLED':
       return {
         id: action.payload.id,
         issuePreview: action.issuePreview,
         title: action.payload.title,
-        issue: action.payload.issue
-        status: 'success'
+        issue: action.payload.issue,
+        solution: action.payload.solution,
+        status: 'fulfilled'
       }
     case 'CREATE_ARTICLE_PENDING':
       return {
-        ...state
+        ...state,
         status: 'pending'
       }
     default:
@@ -37,26 +38,25 @@ export const articlesList = (state = [], action) => {
   }
 }
 
-export const toggleDisplay = (state = {hidden:true}, action) => {
+export const articleDisplay = (state = {hidden:true}, action) => {
   switch (action.type) {
-    case 'TOGGLE_DISPLAY':
+    case 'GET_ARTICLE_REJECTED':
       return {
         ...state,
-        hidden: !state.hidden
+        status: 'rejected'
       }
-    default:
-      return state
-  }
-}
-
-export const articleDisplay = (state = {}, action) => {
-  switch (action.type) {
-    case 'ARTICLE_DISPLAY':
+    case 'GET_ARTICLE_FULFILLED':
       return {
         title: action.payload.title,
-        id: action.payload.id,
         solution: action.payload.solution,
-        issue: action.payload.issue
+        issue: action.payload.issue,
+        hidden: !state.hidden,
+        status: 'fulfilled'
+      }
+    case 'GET_ARTICLE_PENDING':
+      return {
+        ...state,
+        status: 'pending'
       }
     default:
       return state

@@ -1,50 +1,35 @@
 import uuid from 'uuid';
-import fetch from '../utils'
+import articleUtils from '../utils/articleUtils';
 
 export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
-    payload: fetch.postArticle(article)
+    payload: articleUtils.postArticle(article)
 });
 
 export const searchArticles = (term) => ({
   type: 'SEARCH_ARTICLES',
-  payload: fetch.searchArticles(term)
+  payload: articleUtils.searchArticles(term)
 });
 
 export const getArticles = () => ({
   type: 'GET_ARTICLES',
-  payload: fetch.getArticles(),
+  payload: articleUtils.getArticles()
 });
 
-export const getArticle = (id) => (
-  return dispatch => {
-    dispatch({
-      type: 'GET_ARTICLE',
-      payload: fetch.getArticle(id)
-    }).then((result) => dispatch(articleDisplay(result)));
-  };
-)
+export const getArticle = (id) => ({
+  type: 'GET_ARTICLE',
+  payload: articleUtils.getArticle(id)
+});
 
 export const editArticle = (id) => ({
   type: 'EDIT_ARTICLE',
-  payload: fetch.editArticle(id)
+  payload: articleUtils.editArticle(id)
 });
 
 export const deleteArticle = (id) => ({
   type: 'DELETE_ARTICLE',
-  payload: fetch.deleteArticle(id)
+  payload: articleUtils.deleteArticle(id)
 })
-
-export const toggleDisplay = () => ({
-  type: 'TOGGLE_DISPLAY',
-})
-
-export const articleDisplay = ({title, id, issue, solution}) => ({
-  type: 'ARTICLE_DISPLAY',
-  title,
-  id,
-  body
-});
 
 export const loadTicketState = (tickets) => ({
   type: 'SET_NEW_TICKETS',
