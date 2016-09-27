@@ -13,14 +13,28 @@ class TicketDisplay extends React.Component {
   };
 
   componentWillMount () {
+    var context = this;
     // set tickets in state
-    this.props.loadTicketState(['ticket1', 'ticket2', 'ticket3']);
+    return fetch('http://localhost:3000/api/ticket', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(function (response) {
+      return response.json()
+    }).then(function(result) {
+      context.props.loadTicketState(result);
+      context.props.loadFilteredTicketState(result);
+    }).catch(function(error) {
+      console.log(error, 'There was an error getting the tickets!')
+    });
   }
 
-  componentDidMount () {
-    // set starting value of filteredTickets to equal tickets
-    this.props.loadFilteredTicketState(['ticket1', 'ticket2', 'ticket3']);
-  }
+  // componentDidMount () {
+  //   // set starting value of filteredTickets to equal tickets
+  //   this.props.loadFilteredTicketState(['ticket1', 'ticket2', 'ticket3']);
+  // }
 
   render () {
     return (
