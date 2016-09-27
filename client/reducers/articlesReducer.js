@@ -7,12 +7,7 @@ const article = (state = {}, action) => {
       }
     case 'CREATE_ARTICLE_FULFILLED':
       return {
-        id: action.payload.id,
-        issuePreview: action.issuePreview,
-        title: action.payload.title,
-        issue: action.payload.issue,
-        solution: action.payload.solution,
-        status: 'fulfilled'
+        payload
       }
     case 'CREATE_ARTICLE_PENDING':
       return {
@@ -62,4 +57,3 @@ export const articleDisplay = (state = {hidden:true}, action) => {
       return state
   }
 }
-

@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ticketUtils from '../../utils/ticketUtils';
+// import store from '../../index';
 
 
-import * as ticketActionCreators from '../../actions/index';
+// import * as ticketActionCreators from '../../actions/index';
+import { loadTicketState } from '../../actions/index';
+import { loadFilteredTicketState } from '../../actions/index';
 import Ticket from './Ticket';
 
 class TicketDisplay extends React.Component {
@@ -13,22 +17,32 @@ class TicketDisplay extends React.Component {
   };
 
   componentWillMount () {
-    var context = this;
     // set tickets in state
-    return fetch('http://localhost:3000/api/ticket', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(function (response) {
-      return response.json()
-    }).then(function(result) {
-      context.props.loadTicketState(result);
-      context.props.loadFilteredTicketState(result);
-    }).catch(function(error) {
-      console.log(error, 'There was an error getting the tickets!')
-    });
+    var context = this;
+
+
+      return fetch('http://localhost:3000/api/ticket', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        return response.json();
+      }).then((results) => {
+        context.props.loadTicketState(results);
+      })
+      .catch(error => {
+        console.log(error, 'There was an error getting the tickets!');
+      });
+    // ticketUtils.getTickets().then((result) => {
+    //   console.log(result, 'this is the result')
+    //   console.log(this, 'this in the then statement');
+    //   console.log(context, 'context in the then statement');
+    //   this.props.loadTicketState(result);
+    //   this.props.loadFilteredTicketState(result);
+    // }).catch((error) => (console.error(error)));
   }
 
   // componentDidMount () {
@@ -70,6 +84,7 @@ class TicketDisplay extends React.Component {
   };
 }
 
+
 const mapStateToProps = function(store) {
   console.log('this is the store!!!', store);
   return {
@@ -79,7 +94,7 @@ const mapStateToProps = function(store) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ticketActionCreators, dispatch);
+  return bindActionCreators(loadTicketState, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketDisplay);
