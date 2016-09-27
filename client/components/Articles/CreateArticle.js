@@ -4,8 +4,7 @@ import { createArticle } from '../../actions';
 
 let CreateArticle = ({ dispatch }) => {
 
-  let abstract;
-  let title;
+  let abstract, title, body;
 
   return (
     <div className='create-article'>
@@ -15,14 +14,16 @@ let CreateArticle = ({ dispatch }) => {
       <input type='text' placeholder='abstract' ref={node => {
         abstract = node;
       }} />
+      <textarea ref={node => { body = node; }}></textarea>
       <button onClick={e => {
         e.preventDefault();
         if (!title.value.trim() || !abstract.value.trim()) {
           return
         }
-        dispatch(createArticle({abstract: abstract.value, title: title.value }))
+        dispatch(createArticle({abstract: abstract.value, title: title.value, body: body.value}))
         abstract.value = '';
         title.value = '';
+        body.value='';
       }}>Create</button>
     </div>
   )

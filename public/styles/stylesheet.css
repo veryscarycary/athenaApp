@@ -1,22 +1,43 @@
-#ticketWindow {
-  background-color: #CCCCCC;
-  width: 400px;
-  height: 300px;
-  margin: 30px;
-  border-radius: 1;
-  border-color: #666;
-  border-style: dashed;
-  border-width: medium;
+.newTicketForm {
+  background-color: #FFEDD3;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 2px;
 }
 
 #searchBar {
-  position: static;
-  float: right;
+  margin-left: 30px;
   font-size: 14px;
   width:300px;
   height: 35px;
 }
 
-#createTicketButton {
+.ticketsAndSearch {
   margin: 30px;
+  display: flex;
+  justify-content: space-around;
+  border-color: black;
+  border-width: 1;
+}
+
+.createTicketButton {
+  display: flex;
+  justify-content: center;
+  border-color: black;
+  border-width: 1;
+  margin: 30px;
+}
+
+.loginSignupContainer {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  border-color: black;
+  border-width: 1;
+  margin: 30px;
+}
+
+.hidden {
+  display: none;
 }

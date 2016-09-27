@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import SearchArticles from './SearchArticles';
 import CreateArticle from './CreateArticle';
 import ArticleList from './ArticleList';
+import FullArticle from './FullArticle';
 import articles from '../../mock/articleStubs';
 import { connect } from 'react-redux';
 import { loadArticles } from '../../actions';
@@ -21,6 +22,8 @@ class ArticlesDisplay extends Component {
       <div>
         <CreateArticle />
         <ArticleList />
+        <SearchArticles />
+        <FullArticle />
       </div>
     )
   }

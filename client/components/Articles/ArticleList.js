@@ -1,18 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toggleArticleDisplay } from '../../actions';
 
-const ArticleListItems = ({ articles }) => (
-  <div className="article-list">
-    <ul>
-      {articles.map(article => (
-        <li key={article.id}>
-          <h3>{article.title}</h3>
-          <div>{article.abstract}</div>
-        </li>
-      ))}
-    </ul>
-  </div>
-)
+
+const ArticleListItems = ({dispatch, articles}) => {
+  const handleToggle = (article) => {
+    console.log('pass me!', article);
+    dispatch(toggleArticleDisplay(article));
+  }
+  return (
+    <div className="article-list">
+      <ul>
+        {articles.reverse().map(article => (
+          <li key={article.id}>
+            <h3>{article.title}</h3>
+            <div>{article.abstract}</div>
+            <button onClick={e => {
+              e.preventDefault();
+              handleToggle(article);
+            }}>
+              Read more
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
