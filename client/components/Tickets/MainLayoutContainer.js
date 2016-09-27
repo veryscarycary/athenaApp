@@ -21,7 +21,7 @@ class MainLayoutContainer extends React.Component {
             <TicketDisplay />
             <Search />
           </div>
-          <div className='col-md-12 bg-success'>
+          <div className='col-md-12'>
             <CreateTicket />
           </div>
         </div>
