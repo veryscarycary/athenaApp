@@ -4,19 +4,18 @@ import { connect } from 'react-redux';
 const Ticket = ({ticket}) => (
   <tr>
     <td>
-      {ticket}
     </td>
     <td>
-      Issue With Blue Screen
+      {ticket.issue}
     </td>
     <td>
-      IBM Printer
+      Computer
     </td>
     <td>
-      1432
+      {ticket.customerId}
     </td>
     <td className='badge'>
-      Open
+      Resolved
     </td>
   </tr>
 );
