@@ -7,12 +7,6 @@ class NewTicketForm extends React.Component {
 
   }
 
-  // onClick, drop down a form to fill out all of the necessary info
-  toggleNewTicketForm () {
-    // dispatches the opposite boolean of createTicketToggle
-    store.dispatch(loadCreateTicketState(!this.props.createTicketToggled))
-  }
-
   render () {
     return (
       <div className='row col-xs-12 newTicketForm'>
@@ -61,8 +55,7 @@ class NewTicketForm extends React.Component {
 const mapStateToProps = function(store) {
   console.log('this is the store!!!', store);
   return {
-    tickets: store.ticketsReducer.tickets,
-    createTicketToggled: store.ticketsReducer.createTicketToggled
+    tickets: store.ticketsReducer.tickets
   };
 };
 

@@ -68,4 +68,3 @@ export const articleDisplay = (state = {hidden:true}, action) => {
       return state
   }
 }
-

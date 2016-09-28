@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import ticketUtils from '../../utils/ticketUtils';
 
 import * as ticketActionCreators from '../../actions/index';
 import Ticket from './Ticket';
@@ -13,28 +13,9 @@ class TicketDisplay extends React.Component {
   };
 
   componentWillMount () {
-    var context = this;
-    // set tickets in state
-    return fetch('http://localhost:3000/api/ticket', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(function (response) {
-      return response.json()
-    }).then(function(result) {
-      context.props.loadTicketState(result);
-      context.props.loadFilteredTicketState(result);
-    }).catch(function(error) {
-      console.log(error, 'There was an error getting the tickets!')
-    });
+    // // set tickets in state
+    this.props.loadTicketState();
   }
-
-  // componentDidMount () {
-  //   // set starting value of filteredTickets to equal tickets
-  //   this.props.loadFilteredTicketState(['ticket1', 'ticket2', 'ticket3']);
-  // }
 
   render () {
     return (
@@ -69,6 +50,7 @@ class TicketDisplay extends React.Component {
     )
   };
 }
+
 
 const mapStateToProps = function(store) {
   console.log('this is the store!!!', store);

@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import articleUtils from '../utils/articleUtils';
+import ticketUtils from '../utils/ticketUtils';
 
 export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
@@ -33,11 +34,9 @@ export const deleteArticle = (id) => ({
   payload: articleUtils.deleteArticle(id)
 })
 
-/*OLD STUFF*/
-
-export const loadTicketState = (tickets) => ({
+export const loadTicketState = () => ({
   type: 'SET_NEW_TICKETS',
-  tickets
+  payload: ticketUtils.getTickets()
 });
 
 export const loadSearchState = (searchText) => ({

@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as ticketActionCreators from '../../actions/index';
-// import { loadTicketState } from '../actions/ticket-actions';
-// import { loadSearchState } from '../actions/ticket-actions';
-// import { loadFilteredTicketState } from '../actions/ticket-actions';
 
 class Search extends React.Component {
   constructor (props) {
@@ -22,7 +19,7 @@ class Search extends React.Component {
     var filteredTickets = this.props.tickets.filter(function(ticket) {
       console.log(ticket, 'ticket');
       console.log(event.target.value, 'textValue');
-      if (ticket.includes(event.target.value)) {
+      if (ticket.issue.includes(event.target.value) || ticket.customerId.includes(event.target.value)) {
         return ticket;
       }
     });
