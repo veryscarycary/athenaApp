@@ -11,20 +11,46 @@ class LoginContainer extends React.Component {
 
   }
 
+  handleLogin() {
+    fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    }).then((res) => {
+        if (res.status === 400) {
+          this.setState({userNameDoesNotExist: true});
+        } else {
+        //redirect to events page
+          this.setState({isLoggedin: true});
+        }
+      }).catch((err) => {
+        console.log('There is an error. It\'s a sad day D=', err);
+      });
+  }
+
   render () {
     return (
       <div className='loginSignupContainer'>
-        <div className='form-group'>
-          <label htmlFor='username'>Username:</label>
-          <input type='text' className='form-control' id='username'/>
-        </div>
-        <div className='form-group'>
-          <label htmlFor='password'>Password:</label>
-          <input type='text' className='form-control' id='password'/>
-        </div>
-        <div className='form-group'>
-          <input type='submit' className='btn btn-default' id='submit' value='Login' />
-        </div>
+        <form action='' method=''>
+        {/*^onSubmit invoke fetch post to user server*/}
+          <div className='form-group'>
+            <label htmlFor='username'>Username:</label>
+            <input type='text' className='form-control' id='username'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password'>Password:</label>
+            <input type='text' className='form-control' id='password'/>
+          </div>
+          <div className='form-group'>
+            <input type='submit' className='btn btn-default' id='submit' value='Login' />
+          </div>
+        </form>
       </div>
     )
   }

@@ -14,17 +14,20 @@ class SignupContainer extends React.Component {
   render () {
     return (
       <div className='loginSignupContainer'>
-        <div className='form-group'>
-          <label htmlFor='username'>Username:</label>
-          <input type='text' className='form-control' id='username'/>
-        </div>
-        <div className='form-group'>
-          <label htmlFor='password'>Password:</label>
-          <input type='text' className='form-control' id='password'/>
-        </div>
-        <div className='form-group'>
-          <input type='submit' className='btn btn-default' id='submit' value='Signup' />
-        </div>
+        <form action='' method=''>
+        {/*^onSubmit invoke fetch post to user server*/}
+          <div className='form-group'>
+            <label htmlFor='username'>Username:</label>
+            <input type='text' className='form-control' id='username'/>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password'>Password:</label>
+            <input type='text' className='form-control' id='password'/>
+          </div>
+          <div className='form-group'>
+            <input type='submit' className='btn btn-default' id='submit' value='Signup' />
+          </div>
+        </form>
       </div>
     )
   }
