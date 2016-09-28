@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createArticle } from '../../actions';
+import uuid from 'uuid';
 
 let CreateArticle = ({ dispatch }) => {
 
@@ -14,23 +15,29 @@ let CreateArticle = ({ dispatch }) => {
       <input type='text' placeholder='summary' ref={node => {
         issuePreview = node;
       }} />
-      <textarea ref={node => { issue=node; }}></textarea>
-      <textarea ref={node => { solution=node; }}></textarea>
+      <textarea
+        placeholder='issue'
+        ref={node => { issue=node; }}></textarea>
+      <textarea
+        placeholder='solution'
+        ref={node => { solution=node; }}></textarea>
       <button onClick={e => {
         e.preventDefault();
-        if (!title.value.trim() || !abstract.value.trim()) {
+        if (!title.value.trim() || !solution.value.trim() || !issuePreview.value.trim() || !issue.value.trim()) {
           return
         }
         dispatch(createArticle(
           {issuePreview:issuePreview.value,
            title:title.value,
            issue:issue.value,
-           solution:solution.value
+           solution:solution.value,
+           id:uuid.v4()
           }
         ))
-        abstract.value = '';
-        title.value = '';
-        body.value='';
+        issuePreview.value='';
+        title.value='';
+        solution.value='';
+        issue.value='';
       }}>Create</button>
     </div>
   )
