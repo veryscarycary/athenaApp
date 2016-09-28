@@ -5,7 +5,7 @@ import { getArticle } from '../../actions';
 
 const ArticleListItems = ({dispatch, articles}) => {
   const handleToggle = (article) => {
-    console.log('pass me!', article);
+    console.log('pass me!', article.id);
     dispatch(getArticle(article.id));
   }
   return (
