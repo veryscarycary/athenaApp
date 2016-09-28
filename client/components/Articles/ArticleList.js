@@ -14,7 +14,7 @@ const ArticleListItems = ({dispatch, articles}) => {
         {articles.reverse().map(article => (
           <li key={article.id}>
             <h3>{article.title}</h3>
-            <div>{article.abstract}</div>
+            <div>{article.issuePreview}</div>
             <button onClick={e => {
               e.preventDefault();
               handleToggle(article);
