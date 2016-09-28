@@ -19,7 +19,7 @@ class TicketDisplay extends React.Component {
 
   render () {
     return (
-      <div className='row col-xs-6'>
+      <div className='col-xs-6'>
         <table className='table table-striped table-hover'>
           <thead>
             <tr>
@@ -34,6 +34,9 @@ class TicketDisplay extends React.Component {
             </th>
             <th>
               Customer Id
+            </th>
+            <th>
+              Details
             </th>
             <th>
               Status

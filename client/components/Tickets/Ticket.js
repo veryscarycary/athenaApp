@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import TicketModal from './TicketModal';
+
+
 const Ticket = ({ticket}) => (
   <tr>
     <td>
@@ -14,6 +17,7 @@ const Ticket = ({ticket}) => (
     <td>
       {ticket.customerId}
     </td>
+    <TicketModal ticket={ticket} />
     <td className='badge'>
       Resolved
     </td>
