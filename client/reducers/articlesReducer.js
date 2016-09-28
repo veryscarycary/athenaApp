@@ -33,7 +33,6 @@ export const articlesList = (state = [], action) => {
         ...state,
       ]
     case 'GET_ARTICLES_FULFILLED':
-      console.log(action.payload);
       return state.concat(action.payload);
     case 'GET_ARTICLES_PENDING':
       return [
@@ -52,10 +51,11 @@ export const articleDisplay = (state = {hidden:true}, action) => {
         status: 'rejected'
       }
     case 'GET_ARTICLE_FULFILLED':
+      console.log('heere', action.payload);
       return {
-        title: action.payload.title,
-        solution: action.payload.solution,
-        issue: action.payload.issue,
+        title: action.payload[0].title,
+        solution: action.payload[0].solution,
+        issue: action.payload[0].issue,
         hidden: !state.hidden,
         status: 'fulfilled'
       }

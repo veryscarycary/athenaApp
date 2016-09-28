@@ -5,7 +5,7 @@ import { getArticle } from '../../actions';
 
 const ArticleListItems = ({dispatch, articles}) => {
   const handleToggle = (article) => {
-    console.log('pass me!', article);
+    console.log('pass me!', article.id);
     dispatch(getArticle(article.id));
   }
   return (
@@ -14,7 +14,7 @@ const ArticleListItems = ({dispatch, articles}) => {
         {articles.reverse().map(article => (
           <li key={article.id}>
             <h3>{article.title}</h3>
-            <div>{article.abstract}</div>
+            <div>{article.issuePreview}</div>
             <button onClick={e => {
               e.preventDefault();
               handleToggle(article);

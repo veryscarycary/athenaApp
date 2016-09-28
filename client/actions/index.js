@@ -21,7 +21,9 @@ export const getArticles = () => ({
 
 export const getArticle = (id) => ({
   type: 'GET_ARTICLE',
-  payload: articleUtils.getArticle(id)
+  payload: {
+    promise: articleUtils.getArticle(id)
+  }
 });
 
 export const editArticle = (id) => ({
