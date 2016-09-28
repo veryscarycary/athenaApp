@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import { bindActionCreators } from 'redux';
 
@@ -36,21 +37,33 @@ class LoginContainer extends React.Component {
 
   render () {
     return (
-      <div className='loginSignupContainer'>
-        <form action='' method=''>
-        {/*^onSubmit invoke fetch post to user server*/}
-          <div className='form-group'>
-            <label htmlFor='username'>Username:</label>
-            <input type='text' className='form-control' id='username'/>
-          </div>
-          <div className='form-group'>
-            <label htmlFor='password'>Password:</label>
-            <input type='text' className='form-control' id='password'/>
-          </div>
-          <div className='form-group'>
-            <input type='submit' className='btn btn-default' id='submit' value='Login' />
-          </div>
-        </form>
+      <div>
+
+        <div className='loginTop'>
+          <Link className='linkMargins' to='/login'>Login</Link>
+          <Link className='linkMargins' to='/signup'>Signup</Link>
+        </div>
+
+        <div className='loginTopTrim'>
+        </div>
+
+        <div className='loginSignupContainer'>
+          <form action='' method=''>
+          {/*^onSubmit invoke fetch post to user server*/}
+            <div className='form-group'>
+              <label htmlFor='username'>Username:</label>
+              <input type='text' className='form-control' id='username'/>
+            </div>
+            <div className='form-group'>
+              <label htmlFor='password'>Password:</label>
+              <input type='text' className='form-control' id='password'/>
+            </div>
+            <div className='form-group'>
+              <input type='submit' className='btn btn-default' id='submit' value='Login' />
+            </div>
+            <Link to='/signup'>Create a new account</Link>
+          </form>
+        </div>
       </div>
     )
   }

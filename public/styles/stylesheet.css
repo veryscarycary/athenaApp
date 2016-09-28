@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
 }
@@ -22,7 +21,6 @@ body {
     }
 }
 
->>>>>>> getRequestIssue
 .newTicketForm {
   background-color: #FFEDD3;
   margin-top: 20px;
@@ -53,13 +51,41 @@ body {
   margin: 30px;
 }
 
+.linkMargins {
+  margin-right: 30px;
+}
+
+.loginTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  color: #9d9d9d;
+  height: 60px;
+  width: 100%;
+  top: 0px;
+  background-color: #fcf6d7;
+}
+
+.loginTopTrim {
+  position: absolute;
+  height: 15px;
+  width: 100%;
+  top: 60px;
+  background-color: #333;
+}
+
 .loginSignupContainer {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   border-color: black;
-  border-width: 1;
+  border-width: 1px;
+  border-radius: 3px;
   margin: 30px;
 }
 
