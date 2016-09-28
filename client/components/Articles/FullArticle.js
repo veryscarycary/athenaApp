@@ -13,10 +13,11 @@ const FullArticleContainer = ({ dispatch, article }) => {
           e.preventDefault();
           handleToggle(article);
         }} >
-      Close</button>
+        Close</button>
       <h3>{article.title}</h3>
       <div className="content">
-        {article.body}
+        {article.issue}
+        {article.solution}
       </div>
       <button>Use</button>
     </div>
