@@ -14,7 +14,9 @@ export const searchArticles = (term) => ({
 
 export const getArticles = () => ({
   type: 'GET_ARTICLES',
-  payload: articleUtils.getArticles()
+  payload: {
+    promise: articleUtils.getArticles()
+  }
 });
 
 export const getArticle = (id) => ({
