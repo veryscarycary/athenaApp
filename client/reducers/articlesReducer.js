@@ -51,12 +51,11 @@ export const articleDisplay = (state = {hidden:true}, action) => {
         status: 'rejected'
       }
     case 'GET_ARTICLE_FULFILLED':
-      console.log('heere', action.payload);
       return {
         title: action.payload[0].title,
         solution: action.payload[0].solution,
         issue: action.payload[0].issue,
-        hidden: !state.hidden,
+        hidden: false,
         status: 'fulfilled'
       }
     case 'GET_ARTICLE_PENDING':
@@ -64,6 +63,10 @@ export const articleDisplay = (state = {hidden:true}, action) => {
         ...state,
         status: 'pending'
       }
+    // Always toggle display before calling getArticle
+    // Toggle display cleans the state
+    case 'TOGGLE_DISPLAY':
+      return Object.assign({}, {hidden: !state.hidden});
     default:
       return state
   }

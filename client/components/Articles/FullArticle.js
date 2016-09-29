@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getArticle } from '../../actions';
+import { toggleArticle } from '../../actions';
 
 const FullArticleContainer = ({ dispatch, article }) => {
   const handleToggle = (article) => {
-    dispatch(getArticle(article.id));
+    dispatch(toggleArticle());
   }
   return (
     <div className={article.hidden ? "hidden full-article" : "full-article"}>

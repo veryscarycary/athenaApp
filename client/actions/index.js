@@ -26,6 +26,10 @@ export const getArticle = (id) => ({
   }
 });
 
+export const toggleArticle = () => ({
+  type: 'TOGGLE_DISPLAY',
+})
+
 export const editArticle = (id) => ({
   type: 'EDIT_ARTICLE',
   payload: articleUtils.editArticle(id)
