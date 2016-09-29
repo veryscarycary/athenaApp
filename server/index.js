@@ -18,7 +18,8 @@ function serverCheck() {
   [
     ['KB', urls.kb],
     ['Ticket', urls.ticket],
-    ['User', urls.user]
+    ['User', urls.user], 
+    ['KB Search', urls.kbSearch]
   ].forEach((host) => {
       let start = Date.now();
       mw.request.get(host[1])
@@ -28,8 +29,8 @@ function serverCheck() {
           res.on('data', data => {
             data = JSON.parse(data);
             console.log(
-            ` ${res.statusCode === 200 ?
-              chalk.green.bold(String.fromCharCode(0x27A0)) + chalk.green(' Database connected!')
+            ` ${res.statusCode === 200 ? 
+              chalk.green.bold(String.fromCharCode(0x27A0)) + chalk.green(` ${data}!`)
               : chalk.yellow(String.fromCharCode(0x27A0)) + '  ' + chalk.red.underline('Database Error') + chalk.red(': ' + data.message + ' (' + data.name + ').')
             }`);
         });
