@@ -1,29 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createArticle } from '../../actions';
+import uuid from 'uuid';
 
 let CreateArticle = ({ dispatch }) => {
 
-  let abstract, title, body;
+  let issuePreview, title, issue, solution;
 
   return (
     <div className='create-article'>
       <input type='text' placeholder='title' ref={node => {
         title = node;
       }} />
-      <input type='text' placeholder='abstract' ref={node => {
-        abstract = node;
+      <input type='text' placeholder='summary' ref={node => {
+        issuePreview = node;
       }} />
-      <textarea ref={node => { body = node; }}></textarea>
+      <textarea
+        placeholder='issue'
+        ref={node => { issue=node; }}></textarea>
+      <textarea
+        placeholder='solution'
+        ref={node => { solution=node; }}></textarea>
       <button onClick={e => {
         e.preventDefault();
-        if (!title.value.trim() || !abstract.value.trim()) {
+        if (!title.value.trim() || !solution.value.trim() || !issuePreview.value.trim() || !issue.value.trim()) {
           return
         }
-        dispatch(createArticle({abstract: abstract.value, title: title.value, body: body.value}))
-        abstract.value = '';
-        title.value = '';
-        body.value='';
+        dispatch(createArticle(
+          {issuePreview:issuePreview.value,
+           title:title.value,
+           issue:issue.value,
+           solution:solution.value,
+           id:uuid.v4()
+          }
+        ))
+        issuePreview.value='';
+        title.value='';
+        solution.value='';
+        issue.value='';
       }}>Create</button>
     </div>
   )

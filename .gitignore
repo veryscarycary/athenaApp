@@ -6,6 +6,7 @@ Icon
 
 public/bundle.js
 public/bundle.js.map
+data.json
 
 # Node
 node_modules

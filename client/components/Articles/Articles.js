@@ -6,16 +6,15 @@ import ArticleList from './ArticleList';
 import FullArticle from './FullArticle';
 import articles from '../../mock/articleStubs';
 import { connect } from 'react-redux';
-import { loadArticles } from '../../actions';
+import { getArticles } from '../../actions';
 import { bindActionCreators } from 'redux';
-
 
 class ArticlesDisplay extends Component {
   constructor(props) {
     super(props)
   }
   componentWillMount() {
-    this.props.loadArticles(articles);
+    this.props.getArticles();
   }
   render() {
     return(
@@ -30,7 +29,7 @@ class ArticlesDisplay extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({loadArticles}, dispatch)
+  return bindActionCreators({getArticles}, dispatch)
 }
 
 const Articles = connect(() => ({}),

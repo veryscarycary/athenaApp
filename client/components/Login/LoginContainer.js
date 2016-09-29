@@ -14,10 +14,17 @@ class LoginContainer extends React.Component {
   render () {
     return (
       <div className='loginSignupContainer'>
-        Username: <br />
-        <input id="searchBar" type="text" placeholder="username" />
-        Password: <br />
-        <input id="searchBar" type="text" placeholder="********" />
+        <div className='form-group'>
+          <label htmlFor='username'>Username:</label>
+          <input type='text' className='form-control' id='username'/>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='password'>Password:</label>
+          <input type='text' className='form-control' id='password'/>
+        </div>
+        <div className='form-group'>
+          <input type='submit' className='btn btn-default' id='submit' value='Login' />
+        </div>
       </div>
     )
   }

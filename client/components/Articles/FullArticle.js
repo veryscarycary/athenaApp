@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleArticleDisplay } from '../../actions';
+import { getArticle } from '../../actions';
 
 const FullArticleContainer = ({ dispatch, article }) => {
   const handleToggle = (article) => {
-    console.log(article);
-    dispatch(toggleArticleDisplay(article));
+    dispatch(getArticle(article.id));
   }
   return (
     <div className={article.hidden ? "hidden full-article" : "full-article"}>
@@ -13,11 +12,12 @@ const FullArticleContainer = ({ dispatch, article }) => {
         onClick={e => {
           e.preventDefault();
           handleToggle(article);
-        }}
-      >Close</button>
+        }} >
+        Close</button>
       <h3>{article.title}</h3>
       <div className="content">
-        {article.body}
+        {article.issue}
+        {article.solution}
       </div>
       <button>Use</button>
     </div>

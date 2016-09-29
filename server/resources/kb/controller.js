@@ -23,7 +23,7 @@ module.exports = {
         res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
       ));
   },
-  editKb(req, res) {    
+  editKb(req, res) {
     request.put(`${kb}/api/${req.params.id}`)
       .form(req.body)
       .on('error', err => res.status(err.statusCode).send(err))
