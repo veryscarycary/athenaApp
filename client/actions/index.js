@@ -41,6 +41,11 @@ export const loadTicketState = () => ({
   payload: ticketUtils.getTickets()
 });
 
+// export const submitNewTicket = () => ({
+//   type: 'SUBMIT_NEW_TICKET',
+//   payload: ticketUtils.
+// });
+
 export const loadSearchState = (searchText) => ({
   type: 'SET_NEW_SEARCHTEXT',
   searchText

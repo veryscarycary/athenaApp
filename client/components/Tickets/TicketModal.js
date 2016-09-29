@@ -21,9 +21,9 @@ const deleteTicket = function () {
 
 const TicketModal = ({ticket}) => (
     <td>
-      <a href="#openModal">More Info</a>
+      <a href={`#openModal${ticket._id}`}>More Info</a>
 
-      <div id="openModal" className="modalDialog">
+      <div id={`openModal${ticket._id}`} className="modalDialog">
         <div>
           <a href="#closeModal" title="Close" className="closeModal">X</a>
           <h2>Ticket Details</h2>
