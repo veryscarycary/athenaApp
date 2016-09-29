@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
 }
@@ -22,7 +21,6 @@ body {
     }
 }
 
->>>>>>> getRequestIssue
 .newTicketForm {
   background-color: #FFEDD3;
   margin-top: 20px;
@@ -31,7 +29,8 @@ body {
 }
 
 #searchBar {
-  margin-left: 30px;
+  position: relative;
+  margin-left: 70px;
   font-size: 14px;
   width:300px;
   height: 35px;
@@ -45,6 +44,60 @@ body {
   border-width: 1;
 }
 
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+}
+
+.closeModal {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.closeModal:hover { background: #00d9ff; }
+
 .createTicketButton {
   display: flex;
   justify-content: center;
@@ -53,13 +106,41 @@ body {
   margin: 30px;
 }
 
+.linkMargins {
+  margin-right: 30px;
+}
+
+.loginTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  color: #9d9d9d;
+  height: 60px;
+  width: 100%;
+  top: 0px;
+  background-color: #fcf6d7;
+}
+
+.loginTopTrim {
+  position: absolute;
+  height: 15px;
+  width: 100%;
+  top: 60px;
+  background-color: #333;
+}
+
 .loginSignupContainer {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   border-color: black;
-  border-width: 1;
+  border-width: 1px;
+  border-radius: 3px;
   margin: 30px;
 }
 

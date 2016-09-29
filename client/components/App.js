@@ -9,12 +9,13 @@ import Signup from './Signup/SignupContainer';
 
 const App = () => (
   <Router history={browserHistory}>
+  {/*onEnter={someAuthCheck}> for "/"*/}
     <Route path="/" component={LandingPage}>
       <Route path="/articles" component={Articles} />
       <Route path="/tickets" component={MainLayoutContainer} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
     </Route>
+    <Route path="/login" component={Login} />
+    <Route path="/signup" component={Signup} />
   </Router>
 )
 
