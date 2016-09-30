@@ -4,7 +4,7 @@ const url = mw.urls.user;
 
 module.exports = {
   getUser(req, res) {
-    let id = req.params.id;
+    var id = req.params.id;
     request.get(`${url}/api/user${id ? `/${req.params.id}` : ''}`)
       .on('error', err => res.status(err.statusCode).send(err))
       .on('response', resp => resp.on('data', data =>

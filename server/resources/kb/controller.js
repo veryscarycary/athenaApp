@@ -9,11 +9,11 @@ module.exports = {
   // },
   getKb(req, res) {
     let id = req.params.id;
-    request.get(`${kb}/api${id ? `/${req.params.id}` : ''}`)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request.get(`${kb}/api${id ? `/${req.params.id}` : ''}`, (err, response, body) => {
+                  err ?
+                  res.status(err.statusCode).send(err)
+                  : res.status(response.statusCode).send(JSON.parse(body))
+                })
   },
   createKb(req, res) {
     request.post(`${kb}/api`)
