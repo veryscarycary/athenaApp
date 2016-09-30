@@ -17,7 +17,7 @@ class NewTicketForm extends React.Component {
   render () {
     return (
       <div className='row col-xs-12 newTicketForm'>
-        <form action='#' method='' onSubmit={this.submitForm}>
+        <form action='/tickets' method='' onSubmit={this.submitForm}>
           <div className='form-group'>
             <label htmlFor='title'>Title:</label>
             <input type='text' className='form-control' id='title' />
@@ -55,15 +55,4 @@ class NewTicketForm extends React.Component {
   }
 };
 
-const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
-  return {
-    tickets: store.ticketsReducer.tickets
-  };
-};
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ticketActionCreators, dispatch);
-}
-
-export default connect(mapStateToProps)(NewTicketForm);
+export default NewTicketForm;

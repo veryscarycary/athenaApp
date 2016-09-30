@@ -43,7 +43,7 @@ const ticketUtils = {
       return response.json();
     })
     .catch(error => {
-      console.log(error, 'There was an error getting the tickets!');
+      console.log(error, 'There was an error while submitting the ticket!');
     });
   },
   editTicket: (ticketId) => {
@@ -71,7 +71,18 @@ const ticketUtils = {
       return response.json();
     })
     .catch(error => {
-      console.log(error, 'There was an error getting the tickets!');
+      console.log(error, 'There was an error while editing the ticket!');
+    });
+  },
+  deleteTicket: (ticketId) => {
+    return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
+      method: 'DELETE'
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .catch(error => {
+      console.log(error, 'There was an error while deleting the ticket!');
     });
   }
 };

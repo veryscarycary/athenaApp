@@ -5,7 +5,6 @@ import ticketUtils from '../../utils/ticketUtils';
 import * as ticketActionCreators from '../../actions/index';
 
 const editTicket = (ticketId) => {
-  alert('check for the edited ticket');
   ticketUtils.editTicket(ticketId);
 };
 
