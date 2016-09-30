@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import TicketModal from './TicketModal';
 
+const resolved = (ticket) => {
+  return ticket.resolved === true ? 'Resolved' : 'Unresolved';
+};
 
 const Ticket = ({ticket}) => (
   <tr>
@@ -12,14 +15,14 @@ const Ticket = ({ticket}) => (
       {ticket.issue}
     </td>
     <td>
-      Computer
+      {ticket.product}
     </td>
     <td>
       {ticket.customerId}
     </td>
     <TicketModal ticket={ticket} />
     <td className='badge'>
-      Resolved
+      {resolved(ticket)}
     </td>
   </tr>
 );
