@@ -2,7 +2,8 @@ const initialState = {
   tickets: [],
   filteredTickets: [],
   searchText: '',
-  createTicketToggled: false
+  createTicketToggled: false,
+  ticketsPage: 1
 };
 
 
@@ -41,8 +42,8 @@ const ticketsReducer = function(state = initialState, action) {
     case 'SET_NEW_TICKETS_FULFILLED':
       console.log(action.payload, 'FULFILLED');
       return {
-        tickets: action.payload,
-        filteredTickets: action.payload,
+        tickets: action.payload.reverse(),
+        filteredTickets: action.payload.reverse(),
         status: 'fulfilled'
       };
     case 'SET_NEW_TICKETS_PENDING':
