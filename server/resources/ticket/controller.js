@@ -27,7 +27,7 @@ module.exports = {
       : res.status(resp.statusCode).send(body)
     );
   },
-  editTicket(req, res) {    
+  editTicket(req, res) {
     request({
       method: 'PUT',
       uri: `${ticket}/api/${req.params.id}`,
