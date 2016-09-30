@@ -42,8 +42,8 @@ const ticketsReducer = function(state = initialState, action) {
     case 'SET_NEW_TICKETS_FULFILLED':
       console.log(action.payload, 'FULFILLED');
       return {
-        tickets: action.payload.reverse(),
-        filteredTickets: action.payload.reverse(),
+        tickets: action.payload,
+        filteredTickets: action.payload,
         status: 'fulfilled'
       };
     case 'SET_NEW_TICKETS_PENDING':
