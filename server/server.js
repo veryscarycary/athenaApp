@@ -8,11 +8,12 @@ module.exports = app()
     require('morgan')('dev'),
     mw.bodyParser.json(),
     mw.bodyParser.urlencoded({extended: true}),
-    // require('express-session')({  //Coming Soon!
-    //   secret: 'It\'s a SECRET', //https://www.youtube.com/watch?v=gMUEFZXkmDAw
-    //   saveUninitialized: false,
-    //   resave: true
-    // }),
+    require('express-session')({
+      secret: 'It\'s a SECRET: bri6CMg5Te85s0790VhSVlf51T5yd086', //https://www.youtube.com/watch?v=gMUEFZXkmDAw
+      saveUninitialized: false,
+      resave: true,
+      name: 'strix.sid'
+    }),
     require('./resources/user/router.js'),
     require('./resources/ticket/router.js'),
     require('./resources/kb/router.js'),
