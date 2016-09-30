@@ -22,13 +22,8 @@ class TicketModal extends React.Component {
     return ticketInfo;
   };
 
-  // componentDidMount () {
-  //   this.props.loadTicketInfoToState(this.props.ticket);
-  // }
-
-
-  deleteTicket () {
-
+  deleteTicket (ticketId) {
+    ticketUtils.deleteTicket(ticketId);
   };
 
   render () {
@@ -47,7 +42,10 @@ class TicketModal extends React.Component {
             }
             </p>
             <button className='btn btn-default' data-toggle='collapse' data-target={`#editTicket${this.props.ticket._id}`}>Edit Ticket</button>
-            <button className='btn btn-default' name='delete'>Delete Ticket</button>
+
+            <form action='/tickets' method=''>
+              <button type='submit' className='btn btn-default' onClick={() => {this.deleteTicket(this.props.ticket._id)}} name='delete'>Delete Ticket</button>
+            </form>
 
             <div className='collapse' id={`editTicket${this.props.ticket._id}`}>
               <EditTicketForm ticket={this.props.ticket} className='collapse' />
