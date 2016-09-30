@@ -52,7 +52,7 @@ class EditTicketForm extends React.Component {
     });
   }
 
-  setRelatedArticles (event) {
+  setRelatedProducts (event) {
     this.setState({
       editRelatedProducts: event.target.value,
     });
@@ -68,34 +68,34 @@ class EditTicketForm extends React.Component {
     return (
       <div className='row'>
         <div className='col-xs-12 editTicketForm'>
-          <form action='#' method='' onSubmit={() => {editTicket(this.props.ticket._id)}}>
+          <form action='/tickets' method='' onSubmit={() => {editTicket(this.props.ticket._id)}}>
             <div className='form-group'>
               <label htmlFor='editTitle'>Title:</label>
-              <input type='text' className='form-control' id='editTitle' onChange={this.setTitle} value={this.state.editTitle} />
+              <input type='text' className='form-control' id='editTitle' onChange={this.setTitle.bind(this)} value={this.state.editTitle} />
             </div>
             <div className='form-group'>
             <label htmlFor='editIssue'>Issue:</label>
-            <input type='text' className='form-control' id='editIssue' onChange={this.setIssue} value={this.state.editIssue} />
+            <input type='text' className='form-control' id='editIssue' onChange={this.setIssue.bind(this)} value={this.state.editIssue} />
             </div>
             <div className='form-group'>
               <label htmlFor='editProduct'>Product:</label>
-              <input type='text' className='form-control' id='editProduct' onChange={this.setIssue} value={this.state.editProduct} />
+              <input type='text' className='form-control' id='editProduct' onChange={this.setProduct.bind(this)} value={this.state.editProduct} />
             </div>
             <div className='form-group'>
               <label htmlFor='editCustomerId'>Customer Id:</label>
-              <input type='text' className='form-control' id='editCustomerId' onChange={this.setIssue} value={this.state.editCustomerId}/>
+              <input type='text' className='form-control' id='editCustomerId' onChange={this.setCustomerId.bind(this)} value={this.state.editCustomerId}/>
             </div>
             <div className='form-group'>
               <label htmlFor='editRelatedArticles'>Related Articles:</label>
-              <input type='text' className='form-control' id='editRelatedArticles' onChange={this.setIssue} value={this.state.editRelatedArticles}/>
+              <input type='text' className='form-control' id='editRelatedArticles' onChange={this.setRelatedArticles.bind(this)} value={this.state.editRelatedArticles}/>
             </div>
             <div className='form-group'>
               <label htmlFor='editRelatedProducts'>Related Products:</label>
-              <input type='text' className='form-control' id='editRelatedProducts' onChange={this.setIssue} value={this.state.editRelatedProducts}/>
+              <input type='text' className='form-control' id='editRelatedProducts' onChange={this.setRelatedProducts.bind(this)} value={this.state.editRelatedProducts}/>
             </div>
             <div className='form-group'>
               <label htmlFor="editSolution">Solution:</label>
-              <textarea className="form-control" rows="5" id="editSolution" onChange={this.setIssue} value={this.state.editSolution}></textarea>
+              <textarea className="form-control" rows="5" id="editSolution" onChange={this.setSolution.bind(this)} value={this.state.editSolution}></textarea>
             </div>
             <div className='form-group'>
               <input type='submit' className='btn btn-default' id='editSubmit' />
