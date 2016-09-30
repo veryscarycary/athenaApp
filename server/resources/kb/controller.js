@@ -7,35 +7,44 @@ module.exports = {
   // searchKb(req, res) {
     //TODO: PENDING IMPLEMENTATION OF SEARCH SERVICE
   // },
+
   getKb(req, res) {
     let id = req.params.id;
-    request.get(`${kb}/api${id ? `/${req.params.id}` : ''}`, (err, response, body) => {
-                  err ?
-                  res.status(err.statusCode).send(err)
-                  : res.status(response.statusCode).send(JSON.parse(body))
-                })
+    request({
+      method: 'GET',
+      uri: `${kb}/api${id ? `/${req.params.id}` : ''}`
+    }, (err, resp, body) => err ? 
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+    );
   },
   createKb(req, res) {
-    request.post(`${kb}/api`)
-      .form(req.body)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request({
+      method: 'POST',
+      uri: `${kb}/api`, 
+      json: req.body
+    }, (err, resp, body) => err ? 
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+    );
   },
   editKb(req, res) {
-    request.put(`${kb}/api/${req.params.id}`)
-      .form(req.body)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request({
+      method: 'PUT', 
+      uri:`${kb}/api/${req.params.id}`,
+      json: req.body
+    }, (err, resp, body) => err ? 
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+    );
   },
   deleteKb(req, res) {
-    request.delete(`${kb}/api/${req.params.id}`)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request({
+      method: 'DELETE',
+      uri: `${kb}/api/${req.params.id}`
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+    );
   }
 };
