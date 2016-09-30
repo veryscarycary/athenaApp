@@ -24,10 +24,10 @@ module.exports = {
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.parse(body))
+      : res.status(resp.statusCode).send((body))
     );
   },
-  editTicket(req, res) {    
+  editTicket(req, res) {
     request({
       uri: `${ticket}/api/${req.params.id}`,
       json: req.body
