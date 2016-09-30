@@ -28,6 +28,13 @@ body {
   border-radius: 2px;
 }
 
+.editTicketForm {
+  background-color: #5D5D5D;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 2px;
+}
+
 #searchBar {
   position: relative;
   margin-left: 70px;
@@ -52,7 +59,7 @@ body {
 	bottom: 0;
 	left: 0;
 	background: rgba(0,0,0,0.8);
-	z-index: 99999;
+	z-index: 9999;
 	opacity:0;
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
@@ -66,7 +73,9 @@ body {
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 600px;
+  max-height: 500px;
+  overflow-y: auto;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
@@ -82,9 +91,9 @@ body {
 	color: #FFFFFF;
 	line-height: 25px;
 	position: absolute;
-	right: -12px;
 	text-align: center;
-	top: -10px;
+  right: 3px;
+	top: 3px;
 	width: 24px;
 	text-decoration: none;
 	font-weight: bold;
@@ -99,11 +108,7 @@ body {
 .closeModal:hover { background: #00d9ff; }
 
 .createTicketButton {
-  display: flex;
-  justify-content: center;
-  border-color: black;
-  border-width: 1;
-  margin: 30px;
+  margin-bottom: 30px;
 }
 
 .linkMargins {

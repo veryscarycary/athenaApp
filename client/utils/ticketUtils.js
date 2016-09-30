@@ -30,12 +30,12 @@ const ticketUtils = {
         customerId: document.getElementById('customerId').value,
         product: document.getElementById('product').value,
         solution: document.getElementById('solution').value,
-        // relatedArticles: document.getElementById('relatedArticles').value,
-        // relatedProducts: document.getElementById('relatedProducts').value,
+        relatedArticles: document.getElementById('relatedArticles').value,
+        relatedProducts: document.getElementById('relatedProducts').value,
         resolved: true,
         authorId: JSON.stringify(Math.floor(Math.random * 1000)),
         dateSubmitted: new Date(),
-        datesOpened: [[new Date(), 'Cary']],
+        datesOpened: new Date(),
         checkedOut: true
       })
     })
