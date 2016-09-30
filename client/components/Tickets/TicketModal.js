@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ticketUtils from '../../utils/ticketUtils';
 import ticketActionCreators from '../../actions/index';
 import EditTicketForm from './EditTicketForm';
 
@@ -25,9 +26,6 @@ class TicketModal extends React.Component {
   //   this.props.loadTicketInfoToState(this.props.ticket);
   // }
 
-  editTicket () {
-
-  };
 
   deleteTicket () {
 
@@ -48,7 +46,7 @@ class TicketModal extends React.Component {
             ))
             }
             </p>
-            <button className='btn btn-default' onClick={() => (alert(JSON.stringify(this.props.ticket)))} data-toggle='collapse' data-target={`#editTicket${this.props.ticket._id}`}>Edit Ticket</button>
+            <button className='btn btn-default' data-toggle='collapse' data-target={`#editTicket${this.props.ticket._id}`}>Edit Ticket</button>
             <button className='btn btn-default' name='delete'>Delete Ticket</button>
 
             <div className='collapse' id={`editTicket${this.props.ticket._id}`}>

@@ -4,14 +4,15 @@ import { connect } from 'react-redux';
 import ticketUtils from '../../utils/ticketUtils';
 import * as ticketActionCreators from '../../actions/index';
 
-const submitForm = () => {// change to Edit Ticket
-  alert('You submitted your edited ticket!');
-}
+const editTicket = (ticketId) => {
+  alert('check for the edited ticket');
+  ticketUtils.editTicket(ticketId);
+};
 
 const EditTicketForm = ({ticket}) => (
   <div className='row'>
     <div className='col-xs-12 editTicketForm'>
-      <form action='#' method='' onSubmit={submitForm}>
+      <form action='#' method='' onSubmit={() => {editTicket(ticket._id)}}>
         <div className='form-group'>
           <label htmlFor='editTitle'>Title:</label>
           <input type='text' className='form-control' id='editTitle' value={ticket.title} />
