@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 
 const LandingPage = ({children}) => (
   <div className="landing-page">
-    <h1>Landing Page</h1>
 
     <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className="container">

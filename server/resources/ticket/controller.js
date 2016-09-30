@@ -9,34 +9,40 @@ module.exports = {
   // },
   getTicket(req, res) {
     let id = req.params.id;
-    request.get(`${ticket}/api${id ? `/${req.params.id}` : ''}`)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request({
+      method: 'GET',
+      uri: `${ticket}/api${id ? `/${req.params.id}` : ''}`
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+      );
   },
   createTicket(req, res) {
-    request.post(`${ticket}/api`)
-      .form(req.body)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => 
-        resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request({
+      method: 'POST',
+      uri: `${ticket}/api`,
+      json: req.body
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+    );
   },
   editTicket(req, res) {    
-    request.put(`${ticket}/api/${req.params.id}`)
-      .form(req.body)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request({
+      uri: `${ticket}/api/${req.params.id}`,
+      json: req.body
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+    );
   },
   deleteTicket(req, res) {
-    request.delete(`${ticket}/api/${req.params.id}`)
-      .on('error', err => res.status(err.statusCode).send(err))
-      .on('response', resp => resp.on('data', data =>
-        res.status(resp.statusCode).send(JSON.stringify(JSON.parse(data)))
-      ));
+    request({
+      method: 'DELETE',
+      uri: `${ticket}/api/${req.params.id}`
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(JSON.parse(body))
+    );
   }
 };

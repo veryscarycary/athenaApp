@@ -24,6 +24,7 @@ class MainLayoutContainer extends React.Component {
           <div className='col-md-12'>
             <CreateTicket />
           </div>
+
         </div>
       </div>
     )
