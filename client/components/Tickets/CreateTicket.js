@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { loadCreateTicketState } from '../../actions/index';
+import * as ticketActionCreators from '../../actions/index';
 import NewTicketForm from './NewTicketForm';
 
 class CreateTicket extends React.Component {
@@ -33,7 +33,7 @@ const mapStateToProps = function(store) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ loadCreateTicketState }, dispatch);
+  return bindActionCreators(ticketActionCreators, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTicket);
