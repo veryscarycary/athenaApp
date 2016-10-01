@@ -10,10 +10,15 @@ class LoginContainer extends React.Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      username: '',
+      password: ''
+    };
   }
 
-  handleLogin() {
-    fetch('http://localhost:3000/api/login', {
+  handleLogin(e) {
+    e.preventDefault();
+    fetch(`http://localhost:3000/api/user/${this.state.username}/${this.state.password}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -25,6 +30,7 @@ class LoginContainer extends React.Component {
       })
     }).then((res) => {
         if (res.status === 400) {
+          alert('username doesn"t exist bro');
           this.setState({userNameDoesNotExist: true});
         } else {
         //redirect to events page
@@ -48,15 +54,15 @@ class LoginContainer extends React.Component {
         </div>
 
         <div className='loginSignupContainer'>
-          <form action='' method=''>
+          <form action='' method='' onSubmit={this.handleLogin.bind(this)}>
           {/*^onSubmit invoke fetch post to user server*/}
             <div className='form-group'>
               <label htmlFor='username'>Username:</label>
-              <input type='text' className='form-control' id='username'/>
+              <input type='text' className='form-control' id='username' onChange={(text)=>this.setState({username: text})} />
             </div>
             <div className='form-group'>
               <label htmlFor='password'>Password:</label>
-              <input type='text' className='form-control' id='password'/>
+              <input type='password' className='form-control' id='password' onChange={(text)=>this.setState({password: text})} />
             </div>
             <div className='form-group'>
               <input type='submit' className='btn btn-default' id='submit' value='Login' />
@@ -64,6 +70,7 @@ class LoginContainer extends React.Component {
             <Link to='/signup'>Create a new account</Link>
           </form>
         </div>
+        {this.state.userNameDoesNotExist ? <div>username or password is incorrect</div> : <div></div>}
       </div>
     )
   }
