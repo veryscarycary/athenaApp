@@ -12,6 +12,7 @@ const articleUtils = {
         })
         .catch(err => reject(err));
   }),
+  getArticlesById: () => 
   getArticle: (id) => new Promise((resolve, reject) => {
     return fetch(`/api/kb/${id}`)
       .then((response) => {

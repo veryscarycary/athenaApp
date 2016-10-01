@@ -10,11 +10,13 @@ const ticketUtils = {
       }
     })
     .then(function (response) {
-      return response.json();
+      return response
+        .json()
+        .then(json.resolve(json))
     })
     .catch(error => {
       console.log(error, 'There was an error getting the tickets!');
-    });
+    })
   },
   submitNewTicket: () => {
     return fetch('http://localhost:3000/api/ticket', {

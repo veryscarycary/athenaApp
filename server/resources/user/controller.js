@@ -2,12 +2,12 @@ const mw = require('../../config/middleware.js');
 const request = mw.request;
 const url = mw.urls.user;
 
-let createSession = (req, res, user) =>
+var createSession = (req, res, user) =>
   req.session.regenerate(() => req.sessionStore.user = user);
 
 module.exports = {
   getUser(req, res) {
-    let id = req.params.id;
+    var id = req.params.id;
     request({
       method: 'GET',
       uri: `${url}/api/user${id ? `/${req.params.id}` : ''}`
