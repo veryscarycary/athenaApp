@@ -56,14 +56,14 @@ const ticketUtils = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        title: document.getElementById('editTitle').value,
-        issuePreview: document.getElementById('editIssue').value.slice(0, 50),
-        issue: document.getElementById('editIssue').value,
-        customerId: document.getElementById('editCustomerId').value,
-        product: document.getElementById('editProduct').value,
-        solution: document.getElementById('editSolution').value,
-        relatedArticles: document.getElementById('editRelatedArticles').value,
-        relatedProducts: document.getElementById('editRelatedProducts').value,
+        title: document.getElementById(`editTitle${ticketId}`).value,
+        issuePreview: document.getElementById(`editIssue${ticketId}`).value.slice(0, 50),
+        issue: document.getElementById(`editIssue${ticketId}`).value,
+        customerId: document.getElementById(`editCustomerId${ticketId}`).value,
+        product: document.getElementById(`editProduct${ticketId}`).value,
+        solution: document.getElementById(`editSolution${ticketId}`).value,
+        relatedArticles: document.getElementById(`editRelatedArticles${ticketId}`).value,
+        relatedProducts: document.getElementById(`editRelatedProducts${ticketId}`).value,
         authorId: JSON.stringify(Math.floor(Math.random * 1000)),
         datesOpened: new Date(),
         checkedOut: true

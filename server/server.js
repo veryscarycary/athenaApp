@@ -10,10 +10,11 @@ module.exports = app()
     mw.bodyParser.urlencoded({extended: true}),
     require('express-session')({
       secret: 'It\'s a SECRET: bri6CMg5Te85s0790VhSVlf51T5yd086', //https://www.youtube.com/watch?v=gMUEFZXkmDAw
-      saveUninitialized: false,
+      saveUninitialized: true,
       resave: true,
       name: 'strix.sid'
     }),
+    mw.sessionPageViews,
     require('./resources/user/router.js'),
     require('./resources/ticket/router.js'),
     require('./resources/kb/router.js'),
