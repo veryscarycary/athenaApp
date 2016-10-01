@@ -3,6 +3,7 @@ const api = require('./controller.js');
 
 router.get('/api/user', api.getUser); //get all users
 router.get('/api/user/:id', api.getUser); //get one user
+router.get('/api/session', api.checkSession);
 
 router.route('/api/user/:username/:password')
   .get(api.signin) //signs user in. returns userid and sets session
