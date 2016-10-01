@@ -28,14 +28,13 @@ class SignupContainer extends React.Component {
       this.setState({pwMismatch: false});
       this.postNewUser();
     } else {
-      this.setState({pwMismatch: true}, setTimeout(() =>
-        {this.setState({pwMismatch: false})}, 4000));
+      this.setState({pwMismatch: true}, () => setTimeout(() =>
+        {this.setState({pwMismatch: false})}, 3000));
     }
   }
 
   postNewUser() {
     //make a post request to server
-    alert(JSON.stringify(this.state.username, this.state.password, 'signup info'));
     fetch(`http://localhost:3000/api/user/${this.state.username}/${this.state.password}`, {
       method: 'POST',
       headers: {
@@ -47,18 +46,18 @@ class SignupContainer extends React.Component {
         password:this.state.password
       })
     }).then((res) => {
-      console.log(res);
       if (res.status === 201) {
         this.setState({
           signupSuccessful: true
-        }, setTimeout(this.redirectToLogin, 1000));
+        }, () => setTimeout(this.redirectToLogin, 1000));
         this.redirectToLogin();
       } else {
-        this.setState({usernameIsUsed: true});
+        //if name exist
+        this.setState({usernameIsUsed: true}, () => setTimeout(() =>
+          {this.setState({usernameIsUsed: false})}, 3000));
       }
     }).catch((err) => {
-      //if name exist
-      console.log('There is an error. It\'s sad day D=', err);
+      console.log('There was an error during signup! =(', err);
     });
   }
 
@@ -99,9 +98,9 @@ class SignupContainer extends React.Component {
               <input type='submit' className='btn btn-default' id='submit' value='Signup' />
             </div>
           </form>
-          {this.state.userNameDoesNotExist ? <div>username or password is incorrect</div> : <div></div>}
-          {this.state.pwMismatch ? <div>Password does not match. Try again.</div> : <div></div>}
-          {this.state.signupSuccessful ? <div>Account creation successful!</div> : <div></div>}
+          {this.state.usernameIsUsed ? <div>That username has already been taken. Try again.</div> : null}
+          {this.state.pwMismatch ? <div>Password does not match. Try again.</div> : null}
+          {this.state.signupSuccessful ? <div>Account creation successful!</div> : null}
         </div>
       </div>
     )

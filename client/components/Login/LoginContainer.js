@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux';
 
@@ -11,34 +12,36 @@ class LoginContainer extends React.Component {
     super(props)
 
     this.state = {
+      isLoggedIn: false,
       username: '',
       password: ''
     };
   }
 
+  redirectToLogin() {
+    browserHistory.push('/');
+  }
+
   handleLogin(e) {
     e.preventDefault();
     fetch(`http://localhost:3000/api/user/${this.state.username}/${this.state.password}`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-      })
+      }
     }).then((res) => {
-        if (res.status === 400) {
-          alert('username doesn"t exist bro');
-          this.setState({userNameDoesNotExist: true});
-        } else {
-        //redirect to events page
-          this.setState({isLoggedin: true});
-        }
-      }).catch((err) => {
-        console.log('There is an error. It\'s a sad day D=', err);
-      });
+      if (res.status === 200) {
+        //redirect to homepage
+        this.setState({isLoggedIn: true});
+        this.redirectToLogin();
+      } else {
+        this.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
+        {this.setState({userNameDoesNotExist: false})}, 3000));
+      }
+    }).catch((err) => {
+      console.log('There was an error during Login! D=', err);
+    });
   }
 
   render () {
@@ -58,19 +61,20 @@ class LoginContainer extends React.Component {
           {/*^onSubmit invoke fetch post to user server*/}
             <div className='form-group'>
               <label htmlFor='username'>Username:</label>
-              <input type='text' className='form-control' id='username' onChange={(text)=>this.setState({username: text})} />
+              <input type='text' className='form-control' id='username' onChange={(e)=>this.setState({username: e.target.value})} />
             </div>
             <div className='form-group'>
               <label htmlFor='password'>Password:</label>
-              <input type='password' className='form-control' id='password' onChange={(text)=>this.setState({password: text})} />
+              <input type='password' className='form-control' id='password' onChange={(e)=>this.setState({password: e.target.value})} />
             </div>
             <div className='form-group'>
               <input type='submit' className='btn btn-default' id='submit' value='Login' />
             </div>
             <Link to='/signup'>Create a new account</Link>
           </form>
+          {this.state.userNameDoesNotExist ? <div>username or password is incorrect</div> : null}
+          {this.state.isLoggedIn ? <div>Login Successful!</div> : null}
         </div>
-        {this.state.userNameDoesNotExist ? <div>username or password is incorrect</div> : <div></div>}
       </div>
     )
   }

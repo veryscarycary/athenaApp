@@ -8,7 +8,6 @@ const initialState = {
 
 
 const ticketsReducer = function(state = initialState, action) {
-  console.log(action,'this action is coming in')
   switch(action.type) {
     // filteredTickets ------>
 
