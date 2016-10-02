@@ -35,7 +35,7 @@ class SignupContainer extends React.Component {
 
   postNewUser() {
     //make a post request to server
-    fetch(`http://localhost:3000/api/user/${this.state.username}/${this.state.password}`, {
+    fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
