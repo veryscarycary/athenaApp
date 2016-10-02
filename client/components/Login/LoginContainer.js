@@ -18,6 +18,12 @@ class LoginContainer extends React.Component {
     };
   }
 
+  logout() {
+    // request to server to session.destroy()
+    // and redirect to login
+    browserHistory.push('/login');
+  }
+
   redirectToLogin() {
     browserHistory.push('/');
   }
@@ -51,6 +57,7 @@ class LoginContainer extends React.Component {
         <div className='loginTop'>
           <Link className='linkMargins' to='/login'>Login</Link>
           <Link className='linkMargins' to='/signup'>Signup</Link>
+          <Link className='linkMargins'>Logout</Link>
         </div>
 
         <div className='loginTopTrim'>

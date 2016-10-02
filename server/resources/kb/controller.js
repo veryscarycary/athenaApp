@@ -13,27 +13,37 @@ module.exports = {
     request({
       method: 'GET',
       uri: `${kb}/api${id ? `/${req.params.id}` : ''}`
-    }, (err, resp, body) => err ? 
+    }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : res.status(resp.statusCode).send(JSON.parse(body))
+    );
+  },
+  getArticles(req, res) {
+    request({
+      method: 'POST',
+      uri: `${kb}/api/articles`,
+      json: req.body
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(body)
     );
   },
   createKb(req, res) {
     request({
       method: 'POST',
-      uri: `${kb}/api`, 
+      uri: `${kb}/api`,
       json: req.body
-    }, (err, resp, body) => err ? 
+    }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : res.status(resp.statusCode).send(JSON.parse(body))
     );
   },
   editKb(req, res) {
     request({
-      method: 'PUT', 
+      method: 'PUT',
       uri:`${kb}/api/${req.params.id}`,
       json: req.body
-    }, (err, resp, body) => err ? 
+    }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : res.status(resp.statusCode).send(JSON.parse(body))
     );
