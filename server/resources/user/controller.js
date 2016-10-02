@@ -2,12 +2,11 @@ const mw = require('../../config/middleware.js');
 const request = mw.request;
 const url = mw.urls.user;
 
-let createSession = (req, user, cb) =>
+var createSession = (req, user, cb) =>
   req.session.regenerate(() => {
     req.session.user = user;
     cb && cb();
   });
-
 
 function destroySession(req, cb) {
   req.session && req.session.destroy(() => cb && cb());

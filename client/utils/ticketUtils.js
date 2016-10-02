@@ -12,7 +12,7 @@ const ticketUtils = {
     .then(function (response) {
       return response
         .json()
-        .then(json.resolve(json))
+        .then(json => json)
     })
     .catch(error => {
       console.log(error, 'There was an error getting the tickets!');

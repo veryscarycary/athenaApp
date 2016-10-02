@@ -13,7 +13,6 @@ const articleUtils = {
         .catch(err => reject(err));
   }),
   getArticlesByIds: (idArray) => {
-    console.log(idArray);
     return fetch('/api/kb/articles', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},

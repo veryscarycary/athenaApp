@@ -31,7 +31,6 @@ class MainLayoutContainer extends React.Component {
 };
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
     tickets: store.ticketsReducer.tickets
   };

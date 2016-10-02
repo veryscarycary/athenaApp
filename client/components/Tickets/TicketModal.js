@@ -14,12 +14,11 @@ class TicketModal extends React.Component {
     this.state = {
       modalArticles: []
     }
-
   }
 
   componentWillMount() {
     articleUtils.getArticlesByIds(this.props.ticket.relatedArticles).then((articles) => {
-      this.setState({modalArticles: articles}, () => {console.log(this.state.modalArticles)});
+      this.setState({modalArticles: articles}, (articles) => articles);
     });
   }
 

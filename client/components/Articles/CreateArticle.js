@@ -9,11 +9,16 @@ let CreateArticle = ({ dispatch }) => {
 
   return (
     <div className='create-article'>
-      <input type='text' placeholder='title' ref={node => {
-        title = node;
+      <input
+        type='text'
+        placeholder='title'
+        ref={node => {
+          title = node;
       }} />
-      <input type='text' placeholder='summary' ref={node => {
-        issuePreview = node;
+      <input type='text'
+        placeholder='summary'
+        ref={node => {
+          issuePreview = node;
       }} />
       <textarea
         placeholder='issue'
@@ -31,7 +36,10 @@ let CreateArticle = ({ dispatch }) => {
            title:title.value,
            issue:issue.value,
            solution:solution.value,
-           id:uuid.v4()
+           id:uuid.v4(),
+           dateCreated:new Date().toISOString(),
+        // relatedTicket: ticket,
+        // authorId: user.id
           }
         ))
         issuePreview.value='';
