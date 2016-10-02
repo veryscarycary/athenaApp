@@ -9,7 +9,7 @@ router.route('/api/session')
   .delete(api.signout); //signs out
 
 //user signup and signin take usernames
-router.route('api/signin/:username/:password')
+router.route('/api/signin/:username/:password')
   .get(api.signin) //signs in
   .post(api.createUser); //creates user and sets session
 
