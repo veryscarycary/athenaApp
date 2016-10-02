@@ -14,8 +14,8 @@ const LandingPage = ({children}) => (
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="#">
-                {/* our logo will go here! */}
+                <a className="navbar-brand" href="/">
+                  <img id='beefaloLogo' src="./images/beefalo.png" alt="" />
                 </a>
             </div>
 
@@ -28,10 +28,7 @@ const LandingPage = ({children}) => (
                       <Link to='/tickets'>Tickets</Link>
                     </li>
                     <li>
-                      <Link to='/login'>Login</Link>
-                    </li>
-                    <li>
-                      <Link to='/signup'>Signup</Link>
+                      <Link className='logoutNav'>Logout</Link>
                     </li>
                 </ul>
             </div>
