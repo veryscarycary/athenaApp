@@ -1,23 +1,25 @@
 const mw = require('./config/middleware.js');
 const app = mw.express;
-const path = require('path');
+const path = mw.path;
 
-//middleware and routes
-module.exports = app()
-  .use(
-    require('morgan')('dev'),
-    mw.bodyParser.json(),
-    mw.bodyParser.urlencoded({extended: true}),
-    require('express-session')({
-      secret: 'It\'s a SECRET: bri6CMg5Te85s0790VhSVlf51T5yd086', //https://www.youtube.com/watch?v=gMUEFZXkmDAw
-      saveUninitialized: true,
-      resave: true,
-      name: 'strix.sid'
-    }),
-    mw.sessionPageViews,
-    require('./resources/user/router.js'),
-    require('./resources/ticket/router.js'),
-    require('./resources/kb/router.js'),
-    app.static(`${__dirname}/../public`)
-  )
-  .get('/*', (req, res) => res.sendFile(path.join(__dirname, '../public', 'index.html')));
+//middleware
+module.exports = app().use(
+  mw.morgan('dev'),
+  mw.bodyParser.json(),
+  mw.bodyParser.urlencoded({extended: true}),
+  mw.session({
+    secret: 'It\'s a SECRET: bri6CMg5Te85s0790VhSVlf51T5yd086',
+    saveUninitialized: false,
+    resave: true,
+    name: 'strix.sid',
+    cookie: {secure:false}
+  }),
+  app.static(path.join(__dirname, '../public')),
+  require('./resources/user/router.js'),
+  require('./resources/ticket/router.js'),
+  require('./resources/kb/router.js')
+)
+.get(/^\/(?!api).*/, (req, res) => { //serve index for any route that isn't an api call
+  res.sendFile(path.join(__dirname, '../public', 'index.html'))
+}
+);
