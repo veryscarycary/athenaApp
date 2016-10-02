@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import articleUtils from '../../utils/articleUtils'
 import ticketUtils from '../../utils/ticketUtils';
 import ticketActionCreators from '../../actions/index';
 import EditTicketForm from './EditTicketForm';
@@ -10,13 +11,32 @@ class TicketModal extends React.Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      modalArticles: []
+    }
+
   }
+
+  componentWillMount() {
+    articleUtils.getArticlesByIds(this.props.ticket.relatedArticles).then((articles) => {
+      this.setState({modalArticles: articles}, () => {console.log(this.state.modalArticles)});
+    });
+  }
+
+  // getRelatedArticles(IdArray) {
+  //   return articleUtils.getArticlesById(IdArray).then((articleObjects) =>
+  //     articleObjects.map((article) => (<span>article.title</span>)));
+  // }
 
   ticketModalInfo (ticket) {
     var ticketInfo = [];
 
     for (var key in ticket) {
-      ticketInfo.push([key, ticket[key]]);
+      if (key === 'relatedArticles') {
+        continue;
+      } else {
+        ticketInfo.push([key, ticket[key]]);
+      }
     }
 
     return ticketInfo;
@@ -40,6 +60,7 @@ class TicketModal extends React.Component {
               <span id={`preview${ticketInfo[0]}`}>{ticketInfo.join(': ')}<br /></span>
             ))
             }
+            {this.state.modalArticles.map(article => (<span>{article.title}, </span>))}
             </p>
             <button className='btn btn-default' data-toggle='collapse' data-target={`#editTicket${this.props.ticket._id}`}>Edit Ticket</button>
 

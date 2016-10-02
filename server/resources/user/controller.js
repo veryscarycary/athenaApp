@@ -67,7 +67,7 @@ module.exports = {
       method: 'PUT',
       uri: `${url}/api/user/${req.params.id}/${req.params.password}`,
       json: req.body
-    }, (err, resp, body) => err ? 
+    }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (resp.statusCode === 404 || resp.statusCode === 401) ? 
           res.status(resp.statusCode).send(body)
