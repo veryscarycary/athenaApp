@@ -10,9 +10,7 @@ const ticketUtils = {
       }
     })
     .then(function (response) {
-      return response
-        .json()
-        .then(json => json)
+      return response.json();
     })
     .catch(error => {
       console.log(error, 'There was an error getting the tickets!');

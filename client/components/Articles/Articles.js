@@ -4,6 +4,7 @@ import SearchArticles from './SearchArticles';
 import CreateArticle from './CreateArticle';
 import ArticleList from './ArticleList';
 import FullArticle from './FullArticle';
+import EditModal from './EditModal';
 import articles from '../../mock/articleStubs';
 import { connect } from 'react-redux';
 import { getArticles } from '../../actions';
@@ -23,6 +24,7 @@ class ArticlesDisplay extends Component {
         <ArticleList />
         <SearchArticles />
         <FullArticle />
+        <EditModal />
       </div>
     )
   }

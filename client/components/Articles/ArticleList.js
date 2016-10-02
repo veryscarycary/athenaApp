@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { getArticle, toggleArticle } from '../../actions';
 
 
-const ArticleListItems = ({dispatch, articles}) => {
+const ArticleListItems = ({articles, getArticle, toggleArticle}) => {
   const handleToggle = (article) => {
-    dispatch(toggleArticle());
-    dispatch(getArticle(article.id));
+    return Promise.resolve(toggleArticle())
+    .then(() => getArticle(article.id));
   }
+
   return (
     <div className="article-list">
       <ul>
-        {articles.reverse().map(article => (
+        {articles.slice().reverse().map(article => (
           <li key={article.id}>
             <h3>{article.title}</h3>
             <div>{article.issuePreview}</div>
@@ -28,14 +30,18 @@ const ArticleListItems = ({dispatch, articles}) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    articles: state.articlesList
-  }
-}
+const mapStateToProps = (state) => ({
+  articles: state.articlesList,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getArticle,
+  toggleArticle,
+}, dispatch);
 
 const ArticleList = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(ArticleListItems);
 
 export default ArticleList;

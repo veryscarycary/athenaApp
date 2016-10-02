@@ -36,8 +36,7 @@ let CreateArticle = ({ dispatch }) => {
            title:title.value,
            issue:issue.value,
            solution:solution.value,
-           id:uuid.v4(),
-           dateCreated:new Date().toISOString(),
+        // TODO:
         // relatedTicket: ticket,
         // authorId: user.id
           }
