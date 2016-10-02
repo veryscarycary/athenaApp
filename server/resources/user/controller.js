@@ -2,15 +2,15 @@ const mw = require('../../config/middleware.js');
 const request = mw.request;
 const url = mw.urls.user;
 
-let createSession = (req, res, user, cb = null) =>
+let createSession = (req, user, cb) =>
   req.session.regenerate(() => {
     req.session.user = user;
     cb && cb();
   });
 
 
-function destroySession(req, res, cb = null) {
-  req.session.destroy(() => cb && cb());
+function destroySession(req, cb) {
+  req.session && req.session.destroy(() => cb && cb());
 }
 
 
@@ -23,7 +23,6 @@ module.exports = {
           : res.status(200).send(req.session.user);
   },
   getUser(req, res) {
-    console.log(req.session);
     let id = req.params.id;
     request({
       method: 'GET',
@@ -43,11 +42,13 @@ module.exports = {
           res.status(resp.statusCode).send(body)
           : (() => { //create new session for new login
               body = JSON.parse(body);
-              createSession(req, res, {
-                _id: body
-              }, () => res.status(resp.statusCode).send(body));
+              createSession(req, { _id: body }, 
+                () => res.status(resp.statusCode).send(body));
             })()
     );
+  },
+  signout(req, res) {
+    destroySession(req, () => res.status(200).send('signed out'));
   },
   createUser(req, res) {
     request({
@@ -56,33 +57,31 @@ module.exports = {
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : (() => { //create new session for new login
-          createSession(req, res, {
-            _id: body
-          }, () => { //session helper callback
-            console.log('after: ', req.session)
-            res.status(resp.statusCode).send(body)
-          });
-        })()
+      : (() => createSession(req, { _id: body },
+          () => res.status(resp.statusCode).send(body)) 
+        )()
     );
   },
   editUser(req, res) {
     request({
       method: 'PUT',
-      uri: `${url}/api/user/${req.params.username}/${req.params.username}`,
+      uri: `${url}/api/user/${req.params.id}/${req.params.password}`,
       json: req.body
     }, (err, resp, body) => err ? 
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.parse(body))
+      : (resp.statusCode === 404 || resp.statusCode === 401) ? 
+          res.status(resp.statusCode).send(body)
+          : (() => createSession(req, { _id: body }, 
+              () => res.status(resp.statusCode).send(body)))()
     );
   },
   deleteUser(req, res) {
     request({
       method: 'DELETE',
-      uri: `${url}/api/user/${req.params.username}/${req.params.username}`
+      uri: `${url}/api/user/${req.params.username}/${req.params.id}`
     }, (err, resp, body) => err ? 
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.parse(body))
+      : destroySession(req, ()=> res.status(resp.statusCode).send(JSON.parse(body)))
     );
   }
 };
