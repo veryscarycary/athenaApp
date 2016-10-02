@@ -47,7 +47,7 @@ module.exports = {
       method: 'PUT',
       uri: `${url}/api/user/${req.params.username}/${req.params.username}`,
       json: req.body
-    }, (err, resp, body) => err ? 
+    }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : res.status(resp.statusCode).send(JSON.parse(body))
     );
@@ -56,7 +56,7 @@ module.exports = {
     request({
       method: 'DELETE',
       uri: `${url}/api/user/${req.params.username}/${req.params.username}`
-    }, (err, resp, body) => err ? 
+    }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : res.status(resp.statusCode).send(JSON.parse(body))
     );

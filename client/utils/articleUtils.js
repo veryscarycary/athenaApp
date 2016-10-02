@@ -12,6 +12,18 @@ const articleUtils = {
         })
         .catch(err => reject(err));
   }),
+  getArticlesByIds: (idArray) => {
+    console.log(idArray);
+    return fetch('/api/kb/articles', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ids: idArray})
+    })
+      .then((response) => {
+        return response.json().then(json => json);
+      })
+      .catch(err => console.log(err));
+  },
   getArticle: (id) => new Promise((resolve, reject) => {
     return fetch(`/api/kb/${id}`)
       .then((response) => {
