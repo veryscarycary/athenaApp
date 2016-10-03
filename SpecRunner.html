@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Mocha Spec Runner</title>
+  <link rel="stylesheet" href="./node_modules/mocha/mocha.css">
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="node_modules/react/dist/react-with-addons.js"></script>
+  <script src="node_modules/react-dom/dist/react-dom.js"></script>
+  <script src="node_modules/lodash/lodash.js"></script>
+  <script src="node_modules/mocha/mocha.js"></script>
+  <script src="node_modules/chai/chai.js"></script>
+  <script src="node_modules/sinon/pkg/sinon-server-1.17.6.js"></script>
+  <script src="node_modules/sinon/pkg/sinon-1.17.6.js"></script>
+  <script>
+    mocha.setup('bdd');
+    var expect = chai.expect;
+    $(function() {
+      window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
+    });
+  </script>
+
+  <!-- Spec files -->
+  <script src="./client/spec/clientSpec.js"></script>
+
+  <!-- Source files -->
+  <script src="./public/bundle.js"></script>
+
+</head>
+<body>
+  <div id="mocha"></div>
+</body>
+</html>
