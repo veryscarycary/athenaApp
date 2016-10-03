@@ -1,5 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
+
+import sessionUtils from '../utils/sessionUtils';
+
+import * as actionCreators from '../actions/index';
 
 
 class LandingPage extends React.Component {
@@ -7,6 +14,21 @@ class LandingPage extends React.Component {
     super(props)
   }
 
+  componentWillMount () {
+    // actually needs to run check session with the server instead
+    console.log(this.props.sessionId);
+    sessionUtils.checkSession();
+  }
+
+  goToLandingPage() {
+    // e.preventDefault();
+    browserHistory.push('/');
+  }
+
+  signout() {
+    sessionUtils.signout();
+    browserHistory.push('/login');
+  }
 
   render () {
     return (
@@ -21,7 +43,7 @@ class LandingPage extends React.Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand" href="/">
+                    <a className="navbar-brand" onClick={this.goToLandingPage.bind(this)}>
                       <img id='beefaloLogo' src="./images/beefalo.png" alt="" />
                     </a>
                 </div>
@@ -35,7 +57,7 @@ class LandingPage extends React.Component {
                           <Link to='/tickets'>Tickets</Link>
                         </li>
                         <li>
-                          <Link className='logoutNav'>Logout</Link>
+                          <Link onClick={this.signout} className='logoutNav'>Logout</Link>
                         </li>
                     </ul>
                 </div>
@@ -48,4 +70,15 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+const mapStateToProps = function(store) {
+  console.log('this is the store!!!', store);
+  return {
+    sessionId: store.sessionReducer.sessionId
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
