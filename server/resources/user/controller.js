@@ -30,6 +30,7 @@ module.exports = {
       : res.status(resp.statusCode).send(JSON.parse(body))
     );
   },
+
   signin(req, res) {
     request({
       method: 'GET',

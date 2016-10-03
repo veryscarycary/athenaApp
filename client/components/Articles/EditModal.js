@@ -19,35 +19,52 @@ class EditModalContainer extends Component {
   render() {
     let title, issue, solution;
     return (
-      <div className={this.props.hidden ? "hidden full-article" : "full-article"}>
-        <button
-          onClick={e => {
-            e.preventDefault();
-            this.handleToggle({});
-          }}>Close</button>
+      <div className={this.props.hidden ? "hidden full-article edit-modal" : "full-article edit-modal"}>
+      <div className="edit-modal-container">
+        <div className="button-float">
+          <button
+            className="full-article-button"
+            onClick={e => {
+              e.preventDefault();
+              this.handleToggle({});
+            }}><i className="material-icons">close</i></button>
+          </div>
+          <h5
+            className="full-article-title"
+            >Title:</h5>
           <input
+            name="title"
+            className="edit-modal-input"
             ref={node => {
               title=node;
             }}
             onChange={this.handleChange}
             type="text"
             value={this.props.article.title}/>
-            <h5>Issue</h5>
+            <h5
+              className="full-article-title"
+            >Issue:</h5>
           <textarea
+            className="edit-modal-textarea"
             ref={node => {
               issue=node;
             }}
             name="issue"
             onChange={this.handleChange}
             value={this.props.article.issue} />
-          <h5>Solution</h5>
+          <h5
+            className="full-article-title"
+            >Solution:</h5>
           <textarea
+            className="edit-modal-textarea"
             ref={node => {
               solution = node;
             }}
+            name="solution"
             onChange={this.handleChange}
             value={this.props.article.solution} />
           <button
+            className="article-list-button"
             onClick={e => {
               e.preventDefault();
               var article = this.props.article;
@@ -57,7 +74,8 @@ class EditModalContainer extends Component {
               this.handleSubmit(article);
               this.handleToggle();
             }} >
-              Submit changes</button>
+              Submit</button>
+      </div>
       </div>
     )
   }

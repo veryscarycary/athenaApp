@@ -113,3 +113,14 @@ export const editModal = (state = {hidden:true, article:{}}, action) => {
     default: return state
   }
 }
+
+export const create = (state = {hidden: true}, action) => {
+  switch (action.type) {
+    case 'TOGGLE_CREATE':
+      return {
+        hidden: !state.hidden
+      }
+    default:
+      return state
+  }
+}

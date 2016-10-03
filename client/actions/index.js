@@ -57,6 +57,9 @@ export const editField = (field, value) => ({
     value,
   }
 });
+export const toggleCreate = () => ({
+  type: 'TOGGLE_CREATE',
+})
 export const submitEdit = (article) => ({
   type: 'SUBMIT_EDIT',
   payload: articleUtils.editArticle(article)
