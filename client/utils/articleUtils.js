@@ -13,7 +13,6 @@ const articleUtils = {
         .catch(err => reject(err));
   }),
   getArticlesByIds: (idArray) => {
-    console.log(idArray);
     return fetch('/api/kb/articles', {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
@@ -55,13 +54,17 @@ const articleUtils = {
       .then((response) => {
         return response.json()
           .then(json => {
-            resolve(json)
-          })
-        .catch(err => reject(err));
+            resolve(json);
+        })
+      .catch(err => {
+        console.log(err);
+        reject(err);
+      });
     })
   }),
-  editArticle: (id, article) => new Promise((resolve, reject) => {
-    return fetch(`/api/kb/${id}`, {
+  editArticle: (article) => new Promise((resolve, reject) => {
+    console.log(JSON.stringify(article))
+    return fetch(`/api/kb/${article.id}`, {
       method: 'PUT',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(article)
@@ -71,8 +74,8 @@ const articleUtils = {
           .then(json => {
             resolve(json)
           })
-        .catch(err => reject(err));
       })
+      .catch(err => reject(err));
   }),
   deleteArticle: (id) => new Promise((resolve, reject) => {
     return fetch(`/api/kb/${id}`, {

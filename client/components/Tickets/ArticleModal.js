@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getArticle } from '../../actions';
 
-const FullArticleContainer = ({ dispatch, article }) => {
+const ArticleModal = ({ dispatch, article }) => {
   const handleToggle = (article) => {
     dispatch(getArticle(article.id));
   }
   return (
-    <div className={article.hidden ? "hidden full-article" : "full-article"}>
+    <div>
       <button
         onClick={e => {
           e.preventDefault();
@@ -16,7 +16,9 @@ const FullArticleContainer = ({ dispatch, article }) => {
         Close</button>
       <h3>{article.title}</h3>
       <div className="content">
-        {article.issue}
+        <strong>Issue:</strong>
+        {article.issue}<br /><br />
+        <strong>Solution:</strong>
         {article.solution}
       </div>
       <button>Use</button>
@@ -32,6 +34,6 @@ const mapStateToProps = (state) => {
 
 const FullArticle = connect(
   mapStateToProps
-)(FullArticleContainer);
+)(ArticleModal);
 
-export default FullArticle;
+export default ArticleModal;

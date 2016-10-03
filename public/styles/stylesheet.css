@@ -158,3 +158,119 @@ body {
 .hidden {
   display: none;
 }
+
+/*ARTICLE STYLEZ*/
+
+.article-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fcf6d7;
+  width: 960px;
+  margin: 64px auto;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+}
+.article-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 680px;
+  padding: 16px;
+}
+.article-list-item:nth-child(odd) {
+  margin-top: 8px;
+  background: #f7f7f7;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.article-list-content {
+  max-width: 496px;
+  padding: 0 32px 32px;
+}
+.article-list-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 16px;
+}
+.article-list-button {
+  border-radius: 3px;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  height: 32px;
+  width: 120px;
+  margin: 32px 0;
+}
+
+.full-article {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.3);
+  overflow: scroll;
+}
+.full-article-content, .edit-modal-container, .create-article-container {
+  width: 960px;
+  margin-top: 64px;
+  background: #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border-radius: 3px;
+  padding: 32px;
+  background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+  background: linear-gradient(#fff, #999);
+}
+.full-article-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.full-article-title.main {
+  font-size: 20px;
+}
+.button-float {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -64px;
+}
+.full-article-button {
+  border: none;
+  background: none;
+}
+.material-icons {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  padding: 8px;
+}
+.full-article-button-container {
+  display: flex;
+}
+.edit-modal-input, .edit-modal-textarea {
+  display: block;
+  width: 640px;
+  margin-left: 32px;
+}
+.edit-modal-textarea {
+  height: 120px;
+}
+.article-list > ul {
+  padding-left: none;
+  margin-left: none;
+}
+.create {
+  margin-right: 64px;
+}
+

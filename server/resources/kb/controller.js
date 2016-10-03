@@ -35,7 +35,7 @@ module.exports = {
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.parse(body))
+      : res.status(resp.statusCode).send(body)
     );
   },
   editKb(req, res) {
@@ -45,7 +45,7 @@ module.exports = {
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.parse(body))
+      : res.status(resp.statusCode).send(body)
     );
   },
   deleteKb(req, res) {

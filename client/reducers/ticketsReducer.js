@@ -39,7 +39,6 @@ const ticketsReducer = function(state = initialState, action) {
         status: 'rejected'
       };
     case 'SET_NEW_TICKETS_FULFILLED':
-      console.log(action.payload, 'FULFILLED');
       return {
         tickets: action.payload,
         filteredTickets: action.payload,

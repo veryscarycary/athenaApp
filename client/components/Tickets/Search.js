@@ -12,20 +12,12 @@ class Search extends React.Component {
 
 
   setSearchToState (event) {
-    console.log(event, "<=event");
-    console.log(event.target.value, "<=event value");
-    console.log(this.props.searchText, "<=SEARCHTEXT IN PROPS");
     // set searchText in state
     var filteredTickets = this.props.tickets.filter(function(ticket) {
-      console.log(ticket, 'ticket');
-      console.log(event.target.value, 'textValue');
       if (ticket.issue.includes(event.target.value) || ticket.customerId.includes(event.target.value)) {
         return ticket;
       }
     });
-    console.log(this.props.tickets, 'tickets in props');
-
-    console.log(filteredTickets, 'filteredTickets');
     this.props.loadSearchState(event.target.value);
     this.props.loadFilteredTicketState(filteredTickets);
   }
@@ -41,7 +33,6 @@ class Search extends React.Component {
 };
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
     tickets: store.ticketsReducer.tickets,
     searchText: store.ticketsReducer.searchText,

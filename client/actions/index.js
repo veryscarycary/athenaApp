@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import articleUtils from '../utils/articleUtils';
 import ticketUtils from '../utils/ticketUtils';
+import sessionUtils from '../utils/sessionUtils';
 
 export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
@@ -26,6 +27,10 @@ export const getArticle = (id) => ({
   }
 });
 
+export const toggleArticle = () => ({
+  type: 'TOGGLE_DISPLAY',
+})
+
 export const editArticle = (id) => ({
   type: 'EDIT_ARTICLE',
   payload: articleUtils.editArticle(id)
@@ -41,10 +46,25 @@ export const loadTicketState = () => ({
   payload: ticketUtils.getTickets()
 });
 
-// export const submitNewTicket = () => ({
-//   type: 'SUBMIT_NEW_TICKET',
-//   payload: ticketUtils.
-// });
+export const toggleEdit = (article = {}) => ({
+  type: 'TOGGLE_EDIT_MODAL',
+  payload: article
+});
+
+export const editField = (field, value) => ({
+  type: 'EDIT_FIELD',
+  payload: {
+    field,
+    value,
+  }
+});
+export const toggleCreate = () => ({
+  type: 'TOGGLE_CREATE',
+})
+export const submitEdit = (article) => ({
+  type: 'SUBMIT_EDIT',
+  payload: articleUtils.editArticle(article)
+});
 
 export const loadSearchState = (searchText) => ({
   type: 'SET_NEW_SEARCHTEXT',
@@ -54,4 +74,9 @@ export const loadSearchState = (searchText) => ({
 export const loadFilteredTicketState = (filteredTickets) => ({
   type: 'SET_FILTERED_TICKETS',
   filteredTickets
+});
+
+export const loadSessionId = (sessionId) => ({
+  type: 'SET_SESSION_ID',
+  sessionId
 });
