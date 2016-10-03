@@ -5,14 +5,13 @@ import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux';
 
-import * as ticketActionCreators from '../../actions/index';
+import * as actionCreators from '../../actions/index';
 
 class LoginContainer extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      isLoggedIn: false,
       username: '',
       password: ''
     };
@@ -24,23 +23,21 @@ class LoginContainer extends React.Component {
     browserHistory.push('/login');
   }
 
-  redirectToLogin() {
+  redirectToLanding() {
     browserHistory.push('/');
   }
 
   handleLogin(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/api/user/${this.state.username}/${this.state.password}`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
+    fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
+      method: 'GET'
     }).then((res) => {
       if (res.status === 200) {
         //redirect to homepage
-        this.setState({isLoggedIn: true});
-        this.redirectToLogin();
+        return res.text().then(text => {
+          this.props.loadSessionId(text);
+          this.redirectToLanding();
+        });
       } else {
         this.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
         {this.setState({userNameDoesNotExist: false})}, 3000));
@@ -89,12 +86,12 @@ class LoginContainer extends React.Component {
 const mapStateToProps = function(store) {
   console.log('this is the store!!!', store);
   return {
-    tickets: store.ticketsReducer.tickets
+    validSession: store.sessionReducer.validSession
   };
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ticketActionCreators, dispatch);
+  return bindActionCreators(actionCreators, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
