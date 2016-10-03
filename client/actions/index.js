@@ -27,6 +27,10 @@ export const getArticle = (id) => ({
   }
 });
 
+export const toggleArticle = () => ({
+  type: 'TOGGLE_DISPLAY',
+})
+
 export const editArticle = (id) => ({
   type: 'EDIT_ARTICLE',
   payload: articleUtils.editArticle(id)
@@ -42,10 +46,25 @@ export const loadTicketState = () => ({
   payload: ticketUtils.getTickets()
 });
 
-// export const submitNewTicket = () => ({
-//   type: 'SUBMIT_NEW_TICKET',
-//   payload: ticketUtils.
-// });
+export const toggleEdit = (article = {}) => ({
+  type: 'TOGGLE_EDIT_MODAL',
+  payload: article
+});
+
+export const editField = (field, value) => ({
+  type: 'EDIT_FIELD',
+  payload: {
+    field,
+    value,
+  }
+});
+export const toggleCreate = () => ({
+  type: 'TOGGLE_CREATE',
+})
+export const submitEdit = (article) => ({
+  type: 'SUBMIT_EDIT',
+  payload: articleUtils.editArticle(article)
+});
 
 export const loadSearchState = (searchText) => ({
   type: 'SET_NEW_SEARCHTEXT',

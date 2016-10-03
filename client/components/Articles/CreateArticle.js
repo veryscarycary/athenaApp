@@ -1,27 +1,63 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createArticle } from '../../actions';
+import { createArticle, toggleCreate } from '../../actions';
 import uuid from 'uuid';
 
-let CreateArticle = ({ dispatch }) => {
+let CreateArticle = ({ dispatch, hidden }) => {
+  const handleToggle = () => {
+    dispatch(toggleCreate());
+  }
 
   let issuePreview, title, issue, solution;
 
   return (
-    <div className='create-article'>
-      <input type='text' placeholder='title' ref={node => {
-        title = node;
+    <div className={hidden ? "full-article hidden" : "full-article"}>
+    <div className='create-article-container'>
+    <div className="button-float">
+      <button
+        className="full-article-button"
+          onClick={handleToggle}>
+          <i className="material-icons">close</i></button>
+        </div>
+
+    <h1
+      className="full-article-title main">Create a new article</h1>
+      <h5
+        className="full-article-title"
+      >Title:</h5>
+      <input
+        className="edit-modal-input"
+        type='text'
+        placeholder='title'
+        ref={node => {
+          title = node;
       }} />
-      <input type='text' placeholder='summary' ref={node => {
-        issuePreview = node;
+      <h5
+        className="full-article-title"
+      >Summary:</h5>
+      <input type='text'
+        className="edit-modal-input"
+        placeholder='summary'
+        ref={node => {
+          issuePreview = node;
       }} />
+      <h5
+        className="full-article-title"
+      >Issue:</h5>
       <textarea
+        className="edit-modal-textarea"
         placeholder='issue'
         ref={node => { issue=node; }}></textarea>
+      <h5
+        className="full-article-title"
+      >Solution:</h5>
       <textarea
+        className="edit-modal-textarea"
         placeholder='solution'
         ref={node => { solution=node; }}></textarea>
-      <button onClick={e => {
+      <button
+      className="article-list-button"
+      onClick={e => {
         e.preventDefault();
         if (!title.value.trim() || !solution.value.trim() || !issuePreview.value.trim() || !issue.value.trim()) {
           return
@@ -31,7 +67,9 @@ let CreateArticle = ({ dispatch }) => {
            title:title.value,
            issue:issue.value,
            solution:solution.value,
-           id:uuid.v4()
+        // TODO:
+        // relatedTicket: ticket,
+        // authorId: user.id
           }
         ))
         issuePreview.value='';
@@ -40,9 +78,16 @@ let CreateArticle = ({ dispatch }) => {
         issue.value='';
       }}>Create</button>
     </div>
+    </div>
   )
 }
 
-CreateArticle = connect()(CreateArticle);
+const mapStateToProps = (state) => ({
+  hidden: state.create.hidden
+})
+
+CreateArticle = connect(
+  mapStateToProps
+)(CreateArticle);
 
 export default CreateArticle;

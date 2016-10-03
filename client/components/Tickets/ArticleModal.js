@@ -7,7 +7,7 @@ const ArticleModal = ({ dispatch, article }) => {
     dispatch(getArticle(article.id));
   }
   return (
-    <div className={article.hidden ? "hidden full-article" : "full-article"}>
+    <div>
       <button
         onClick={e => {
           e.preventDefault();

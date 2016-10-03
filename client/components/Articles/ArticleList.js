@@ -1,21 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getArticle } from '../../actions';
+import { bindActionCreators } from 'redux';
+import { getArticle, toggleArticle, toggleCreate} from '../../actions';
 
 
-const ArticleListItems = ({dispatch, articles}) => {
+const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCreate}) => {
   const handleToggle = (article) => {
-    console.log('pass me!', article.id);
-    dispatch(getArticle(article.id));
+    return Promise.resolve(toggleArticle())
+    .then(() => getArticle(article.id));
   }
+  const handleCreateToggle = () => {
+    return toggleCreate();
+  }
+
   return (
-    <div className="article-list">
+    <div>
+      <div className="button-float">
+        <button className="full-article-button"
+        onClick={handleCreateToggle}>
+          <i className="material-icons">edit</i>
+        </button>
+      </div>
+      <div className="article-list">
       <ul>
-        {articles.reverse().map(article => (
-          <li key={article.id}>
-            <h3>{article.title}</h3>
-            <div>{article.issuePreview}</div>
-            <button onClick={e => {
+        {articles.slice().reverse().map(article => (
+          <li
+            className="article-list-item"
+            key={article.id}>
+            <div
+              className="article-list-content">
+              <h3 className="article-list-title">{article.title}</h3>
+              <div>{article.issuePreview}</div>
+            </div>
+            <button
+              className="article-list-button"
+              onClick={e => {
               e.preventDefault();
               handleToggle(article);
             }}>
@@ -24,18 +43,24 @@ const ArticleListItems = ({dispatch, articles}) => {
           </li>
         ))}
       </ul>
+      </div>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    articles: state.articlesList
-  }
-}
+const mapStateToProps = (state) => ({
+  articles: state.articlesList,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getArticle,
+  toggleArticle,
+  toggleCreate,
+}, dispatch);
 
 const ArticleList = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(ArticleListItems);
 
 export default ArticleList;

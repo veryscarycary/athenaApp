@@ -2,17 +2,15 @@ const mw = require('../../config/middleware.js');
 const request = mw.request;
 const url = mw.urls.user;
 
-let createSession = (req, user, cb) =>
+var createSession = (req, user, cb) =>
   req.session.regenerate(() => {
     req.session.user = user;
     cb && cb();
   });
 
-
 function destroySession(req, cb) {
   req.session && req.session.destroy(() => cb && cb());
 }
-
 
 module.exports = {
   checkSession(req, res) {
@@ -23,7 +21,7 @@ module.exports = {
           : res.status(200).send(req.session.user);
   },
   getUser(req, res) {
-    let id = req.params.id;
+    var id = req.params.id;
     request({
       method: 'GET',
       uri: `${url}/api/user${id ? `/${req.params.id}` : ''}`
@@ -32,6 +30,7 @@ module.exports = {
       : res.status(resp.statusCode).send(JSON.parse(body))
     );
   },
+
   signin(req, res) {
     request({
       method: 'GET',
@@ -78,7 +77,7 @@ module.exports = {
   deleteUser(req, res) {
     request({
       method: 'DELETE',
-      uri: `${url}/api/user/${req.params.id}/${req.params.password}`
+      uri: `${url}/api/user/${req.params.username}/${req.params.id}`
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : destroySession(req, ()=> res.status(resp.statusCode).send(JSON.parse(body)))

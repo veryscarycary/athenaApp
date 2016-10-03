@@ -8,7 +8,6 @@ import NewTicketForm from './NewTicketForm';
 class CreateTicket extends React.Component {
   constructor (props) {
     super(props)
-
   }
 
   render () {
@@ -26,7 +25,6 @@ class CreateTicket extends React.Component {
 };
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
     createTicketToggled: store.ticketsReducer.createTicketToggled
   };
