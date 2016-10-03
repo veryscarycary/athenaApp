@@ -72,6 +72,7 @@ const articleUtils = {
       .then((response) => {
         return response.json()
           .then(json => {
+            console.log('this is the response: ',json);
             resolve(json)
           })
       })

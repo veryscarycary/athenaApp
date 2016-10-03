@@ -17,7 +17,7 @@ class EditModalContainer extends Component {
     this.props.submitEdit(article);
   }
   render() {
-    let title, issue, solution;
+    let title, issue, solution, preview;
     return (
       <div className={this.props.hidden ? "hidden full-article edit-modal" : "full-article edit-modal"}>
       <div className="edit-modal-container">
@@ -41,6 +41,17 @@ class EditModalContainer extends Component {
             onChange={this.handleChange}
             type="text"
             value={this.props.article.title}/>
+            <h5
+              className="full-article-title"
+              >Preview:</h5>
+            <textarea
+              className="edit-modal-textarea"
+              ref={node => {
+                preview=node;
+              }}
+              name="issuePreview"
+              onChange={this.handleChange}
+              value={this.props.article.issuePreview} />
             <h5
               className="full-article-title"
             >Issue:</h5>
