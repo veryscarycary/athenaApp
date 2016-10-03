@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import articleUtils from '../utils/articleUtils';
 import ticketUtils from '../utils/ticketUtils';
+import sessionUtils from '../utils/sessionUtils';
 
 export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
@@ -73,4 +74,9 @@ export const loadSearchState = (searchText) => ({
 export const loadFilteredTicketState = (filteredTickets) => ({
   type: 'SET_FILTERED_TICKETS',
   filteredTickets
+});
+
+export const loadSessionId = (sessionId) => ({
+  type: 'SET_SESSION_ID',
+  sessionId
 });

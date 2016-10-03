@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import articleUtils from '../../utils/articleUtils'
 import ticketUtils from '../../utils/ticketUtils';
-import ticketActionCreators from '../../actions/index';
+import * as ticketActionCreators from '../../actions/index';
 import EditTicketForm from './EditTicketForm';
 
 

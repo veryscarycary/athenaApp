@@ -34,7 +34,7 @@ module.exports = {
   signin(req, res) {
     request({
       method: 'GET',
-      uri: `${url}/api/user/${req.params.username}/${req.params.password}`
+      uri: `${url}/api/signin/${req.params.username}/${req.params.password}`
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (resp.statusCode === 404 || resp.statusCode === 401) ?
@@ -52,7 +52,7 @@ module.exports = {
   createUser(req, res) {
     request({
       method: 'POST',
-      uri:`${url}/api/user/${req.params.username}/${req.params.password}`,
+      uri:`${url}/api/signin/${req.params.username}/${req.params.password}`,
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import sessionUtils from '../../utils/sessionUtils';
 import TicketDisplay from './TicketDisplay';
 import Search from './Search';
 import CreateTicket from './CreateTicket';
@@ -10,6 +11,12 @@ class MainLayoutContainer extends React.Component {
     super(props)
 
 
+  }
+
+  componentWillMount () {
+    // actually needs to run check session with the server instead
+    console.log(this.props.sessionId);
+    sessionUtils.checkSession();
   }
 
   render () {
