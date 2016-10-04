@@ -17,12 +17,6 @@ class LoginContainer extends React.Component {
     };
   }
 
-  logout() {
-    // request to server to session.destroy()
-    // and redirect to login
-    browserHistory.push('/login');
-  }
-
   redirectToLanding() {
     browserHistory.push('/');
   }
@@ -30,7 +24,8 @@ class LoginContainer extends React.Component {
   handleLogin(e) {
     e.preventDefault();
     fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
-      method: 'GET'
+      method: 'GET',
+      credentials: 'same-origin'
     }).then((res) => {
       if (res.status === 200) {
         //redirect to homepage
@@ -84,9 +79,7 @@ class LoginContainer extends React.Component {
 };
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
-    validSession: store.sessionReducer.validSession
   };
 };
 

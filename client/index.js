@@ -28,3 +28,5 @@ render(
   </Provider>,
   document.getElementById('entry')
 )
+
+export { store };

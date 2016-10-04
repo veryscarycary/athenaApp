@@ -16,8 +16,8 @@ class LandingPage extends React.Component {
 
   componentWillMount () {
     // actually needs to run check session with the server instead
-    console.log(this.props.sessionId);
-    sessionUtils.checkSession();
+    console.log(this.props.sessionId, 'SESSIONID ON LANDING');
+    sessionUtils.checkSession(this);
   }
 
   goToLandingPage() {
@@ -71,7 +71,6 @@ class LandingPage extends React.Component {
 }
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
     sessionId: store.sessionReducer.sessionId
   };
