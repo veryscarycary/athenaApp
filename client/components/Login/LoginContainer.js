@@ -4,8 +4,10 @@ import { Link } from 'react-router';
 import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux';
-
 import * as actionCreators from '../../actions/index';
+
+import sessionUtils from '../../utils/sessionUtils';
+
 
 class LoginContainer extends React.Component {
   constructor (props) {
@@ -17,30 +19,9 @@ class LoginContainer extends React.Component {
     };
   }
 
-  redirectToLanding() {
-    browserHistory.push('/');
-  }
-
   handleLogin(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
-      method: 'GET',
-      credentials: 'same-origin'
-    }).then((res) => {
-      if (res.status === 200) {
-        //redirect to homepage
-        return res.text().then(text => {
-          // this.props.loadSessionId(text);  no longer need, keeping just in case
-          sessionStorage.setItem('sessionId', text);
-          this.redirectToLanding();
-        });
-      } else {
-        this.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
-        {this.setState({userNameDoesNotExist: false})}, 3000));
-      }
-    }).catch((err) => {
-      console.log('There was an error during Login! D=', err);
-    });
+    sessionUtils.setSession(this.state.username, this.state.password);
   }
 
   render () {

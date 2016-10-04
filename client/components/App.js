@@ -3,6 +3,7 @@ import Articles from './Articles/Articles';
 import LandingPage from './LandingPage';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import MainLayoutContainer from './Tickets/MainLayoutContainer';
+import NotFoundComponent from './NotFoundComponent';
 import Login from './Login/LoginContainer';
 import Signup from './Signup/SignupContainer';
 import DashboardContainer from './AdminDashboard/DashboardContainer';
@@ -18,6 +19,7 @@ const App = () => (
     </Route>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
+    <Route path="/notFound" component={NotFoundComponent} />
   </Router>
 )
 

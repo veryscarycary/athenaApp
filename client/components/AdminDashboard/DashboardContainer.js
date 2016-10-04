@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import Cookies from 'js-cookie';
 import RouteHandler from '../RouteHandler';
 import { AuthorizedComponent } from 'react-router-role-authorization';
 

@@ -2,6 +2,26 @@ import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 
 const sessionUtils = {
+  setSession: (username, password) => {
+    fetch(`http://localhost:3000/api/signin/${username}/${password}`, {
+      method: 'GET',
+      credentials: 'same-origin'
+    }).then((res) => {
+      if (res.status === 200) {
+        //redirect to homepage
+        return res.text().then(text => {
+          // this.props.loadSessionId(text);  no longer need, keeping just in case
+          sessionStorage.setItem('sessionId', text);
+          browserHistory.push('/');
+        });
+      } else {
+        this.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
+        {this.setState({userNameDoesNotExist: false})}, 3000));
+      }
+    }).catch((err) => {
+      console.log('There was an error during Login! D=', err);
+    });
+  },
   checkSession: () => {
     return fetch('http://localhost:3000/api/session', {
       method: 'GET',
