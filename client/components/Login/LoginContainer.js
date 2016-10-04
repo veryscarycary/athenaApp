@@ -30,7 +30,8 @@ class LoginContainer extends React.Component {
       if (res.status === 200) {
         //redirect to homepage
         return res.text().then(text => {
-          this.props.loadSessionId(text);
+          // this.props.loadSessionId(text);  no longer need, keeping just in case
+          sessionStorage.setItem('sessionId', text);
           this.redirectToLanding();
         });
       } else {
