@@ -34,6 +34,9 @@ class SignupContainer extends React.Component {
   }
 
   postNewUser() {
+    var roles = [];
+    if (document.getElementById('userBox').checked) {roles.push('user');}
+    if (document.getElementById('adminBox').checked) {roles.push('admin');}
     //make a post request to server
     fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
       method: 'POST',
@@ -43,7 +46,8 @@ class SignupContainer extends React.Component {
       },
       body: JSON.stringify({
         username:this.state.username,
-        password:this.state.password
+        password:this.state.password,
+        roles:roles
       })
     }).then((res) => {
       if (res.status === 201) {
@@ -94,6 +98,16 @@ class SignupContainer extends React.Component {
               <label htmlFor='repeatPassword'>Repeat Password:</label>
               <input type='password' className='form-control' id='repeatPassword' onChange={(e)=>this.setState({repeatPassword: e.target.value})} />
             </div>
+            <div className='rowFlex'>
+              <div className='form-group'>
+                <label htmlFor='userBox'>User</label>
+                <input type='checkbox' className='form-control' id='userBox' value='user' onChange={(e)=>this.setState({userRole: e.target.value})} />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='adminBox'>Admin</label>
+                <input type='checkbox' className='form-control' id='adminBox' value='admin' onChange={(e)=>this.setState({adminRole: e.target.value})} />
+              </div>
+            </div>
             <div className='form-group'>
               <input type='submit' className='btn btn-default' id='submit' value='Signup' />
             </div>
@@ -108,9 +122,7 @@ class SignupContainer extends React.Component {
 };
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
-    tickets: store.ticketsReducer.tickets
   };
 };
 

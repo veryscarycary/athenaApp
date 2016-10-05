@@ -4,8 +4,10 @@ import { Link } from 'react-router';
 import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux';
-
 import * as actionCreators from '../../actions/index';
+
+import sessionUtils from '../../utils/sessionUtils';
+
 
 class LoginContainer extends React.Component {
   constructor (props) {
@@ -17,34 +19,9 @@ class LoginContainer extends React.Component {
     };
   }
 
-  logout() {
-    // request to server to session.destroy()
-    // and redirect to login
-    browserHistory.push('/login');
-  }
-
-  redirectToLanding() {
-    browserHistory.push('/');
-  }
-
   handleLogin(e) {
     e.preventDefault();
-    fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
-      method: 'GET'
-    }).then((res) => {
-      if (res.status === 200) {
-        //redirect to homepage
-        return res.text().then(text => {
-          this.props.loadSessionId(text);
-          this.redirectToLanding();
-        });
-      } else {
-        this.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
-        {this.setState({userNameDoesNotExist: false})}, 3000));
-      }
-    }).catch((err) => {
-      console.log('There was an error during Login! D=', err);
-    });
+    sessionUtils.setSession(this.state.username, this.state.password, this);
   }
 
   render () {
@@ -84,9 +61,7 @@ class LoginContainer extends React.Component {
 };
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
-    validSession: store.sessionReducer.validSession
   };
 };
 

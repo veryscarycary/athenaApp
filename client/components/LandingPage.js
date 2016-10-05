@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import beefalo from '../images/beefalo.png';
 
 import sessionUtils from '../utils/sessionUtils';
 
@@ -16,25 +15,14 @@ class LandingPage extends React.Component {
   }
 
   componentWillMount () {
-    // actually needs to run check session with the server instead
-    console.log(this.props.sessionId);
+    console.log(sessionStorage.sessionId, 'SESSIONID ON LANDING');
     sessionUtils.checkSession();
   }
 
-  goToLandingPage() {
-    // e.preventDefault();
-    browserHistory.push('/');
-  }
-
-  signout() {
-    sessionUtils.signout();
-    browserHistory.push('/login');
-  }
 
   render () {
     return (
       <div className="landing-page">
-
         <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div className="container">
                 <div className="navbar-header">
@@ -64,16 +52,15 @@ class LandingPage extends React.Component {
                 </div>
             </div>
         </nav>
-
+      <Nav />
         {this.props.children}
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = function(store) {
   return {
-    sessionId: store.sessionReducer.sessionId
   };
 };
 
