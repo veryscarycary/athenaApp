@@ -21,7 +21,7 @@ class LoginContainer extends React.Component {
 
   handleLogin(e) {
     e.preventDefault();
-    sessionUtils.setSession(this.state.username, this.state.password);
+    sessionUtils.setSession(this.state.username, this.state.password, this);
   }
 
   render () {

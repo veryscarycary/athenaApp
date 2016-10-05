@@ -34,6 +34,9 @@ class SignupContainer extends React.Component {
   }
 
   postNewUser() {
+    var roles = [];
+    if (document.getElementById('userBox').checked) {roles.push('user');}
+    if (document.getElementById('adminBox').checked) {roles.push('admin');}
     //make a post request to server
     fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
       method: 'POST',
@@ -43,7 +46,8 @@ class SignupContainer extends React.Component {
       },
       body: JSON.stringify({
         username:this.state.username,
-        password:this.state.password
+        password:this.state.password,
+        roles:roles
       })
     }).then((res) => {
       if (res.status === 201) {

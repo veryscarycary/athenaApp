@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import Cookies from 'js-cookie';
 
 const sessionUtils = {
-  setSession: (username, password) => {
+  setSession: (username, password, context) => {
     fetch(`http://localhost:3000/api/signin/${username}/${password}`, {
       method: 'GET',
       credentials: 'same-origin'
@@ -16,8 +16,8 @@ const sessionUtils = {
           browserHistory.push('/');
         });
       } else {
-        this.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
-        {this.setState({userNameDoesNotExist: false})}, 3000));
+        context.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
+        {context.setState({userNameDoesNotExist: false})}, 3000));
       }
     }).catch((err) => {
       console.log('There was an error during Login! D=', err);
