@@ -1,5 +1,6 @@
 const mw = require('./config/middleware.js');
 const app = mw.express();
+const express = mw.express;
 const path = mw.path;
 const proxy = require('proxy-middleware');
 const webpack = require('webpack');
@@ -7,7 +8,7 @@ const config = require('../webpack.config.js');
 const compiler = webpack(config);
 const url = require('url');
 
-const devEnv = process.env.NODE_ENV !== 'production';
+var env = process.env.npm_lifecycle_event;
 //middleware
 app.use(
   mw.morgan('dev'),
@@ -25,16 +26,15 @@ app.use(
   require('./resources/kb/router.js')
 )
 
-if (!devEnv) {
-  app.use(app.static(path.join(__dirname, '../public')));
-} else {
+if (env === 'start:dev') {
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     hot: true,
     publicPath: config.output.publicPath,
   }));
-
   app.use(require('webpack-hot-middleware')(compiler));
+//} else {
+//  app.use(express.static(path.join(__dirname, '../public/')));
 }
 
 app.get('/*', (req, res) => { //serve index for any route that isn't an api call

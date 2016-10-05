@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
+import beefalo from '../images/beefalo.png';
 
 import sessionUtils from '../utils/sessionUtils';
 
@@ -44,7 +45,7 @@ class LandingPage extends React.Component {
                         <span className="icon-bar"></span>
                     </button>
                     <a className="navbar-brand" onClick={this.goToLandingPage.bind(this)}>
-                      <img id='beefaloLogo' src="./images/beefalo.png" alt="" />
+                      <img id='beefaloLogo' src={beefalo} alt="" />
                     </a>
                 </div>
 
@@ -71,7 +72,6 @@ class LandingPage extends React.Component {
 }
 
 const mapStateToProps = function(store) {
-  console.log('this is the store!!!', store);
   return {
     sessionId: store.sessionReducer.sessionId
   };
