@@ -1,21 +1,41 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
+import Cookies from 'js-cookie';
 
 const sessionUtils = {
-  checkSession: (context) => {
+  setSession: (username, password, context) => {
+    fetch(`http://localhost:3000/api/signin/${username}/${password}`, {
+      method: 'GET',
+      credentials: 'same-origin'
+    }).then((res) => {
+      if (res.status === 200) {
+        //redirect to homepage
+        return res.text().then(text => {
+          // this.props.loadSessionId(text);  no longer need, keeping just in case
+          Cookies.set('sessionId', text);
+          browserHistory.push('/');
+        });
+      } else {
+        context.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
+        {context.setState({userNameDoesNotExist: false})}, 3000));
+      }
+    }).catch((err) => {
+      console.log('There was an error during Login! D=', err);
+    });
+  },
+  checkSession: () => {
     return fetch('http://localhost:3000/api/session', {
       method: 'GET',
       credentials: 'same-origin'
     })
     .then(function (res) {
-      console.log(context, 'this inside sessionutils fetch')
       if (res.status === 401 || res.status === 404) {
         // you don't belong here, stranger
         browserHistory.push('/login');
       } else {
         return res.json().then((json) => {
-          console.log(json, '<= this is the text to match sessionId');
-          if (context.props.sessionId !== json._id) {
+          if (Cookies.get('sessionId') !== json._id) {
+            // if session exists, but is different from server's
             // yerrr outta here!
             browserHistory.push('/login');
           }
@@ -28,7 +48,8 @@ const sessionUtils = {
   },
   signout: () => {
     return fetch('http://localhost:3000/api/session', {
-      method: 'delete'
+      method: 'DELETE',
+      credentials: 'same-origin'
     })
     .catch(error => {
       console.log(error, 'There was an error getting the session!');
