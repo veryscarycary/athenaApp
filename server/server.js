@@ -34,7 +34,7 @@ if (env === 'start:dev') {
  app.use('/public', mw.express.static(path.join(__dirname, '../public/')));
 }
 
-app.get('/*', (req, res) => { //serve index for any route that isn't an api call
+app.get(/^\/(?!api).*/, (req, res) => { //serve index for any route that isn't an api call
   return res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 });
 
