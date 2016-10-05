@@ -162,6 +162,12 @@ body {
   align-items: center;
 }
 
+.rowFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .hidden {
   display: none;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 import RouteHandler from '../RouteHandler';
 import { AuthorizedComponent } from 'react-router-role-authorization';
 
@@ -8,7 +8,7 @@ class DashboardContainer extends AuthorizedComponent {
   constructor (props) {
     super(props)
 
-    this.userRoles = Cookies.get('user').roles;
+    this.userRoles = Cookies.get('roles');
     this.notAuthorizedPath = '/not-found';
   }
 

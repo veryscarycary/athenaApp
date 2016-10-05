@@ -94,6 +94,16 @@ class SignupContainer extends React.Component {
               <label htmlFor='repeatPassword'>Repeat Password:</label>
               <input type='password' className='form-control' id='repeatPassword' onChange={(e)=>this.setState({repeatPassword: e.target.value})} />
             </div>
+            <div className='rowFlex'>
+              <div className='form-group'>
+                <label htmlFor='userBox'>User</label>
+                <input type='checkbox' className='form-control' id='userBox' value='user' onChange={(e)=>this.setState({userRole: e.target.value})} />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='adminBox'>Admin</label>
+                <input type='checkbox' className='form-control' id='adminBox' value='admin' onChange={(e)=>this.setState({adminRole: e.target.value})} />
+              </div>
+            </div>
             <div className='form-group'>
               <input type='submit' className='btn btn-default' id='submit' value='Signup' />
             </div>
