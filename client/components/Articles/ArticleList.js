@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getArticle, toggleArticle, toggleCreate} from '../../actions';
 
 
-const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCreate}) => {
+export const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCreate}) => {
   const handleToggle = (article) => {
     return Promise.resolve(toggleArticle())
     .then(() => getArticle(article.id));
@@ -14,7 +14,7 @@ const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCreate}) =
   }
 
   return (
-    <div>
+    <div className="article-list-container">
       <div className="button-float">
         <button className="full-article-button"
         onClick={handleCreateToggle}>
