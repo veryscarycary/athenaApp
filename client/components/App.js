@@ -16,9 +16,12 @@ export default class App extends Component {
         <Route path="/" component={LandingPage}>
           <Route path="/articles" component={Articles} />
           <Route path="/tickets" component={MainLayoutContainer} />
+          <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
+
         </Route>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="*" component={NotFoundComponent} />
       </Router>
     );
   }
