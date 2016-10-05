@@ -19,7 +19,7 @@ const App = () => (
     </Route>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
-    <Route path="/not-found" component={NotFoundComponent} />
+    <Route path="*" component={NotFoundComponent} />
   </Router>
 )
 

@@ -16,7 +16,6 @@ class LandingPage extends React.Component {
   }
 
   componentWillMount () {
-    console.log(sessionStorage.sessionId, 'SESSIONID ON LANDING');
     sessionUtils.checkSession();
   }
 
