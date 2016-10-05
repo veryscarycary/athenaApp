@@ -33,6 +33,8 @@ const sessionUtils = {
         // you don't belong here, stranger
         browserHistory.push('/login');
       } else {
+        console.log('Cookie Session', Cookies.get('sessionId'));
+        console.log('Cookie Roles', Cookies.get('roles'));
         return res.json().then((json) => {
           if (Cookies.get('sessionId') !== json._id) {
             // if session exists, but is different from server's
