@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
+import Cookies from 'js-cookie';
 
 const sessionUtils = {
   setSession: (username, password) => {
@@ -11,7 +12,7 @@ const sessionUtils = {
         //redirect to homepage
         return res.text().then(text => {
           // this.props.loadSessionId(text);  no longer need, keeping just in case
-          sessionStorage.setItem('sessionId', text);
+          Cookies.set('sessionId', text);
           browserHistory.push('/');
         });
       } else {
@@ -33,7 +34,8 @@ const sessionUtils = {
         browserHistory.push('/login');
       } else {
         return res.json().then((json) => {
-          if (sessionStorage.getItem('sessionId') !== json._id) {
+          if (Cookies.get('sessionId') !== json._id) {
+            // if session exists, but is different from server's
             // yerrr outta here!
             browserHistory.push('/login');
           }

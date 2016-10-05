@@ -15,7 +15,7 @@ const App = () => (
     <Route path="/" component={LandingPage}>
       <Route path="/articles" component={Articles} />
       <Route path="/tickets" component={MainLayoutContainer} />
-      <Route path="/dashboard" component={DashboardContainer} />
+      <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
     </Route>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />

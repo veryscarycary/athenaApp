@@ -16,20 +16,10 @@ class LandingPage extends React.Component {
   }
 
   componentWillMount () {
-    // actually needs to run check session with the server instead
     console.log(sessionStorage.sessionId, 'SESSIONID ON LANDING');
     sessionUtils.checkSession();
   }
 
-  goToLandingPage() {
-    // e.preventDefault();
-    browserHistory.push('/');
-  }
-
-  signout() {
-    sessionUtils.signout();
-    browserHistory.push('/login');
-  }
 
   render () {
     return (
