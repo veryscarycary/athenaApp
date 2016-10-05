@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js $PORT",
     "start:dev": "node server/index.js $PORT",
-    "test": "karma start --watch"
+    "test": "karma start --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "karma": "^1.3.0",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.0.2",
     "karma-nyan-reporter": "^0.2.4",
     "karma-phantomjs-launcher": "^1.0.2",

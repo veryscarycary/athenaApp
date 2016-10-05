@@ -6,10 +6,14 @@ module.exports = function(config) {
       'test/**/*.js',
     ],
     preprocessors: {
-      'client/**/*.js': ['webpack', 'sourcemap'],
+      'client/**/*.js': ['webpack', 'sourcemap', 'coverage'],
       'test/**/*.js': ['webpack', 'sourcemap']
     },
-    reporters: ['nyan'],
+    reporters: ['progress', 'coverage'],
+    coverageReporter: {
+      dir: 'public/reports/coverage',
+      type: 'html',
+    },
     nyanReporter: {
       suppressErrorReport: true,
       suppressErrorHighlighting: true,
@@ -48,14 +52,15 @@ module.exports = function(config) {
       'karma-jasmine',
       'karma-sourcemap-loader',
       'karma-chrome-launcher',
-      'karma-phantomjs-launcher'
+      'karma-phantomjs-launcher',
+      'karma-nyan-reporter',
+      'karma-coverage',
     ],
     babelPreprocessor: {
       options: {
         presets: ['airbnb'],
       }
     },
-    reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
