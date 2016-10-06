@@ -33,9 +33,6 @@ module.exports = function(config) {
             test: /\.js$/,
             loader: 'babel',
             exclude: /node_modules/,
-            query: {
-              presets: ['airbnb']
-            }
           },
           {
             test: /\.json$/,
@@ -44,6 +41,7 @@ module.exports = function(config) {
         ],
       },
       externals: {
+        'cheerio': 'window',
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': true,
         'react/addons': true,
@@ -60,7 +58,7 @@ module.exports = function(config) {
     ],
     babelPreprocessor: {
       options: {
-        presets: ['es2015', 'react','stage-0','airbnb'],
+        presets: ['es2015','react','stage-0','airbnb'],
       }
     },
     port: 9876,
