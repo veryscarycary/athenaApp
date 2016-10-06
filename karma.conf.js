@@ -34,7 +34,6 @@ module.exports = function(config) {
         modules: false,
         reasons: false,
         children: false,
-        source: false,
         errors: false,
         errorDetails: false,
         warnings: false,
