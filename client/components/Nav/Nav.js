@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import beefalo from '../images/beefalo.png';
+import DashboardButton from './DashboardButton';
 
-import sessionUtils from '../utils/sessionUtils';
+import sessionUtils from '../../utils/sessionUtils';
 
-const goToLandingPage = () => {
+const goToHomePage = () => {
   // e.preventDefault();
   browserHistory.push('/');
 };
@@ -25,8 +26,8 @@ const Nav = () => (
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" onClick={goToLandingPage}>
-                <img id='beefaloLogo' src={beefalo} alt="" />
+              <img id='beefaloLogo' src={beefalo} alt="" />
+              <a className="navbar-brand" onClick={goToHomePage}>
               </a>
           </div>
 
@@ -38,6 +39,7 @@ const Nav = () => (
                   <li>
                     <Link to='/tickets'>Tickets</Link>
                   </li>
+                  <DashboardButton />
                   <li>
                     <Link onClick={signout} className='logoutNav'>Logout</Link>
                   </li>

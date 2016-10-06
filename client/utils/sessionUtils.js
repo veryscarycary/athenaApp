@@ -10,9 +10,9 @@ const sessionUtils = {
     }).then((res) => {
       if (res.status === 200) {
         //redirect to homepage
-        return res.text().then(text => {
-          // this.props.loadSessionId(text);  no longer need, keeping just in case
-          Cookies.set('sessionId', text);
+        return res.json().then(sessionObj => {
+          Cookies.set('sessionId', sessionObj._id);
+          Cookies.set('roles', JSON.stringify(sessionObj.roles)); // Cookies only hold strings
           browserHistory.push('/');
         });
       } else {
