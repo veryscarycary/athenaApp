@@ -17,7 +17,7 @@ export default {
         method: 'GET',
         headers: {'Content-Type':'application/json'}
       })
-      .then(response => response.json().then(json => json))
+      .then(response => response.json())
       .catch(err => console.log(err));
   },
   getArticle (id) {

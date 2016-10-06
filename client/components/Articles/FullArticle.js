@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleArticle, toggleEdit } from '../../actions';
 
-const FullArticleContainer = ({ dispatch, article }) => {
+export const FullArticleContainer = ({ dispatch, article }) => {
   const handleToggle = () => {
     dispatch(toggleArticle());
   }
@@ -10,7 +10,7 @@ const FullArticleContainer = ({ dispatch, article }) => {
     dispatch(toggleEdit(article));
   }
   return (
-    <div className={article.hidden ? "hidden full-article" : "full-article"}>
+    <div className={article.hidden ? "hidden full-article article-modal" : "full-article"}>
       <div className="full-article-content">
       <div className="button-float">
         <button

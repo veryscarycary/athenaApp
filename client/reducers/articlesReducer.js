@@ -67,6 +67,7 @@ export const articleDisplay = (state = {hidden:true}, action) => {
         solution: action.payload[0].solution,
         issue: action.payload[0].issue,
         _id: action.payload[0]._id,
+        issuePreview: action.payload[0].issuePreview,
         id: action.payload[0].id,
         hidden: false,
         status: 'fulfilled'

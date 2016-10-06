@@ -10,7 +10,7 @@ router.route('/api/session')
 
 //user signup and signin take usernames
 router.route('/api/signin/:username/:password')
-  .get(api.signin) //signs in
+  .get(api.signin) //signs in, returns object with 2 properties
   .post(api.createUser); //creates user and sets session
 
 //edit and deletion actions only take ids

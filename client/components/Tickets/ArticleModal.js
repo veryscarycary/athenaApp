@@ -21,7 +21,6 @@ const ArticleModal = ({ dispatch, article }) => {
         <strong>Solution:</strong>
         {article.solution}
       </div>
-      <button>Use</button>
     </div>
   )
 }

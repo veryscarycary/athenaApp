@@ -76,7 +76,8 @@ export const loadFilteredTicketState = (filteredTickets) => ({
   filteredTickets
 });
 
-export const loadSessionId = (sessionId) => ({
-  type: 'SET_SESSION_ID',
-  sessionId
-});
+// NO LONGER NEED SESSION INFO ON PROPS, KEEPING JUST IN CASE
+// export const loadSessionId = (sessionId) => ({
+//   type: 'SET_SESSION_ID',
+//   sessionId
+// });

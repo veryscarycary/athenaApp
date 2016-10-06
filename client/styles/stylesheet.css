@@ -155,6 +155,19 @@ body {
   margin-right: 20px;
 }
 
+.centerFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rowFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .hidden {
   display: none;
 }
@@ -273,4 +286,3 @@ body {
 .create {
   margin-right: 64px;
 }
-
