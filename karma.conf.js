@@ -9,7 +9,7 @@ module.exports = function(config) {
       'client/**/*.js': ['webpack', 'sourcemap', 'coverage'],
       'test/**/*.js': ['webpack', 'sourcemap']
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'nyan'],
     coverageReporter: {
       dir: 'public/reports/coverage',
       type: 'html',
@@ -30,10 +30,7 @@ module.exports = function(config) {
           {
             test: /\.js$/,
             loader: 'babel',
-            exclude: /node_modules/,
-            query: {
-              presets: ['airbnb']
-            }
+            exclude: /node_modules/
           },
           {
             test: /\.json$/,
