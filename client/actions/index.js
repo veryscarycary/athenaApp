@@ -13,12 +13,14 @@ export const searchArticles = (term) => ({
   payload: articleUtils.searchArticles(term)
 });
 
-export const getArticles = () => ({
+export const getArticles = () => {
+  console.log('GET ARTICLES ACTION WAS CALLED')
+return {
   type: 'GET_ARTICLES',
   payload: {
     promise: articleUtils.getArticles()
   }
-});
+}};
 
 export const getArticle = (id) => ({
   type: 'GET_ARTICLE',

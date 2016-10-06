@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 const articleUtils = {
   getArticles: () => new Promise((resolve, reject) => {
+    console.log('I WAS CALLED');
     return fetch('/api/kb')
       .then(response => {
         return response
