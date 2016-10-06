@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleArticle, toggleEdit } from '../../actions';
 
-const FullArticleContainer = ({ dispatch, article }) => {
+export const FullArticleContainer = ({ dispatch, article }) => {
   const handleToggle = () => {
     dispatch(toggleArticle());
   }

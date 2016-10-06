@@ -39,7 +39,6 @@ export const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCre
               handleToggle(article);
             }}>
             Read more
-
             </button>
           </li>
         ))}
