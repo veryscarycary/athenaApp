@@ -1,4 +1,3 @@
-/*
 import React from 'react';
 import { mount } from 'enzyme';
 import mockStore from 'redux-mock-store';
@@ -29,4 +28,3 @@ describe('articles actions', () => {
       });
   })
  })
-*/
