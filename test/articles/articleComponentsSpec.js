@@ -8,7 +8,10 @@ import { FullArticleContainer } from '../../client/components/Articles/FullArtic
 
 describe('Articles', () => {
   describe('list component', () => {
-    const listComponent = shallow(<ArticleListItems articles={mockArticles} />);
+    const functions = {
+      handleToggle: () => {true},
+    }
+    const listComponent = shallow(<ArticleListItems articles={articles} handleToggle={functions.handleToggle}/>);
 
     it('should render the articles passed to it', () => {
       expect(listComponent.find('.article-list-item').length).toBe(10);
@@ -22,29 +25,19 @@ describe('Articles', () => {
       expect(listComponent.find('.article-list-item').first().key()).toBe('10');
       expect(listComponent.find('.article-list-item').last().key()).toBe('1');
     });
+
+    it('should handle toggle', () => {
+      expect('')
+    })
+
   });
 
-  //describe('full article modal', () => {
-    //const fullArticleModal = shallow(<FullArticleContainer article={{hidden:true}} />);
-    //it('should be hidden initially', () => {
-      //expect(fullArticleModal.hasClass('hidden')).toBe(true);
-    //});
-    //const fullArticleModalWithContent = shallow(<FullArticleContainer article={articles[0], {hidden: false}}>);
-    //it('should render content when provided', () => {
-      //expect(listComponent.find('.full-article-title').text).toBe(articles[0].title);
-    //});
-  //});
-
-  //describe('create article modal', () => {
-    //const createArticleModal = shallow(<CreateArticle={{hidden:true}} />);
-    //it('should be hidden initially', () => {
-      //expect(fullArticleModal.hasClass('hidden')).toBe(true);
-    //});
-    //const fullArticleModalWithContent = shallow(<FullArticleContainer article={articles[0], {hidden: false}}>);
-    //it('should render content when provided', () => {
-      //expect(listComponent.find('.full-article-title').text).toBe(articles[0].title);
-    //});
-  //})
+  describe('full article modal', () => {
+    const fullArticleModal = shallow(<FullArticleContainer article={{hidden:true}} />);
+    it('should be hidden initially', () => {
+      expect(fullArticleModal.hasClass('hidden')).toBe(true);
+    });
+  });
 });
 
 //etc...

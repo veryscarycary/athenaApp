@@ -9,7 +9,7 @@ module.exports = function(config) {
       'client/**/*.js': ['webpack', 'sourcemap', 'coverage'],
       'test/**/*.js': ['webpack', 'sourcemap']
     },
-    reporters: ['progress', 'nyan', 'coverage'],
+    reporters: ['progress', 'coverage', 'nyan'],
     coverageReporter: {
       dir: 'public/reports/coverage',
       type: 'html',
@@ -22,8 +22,6 @@ module.exports = function(config) {
     },
     webpackServer: {
       noInfo: true,
-      quiet: true,
-      stats: 'none',
     },
     webpack: {
       devtool: 'inline-source-map',

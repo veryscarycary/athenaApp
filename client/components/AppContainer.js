@@ -3,14 +3,14 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import Nav from './Nav';
+import Nav from './Nav/Nav';
 
 import sessionUtils from '../utils/sessionUtils';
 
 import * as actionCreators from '../actions/index';
 
 
-class LandingPage extends React.Component {
+class AppContainer extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -39,4 +39,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
