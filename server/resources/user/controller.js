@@ -41,8 +41,9 @@ module.exports = {
           res.status(resp.statusCode).send(body)
           : (() => { //create new session for new login
               body = JSON.parse(body);
-              createSession(req, { _id: body },
-                () => res.status(resp.statusCode).send(body));
+              // returns entire user object from db fetch
+              createSession(req, { _id: body._id, roles: body.roles },
+                () => res.status(resp.statusCode).send({ _id: body._id, roles: body.roles }));
             })()
     );
   },
@@ -56,7 +57,7 @@ module.exports = {
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : (() => createSession(req, { _id: body },
+      : (() => createSession(req, body,
           () => res.status(resp.statusCode).send(body))
         )()
     );
