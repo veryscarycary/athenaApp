@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 import Articles from './Articles/Articles';
 import LandingPage from './LandingPage';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
@@ -8,19 +8,21 @@ import Login from './Login/LoginContainer';
 import Signup from './Signup/SignupContainer';
 import DashboardContainer from './AdminDashboard/DashboardContainer';
 
+export default class App extends Component {
+  render() {
+    return (
+      <Router history={browserHistory}>
+      {/*onEnter={someAuthCheck}> for "/"*/}
+        <Route path="/" component={LandingPage}>
+          <Route path="/articles" component={Articles} />
+          <Route path="/tickets" component={MainLayoutContainer} />
+          <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
 
-const App = () => (
-  <Router history={browserHistory}>
-  {/*onEnter={someAuthCheck}> for "/"*/}
-    <Route path="/" component={LandingPage}>
-      <Route path="/articles" component={Articles} />
-      <Route path="/tickets" component={MainLayoutContainer} />
-      <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
-    </Route>
-    <Route path="/login" component={Login} />
-    <Route path="/signup" component={Signup} />
-    <Route path="*" component={NotFoundComponent} />
-  </Router>
-)
-
-export default App;
+        </Route>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="*" component={NotFoundComponent} />
+      </Router>
+    );
+  }
+}

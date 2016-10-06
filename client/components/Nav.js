@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
+import beefalo from '../images/beefalo.png';
 
 import sessionUtils from '../utils/sessionUtils';
 
@@ -25,7 +26,7 @@ const Nav = () => (
                   <span className="icon-bar"></span>
               </button>
               <a className="navbar-brand" onClick={goToLandingPage}>
-                <img id='beefaloLogo' src="./images/beefalo.png" alt="" />
+                <img id='beefaloLogo' src={beefalo} alt="" />
               </a>
           </div>
 
