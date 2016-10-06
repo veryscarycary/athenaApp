@@ -1,12 +1,13 @@
 'use strict' 
 const parseurl = require('parseurl');
+const express = require('express');
 
 module.exports = {
   bodyParser: require('body-parser'),
   morgan: require('morgan'),
-  express: require('express'),
+  express: express,
   session: require('express-session'),
-  router: require('express').Router,
+  router: express.Router,
   chalk: require('chalk'),
   urls: require('./urls.js'),
   request: require('request'),
