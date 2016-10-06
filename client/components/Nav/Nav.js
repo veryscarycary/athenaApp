@@ -26,8 +26,9 @@ const Nav = () => (
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
               </button>
-              <img id='beefaloLogo' src={beefalo} alt="" />
+
               <a className="navbar-brand" onClick={goToHomePage}>
+                <img id='beefaloLogo' src={beefalo} alt="" />
               </a>
           </div>
 
