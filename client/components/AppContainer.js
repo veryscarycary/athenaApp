@@ -22,9 +22,8 @@ class AppContainer extends React.Component {
 
   render () {
     return (
-      <div>
-        <Nav />
-
+      <div className="landing-page">
+      <Nav />
         {this.props.children}
       </div>
     );

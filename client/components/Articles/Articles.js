@@ -5,12 +5,11 @@ import CreateArticle from './CreateArticle';
 import ArticleList from './ArticleList';
 import FullArticle from './FullArticle';
 import EditModal from './EditModal';
-import articles from '../../mock/articleStubs';
 import { connect } from 'react-redux';
 import { getArticles } from '../../actions';
 import { bindActionCreators } from 'redux';
 
-class ArticlesDisplay extends Component {
+export class ArticlesDisplay extends Component {
   constructor(props) {
     super(props)
   }
@@ -19,7 +18,7 @@ class ArticlesDisplay extends Component {
   }
   render() {
     return(
-      <div>
+      <div className="articles">
         <CreateArticle />
         <ArticleList />
         <SearchArticles />
