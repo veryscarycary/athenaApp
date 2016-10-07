@@ -1,5 +1,4 @@
 import React, { Component } from  'react';
-import { Link } from 'react-router';
 import SearchArticles from './SearchArticles';
 import CreateArticle from './CreateArticle';
 import ArticleList from './ArticleList';
@@ -21,7 +20,6 @@ export class ArticlesDisplay extends Component {
       <div className="articles">
         <CreateArticle />
         <ArticleList />
-        <SearchArticles />
         <FullArticle />
         <EditModal />
       </div>

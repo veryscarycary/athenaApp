@@ -31,6 +31,7 @@ export const articlesList = (state = [], action) => {
     case 'GET_ARTICLES_REJECTED':
       return state;
     case 'GET_ARTICLES_FULFILLED':
+      console.log('getArticlesFulfilled called !!!')
       return state.concat(action.payload);
     case 'GET_ARTICLES_PENDING':
       return state;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createArticle, toggleCreate } from '../../actions';
 import uuid from 'uuid';
 
-let CreateArticle = ({ dispatch, hidden }) => {
+export const CreateArticleModal = ({ dispatch, hidden }) => {
   const handleToggle = () => {
     dispatch(toggleCreate());
   }
@@ -28,6 +28,7 @@ let CreateArticle = ({ dispatch, hidden }) => {
       <input
         className="edit-modal-input"
         type='text'
+        name='title'
         placeholder='title'
         ref={node => {
           title = node;
@@ -36,6 +37,7 @@ let CreateArticle = ({ dispatch, hidden }) => {
         className="full-article-title"
       >Summary:</h5>
       <input type='text'
+        name='summary'
         className="edit-modal-input"
         placeholder='summary'
         ref={node => {
@@ -45,6 +47,7 @@ let CreateArticle = ({ dispatch, hidden }) => {
         className="full-article-title"
       >Issue:</h5>
       <textarea
+        name='issue'
         className="edit-modal-textarea"
         placeholder='issue'
         ref={node => { issue=node; }}></textarea>
@@ -52,6 +55,7 @@ let CreateArticle = ({ dispatch, hidden }) => {
         className="full-article-title"
       >Solution:</h5>
       <textarea
+        name='solution'
         className="edit-modal-textarea"
         placeholder='solution'
         ref={node => { solution=node; }}></textarea>
@@ -59,6 +63,12 @@ let CreateArticle = ({ dispatch, hidden }) => {
       className="article-list-button"
       onClick={e => {
         e.preventDefault();
+
+        title = title ? title : {value: ''};
+        solution = solution ? solution : {value: ''};
+        issuePreview = issuePreview ? issuePreview : {value: ''};
+        issue = issue ? issue : {value: ''};
+
         if (!title.value.trim() || !solution.value.trim() || !issuePreview.value.trim() || !issue.value.trim()) {
           return
         }
@@ -76,6 +86,7 @@ let CreateArticle = ({ dispatch, hidden }) => {
         title.value='';
         solution.value='';
         issue.value='';
+        consolt.log('issue value',issue.value);
       }}>Create</button>
     </div>
     </div>
@@ -86,8 +97,8 @@ const mapStateToProps = (state) => ({
   hidden: state.create.hidden
 })
 
-CreateArticle = connect(
+const CreateArticle = connect(
   mapStateToProps
-)(CreateArticle);
+)(CreateArticleModal);
 
 export default CreateArticle;
