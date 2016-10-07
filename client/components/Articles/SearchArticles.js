@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { searchArticles } from '../../actions';
+import { SearchResults } from './SearchResults.js';
 
-let SearchArticles = ({ dispatch }) => {
+export const SearchArticlesContainer = ({ dispatch, results }) => {
   let search;
   return (
     <div className="search-articles">
@@ -11,6 +12,7 @@ let SearchArticles = ({ dispatch }) => {
         ref={node => {
           search = node;
         }}
+        className='edit-modal-input'
         type="text"
         placeholder="search"
         onChange={e => {
@@ -20,9 +22,22 @@ let SearchArticles = ({ dispatch }) => {
           }
           dispatch(searchArticles(search.value))
         }} />
+        { results ? <SearchResults /> : null }
     </div>
   )
 }
 
-SearchArticles = connect()(SearchArticles);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  searchArticles,
+},dispatch);
+
+const mapStateToProps = (state) => ({
+  results: state.searchResults
+});
+
+const SearchArticles = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SearchArticlesContainer);
+
 export default SearchArticles;

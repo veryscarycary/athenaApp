@@ -126,3 +126,15 @@ export const create = (state = {hidden: true}, action) => {
       return state
   }
 }
+
+export const searchResults = (state = {term:'', results:[]}, action => {
+  switch (action.type) {
+    case 'SEARCH_ARTICLES_FULFILLED':
+      return {
+        ...state,
+        results: action.payload,
+      }
+    default:
+      return state
+  }
+})

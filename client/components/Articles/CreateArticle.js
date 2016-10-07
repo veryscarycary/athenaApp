@@ -64,11 +64,6 @@ export const CreateArticleModal = ({ dispatch, hidden }) => {
       onClick={e => {
         e.preventDefault();
 
-        title = title ? title : {value: ''};
-        solution = solution ? solution : {value: ''};
-        issuePreview = issuePreview ? issuePreview : {value: ''};
-        issue = issue ? issue : {value: ''};
-
         if (!title.value.trim() || !solution.value.trim() || !issuePreview.value.trim() || !issue.value.trim()) {
           return
         }
@@ -86,7 +81,6 @@ export const CreateArticleModal = ({ dispatch, hidden }) => {
         title.value='';
         solution.value='';
         issue.value='';
-        consolt.log('issue value',issue.value);
       }}>Create</button>
     </div>
     </div>

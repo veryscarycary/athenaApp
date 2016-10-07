@@ -30,9 +30,9 @@ export default {
   },
   getArticlesByIds (idArray) {
     return fetch(`/api/kb/${
-      idArray.reduce((list, entry, i) => 
-        i > 0 ? 
-          `${list},${entry}` 
+      idArray.reduce((list, entry, i) =>
+        i > 0 ?
+          `${list},${entry}`
           : `${entry}`, ''
       )}`, {
         method: 'GET',
