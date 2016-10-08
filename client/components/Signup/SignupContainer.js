@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux';
 
+import sessionUtils from '../../utils/sessionUtils';
 import * as ticketActionCreators from '../../actions/index';
 
 class SignupContainer extends React.Component {
@@ -51,10 +52,12 @@ class SignupContainer extends React.Component {
       })
     }).then((res) => {
       if (res.status === 201) {
-        this.setState({
-          signupSuccessful: true
-        }, () => setTimeout(this.redirectToLogin, 1000));
-        this.redirectToLogin();
+        sessionUtils.setSession(this.state.username, this.state.password, this)
+          .then(() =>
+            this.setState({
+              signupSuccessful: true
+            }, () => setTimeout(this.redirectToHome, 1000));
+          );
       } else {
         //if name exist
         this.setState({usernameIsUsed: true}, () => setTimeout(() =>
@@ -65,11 +68,9 @@ class SignupContainer extends React.Component {
     });
   }
 
-
-  redirectToLogin() {
-    browserHistory.push('/login');
+  redirectToHome() {
+    browserHistory.push('/');
   }
-
 
   render () {
     return (

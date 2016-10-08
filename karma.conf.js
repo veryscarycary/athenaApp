@@ -63,6 +63,17 @@ module.exports = function(config) {
           {
             test: /\.json$/,
             loader: 'json-loader',
+          },
+          {
+            test: /\.(scss|css)$/,
+            loader: 'style!css!sass?sourceMap',
+            exclude: /node_modules/,
+          },
+          {
+            test: /\.(jpg|png)$/,
+            loader: 'file',
+            include: path.resolve(__dirname, 'client/images'),
+            exclude: /node_modules/,
           }
         ]
       },
