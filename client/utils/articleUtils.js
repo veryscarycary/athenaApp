@@ -1,17 +1,38 @@
 import fetch from 'isomorphic-fetch';
 
+//const articleUtils = {
+  //getArticles: () => new Promise((resolve, reject) => {
+    //console.log('I WAS CALLED');
+    //return fetch('/api/kb')
+      //.then(response => {
+        //return response
+          //.json()
+          //.then(json => {
+            //resolve(json)
+          //})
+        //})
+        //.catch(err => reject(err));
+  //}),
+  //getArticlesByIds: (idArray) => {
+    //return fetch('/api/kb/articles', {
+      //method: 'POST',
+      //headers: {'Content-Type':'application/json'},
+      //body: JSON.stringify({ids: idArray})
+    //})
+      //.then((response) => {
+        //return response.json().then(json => json);
 export default {
   getArticles () {
     return new Promise((resolve, reject) => fetch('/api/kb')
-      .then(response => response.json())
-      .then(json => resolve(json))
+      .then(response => response.json()
+      .then(json => resolve(json)))
       .catch(err => reject(err)));
   },
   getArticlesByIds (idArray) {
     return fetch(`/api/kb/${
-      idArray.reduce((list, entry, i) => 
-        i > 0 ? 
-          `${list},${entry}` 
+      idArray.reduce((list, entry, i) =>
+        i > 0 ?
+          `${list},${entry}`
           : `${entry}`, ''
       )}`, {
         method: 'GET',

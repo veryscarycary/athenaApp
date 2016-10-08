@@ -1,4 +1,4 @@
-const article = (state = {}, action) => {
+export const article = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_ARTICLE_REJECTED':
       return {
@@ -120,6 +120,33 @@ export const create = (state = {hidden: true}, action) => {
     case 'TOGGLE_CREATE':
       return {
         hidden: !state.hidden
+      }
+    default:
+      return state
+  }
+}
+
+export const searchResults = (state = {term:'', results:[]}, action) => {
+  switch (action.type) {
+    case 'SEARCH_ARTICLES_FULFILLED':
+      return {
+        ...state,
+        results: action.payload,
+      }
+    case 'SEARCH_ARTICLES_REJECTED':
+      return {
+        ...state,
+        status: 'rejected',
+      }
+    case 'SEARCH_ARTICLES_PENDING':
+      return {
+        ...state,
+        status: 'pending',
+      }
+    case 'CLEAR_SEARCH':
+      return {
+        ...state,
+        results: [],
       }
     default:
       return state

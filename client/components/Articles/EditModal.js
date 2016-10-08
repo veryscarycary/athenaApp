@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleEdit, submitEdit, editField } from '../../actions';
 
-class EditModalContainer extends Component {
+export class EditModalContainer extends Component {
   constructor(props) {
     super(props)
   }

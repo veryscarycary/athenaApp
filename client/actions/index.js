@@ -2,23 +2,20 @@ import uuid from 'uuid';
 import articleUtils from '../utils/articleUtils';
 import ticketUtils from '../utils/ticketUtils';
 import sessionUtils from '../utils/sessionUtils';
+import searchUtils from '../utils/searchUtils';
 
 export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
     payload: articleUtils.postArticle(article)
 });
 
-export const searchArticles = (term) => ({
-  type: 'SEARCH_ARTICLES',
-  payload: articleUtils.searchArticles(term)
-});
-
-export const getArticles = () => ({
+export const getArticles = () => {
+return {
   type: 'GET_ARTICLES',
   payload: {
     promise: articleUtils.getArticles()
   }
-});
+}};
 
 export const getArticle = (id) => ({
   type: 'GET_ARTICLE',
@@ -58,9 +55,16 @@ export const editField = (field, value) => ({
     value,
   }
 });
+export const searchArticles = (options) => ({
+  type: 'SEARCH_ARTICLES',
+  payload: searchUtils.search(options)
+});
+export const clearSearch = (options) => ({
+  type: 'CLEAR_SEARCH',
+})
 export const toggleCreate = () => ({
   type: 'TOGGLE_CREATE',
-})
+});
 export const submitEdit = (article) => ({
   type: 'SUBMIT_EDIT',
   payload: articleUtils.editArticle(article)
