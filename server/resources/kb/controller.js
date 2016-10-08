@@ -4,10 +4,6 @@ const request = mw.request;
 const kb = mw.urls.kb;
 
 module.exports = {
-  // searchKb(req, res) {
-    //TODO: PENDING IMPLEMENTATION OF SEARCH SERVICE
-  // },
-
   getKb(req, res) {
     let id = req.params.id;
     request({
