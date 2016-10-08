@@ -86,6 +86,15 @@ body {
 	background: -o-linear-gradient(#fff, #999);
 }
 
+.settingsTable {
+  background-color: #D9D9D9;
+}
+
+.profilePicture {
+  width: 380px;
+  height: 340px;
+}
+
 .closeModal {
 	background: #606061;
 	color: #FFFFFF;
@@ -164,7 +173,7 @@ body {
 
 .rowFlex {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: space-between;
 }
 

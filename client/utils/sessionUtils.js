@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 const sessionUtils = {
   setSession: (username, password, context) => {
-    fetch(`http://localhost:3000/api/signin/${username}/${password}`, {
+    return fetch(`http://localhost:3000/api/signin/${username}/${password}`, {
       method: 'GET',
       credentials: 'same-origin'
     }).then((res) => {
@@ -13,7 +13,6 @@ const sessionUtils = {
         return res.json().then(sessionObj => {
           Cookies.set('sessionId', sessionObj._id);
           Cookies.set('roles', JSON.stringify(sessionObj.roles)); // Cookies only hold strings
-          browserHistory.push('/');
         });
       } else {
         context.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
