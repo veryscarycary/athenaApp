@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import beefalo from '../../images/beefalo.png';
 import DashboardButton from './DashboardButton';
+import ProfileButton from './ProfileButton';
+import SettingsButton from './SettingsButton';
 
 import sessionUtils from '../../utils/sessionUtils';
 
@@ -41,6 +43,8 @@ const Nav = () => (
                     <Link to='/tickets'>Tickets</Link>
                   </li>
                   <DashboardButton />
+                  <ProfileButton />
+                  <SettingsButton />
                   <li>
                     <Link onClick={signout} className='logoutNav'>Logout</Link>
                   </li>
