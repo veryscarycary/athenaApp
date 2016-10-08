@@ -10,16 +10,13 @@ export default {
              `${options.dateEnd ? '&dateEnd=${options.dateEnd}' : ''}`
     return new Promise((resolve, reject) =>
       fetch(qs)
-      .then(response => response.json()
-           .then(json => {
-              resolve(json.map(result => {
-                return {
-                  id: result._source.id,
-                  title: result._source.title,
-                }
-              }))
-            })
-      )
+      .then(response => response.json())
+      .then(json => resolve(json
+        .map(result => ({
+          id: result._source.id,
+          title: result._source.title
+        })
+      )))
       .catch(err => reject(err))
     );
   }
