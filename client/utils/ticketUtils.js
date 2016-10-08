@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
-const ticketUtils = {
-  getTickets: () => {
+export default {
+  getTickets () {
     return fetch('http://localhost:3000/api/ticket', {
       method: 'GET',
       headers: {
@@ -9,14 +9,10 @@ const ticketUtils = {
         'Content-Type': 'application/json'
       }
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error getting the tickets!');
-    })
+    .then(res => res.json())
+    .catch(err => console.log(err, 'There was an error getting the tickets!'));
   },
-  submitNewTicket: () => {
+  submitNewTicket () {
     return fetch('http://localhost:3000/api/ticket', {
       method: 'POST',
       headers: {
@@ -39,14 +35,10 @@ const ticketUtils = {
         checkedOut: true
       })
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error while submitting the ticket!');
-    });
+    .then(res => res.json())
+    .catch(err => console.log(err, 'There was an error while submitting the ticket!'));
   },
-  editTicket: (ticketId) => {
+  editTicket (ticketId) {
     return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
       method: 'PUT',
       headers: {
@@ -67,24 +59,14 @@ const ticketUtils = {
         checkedOut: true
       })
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error while editing the ticket!');
-    });
+    .then(res => res.json())
+    .catch(err => console.log(err, 'There was an error while editing the ticket!'));
   },
-  deleteTicket: (ticketId) => {
+  deleteTicket (ticketId) {
     return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
       method: 'DELETE'
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error while deleting the ticket!');
-    });
+    .then(res => res.json())
+    .catch(err => console.log(err, 'There was an error while deleting the ticket!'));
   }
 };
-
-export default ticketUtils;
