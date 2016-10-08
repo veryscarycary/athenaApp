@@ -126,7 +126,7 @@ export const create = (state = {hidden: true}, action) => {
   }
 }
 
-export const searchResults = (state = {term:'', results:[]}, action) => {
+export const searchResults = (state = {flag:'true', results:[]}, action) => {
   switch (action.type) {
     case 'SEARCH_ARTICLES_FULFILLED':
       return {

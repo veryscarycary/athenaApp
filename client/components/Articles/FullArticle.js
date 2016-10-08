@@ -43,11 +43,9 @@ export const FullArticleContainer = ({ dispatch, article }) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     article: state.articleDisplay
-  }
-}
+})
 
 const FullArticle = connect(
   mapStateToProps

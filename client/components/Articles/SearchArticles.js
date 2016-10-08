@@ -5,15 +5,21 @@ import { searchArticles, clearSearch } from '../../actions';
 import SearchResults from './SearchResults.js';
 
 export const SearchArticlesContainer = ({ clearSearch,searchArticles, results }) => {
-  const handleSearch = (options) => (
+  const handleSearch = (options) => {
     searchArticles(options)
-  )
-  const handleClearSearch = () => (
+  }
+  const handleClearSearch = (e) => {
     clearSearch()
-  )
+  }
   let search;
   return (
-    <div className="search-articles">
+    <div
+      tabIndex="0"
+      className="search-articles"
+      onBlur={(e) => {
+          search.value = '';
+          handleClearSearch(e);
+        }}>
       <input
         ref={node => {
           search = node;
@@ -21,10 +27,6 @@ export const SearchArticlesContainer = ({ clearSearch,searchArticles, results })
         className='edit-modal-input'
         type="text"
         placeholder="search"
-        onBlur={() => {
-          search.value = '';
-          handleClearSearch();
-        }}
         onChange={e => {
           e.preventDefault();
           if (!search.value.trim()) {
@@ -44,7 +46,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 const mapStateToProps = state => ({
-  results: state.searchResults
+  results: state.searchResults,
 });
 
 const SearchArticles = connect(

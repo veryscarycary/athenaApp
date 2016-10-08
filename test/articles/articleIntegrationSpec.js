@@ -1,30 +1,36 @@
-//import React from 'react';
-//import { mount } from 'enzyme';
-//import mockStore from 'redux-mock-store';
-//import thunk from 'redux-thunk';
-//import nock from 'nock';
+import { articlesList,
+         article,
+         create,
+         editModal,
+         articleDisplay,
+         searchResults } from '../../client/reducers/articlesReducer';
+import * as types from '../../client/actions';
 
-//import articles from '../../client/mock/articleStubs';
-
-//import * as actions from '../../client/actions';
-
-//const mockStore = mockStore([thunk]);
-
-//describe('articles actions', () => {
-  //afterEach(() => {
-    //nock.cleanAll();
-  //})
-  //it('gets articles from the server', () => {
-    //nock('https://localhost:3000')
-      //.get('/api/kb')
-      //.reply(200, {body: articles});
-    //const initialState = {};
-    //const getArticles = {type: 'GET_ARTICLES'};
-
-    //const store = mockStore({articlesList:[]})
-    //return store.dispatch(actions.getArticles())
-      //.then(() => {
-        //expect(store.articleList).toEqual(articles);
-      //});
-  //})
- //})
+describe('articles reducer', () => {
+  describe('articles list', () => {
+    it('should return the initial state', () => {
+      expect(articlesList(undefined, {})).toEqual([]);
+    });
+    it('should add handle get articles', () => {
+      expect(articlesList([], {type: 'GET_ARTICLES_FULFILLED', payload:'b'})).toEqual(
+        [
+          'b'
+        ]
+      )
+    });
+    it('should handle submit edit fulfilled', () => {
+      expect(articlesList([{id: 1, song:'lala'}],
+                          {
+                            type: 'SUBMIT_EDIT_FULFILLED',
+                            payload:{id:1, song:'yoyoyo'}
+                          }
+                         )
+            ).toEqual(
+        [
+          {id: 1, song:'yoyoyo'}
+        ]
+      )
+    });
+    it('should ')
+  })
+})

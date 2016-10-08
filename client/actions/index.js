@@ -61,7 +61,7 @@ export const searchArticles = (options) => ({
 });
 export const clearSearch = (options) => ({
   type: 'CLEAR_SEARCH',
-})
+});
 export const toggleCreate = () => ({
   type: 'TOGGLE_CREATE',
 });
