@@ -1,4 +1,4 @@
-const article = (state = {}, action) => {
+export const article = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_ARTICLE_REJECTED':
       return {
@@ -31,7 +31,6 @@ export const articlesList = (state = [], action) => {
     case 'GET_ARTICLES_REJECTED':
       return state;
     case 'GET_ARTICLES_FULFILLED':
-      console.log('getArticlesFulfilled called !!!')
       return state.concat(action.payload);
     case 'GET_ARTICLES_PENDING':
       return state;
@@ -127,14 +126,24 @@ export const create = (state = {hidden: true}, action) => {
   }
 }
 
-export const searchResults = (state = {term:'', results:[]}, action => {
+export const searchResults = (state = {term:'', results:[]}, action) => {
   switch (action.type) {
     case 'SEARCH_ARTICLES_FULFILLED':
       return {
         ...state,
-        results: action.payload,
+        results: action.payload.promise,
+      }
+    case 'SEARCH_ARTICLES_REJECTED':
+      return {
+        ...state,
+        status: rejected,
+      }
+    case 'SEARCH_ARTICLES_PENDING':
+      return {
+        ...state,
+        status: pending,
       }
     default:
       return state
   }
-})
+}

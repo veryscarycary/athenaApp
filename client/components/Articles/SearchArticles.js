@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { searchArticles } from '../../actions';
-import { SearchResults } from './SearchResults.js';
+import SearchResults from './SearchResults.js';
 
 export const SearchArticlesContainer = ({ dispatch, results }) => {
+  const handleSearch = (options) => (
+    searchArticles(options)
+  )
   let search;
   return (
     <div className="search-articles">
@@ -20,18 +23,19 @@ export const SearchArticlesContainer = ({ dispatch, results }) => {
           if (!search.value.trim()) {
             return
           }
-          dispatch(searchArticles(search.value))
+          var options = {term: search}
+          handleSearch({term: search.value})
         }} />
-        { results ? <SearchResults /> : null }
+        { results ? <SearchResults /> : null}
     </div>
   )
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   searchArticles,
-},dispatch);
+}, dispatch);
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   results: state.searchResults
 });
 

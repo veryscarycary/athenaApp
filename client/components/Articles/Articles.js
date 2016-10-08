@@ -22,6 +22,7 @@ export class ArticlesDisplay extends Component {
         <ArticleList />
         <FullArticle />
         <EditModal />
+        <SearchArticles />
       </div>
     )
   }

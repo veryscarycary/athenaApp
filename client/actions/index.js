@@ -10,7 +10,6 @@ export const createArticle = (article) => ({
 });
 
 export const getArticles = () => {
-  console.log('GET ARTICLES ACTION WAS CALLED')
 return {
   type: 'GET_ARTICLES',
   payload: {
@@ -58,11 +57,13 @@ export const editField = (field, value) => ({
 });
 export const searchArticles = (options) => ({
   type: 'SEARCH_ARTICLES',
-  payload: searchUtils.search()
-})
+  payload: {
+    promise: searchUtils.search(options)
+  }
+});
 export const toggleCreate = () => ({
   type: 'TOGGLE_CREATE',
-})
+});
 export const submitEdit = (article) => ({
   type: 'SUBMIT_EDIT',
   payload: articleUtils.editArticle(article)

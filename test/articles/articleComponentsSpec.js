@@ -13,6 +13,8 @@ import { FullArticleContainer } from '../../client/components/Articles/FullArtic
 import { CreateArticleModal } from '../../client/components/Articles/CreateArticle';
 import { EditModalContainer } from '../../client/components/Articles/EditModal';
 import { SearchArticlesContainer } from '../../client/components/Articles/SearchArticles';
+import SearchResults from '../../client/components/Articles/SearchResults';
+import { SearchResultsContainer } from '../../client/components/Articles/SearchResults';
 
 import * as actions from '../../client/actions';
 
@@ -30,6 +32,10 @@ let store = mockStore({
   editModal: {
     hidden: true,
     article: {},
+  },
+  searchResults: {
+    term:'',
+    results:[],
   }
 });
 describe('Articles', () => {
@@ -199,6 +205,7 @@ describe('Articles', () => {
 
   describe('search articles', () => {
     let props = {
+      results: [],
       dispatch: jasmine.createSpy('dispatch'),
     }
     const searchArticles = mount(<SearchArticlesContainer />);
@@ -206,10 +213,26 @@ describe('Articles', () => {
       expect(searchArticles.find('input').length)
         .toBe(1);
     });
+
     it('should dispatch an action on change', () => {
       searchArticles.find('input')
         .simulate('change', {preventDefault: () => true});
       expect('dispatch').toHaveBeenCalled;
     });
+    it('should not render search results when there are no results', () => {
+      expect(searchArticles.contains(<SearchResultsContainer />)).toBe(false);
+    });
+    //const searchArticlesWithResults = mount(<SearchArticlesContainer results={articles} />)
+    xit('should render search results when there are results', () => {
+      expect(searchArticlesWithResults.find(<SearchResults />).length).toBe(1);
+    })
+  });
+
+  describe('search results', () => {
+    const searchResults = shallow(<SearchResultsContainer results={articles} />);
+    it('should render', () => {
+      expect(searchResults.find('.search-results-list').length).toBe(1);
+    });
+
   });
 });

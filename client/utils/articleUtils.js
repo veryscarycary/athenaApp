@@ -24,8 +24,8 @@ import fetch from 'isomorphic-fetch';
 export default {
   getArticles () {
     return new Promise((resolve, reject) => fetch('/api/kb')
-      .then(response => response.json())
-      .then(json => resolve(json))
+      .then(response => response.json()
+      .then(json => resolve(json)))
       .catch(err => reject(err)));
   },
   getArticlesByIds (idArray) {
