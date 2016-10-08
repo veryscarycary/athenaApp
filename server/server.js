@@ -20,7 +20,8 @@ app.use(
   }),
   require('./resources/user/router.js'),
   require('./resources/ticket/router.js'),
-  require('./resources/kb/router.js')
+  require('./resources/kb/router.js'),
+  require('./resources/search/router.js')
 )
 
 if (env === 'start:dev') {
