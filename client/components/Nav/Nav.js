@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
-import beefalo from '../images/beefalo.png';
+import beefalo from '../../images/beefalo.png';
 import DashboardButton from './DashboardButton';
 
 import sessionUtils from '../../utils/sessionUtils';
