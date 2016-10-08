@@ -18,11 +18,11 @@ export class ArticlesDisplay extends Component {
   render() {
     return(
       <div className="articles">
+        <SearchArticles />
         <CreateArticle />
         <ArticleList />
         <FullArticle />
         <EditModal />
-        <SearchArticles />
       </div>
     )
   }

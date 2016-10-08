@@ -57,10 +57,11 @@ export const editField = (field, value) => ({
 });
 export const searchArticles = (options) => ({
   type: 'SEARCH_ARTICLES',
-  payload: {
-    promise: searchUtils.search(options)
-  }
+  payload: searchUtils.search(options)
 });
+export const clearSearch = (options) => ({
+  type: 'CLEAR_SEARCH',
+})
 export const toggleCreate = () => ({
   type: 'TOGGLE_CREATE',
 });

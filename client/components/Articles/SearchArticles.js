@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { searchArticles } from '../../actions';
+import { searchArticles, clearSearch } from '../../actions';
 import SearchResults from './SearchResults.js';
 
-export const SearchArticlesContainer = ({ dispatch, results }) => {
+export const SearchArticlesContainer = ({ clearSearch,searchArticles, results }) => {
   const handleSearch = (options) => (
     searchArticles(options)
+  )
+  const handleClearSearch = () => (
+    clearSearch()
   )
   let search;
   return (
@@ -18,6 +21,10 @@ export const SearchArticlesContainer = ({ dispatch, results }) => {
         className='edit-modal-input'
         type="text"
         placeholder="search"
+        onBlur={() => {
+          search.value = '';
+          handleClearSearch();
+        }}
         onChange={e => {
           e.preventDefault();
           if (!search.value.trim()) {
@@ -33,6 +40,7 @@ export const SearchArticlesContainer = ({ dispatch, results }) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   searchArticles,
+  clearSearch,
 }, dispatch);
 
 const mapStateToProps = state => ({

@@ -131,17 +131,22 @@ export const searchResults = (state = {term:'', results:[]}, action) => {
     case 'SEARCH_ARTICLES_FULFILLED':
       return {
         ...state,
-        results: action.payload.promise,
+        results: action.payload,
       }
     case 'SEARCH_ARTICLES_REJECTED':
       return {
         ...state,
-        status: rejected,
+        status: 'rejected',
       }
     case 'SEARCH_ARTICLES_PENDING':
       return {
         ...state,
-        status: pending,
+        status: 'pending',
+      }
+    case 'CLEAR_SEARCH':
+      return {
+        ...state,
+        results: [],
       }
     default:
       return state
