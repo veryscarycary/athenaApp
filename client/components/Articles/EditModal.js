@@ -81,7 +81,8 @@ export class EditModalContainer extends Component {
               var article = this.props.article;
               article.issue = issue.value;
               article.solution = solution.value;
-              article.title = title.value
+              article.title = title.value;
+              article.status = "active";
               this.handleSubmit(article);
               this.handleToggle();
             }} >
