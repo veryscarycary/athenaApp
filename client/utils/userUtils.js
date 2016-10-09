@@ -31,25 +31,24 @@ const userUtils = {
       console.log(error, 'There was an error getting the tickets!');
     })
   },
-  editTicket: (ticketId) => {
-    return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
+  submitProfileEdits: (sessionId, password) => {
+    if (document.getElementById(`editName`).value.split(' ').length > 2) {
+      alert('Please enter only your first name and last name.');
+      return;
+    }
+    return fetch(`http://localhost:3000/api/user/${sessionId}/${password}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        title: document.getElementById(`editTitle${ticketId}`).value,
-        issuePreview: document.getElementById(`editIssue${ticketId}`).value.slice(0, 50),
-        issue: document.getElementById(`editIssue${ticketId}`).value,
-        customerId: document.getElementById(`editCustomerId${ticketId}`).value,
-        product: document.getElementById(`editProduct${ticketId}`).value,
-        solution: document.getElementById(`editSolution${ticketId}`).value,
-        relatedArticles: document.getElementById(`editRelatedArticles${ticketId}`).value,
-        relatedProducts: document.getElementById(`editRelatedProducts${ticketId}`).value,
-        authorId: JSON.stringify(Math.floor(Math.random * 1000)),
-        datesOpened: new Date(),
-        checkedOut: true
+        firstName: document.getElementById(`editName`).value.split(' ')[0],
+        lastName: document.getElementById(`editName`).value.split(' ')[1],
+        username: document.getElementById(`editUsername`).value,
+        phoneNumber: document.getElementById(`editPhoneNumber`).value,
+        email: document.getElementById(`editEmail`).value,
+        bio: document.getElementById(`editEmail`).value
       })
     })
     .then(function (response) {
@@ -57,17 +56,6 @@ const userUtils = {
     })
     .catch(error => {
       console.log(error, 'There was an error while editing the ticket!');
-    });
-  },
-  deleteTicket: (ticketId) => {
-    return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
-      method: 'DELETE'
-    })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error while deleting the ticket!');
     });
   }
 };

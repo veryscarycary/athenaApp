@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import TicketModal from './TicketModal';
 
-const resolved = (ticket) => {
+const status = (ticket) => {
+  if (ticket.checkedOut) { return 'Open';}
   return ticket.resolved === true ? 'Resolved' : 'Unresolved';
 };
 
@@ -21,9 +22,15 @@ const Ticket = ({ticket}) => (
       {ticket.customerId}
     </td>
     <TicketModal ticket={ticket} />
-    <td className='badge'>
-      {resolved(ticket)}
-    </td>
+    {ticket.checkedOut ?
+      <td className='badge openTicketColor'>
+        {status(ticket)}
+      </td>
+      :
+      <td className='badge'>
+        {status(ticket)}
+      </td>
+    }
   </tr>
 );
 

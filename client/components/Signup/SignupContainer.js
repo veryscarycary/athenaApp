@@ -53,11 +53,11 @@ class SignupContainer extends React.Component {
     }).then((res) => {
       if (res.status === 201) {
         sessionUtils.setSession(this.state.username, this.state.password, this)
-          .then(() =>
+          .then(() => {
             this.setState({
               signupSuccessful: true
             }, () => setTimeout(this.redirectToHome, 1000));
-          );
+          });
       } else {
         //if name exist
         this.setState({usernameIsUsed: true}, () => setTimeout(() =>
