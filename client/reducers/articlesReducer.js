@@ -54,12 +54,12 @@ export const articleDisplay = (state = {hidden:true}, action) => {
         status: 'rejected'
       }
     case 'SUBMIT_EDIT_FULFILLED':
-      console.log('this is my state, ',state + '/n this is my payload: ' + action.payload)
       return {
         ...state,
         issue: action.payload.issue,
         solution: action.payload.solution,
-        title: action.payload.title
+        title: action.payload.title,
+        issuePreview: action.payload.issuePreview,
       }
     case 'GET_ARTICLE_FULFILLED':
       return {
@@ -88,16 +88,18 @@ export const editModal = (state = {hidden:true, article:{}}, action) => {
   switch (action.type) {
     case 'TOGGLE_EDIT_MODAL':
       return Object.assign({},
-                           {hidden: !state.hidden,
-                            article:action.payload});
+        {
+          hidden: !state.hidden,
+          article:action.payload
+        });
     case 'EDIT_FIELD':
       return {
         ...state,
         article: {
           ...state.article,
-          [action.payload.field]: action.payload.value,
-        }
-      }
+         [action.payload.field]: action.payload.value,
+       }
+    }
     case 'SUBMIT_EDIT_FULFILLED':
       return {
         ...state,

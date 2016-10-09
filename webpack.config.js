@@ -20,7 +20,7 @@ const common = {
       },
       {
         test: /\.(scss|css)$/,
-        loader: 'style!css!sass?sourceMap',
+        loader: 'style!css!sass',
         exclude: /node_modules/,
       },
       {

@@ -50,11 +50,6 @@ module.exports = function(config) {
             exclude: /node_modules/,
           },
           {
-            test: /\.(scss|css)$/,
-            loader: 'style!css!sass?sourceMap',
-            exclude: /node_modules/,
-          },
-          {
             test: /\.(jpg|png)$/,
             loader: 'file',
             include: path.resolve(__dirname, 'client/images'),
@@ -66,7 +61,7 @@ module.exports = function(config) {
           },
           {
             test: /\.(scss|css)$/,
-            loader: 'style!css!sass?sourceMap',
+            loader: 'style!css!sass',
             exclude: /node_modules/,
           },
           {
