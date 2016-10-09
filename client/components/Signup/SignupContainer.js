@@ -56,7 +56,7 @@ class SignupContainer extends React.Component {
           .then(() =>
             this.setState({
               signupSuccessful: true
-            }, () => setTimeout(this.redirectToHome, 1000));
+            }, () => setTimeout(this.redirectToHome, 1000))
           );
       } else {
         //if name exist

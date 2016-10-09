@@ -57,7 +57,7 @@ export const editField = (field, value) => ({
 });
 export const searchArticles = (options) => ({
   type: 'SEARCH_ARTICLES',
-  payload: searchUtils.search(options)
+  payload: searchUtils.search({...options, type: 'kb'})
 });
 export const clearSearch = (options) => ({
   type: 'CLEAR_SEARCH',

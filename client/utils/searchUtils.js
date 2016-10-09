@@ -4,6 +4,7 @@ const actions = {
   search (options) {
     var qs = `/api/search?` +
              `term=${options.term}` +
+             `$type=${options.type}` +
              `&archived=${options.archived ? options.archived : 'false'}` +
              `${options.product ? '&product=${options.product}' : ''}` +
              `${options.dateStart ? '&dateStart=${options.dateStart}' : ''}` +
