@@ -14,7 +14,7 @@ export default class EditProfileForm extends React.Component {
   componentWillReceiveProps () {
     this.setState({
       userInfo: this.props.userInfo,
-      editName: `${this.props.userInfo.firstName} ${this.props.userInfo.firstName}`,
+      editName: `${this.props.userInfo.firstName} ${this.props.userInfo.lastName}`,
       editUsername: this.props.userInfo.username,
       editEmail: this.props.userInfo.email,
       editPhoneNumber: this.props.userInfo.phoneNumber,
