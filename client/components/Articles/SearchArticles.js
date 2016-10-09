@@ -30,7 +30,6 @@ export const SearchArticlesContainer = ({ clearSearch,searchArticles, results })
         onChange={e => {
           e.preventDefault();
           if (!search.value.trim()) {
-            console.log('No value :(');
             return handleClearSearch(e);
           }
           var options = {term: search}

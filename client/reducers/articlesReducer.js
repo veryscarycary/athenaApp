@@ -1,10 +1,21 @@
-export const article = (state = {}, action) => {
+export const status = (state = {loading: false, error: null}, action) => {
   switch (action.type) {
-    case 'CREATE_ARTICLE_REJECTED':
+    case `${action.type}_PENDING`:
       return {
         ...state,
-        status: 'rejected'
+        loading:true,
       }
+    case `${action.type}_REJECTED`:
+      return {
+        ...state,
+        error: action.error,
+      }
+    default:
+      return state
+  }
+}
+export const article = (state = {}, action) => {
+  switch (action.type) {
     case 'CREATE_ARTICLE_FULFILLED':
       return {
         id: action.payload.id,
@@ -13,11 +24,6 @@ export const article = (state = {}, action) => {
         issue: action.payload.issue,
         solution: action.payload.solution,
         status: 'fulfilled'
-      }
-    case 'CREATE_ARTICLE_PENDING':
-      return {
-        ...state,
-        status: 'pending'
       }
     default:
       return state
@@ -28,12 +34,8 @@ export const articlesList = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_ARTICLE_FULFILLED':
       return state.concat(action.payload);
-    case 'GET_ARTICLES_REJECTED':
-      return state;
     case 'GET_ARTICLES_FULFILLED':
       return state.concat(action.payload);
-    case 'GET_ARTICLES_PENDING':
-      return state;
     case 'SUBMIT_EDIT_FULFILLED':
       return state.map((item) => {
         if (item.id === action.payload.id) {
@@ -48,11 +50,6 @@ export const articlesList = (state = [], action) => {
 
 export const articleDisplay = (state = {hidden:true}, action) => {
   switch (action.type) {
-    case 'GET_ARTICLE_REJECTED':
-      return {
-        ...state,
-        status: 'rejected'
-      }
     case 'SUBMIT_EDIT_FULFILLED':
       return {
         ...state,
@@ -71,11 +68,6 @@ export const articleDisplay = (state = {hidden:true}, action) => {
         id: action.payload[0].id,
         hidden: false,
         status: 'fulfilled'
-      }
-    case 'GET_ARTICLE_PENDING':
-      return {
-        ...state,
-        status: 'pending'
       }
     case 'TOGGLE_DISPLAY':
       return Object.assign({}, {hidden: !state.hidden});
@@ -105,14 +97,6 @@ export const editModal = (state = {hidden:true, article:{}}, action) => {
         ...state,
         article: action.payload,
       }
-    case 'SUBMIT_EDIT_PENDING':
-      return {
-        ...state
-      }
-    case 'SUBMIT_EDIT_REJECTED':
-      return {
-        ...state,
-      }
     default: return state
   }
 }
@@ -134,16 +118,6 @@ export const searchResults = (state = {results:[]}, action) => {
       return {
         ...state,
         results: action.payload,
-      }
-    case 'SEARCH_ARTICLES_REJECTED':
-      return {
-        ...state,
-        status: 'rejected',
-      }
-    case 'SEARCH_ARTICLES_PENDING':
-      return {
-        ...state,
-        status: 'pending',
       }
     case 'CLEAR_SEARCH':
       return {
