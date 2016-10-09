@@ -9,13 +9,12 @@ export const createArticle = (article) => ({
     payload: articleUtils.postArticle(article)
 });
 
-export const getArticles = () => {
-return {
+export const getArticles = () => ({
   type: 'GET_ARTICLES',
   payload: {
     promise: articleUtils.getArticles()
   }
-}};
+});
 
 export const getArticle = (id) => ({
   type: 'GET_ARTICLE',

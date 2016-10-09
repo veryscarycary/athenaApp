@@ -60,13 +60,39 @@ describe('articles reducer', () => {
         .toEqual({hidden:false});
     });
   });
+
   describe('editModal', () => {
     it('should toggle the modal', () => {
       expect(editModal({hidden:true, article:{}}, {type:'TOGGLE_EDIT_MODAL', payload:'article'}))
         .toEqual({hidden:false, article:'article'});
     });
+
     it('should handle edit field', () => {
-      
-    })
-  })
+      expect(editModal({hidden:true,article:{}}, {type:'EDIT_FIELD', payload:{field:'a',value:'a'}}))
+        .toEqual({hidden:true, article:{a:'a'}});
+    });
+
+    it('should submit edit', () => {
+      expect(editModal({hidden:true,article:{}},{type:'SUBMIT_EDIT_FULFILLED',payload:{a:'a'}}))
+        .toEqual({hidden:true,article:{a:'a'}});
+    });
+  });
+
+  describe('create', () => {
+    it('should toggle the create modal', () => {
+      expect(create({hidden:true},{type:'TOGGLE_CREATE'}))
+        .toEqual({hidden:false});
+    });
+  });
+
+  describe('searchResults', () => {
+    it('should handle search articles', () => {
+      expect(searchResults([], {type:'SEARCH_ARTICLES_FULFILLED',payload:[1, 2, 3]}))
+        .toEqual({results:[1, 2, 3]});
+    });
+    it('should handle clear search', () => {
+      expect(searchResults({results:[1, 2, 3]},{type:'CLEAR_SEARCH'}))
+        .toEqual({results:[]});
+    });
+  });
 });
