@@ -13,6 +13,7 @@ export default class EditProfileForm extends React.Component {
 
   componentWillReceiveProps () {
     this.setState({
+      userInfo: this.props.userInfo,
       editName: `${this.props.userInfo.firstName} ${this.props.userInfo.firstName}`,
       editUsername: this.props.userInfo.username,
       editEmail: this.props.userInfo.email,
@@ -50,6 +51,7 @@ export default class EditProfileForm extends React.Component {
     });
   }
 
+
   submitProfileEdits (sessionId, password) {
     userUtils.submitProfileEdits(sessionId, password);
   }
@@ -58,26 +60,26 @@ export default class EditProfileForm extends React.Component {
     return (
       <div className='row'>
         <div>
-          <form action='/profile' method='' onSubmit={ () => {this.submitProfileEdits(this.props.userInfo._id, this.props.user.userInfo.password)} }>
+          <form action='/profile' method='' onSubmit={ () => { this.submitProfileEdits(this.state.userInfo._id, this.state.userInfo.password).bind(this) } }>
             <div className='form-group'>
               <label htmlFor='editName'>Name:</label>
-              <input type='text' className='form-control' id={`editName`} onChange={this.setName.bind(this)} value={this.state.editName} />
+              <input type='text' className='form-control' id='editName' onChange={this.setName.bind(this)} value={this.state.editName} />
             </div>
             <div className='form-group'>
               <label htmlFor='editUsername'>Username:</label>
-              <input type='text' className='form-control' id={`editUsername`} onChange={this.setUsername.bind(this)} value={this.state.editUsername} />
+              <input type='text' className='form-control' id='editUsername' onChange={this.setUsername.bind(this)} value={this.state.editUsername} />
             </div>
             <div className='form-group'>
               <label htmlFor='editPhoneNumber'>PhoneNumber:</label>
-              <input type='text' className='form-control' id={`editPhoneNumber`} onChange={this.setPhoneNumber.bind(this)} value={this.state.editPhoneNumber} />
+              <input type='text' className='form-control' id='editPhoneNumber' onChange={this.setPhoneNumber.bind(this)} value={this.state.editPhoneNumber} />
             </div>
             <div className='form-group'>
               <label htmlFor='editEmail'>Email:</label>
-              <input type='text' className='form-control' id={`editEmail`} onChange={this.setEmail.bind(this)} value={this.state.editEmail}/>
+              <input type='text' className='form-control' id='editEmail' onChange={this.setEmail.bind(this)} value={this.state.editEmail}/>
             </div>
             <div className='form-group'>
               <label htmlFor='editBio'>Bio:</label>
-              <textarea className="form-control" rows="5" id={`editBio`} onChange={this.setBio.bind(this)} value={this.state.editBio}/>
+              <textarea className="form-control" rows="5" id='editBio' onChange={this.setBio.bind(this)} value={this.state.editBio}/>
             </div>
             <div className='form-group'>
               <input type='submit' className='btn btn-default' id='editSubmit' />
