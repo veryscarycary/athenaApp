@@ -19,6 +19,7 @@ module.exports = {
       method: 'GET',
       uri: `${search}/api/search?` +
             `term=${req.query.term}` +
+            `&type=${req.query.type}` +
             `&archived=${req.query.archived}`+
             `${req.query.product ? '&product=${req.query.product}' : ''}`+
             `${req.query.dateStart ? '&dateStart=${req.query.dateStart}' : ''}`+
