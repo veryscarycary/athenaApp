@@ -10,10 +10,8 @@ module.exports = {
     var query = {
       term:req.query.term,
       archived:req.query.archived,
-      product:req.query.product,
       dateStart:req.query.dateStart,
       dateEnd:req.query.dateEnd,
-      ticketId:req.query.ticketId,
     }
     request({
       method: 'GET',
@@ -21,10 +19,8 @@ module.exports = {
             `term=${req.query.term}` +
             `&type=${req.query.type}` +
             `&archived=${req.query.archived}`+
-            `${req.query.product ? '&product=${req.query.product}' : ''}`+
             `${req.query.dateStart ? '&dateStart=${req.query.dateStart}' : ''}`+
-            `${req.query.dateEnd ? '&dateEnd=${req.query.dateEnd}' : ''}`+
-            `${req.query.ticketId ? '&ticketId=${req.query.TicketId}' : ''}`
+            `${req.query.dateEnd ? '&dateEnd=${req.query.dateEnd}' : ''}`
     }, (err, resp, body) => err ?
            res.status(err.statusCode).send(err)
            : res.status(resp.statusCode).send(JSON.parse(body))
