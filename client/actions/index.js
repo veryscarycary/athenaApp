@@ -54,6 +54,13 @@ export const editField = (field, value) => ({
     value,
   }
 });
+export const getAuthLevel = (level) => {
+  console.log('I was called');
+  return({
+  type: 'GET_AUTH_LEVEL',
+  payload: level,
+});
+}
 export const searchArticles = (options) => ({
   type: 'SEARCH_ARTICLES',
   payload: searchUtils.search({...options, type:'kb'})

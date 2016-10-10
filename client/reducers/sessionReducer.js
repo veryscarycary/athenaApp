@@ -12,4 +12,16 @@ const sessionReducer = function(state = {}, action) {
   }
 };
 
-export default sessionReducer;
+const auth = function(state = {level:null}, action) {
+  switch(action.type) {
+    case 'LOGIN':
+      return {
+        level: action.payload
+      }
+    default:
+      return state
+  }
+}
+
+//export default sessionReducer;
+export default auth;

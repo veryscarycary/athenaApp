@@ -12,6 +12,7 @@ const sessionUtils = {
         //redirect to homepage
         return res.json().then(sessionObj => {
           Cookies.set('sessionId', sessionObj._id);
+          console.log('This is your role: ',sessionObj.roles);
           Cookies.set('roles', JSON.stringify(sessionObj.roles)); // Cookies only hold strings
         });
       } else {
@@ -22,6 +23,7 @@ const sessionUtils = {
       console.log('There was an error during Login! D=', err);
     });
   },
+
   checkSession: () => {
     return fetch('http://localhost:3000/api/session', {
       method: 'GET',

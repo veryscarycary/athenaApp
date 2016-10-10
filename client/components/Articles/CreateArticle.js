@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { createArticle, toggleCreate } from '../../actions';
 import uuid from 'uuid';
+import { Button } from './Button';
 
-export const CreateArticleModal = ({ dispatch, hidden }) => {
+export const CreateArticleModal = ({ auth, hidden }) => {
   const handleToggle = () => {
-    dispatch(toggleCreate());
+    toggleCreate();
   }
 
   let issuePreview, title, issue, solution;
@@ -13,13 +15,7 @@ export const CreateArticleModal = ({ dispatch, hidden }) => {
   return (
     <div className={hidden ? "full-article hidden" : "full-article"}>
     <div className='create-article-container'>
-    <div className="button-float">
-      <button
-        className="full-article-button"
-          onClick={handleToggle}>
-          <i className="material-icons">close</i></button>
-        </div>
-
+    { auth === 'admin' ? <CreateButton /> : null}
     <h1
       className="full-article-title main">Create a new article</h1>
       <h5
@@ -87,12 +83,29 @@ export const CreateArticleModal = ({ dispatch, hidden }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  hidden: state.create.hidden
-})
+const modal = {
+  mapStateToProps: (state) => ({
+    hidden: state.create.hidden,
+    auth: state.auth.level,
+  })
+};
 
 const CreateArticle = connect(
-  mapStateToProps
+  modal.mapStateToProps,
 )(CreateArticleModal);
+
+const button = {
+  mapStateToProps: (state) => ({
+    clickEvent: handleToggle
+  }),
+  mapDispatchToProps: (dispatch) => bindActionCreators({
+    toggleCreate
+  },dispatch)
+};
+
+const CreateButton = connect(
+  button.mapStateToProps,
+  button.mapDispatchToProps
+)(Button);
 
 export default CreateArticle;

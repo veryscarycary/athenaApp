@@ -6,7 +6,6 @@ const search = mw.urls.kbSearch;
 
 module.exports = {
   search(req, res) {
-    console.log('I was called');
     var query = {
       term:req.query.term,
       archived:req.query.archived,
