@@ -15,7 +15,14 @@ export const CreateArticleModal = ({ auth, hidden }) => {
   return (
     <div className={hidden ? "full-article hidden" : "full-article"}>
     <div className='create-article-container'>
-    { auth === 'admin' ? <CreateButton /> : null}
+      <div className='button-float'>
+        <button
+          className="full-article-button"
+            onClick={handleToggle}>
+          <i className="material-icons">close
+          </i>
+        </button>
+      </div>
     <h1
       className="full-article-title main">Create a new article</h1>
       <h5
@@ -83,29 +90,18 @@ export const CreateArticleModal = ({ auth, hidden }) => {
   )
 }
 
-const modal = {
-  mapStateToProps: (state) => ({
-    hidden: state.create.hidden,
-    auth: state.auth.level,
-  })
-};
+mapStateToProps: (state) => ({
+  hidden: state.create.hidden,
+  auth: state.auth.level,
+})
 
 const CreateArticle = connect(
-  modal.mapStateToProps,
+  mapStateToProps,
+  mapDispatchToProps
 )(CreateArticleModal);
 
-const button = {
-  mapStateToProps: (state) => ({
-    clickEvent: handleToggle
-  }),
-  mapDispatchToProps: (dispatch) => bindActionCreators({
-    toggleCreate
-  },dispatch)
-};
-
-const CreateButton = connect(
-  button.mapStateToProps,
-  button.mapDispatchToProps
-)(Button);
+mapDispatchToProps: (dispatch) => bindActionCreators({
+  toggleCreate
+},dispatch)
 
 export default CreateArticle;

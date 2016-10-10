@@ -14,7 +14,7 @@ const sessionReducer = function(state = {}, action) {
 
 const auth = function(state = {level:null}, action) {
   switch(action.type) {
-    case 'LOGIN':
+    case 'GET_AUTH_LEVEL':
       return {
         level: action.payload
       }
