@@ -7,7 +7,7 @@ export default {
              `&type=${options.type}` +
              `&archived=${options.archived ? options.archived : 'false'}` +
              `${options.dateStart ? '&dateStart=${options.dateStart}' : ''}` +
-             `${options.dateEnd ? '&dateEnd=${options.dateEnd}' : ''}` +
+             `${options.dateEnd ? '&dateEnd=${options.dateEnd}' : ''}`
     return new Promise((resolve, reject) =>
       fetch(qs)
       .then(response => response.json()
