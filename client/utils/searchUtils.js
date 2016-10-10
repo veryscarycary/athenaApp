@@ -1,15 +1,16 @@
 import fetch from 'isomorphic-fetch';
 
-const actions = {
+export default {
   search (options) {
     var qs = `/api/search?` +
              `term=${options.term}` +
+             `&type=${options.type}` +
              `&archived=${options.archived ? options.archived : 'false'}` +
              `${options.product ? '&product=${options.product}' : ''}` +
              `${options.dateStart ? '&dateStart=${options.dateStart}' : ''}` +
              `${options.dateEnd ? '&dateEnd=${options.dateEnd}' : ''}` +
              `${options.ticketId ? '&ticketId=${options.TicketId}' : ''}`;
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) =>
       fetch(qs)
       .then(response => response.json()
            .then(json => {
@@ -22,8 +23,6 @@ const actions = {
             })
       )
       .catch(err => reject(err))
-    })
+    );
   }
 }
-
-export default actions;
