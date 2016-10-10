@@ -20,7 +20,7 @@ module.exports = {
             `&type=${req.query.type}` +
             `&archived=${req.query.archived}`+
             `${req.query.dateStart ? '&dateStart=${req.query.dateStart}' : ''}`+
-            `${req.query.dateEnd ? '&dateEnd=${req.query.dateEnd}' : ''}`+
+            `${req.query.dateEnd ? '&dateEnd=${req.query.dateEnd}' : ''}`
     }, (err, resp, body) => err ?
            res.status(err.statusCode).send(err)
            : res.status(resp.statusCode).send(JSON.parse(body))
