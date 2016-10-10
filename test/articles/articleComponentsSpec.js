@@ -89,6 +89,7 @@ describe('Articles', () => {
         ...articles[0],
         hidden: true,
       },
+      setFlag: jasmine.createSpy('setFlag'),
       dispatch: jasmine.createSpy('dispatch'),
     };
     const fullArticleModal = shallow(<FullArticleContainer {...props} />);
@@ -124,19 +125,19 @@ describe('Articles', () => {
       expect(props.dispatch.calls.any()).toEqual(false);
     });
 
-    //it('should submit the form when there is content', () => {
-      //createArticleModal.find({name:'title'})
-        //.simulate('keydown', {which:'a'});
-      //createArticleModal.find({name:'summary'})
-        //.simulate('keydown', {which:'a'});
-      //createArticleModal.find({name:'solution'})
-        //.simulate('keydown', {which: 'a'});
-       //createArticleModal.find({name:'issue'})
-        //.simulate('keydown', {which: 'a'});
-      //createArticleModal.find('.article-list-button')
-        //.simulate('click', {preventDefault: () => true});
-      //expect(props.dispatch).toHaveBeenCalled();
-    //})
+    it('should not submit the form when there is content', () => {
+      var title = createArticleModal.find('input').get(0);
+      var summary = createArticleModal.find('input').get(1);
+      var solution = createArticleModal.find('textarea').get(0);
+      var issue = createArticleModal.find('textarea').get(1);
+      title.value = 'aa';
+      summary.value = 'aa';
+      solution.value = 'aa';
+      issue.value = 'aa';
+      createArticleModal.find('.article-list-button')
+        .simulate('click', {preventDefault: () => true});
+      expect(props.dispatch).toHaveBeenCalled();
+    })
 
     it('should have a button that dispatches a create action', () => {
       createArticleModal.find('.full-article-button')
@@ -204,11 +205,16 @@ describe('Articles', () => {
   });
 
   describe('search articles', () => {
-    let props = {
-      results: [],
-      dispatch: jasmine.createSpy('dispatch'),
+    const props = {
+      clearSearch: jasmine.createSpy('clearSearch'),
+      searchArticles: jasmine.createSpy('searchArticles'),
+      results: articles,
     }
-    const searchArticles = mount(<SearchArticlesContainer />);
+    const searchArticles = mount(
+      <Provider store={store}>
+        <SearchArticlesContainer {...props} />
+      </Provider>
+    );
     it('should contain an input', () => {
       expect(searchArticles.find('input').length)
         .toBe(1);
@@ -217,22 +223,56 @@ describe('Articles', () => {
     it('should dispatch an action on change', () => {
       searchArticles.find('input')
         .simulate('change', {preventDefault: () => true});
-      expect('dispatch').toHaveBeenCalled;
+      expect('searchArticles').toHaveBeenCalled;
     });
+
     it('should not render search results when there are no results', () => {
       expect(searchArticles.contains(<SearchResultsContainer />)).toBe(false);
     });
-    //const searchArticlesWithResults = mount(<SearchArticlesContainer results={articles} />)
-    xit('should render search results when there are results', () => {
-      expect(searchArticlesWithResults.find(<SearchResults />).length).toBe(1);
-    })
+
+    it('should clear search results when focus is lost', () => {
+      var input = searchArticles.find('input');
+      input.simulate('blur');
+      expect(input.get(0).value).toBe('');
+    });
+
   });
 
   describe('search results', () => {
-    const searchResults = shallow(<SearchResultsContainer results={articles} />);
+    const props = {
+      clearSearch: jasmine.createSpy('clearSearch'),
+      searchArticles: jasmine.createSpy('searchArticles'),
+      results: articles,
+      toggleArticle: jasmine.createSpy('toggleArticle'),
+      getArticle: jasmine.createSpy('getArticle'),
+      clearSearch: jasmine.createSpy('clearSearch'),
+      setFlag: jasmine.createSpy('setFlag'),
+    }
+    const searchResults = shallow(<SearchResultsContainer {...props} />);
     it('should render', () => {
       expect(searchResults.find('.search-results-list').length).toBe(1);
     });
-
+    it('should have an li element for each of the results', () => {
+      expect(searchResults.find('.search-results-item').length).toBe(props.results.length);
+    });
+    it('should display the results in the correct order', () => {
+      expect(searchResults.find('.search-results-item')
+             .first().key()).toBe(String(props.results[0].id));
+    });
+    it('should open the article in a modal when a single item is clicked', () => {
+      searchResults.find('li').first()
+        .simulate('mousedown', {preventDefault: () => true});
+      expect(props.toggleArticle).toHaveBeenCalled();
+    });
+    it('should clear the search when clicked', () => {
+      searchResults.find('li').first()
+        .simulate('click')
+      expect(props.clearSearch).toHaveBeenCalled();
+    });
+    //const searchArticles = mount(<SearchArticles {...props} />)
+    //it('should toggle article before calling clear search', () => {
+      //let input = searchArticles.find('input');
+      //input.value = 'aa';
+    //})
   });
 });

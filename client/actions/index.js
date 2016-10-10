@@ -9,13 +9,12 @@ export const createArticle = (article) => ({
     payload: articleUtils.postArticle(article)
 });
 
-export const getArticles = () => {
-return {
+export const getArticles = () => ({
   type: 'GET_ARTICLES',
   payload: {
     promise: articleUtils.getArticles()
   }
-}};
+});
 
 export const getArticle = (id) => ({
   type: 'GET_ARTICLE',
@@ -57,11 +56,11 @@ export const editField = (field, value) => ({
 });
 export const searchArticles = (options) => ({
   type: 'SEARCH_ARTICLES',
-  payload: searchUtils.search(options)
+  payload: searchUtils.search({...options, type:'kb'})
 });
 export const clearSearch = (options) => ({
   type: 'CLEAR_SEARCH',
-})
+});
 export const toggleCreate = () => ({
   type: 'TOGGLE_CREATE',
 });

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {articlesList, articleDisplay, editModal, searchResults, create } from './articlesReducer';
+import {articlesList, articleDisplay, editModal, searchResults, create, status } from './articlesReducer';
 import ticketsReducer from './ticketsReducer';
 import sessionReducer from './sessionReducer';
 
@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
   editModal,
   searchResults,
   create,
+  status,
   ticketsReducer,
   sessionReducer
 })
