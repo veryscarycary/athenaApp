@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleArticle, toggleEdit } from '../../actions';
+import { EditButtonContainer } from './ButtonContainer';
+import { bindActionCreators } from 'redux';
 
-export const FullArticleContainer = ({ dispatch, article }) => {
+export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
   const handleToggle = () => {
-    dispatch(toggleArticle());
+    toggleArticle();
   }
-  const toggleEditModal = () => {
-    dispatch(toggleEdit(article));
+  const permissionToEdit = {
+    userPlus: true,
+    admin: true,
+    user: false,
+    guest: false,
   }
   return (
     <div className={article.hidden ? "hidden full-article article-modal" : "full-article"}>
@@ -31,24 +36,40 @@ export const FullArticleContainer = ({ dispatch, article }) => {
       <div className="content">
         {article.solution}
       </div>
-      <button
-        className="article-list-button"
-        onClick={e => {
-          e.preventDefault();
-          toggleEditModal(article);
-        }}
-      >Edit</button>
-      </div>
+      {auth && auth[0] === 'admin' ? <EditButton /> : null}
+     </div>
     </div>
   )
 }
 
-const mapStateToProps = (state) => ({
-    article: state.articleDisplay
-})
+let article = {
+  mapStateToProps: (state) => ({
+    article: state.articleDisplay,
+    auth: state.auth.level
+  }),
+  mapDispatchToProps: (dispatch) => bindActionCreators({
+    toggleArticle,
+  }, dispatch),
+};
+
+let button = {
+  mapStateToProps: (state) => ({
+    text: 'edit',
+    cssClass: 'article-list-button',
+    article: state.articleDisplay,
+  }),
+  mapDispatchToProps: (dispatch, ownProps) => bindActionCreators({
+    toggleEdit,
+  }, dispatch),
+}
+const EditButton = connect(
+  button.mapStateToProps,
+  button.mapDispatchToProps
+)(EditButtonContainer);
 
 const FullArticle = connect(
-  mapStateToProps
+  article.mapStateToProps,
+  article.mapDispatchToProps
 )(FullArticleContainer);
 
 export default FullArticle;

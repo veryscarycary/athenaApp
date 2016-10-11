@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createArticle, toggleCreate } from '../../actions';
 import uuid from 'uuid';
-import { Button } from './Button';
 
-export const CreateArticleModal = ({ auth, hidden }) => {
+export const CreateArticleModal = ({ toggleCreate, hidden }) => {
   const handleToggle = () => {
-    toggleCreate();
+    return toggleCreate();
   }
 
   let issuePreview, title, issue, solution;
@@ -90,18 +89,18 @@ export const CreateArticleModal = ({ auth, hidden }) => {
   )
 }
 
-mapStateToProps: (state) => ({
+const mapStateToProps = (state) => ({
   hidden: state.create.hidden,
   auth: state.auth.level,
-})
+});
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  toggleCreate,
+},dispatch);
 
 const CreateArticle = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CreateArticleModal);
-
-mapDispatchToProps: (dispatch) => bindActionCreators({
-  toggleCreate
-},dispatch)
 
 export default CreateArticle;

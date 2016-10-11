@@ -40,7 +40,7 @@ class SettingsContainer extends AuthorizedComponent {
                   User
                 </th>
                 <th>
-                  Priveledges
+                  Privileges
                 </th>
               </tr>
             </thead>

@@ -55,7 +55,6 @@ export const editField = (field, value) => ({
   }
 });
 export const getAuthLevel = (level) => {
-  console.log('I was called,', level);
   return({
   type: 'GET_AUTH_LEVEL',
   payload: level,

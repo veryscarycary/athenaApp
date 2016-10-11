@@ -54,7 +54,7 @@ module.exports = {
       uri: `${kb}/api/${req.params.id}`
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(body)
+      : res.status(resp.statusCode).send(req.params.id)
     );
   }
 };
