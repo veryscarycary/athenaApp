@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { toggleArticle, toggleEdit } from '../../actions';
 import { EditButtonContainer } from './ButtonContainer';
 import { bindActionCreators } from 'redux';
+import ReactMarkdown from 'react-markdown';
 
 export const FullArticleContainer = ({ toggleArticle, article, auth, useOption }) => {
   const handleToggle = () => {
@@ -29,13 +30,15 @@ export const FullArticleContainer = ({ toggleArticle, article, auth, useOption }
       </div>
       <h3 className="full-article-title main">{article.title}</h3>
       <h5 className="full-article-title">Issue</h5>
-      <div className="content">
-        {article.issue}
-      </div>
+      <ReactMarkdown
+        escapeHTML="true"
+        source={article.issue}
+        className="content" />
       <h5 className="full-article-title">Solution</h5>
-      <div className="content">
-        {article.solution}
-      </div>
+      <ReactMarkdown
+        escapeHTML="true"
+        source={article.solution}
+        className="content" />
       {auth && auth[0] === 'admin' ? <EditButton /> : null}
      </div>
     </div>
@@ -56,6 +59,7 @@ let button = {
   mapStateToProps: (state) => ({
     text: 'edit',
     cssClass: 'article-list-button',
+    article: state.articleDisplay,
   }),
   mapDispatchToProps: (dispatch) => bindActionCreators({
     toggleEdit,

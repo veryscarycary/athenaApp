@@ -42,7 +42,7 @@ export const loadTicketState = () => ({
   payload: ticketUtils.getTickets()
 });
 
-export const toggleEdit = (article = {}) => ({
+export const toggleEdit = (article) => ({
   type: 'TOGGLE_EDIT_MODAL',
   payload: article
 });

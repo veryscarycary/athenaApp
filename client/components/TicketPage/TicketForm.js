@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editTicketField, submitTicketEdit, clearTicketArticlesSearch, getTicketForModal, submitNewTicket } from '../../actions';
+import { editTicketField, submitTicketEdit, clearTicketForModal, getTicketForModal, submitNewTicket } from '../../actions';
 import uuid from 'uuid';
 import { browserHistory } from 'react-router';
 
@@ -11,9 +11,12 @@ class TicketFormContainer extends Component {
   }
 
   componentWillMount() {
-    this.props.id === 'create'
-      ? this.props.clearTicketArticlesSearch()
-      : this.props.getTicketForModal(this.props.id);
+    if(this.props.id !== 'create') {
+      this.props.getTicketForModal(this.props.id);
+    }
+  }
+  componentWillUnmount() {
+    this.props.clearTicketForModal()
   }
 
   submitForm(ticket) {
@@ -52,7 +55,7 @@ class TicketFormContainer extends Component {
           }
           this.submitForm(ticket);
         }}>
-          <label for='title'>Title</label>
+          <label htmlFor='title'>Title</label>
           <input
             className='edit-modal-input'
             type='text'
@@ -62,7 +65,7 @@ class TicketFormContainer extends Component {
             }}
             onChange={this.handleChange}
             value={this.props.ticket.title}/>
-          <label for='issuePreview'>Summary</label>
+          <label htmlFor='issuePreview'>Summary</label>
           <input
             className='edit-modal-input'
             type='text'
@@ -72,7 +75,7 @@ class TicketFormContainer extends Component {
             }}
             onChange={this.handleChange}
             value={this.props.ticket.issuePreview}/>
-          <label for='issue'>Issue</label>
+          <label htmlFor='issue'>Issue</label>
           <textarea
             className='edit-modal-textarea'
             type='text'
@@ -82,7 +85,7 @@ class TicketFormContainer extends Component {
             }}
             onChange={this.handleChange}
             value={this.props.ticket.issue}/>
-          <label for='solution'>Solution</label>
+          <label htmlFor='solution'>Solution</label>
           <textarea
             className='edit-modal-textarea'
             type='text'
@@ -92,7 +95,7 @@ class TicketFormContainer extends Component {
             }}
             onChange={this.handleChange}
             value={this.props.ticket.solution}/>
-          <label for='customerId'>Customer Id</label>
+          <label htmlFor='customerId'>Customer Id</label>
           <input
             className='edit-modal-input'
             type='text'
@@ -104,7 +107,7 @@ class TicketFormContainer extends Component {
             value={this.props.ticket.number}/>
           <button
             type='submit'>
-            Submit {this.props.id === 'create' ? 'ticket' : 'edits'}
+            Submit { this.props.id === 'create' ? 'ticket' : 'edits' }
           </button>
         </form>
       </div>
@@ -123,7 +126,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getTicketForModal,
   submitTicketEdit,
   submitNewTicket,
-  clearTicketArticlesSearch,
+  clearTicketForModal,
 }, dispatch)
 
 const TicketForm = connect(
