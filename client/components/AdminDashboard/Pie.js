@@ -9,7 +9,7 @@ var pieData = [{label: "Margarita", value: 20.0}, {label: "John", value: 55.0}, 
 var Pie = React.createClass({
   render: function() {
     return  (
-      <div className='grayContainer'>
+      <div className='brownContainer'>
       	<PieChart
         data={pieData}
         width={450}

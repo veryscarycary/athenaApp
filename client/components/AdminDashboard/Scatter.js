@@ -22,7 +22,7 @@ var ScatterChart = rd3.ScatterChart;
 var Scatter = React.createClass({
   render: function() {
     return  (
-      <div className='grayContainer'>
+      <div className='brownContainer'>
       	<ScatterChart
           data={scatterData}
           width={450}

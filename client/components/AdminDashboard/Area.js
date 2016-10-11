@@ -20,6 +20,7 @@ var areaData = [
 var Area = React.createClass({
   render: function() {
     return  (
+      <div className='brownContainer wideChart'>
     	 <AreaChart
         data={areaData}
         width="100%"
@@ -27,7 +28,7 @@ var Area = React.createClass({
           x: 0,
           y: 0,
           height: 400,
-          width: 500
+          width: 900
         }}
         height={400}
         title="Area Chart"
@@ -41,6 +42,7 @@ var Area = React.createClass({
         yAccessor={(d)=>d[1]}
         domain={{y: [,60]}}
       />
+      </div>
   )}
 });
 
