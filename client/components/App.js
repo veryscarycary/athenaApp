@@ -20,8 +20,8 @@ export default class App extends Component {
           <Route path="/articles" component={Articles} />
           <Route path="/tickets" authorize={['user', 'admin']} component={MainLayoutContainer} />
           <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
-          <Route path="/settings" authorize={['admin']} component={SettingsContainer} />
           <Route path="/profile" authorize={['user', 'admin']} component={ProfileContainer} />
+          <Route path="/settings" authorize={['admin']} component={SettingsContainer} />
         </Route>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

@@ -34,8 +34,13 @@ class LoginContainer extends React.Component {
       <div>
 
         <div className='loginTop'>
-          <Link className='linkMargins' to='/login'>Login</Link>
-          <Link className='linkMargins' to='/signup'>Signup</Link>
+          <div>
+            <Link className='browseArticles' to='/articles'>Browse Articles</Link>
+          </div>
+          <div>
+            <Link className='linkMargins' to='/login'>Login</Link>
+            <Link className='linkMargins' to='/signup'>Signup</Link>
+          </div>
         </div>
 
         <div className='loginTopTrim'>

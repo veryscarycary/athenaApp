@@ -8,7 +8,12 @@ class SettingsButton extends RoleAwareComponent {
     super(props);
 
     this.allowedRoles = ['admin'];
-    this.userRoles = JSON.parse(Cookies.get('roles'));
+
+    if (Cookies.get('roles')) {
+      this.userRoles = JSON.parse(Cookies.get('roles'));
+    } else {
+      this.userRoles = ['guest'];
+    }
   }
 
   render() {

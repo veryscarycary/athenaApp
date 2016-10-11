@@ -5,18 +5,12 @@ import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
 import Nav from './Nav/Nav';
 
-import sessionUtils from '../utils/sessionUtils';
-
 import * as actionCreators from '../actions/index';
 
 
 class AppContainer extends React.Component {
   constructor(props) {
     super(props)
-  }
-
-  componentWillMount () {
-    sessionUtils.checkSession();
   }
 
 

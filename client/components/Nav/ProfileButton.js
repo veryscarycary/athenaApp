@@ -7,8 +7,13 @@ class ProfileButton extends RoleAwareComponent {
   constructor(props) {
     super(props);
 
-    this.allowedRoles = ['user'];
-    this.userRoles = JSON.parse(Cookies.get('roles'));
+    this.allowedRoles = ['user', 'admin'];
+    
+    if (Cookies.get('roles')) {
+      this.userRoles = JSON.parse(Cookies.get('roles'));
+    } else {
+      this.userRoles = ['guest'];
+    }
   }
 
   render() {
