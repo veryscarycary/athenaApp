@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ticketUtils from '../../utils/ticketUtils';
+import { Link } from 'react-router';
 
 import * as ticketActionCreators from '../../actions/index';
 import Ticket from './Ticket';
@@ -49,6 +50,11 @@ class TicketDisplay extends React.Component {
             ))}
           </tbody>
         </table>
+        <Link to={'/tickets/create'}>
+          <button>
+            Create ticket
+          </button>
+        </Link>
       </div>
     )
   };

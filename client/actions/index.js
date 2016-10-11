@@ -104,10 +104,24 @@ export const editTicketField = (field, value) => ({
 
 export const submitTicketEdit = (ticket) => ({
   type: 'SUBMIT_TICKET_EDIT',
-  payload: ticketUtils.editTicket(ticket);
+  payload: ticketUtils.putTicket(ticket)
 });
 
 export const createTicket = (ticket) => ({
   type: 'CREATE_TICKET',
-  payload: ticketUtils.createTicket(ticket);
+  payload: ticketUtils.createTicket(ticket)
+})
+
+export const getTicketForModal = (id) => ({
+  type: 'GET_TICKET_FOR_MODAL',
+  payload: ticketUtils.getTicket(id)
+})
+
+export const clearTicketForModal = () => ({
+  type: 'CLEAR_TICKET_FOR_MODAL'
+})
+
+export const submitNewTicket = (ticket) => ({
+  type: 'SUBMIT_NEW_TICKET',
+  payload: ticketUtils.createTicket(ticket)
 })

@@ -11,6 +11,7 @@ import Title from './AdminDashboard/Title';
 import DashboardContainer from './AdminDashboard/DashboardContainer';
 import SettingsContainer from './Settings/SettingsContainer';
 import ProfileContainer from './Profile/ProfileContainer';
+import TicketDetailsPage from './TicketPage/TicketDetailsPage';
 
 export default class App extends Component {
   render() {
@@ -22,6 +23,7 @@ export default class App extends Component {
           <Route path="/tickets" component={MainLayoutContainer} />
           <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
           <Route path="/settings" authorize={['admin']} component={SettingsContainer} />
+          <Route path="/tickets/:id" component={TicketDetailsPage} />
           <Route path="/profile" authorize={['user']} component={ProfileContainer} />
         </Route>
         <Route path="/login" component={Login} />

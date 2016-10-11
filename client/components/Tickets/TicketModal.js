@@ -17,7 +17,7 @@ class TicketModal extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentWillReceiveProps() {
     articleUtils.getArticlesByIds(this.props.ticket.relatedArticles).then((articles) => {
       this.setState({modalArticles: articles}, (articles) => articles);
     });

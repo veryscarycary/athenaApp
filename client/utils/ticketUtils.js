@@ -12,6 +12,22 @@ export default {
     .then(res => res.json())
     .catch(err => console.log(err, 'There was an error getting the tickets!'));
   },
+  getTicket(id) {
+    return new Promise((resolve, reject) => fetch(`/api/ticket/${id}`)
+      .then(response => response.json()
+      .then(json => resolve(json)))
+      .catch(err => reject(err)));
+  },
+  createTicket(ticket) {
+    return new Promise((resolve, reject) => fetch('/api/ticket', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(ticket)
+    })
+    .then(response => response.json())
+    .then(json => resolve(json))
+    .catch(err => reject(err)));
+  },
   submitNewTicket () {
     return fetch('http://localhost:3000/api/ticket', {
       method: 'POST',
@@ -37,6 +53,16 @@ export default {
     })
     .then(res => res.json())
     .catch(err => console.log(err, 'There was an error while submitting the ticket!'));
+  },
+  putTicket (ticket) {
+    return new Promise((resolve, reject) => fetch(`/api/ticket/${ticket._id}`, {
+      method:'PUT',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(ticket)
+    })
+    .then(response => response.json())
+    .then(json => resolve(json))
+    .catch(err => reject(err)));
   },
   editTicket (ticketId) {
     return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
