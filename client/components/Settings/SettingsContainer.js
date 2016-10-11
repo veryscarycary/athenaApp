@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 import { AuthorizedComponent } from 'react-router-role-authorization';
 
-import User from './User';
+import PermissionsTable from './PermissionsTable';
+import RolesTable from './RolesTable';
 import userUtils from '../../utils/userUtils';
 
 class SettingsContainer extends AuthorizedComponent {
@@ -28,29 +29,11 @@ class SettingsContainer extends AuthorizedComponent {
     return (
       <div className='container bg-warning centerFlex'>
         <h1>Settings</h1>
-        <h2>Manage user permissions here</h2>
-
-          <table className='table table-bordered settingsTable table-striped'>
-            <thead>
-              <tr>
-                <th>
-                  ID
-                </th>
-                <th>
-                  User
-                </th>
-                <th>
-                  Priveledges
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.users.map(user => (
-                <User user={user} />
-              ))}
-            </tbody>
-          </table>
-
+        <h4>Roles and Permissions</h4>
+        <RolesTable />
+        <br />
+        <h4>Manage user permissions here</h4>
+        <PermissionsTable users={this.state.users} />
         {/*return a list of users and their respective roles*/}
         {/*return a list of users and their respective roles*/}
         {/*public kbs and */}

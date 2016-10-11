@@ -19,7 +19,7 @@ class UsersDisplay extends React.Component {
 
   render () {
     return (
-      <div className='box-table'>
+      <div className='usersTable'>
         <table>
           <thead>
             <tr>
