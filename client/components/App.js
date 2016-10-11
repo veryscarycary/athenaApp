@@ -7,7 +7,6 @@ import NotFoundComponent from './NotFoundComponent';
 import Home from './Home/HomeContainer';
 import Login from './Login/LoginContainer';
 import Signup from './Signup/SignupContainer';
-import Title from './AdminDashboard/Title';
 import DashboardContainer from './AdminDashboard/DashboardContainer';
 import SettingsContainer from './Settings/SettingsContainer';
 import ProfileContainer from './Profile/ProfileContainer';
@@ -20,11 +19,11 @@ export default class App extends Component {
         <Route path="/" component={AppContainer}>
           <IndexRoute component={Home} />
           <Route path="/articles" component={Articles} />
-          <Route path="/tickets" component={MainLayoutContainer} />
+          <Route path="/tickets" authorize={['user', 'admin']} component={MainLayoutContainer} />
           <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
           <Route path="/settings" authorize={['admin']} component={SettingsContainer} />
           <Route path="/tickets/:id" component={TicketDetailsPage} />
-          <Route path="/profile" authorize={['user']} component={ProfileContainer} />
+          <Route path="/profile" authorize={['user', 'admin']} component={ProfileContainer} />
         </Route>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

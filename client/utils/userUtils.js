@@ -56,6 +56,24 @@ const userUtils = {
     .catch(error => {
       console.log(error, 'There was an error while editing the ticket!');
     });
+  },
+  submitPermissions: (sessionId, password, role) => {
+    return fetch(`http://localhost:3000/api/user/${sessionId}/${password}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        roles: [role]
+      })
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .catch(error => {
+      console.log(error, 'There was an error while editing the ticket!');
+    });
   }
 };
 

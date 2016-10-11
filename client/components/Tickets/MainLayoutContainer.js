@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Cookies from 'js-cookie';
+import { AuthorizedComponent } from 'react-router-role-authorization';
+
 import sessionUtils from '../../utils/sessionUtils';
 import TicketDisplay from './TicketDisplay';
 import Search from './Search';
@@ -10,7 +13,8 @@ class MainLayoutContainer extends React.Component {
   constructor (props) {
     super(props)
 
-
+    this.userRoles = JSON.parse(Cookies.get('roles')); //deserialize json array
+    this.notAuthorizedPath = '/not-found';
   }
 
   componentWillMount () {
