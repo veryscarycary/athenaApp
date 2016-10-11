@@ -40,4 +40,39 @@ export const ticketPage = (state={ticket:{},}, action) => {
     default:
       return state
   }
+};
+
+export const ticketArticlesSearch = (state={results:[]}, action) => {
+  switch (action.type) {
+    case 'SEARCH_TICKET_ARTICLES_FULFILLED':
+      return {
+        ...state,
+        results: action.payload,
+      }
+    case 'CLEAR_TICKET_ARTICLES_SEARCH':
+      return {
+        ...state,
+        results:[],
+      }
+    default:
+      return state
+  }
+}
+
+export const ticketPageArticleModal = (state={article:false}, action) => {
+  switch (action.type) {
+    case 'GET_ARTICLE_FOR_TICKET_SEARCH_FULFILLED':
+      console.log('GET ARTICLE PAYLOAD === ',action.payload);
+      return {
+        ...state,
+        article: action.payload[0]
+      }
+    case 'CLOSE_TICKET_ARTICLE_MODAL':
+      return {
+        ...state,
+        article:false
+      }
+    default:
+      return state
+  }
 }

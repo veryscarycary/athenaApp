@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getArticle, toggleArticle, clearSearch } from '../../actions';
+import { getArticleForTicketSearch, clearTicketArticlesSearch } from '../../actions';
 
-export const SearchResultsContainer = ({ clearSearch, getArticle, toggleArticle, results}) => {
+export const SearchResultsContainer = ({ clearTicketArticlesSearch, getArticleForTicketSearch, results}) => {
   const handleToggle = (id) => {
-    return Promise.resolve(toggleArticle())
-    .then(() => getArticle(id))
+    getArticleForTicketSearch(id)
   }
   const handleClearSearch = () => (
-    clearSearch()
+    clearTicketArticlesSearch()
   )
   return (
     <ul className="search-results-list">
@@ -32,17 +31,16 @@ export const SearchResultsContainer = ({ clearSearch, getArticle, toggleArticle,
 }
 
 const mapStateToProps = state => ({
-  results: state.searchResults.results,
+  results: state.ticketArticlesSearch.results,
 })
 const mapDispatchToProps = dispatch => bindActionCreators({
-  toggleArticle,
-  getArticle,
-  clearSearch,
+  getArticleForTicketSearch,
+  clearTicketArticlesSearch,
 }, dispatch)
 
-const SearchResults = connect(
+const ArticleSearchResults = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SearchResultsContainer);
 
-export default SearchResults;
+export default ArticleSearchResults;

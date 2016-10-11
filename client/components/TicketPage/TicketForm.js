@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editTicketField, submitTicketEdit, clearTicketForModal, getTicketForModal, submitNewTicket } from '../../actions';
+import { editTicketField, submitTicketEdit, clearTicketArticlesSearch, getTicketForModal, submitNewTicket } from '../../actions';
 import uuid from 'uuid';
 import { browserHistory } from 'react-router';
 
@@ -12,7 +12,7 @@ class TicketFormContainer extends Component {
 
   componentWillMount() {
     this.props.id === 'create'
-      ? this.props.clearTicketForModal()
+      ? this.props.clearTicketArticlesSearch()
       : this.props.getTicketForModal(this.props.id);
   }
 
@@ -123,7 +123,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getTicketForModal,
   submitTicketEdit,
   submitNewTicket,
-  clearTicketForModal,
+  clearTicketArticlesSearch,
 }, dispatch)
 
 const TicketForm = connect(

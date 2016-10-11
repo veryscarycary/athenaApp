@@ -110,18 +110,37 @@ export const submitTicketEdit = (ticket) => ({
 export const createTicket = (ticket) => ({
   type: 'CREATE_TICKET',
   payload: ticketUtils.createTicket(ticket)
-})
+});
 
 export const getTicketForModal = (id) => ({
   type: 'GET_TICKET_FOR_MODAL',
   payload: ticketUtils.getTicket(id)
-})
+});
 
 export const clearTicketForModal = () => ({
   type: 'CLEAR_TICKET_FOR_MODAL'
-})
+});
 
 export const submitNewTicket = (ticket) => ({
   type: 'SUBMIT_NEW_TICKET',
   payload: ticketUtils.createTicket(ticket)
-})
+});
+
+export const searchTicketArticles = (options) => ({
+  type: 'SEARCH_TICKET_ARTICLES',
+  payload: searchUtils.search({...options, type:'kb'})
+});
+
+export const clearTicketArticlesSearch = () => ({
+  type: 'CLEAR_TICKET_ARTICLES_SEARCH',
+});
+
+export const getArticleForTicketSearch = (id) => ({
+  type: 'GET_ARTICLE_FOR_TICKET_SEARCH',
+  payload: articleUtils.getArticle(id),
+});
+
+export const closeTicketArticleModal = () => ({
+  type: 'CLOSE_TICKET_ARTICLE_MODAL',
+});
+

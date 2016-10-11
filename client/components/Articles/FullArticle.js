@@ -4,7 +4,7 @@ import { toggleArticle, toggleEdit } from '../../actions';
 import { EditButtonContainer } from './ButtonContainer';
 import { bindActionCreators } from 'redux';
 
-export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
+export const FullArticleContainer = ({ toggleArticle, article, auth, useOption }) => {
   const handleToggle = () => {
     toggleArticle();
   }
@@ -45,7 +45,7 @@ export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
 let article = {
   mapStateToProps: (state) => ({
     article: state.articleDisplay,
-    auth: state.auth.level
+    auth: state.auth.level,
   }),
   mapDispatchToProps: (dispatch) => bindActionCreators({
     toggleArticle,
@@ -56,9 +56,8 @@ let button = {
   mapStateToProps: (state) => ({
     text: 'edit',
     cssClass: 'article-list-button',
-    article: state.articleDisplay,
   }),
-  mapDispatchToProps: (dispatch, ownProps) => bindActionCreators({
+  mapDispatchToProps: (dispatch) => bindActionCreators({
     toggleEdit,
   }, dispatch),
 }

@@ -5,7 +5,7 @@ import { getArticle, toggleArticle, toggleCreate} from '../../actions';
 import { Button } from './ButtonContainer';
 
 
-export const ArticleListItems = ({auth, articles, getArticle, toggleArticle}) => {
+export const ArticleListItems = ({auth, articles, article, getArticle, toggleArticle}) => {
   const handleToggle = (article) => {
     return Promise.resolve(toggleArticle())
     .then(() => getArticle(article.id));
@@ -50,6 +50,7 @@ let article = {
   mapStateToProps: (state) => ({
     articles: state.articlesList,
     auth: state.auth.level,
+    article: state.articleDisplay,
   }),
 
   mapDispatchToProps: dispatch => bindActionCreators({

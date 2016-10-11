@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TicketForm from './TicketForm';
+import SearchTicketArticles from './ArticleSearch';
+import ArticleModal from './ArticleModal';
 
-//import ArticleSearchResults from './ArticleSearchResults';
-//import ArticleModal from './ArticleModal';
+const TicketDetailsPage = ({params}) => (
+  <div>
+    <TicketForm id={params.id} />
+    <SearchTicketArticles />
+  </div>
+);
 
-export default class TicketDetailsPage extends Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <TicketForm id={this.props.params.id} />
-    )
-  }
-}
+export default TicketDetailsPage;
