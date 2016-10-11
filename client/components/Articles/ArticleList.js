@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getArticle, toggleArticle, toggleCreate} from '../../actions';
+import { Button } from './ButtonContainer';
 
 
-export const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCreate}) => {
+export const ArticleListItems = ({auth, articles, getArticle, toggleArticle}) => {
   const handleToggle = (article) => {
     return Promise.resolve(toggleArticle())
     .then(() => getArticle(article.id));
@@ -16,10 +17,7 @@ export const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCre
   return (
     <div className="article-list-container">
       <div className="button-float">
-        <button className="full-article-button"
-        onClick={handleCreateToggle}>
-          <i className="material-icons">edit</i>
-        </button>
+        <CreateButton />
       </div>
       <div className="article-list">
       <ul>
@@ -48,19 +46,38 @@ export const ArticleListItems = ({articles, getArticle, toggleArticle, toggleCre
   )
 }
 
-const mapStateToProps = (state) => ({
-  articles: state.articlesList,
-});
+let article = {
+  mapStateToProps: (state) => ({
+    articles: state.articlesList,
+    auth: state.auth.level,
+  }),
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  getArticle,
-  toggleArticle,
-  toggleCreate,
-}, dispatch);
+  mapDispatchToProps: dispatch => bindActionCreators({
+    getArticle,
+    toggleArticle,
+  }, dispatch)
+}
 
 const ArticleList = connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  article.mapStateToProps,
+  article.mapDispatchToProps,
 )(ArticleListItems);
+
+let button = {
+  mapStateToProps: (state) => ({
+    cssClass: 'full-article-button',
+    icon:'create',
+  }),
+  mapDispatchToProps: (dispatch, ownProps) => ({
+    clickEvent: () => {
+      dispatch(toggleCreate());
+    }
+  })
+}
+
+const CreateButton = connect(
+  button.mapStateToProps,
+  button.mapDispatchToProps
+)(Button);
 
 export default ArticleList;

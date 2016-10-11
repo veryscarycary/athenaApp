@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import Cookies from 'js-cookie';
 
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/index';
@@ -22,7 +23,10 @@ class LoginContainer extends React.Component {
   handleLogin(e) {
     e.preventDefault();
     sessionUtils.setSession(this.state.username, this.state.password, this)
-      .then(()=> browserHistory.push('/'));
+      .then(()=> {
+        this.props.getAuthLevel(JSON.parse(Cookies.get('roles')));
+        return browserHistory.push('/');
+      });
   }
 
   render () {
@@ -66,8 +70,8 @@ const mapStateToProps = function(store) {
   };
 };
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  ...actionCreators
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

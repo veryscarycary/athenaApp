@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import {articlesList, articleDisplay, editModal, searchResults, create, status } from './articlesReducer';
 import ticketsReducer from './ticketsReducer';
-import sessionReducer from './sessionReducer';
+import auth from './sessionReducer';
 
 const rootReducer = combineReducers({
   articlesList,
@@ -10,8 +10,8 @@ const rootReducer = combineReducers({
   searchResults,
   create,
   status,
+  auth,
   ticketsReducer,
-  sessionReducer
 })
 
 export default rootReducer;

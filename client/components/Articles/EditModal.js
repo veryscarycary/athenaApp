@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toggleEdit, submitEdit, editField } from '../../actions';
+import { toggleEdit, submitEdit, editField, deleteArticle } from '../../actions';
+import { DeleteButtonContainer } from './ButtonContainer';
 
 export class EditModalContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.allowedRoles = {
+      admin:true,
+      userPlus:true,
+      user:false,
+      guest:false,
+    };
+    this.userRoles = this.props.level;
   }
   handleToggle = () => {
     this.props.toggleEdit();
@@ -30,8 +38,8 @@ export class EditModalContainer extends Component {
             }}><i className="material-icons">close</i></button>
           </div>
           <h5
-            className="full-article-title"
-            >Title:</h5>
+            className="full-article-title">
+            Title:</h5>
           <input
             name="title"
             className="edit-modal-input"
@@ -87,27 +95,47 @@ export class EditModalContainer extends Component {
               this.handleToggle();
             }} >
               Submit</button>
+              {this.allowedRoles, this.props.auth}
+            {this.props.auth && this.allowedRoles[this.props.auth] ? <DeleteButton /> : null}
       </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    article: state.editModal.article,
-    hidden: state.editModal.hidden
-  }
+let modal = {
+  mapStateToProps: state => ({
+      article: state.editModal.article,
+      hidden: state.editModal.hidden,
+      auth: state.auth.level,
+  }),
+  mapDispatchToProps: dispatch => bindActionCreators({
+    toggleEdit,
+    submitEdit,
+    editField
+  }, dispatch),
 }
-const mapDispatchToProps = dispatch => bindActionCreators({
-  toggleEdit,
-  submitEdit,
-  editField
-}, dispatch);
+
+
+let button = {
+  mapStateToProps: state => ({
+    text: 'delete',
+    cssClass: 'article-list-button',
+    article: state.editModal.article,
+  }),
+  mapDispatchToProps: (dispatch, ownProps) => bindActionCreators({
+    deleteArticle,
+  }, dispatch)
+}
+
+const DeleteButton = connect(
+  button.mapStateToProps,
+  button.mapDispatchToProps
+)(DeleteButtonContainer);
 
 const EditModal = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  modal.mapStateToProps,
+  modal.mapDispatchToProps
 )(EditModalContainer);
 
 export default EditModal;
