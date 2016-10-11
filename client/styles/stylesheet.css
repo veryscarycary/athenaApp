@@ -527,6 +527,11 @@ only screen and (max-width: 760px),
   align-items: center;
 }
 
+.rowFlexClose {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 .rowFlex {
   display: flex;
   flex-flow: row wrap;
@@ -535,6 +540,30 @@ only screen and (max-width: 760px),
 
 .hidden {
   display: none;
+}
+
+body {margin: 0;}
+
+.centerText {
+  text-align: center;
+}
+
+.brownBackground {
+  background-color: #a58c63;
+}
+
+.brownContainer {
+  /*background-color: #a58c63;*/
+  /*padding: 10px;*/
+  /*border-style: solid;*/
+  /*border-width: thick;
+  border-radius: 10px;
+  border-color: black;*/
+  margin-bottom: 20px;
+}
+
+.wideChart {
+  width: 900px;
 }
 
 /*ARTICLE STYLEZ*/
