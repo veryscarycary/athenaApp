@@ -7,7 +7,6 @@ import NotFoundComponent from './NotFoundComponent';
 import Home from './Home/HomeContainer';
 import Login from './Login/LoginContainer';
 import Signup from './Signup/SignupContainer';
-import Title from './AdminDashboard/Title';
 import DashboardContainer from './AdminDashboard/DashboardContainer';
 import SettingsContainer from './Settings/SettingsContainer';
 import ProfileContainer from './Profile/ProfileContainer';
