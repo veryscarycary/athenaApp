@@ -90,3 +90,24 @@ export const loadFilteredTicketState = (filteredTickets) => ({
 //   type: 'SET_SESSION_ID',
 //   sessionId
 // });
+//
+//
+/* TICKET PAGE ACTIONS ARE DOWN HERE */
+
+export const editTicketField = (field, value) => ({
+  type: 'EDIT_TICKET_FIELD',
+  payload: {
+    field,
+    value
+  }
+});
+
+export const submitTicketEdit = (ticket) => ({
+  type: 'SUBMIT_TICKET_EDIT',
+  payload: ticketUtils.editTicket(ticket);
+});
+
+export const createTicket = (ticket) => ({
+  type: 'CREATE_TICKET',
+  payload: ticketUtils.createTicket(ticket);
+})
