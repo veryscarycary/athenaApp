@@ -75,9 +75,14 @@ class SignupContainer extends React.Component {
   render () {
     return (
       <div>
-        <div className='signupTop'>
-          <Link className='linkMargins' to='/login'>Login</Link>
-          <Link className='linkMargins' to='/signup'>Signup</Link>
+        <div className='loginTop'>
+          <div>
+            <Link className='browseArticles' to='/articles'>Browse Articles</Link>
+          </div>
+          <div>
+            <Link className='linkMargins' to='/login'>Login</Link>
+            <Link className='linkMargins' to='/signup'>Signup</Link>
+          </div>
         </div>
 
         <div className='loginTopTrim'>
