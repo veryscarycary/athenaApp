@@ -1,5 +1,6 @@
 // NO LONGER NEED SESSIONREDUCER, SESSION WILL BE KEPT IN
 // SESSIONSTORAGE ON WINDOW, keeping just in case
+import Cookies from 'js-cookie';
 
 const sessionReducer = function(state = {}, action) {
   switch(action.type) {
@@ -12,4 +13,18 @@ const sessionReducer = function(state = {}, action) {
   }
 };
 
-export default sessionReducer;
+var level = JSON.parse(Cookies.get('roles'));
+const auth = function(state = {level:level}, action) {
+  console.log(state);
+  switch(action.type) {
+    case 'GET_AUTH_LEVEL':
+      return {
+        level: action.payload
+      }
+    default:
+      return state
+  }
+}
+
+//export default sessionReducer;
+export default auth;

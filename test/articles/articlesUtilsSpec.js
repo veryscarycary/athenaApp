@@ -10,6 +10,9 @@ import promiseMiddleware from 'redux-promise-middleware';
 const mockStore = configureMockStore([promiseMiddleware()]);
 
 describe('utils', () => {
+  afterEach(() => {
+    nock.cleanAll();
+  });
   describe('getArticles', () => {
     nock('http://localhost:3000')
       .get('/api/kb')

@@ -32,6 +32,12 @@ export const article = (state = {}, action) => {
 
 export const articlesList = (state = [], action) => {
   switch (action.type) {
+    case 'DELETE_ARTICLE_FULFILLED':
+      console.log('PAYLOAD ', action.payload);
+      return [
+        ...state.slice(0, action.payload-1),
+        ...state.slice(action.payload)
+      ]
     case 'CREATE_ARTICLE_FULFILLED':
       return state.concat(action.payload);
     case 'GET_ARTICLES_FULFILLED':
@@ -50,6 +56,10 @@ export const articlesList = (state = [], action) => {
 
 export const articleDisplay = (state = {hidden:true}, action) => {
   switch (action.type) {
+    case 'DELETE_ARTICLE_FULFILLED':
+      return {
+        hidden: true,
+      }
     case 'SUBMIT_EDIT_FULFILLED':
       return {
         ...state,
@@ -78,6 +88,11 @@ export const articleDisplay = (state = {hidden:true}, action) => {
 
 export const editModal = (state = {hidden:true, article:{}}, action) => {
   switch (action.type) {
+    case 'DELETE_ARTICLE_FULFILLED':
+      return {
+          hidden: true,
+          article:{},
+        }
     case 'TOGGLE_EDIT_MODAL':
       return Object.assign({},
         {
