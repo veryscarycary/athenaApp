@@ -45,5 +45,14 @@ module.exports = {
       res.status(err.statusCode).send(err)
       : res.status(resp.statusCode).send(JSON.parse(body))
     );
+  },
+  getTicketRelations(req, res) {
+    request({
+      method: 'GET',
+      uri: `${ticket}/metrics`
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : res.status(resp.statusCode).send(body)
+    );
   }
 };
