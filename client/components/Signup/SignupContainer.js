@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import userUtils from '../../utils/userUtils';
 import sessionUtils from '../../utils/sessionUtils';
-import * as ticketActionCreators from '../../actions/index';
+import * as actionCreators from '../../actions/index';
 
 class SignupContainer extends React.Component {
   constructor (props) {
@@ -60,12 +60,12 @@ class SignupContainer extends React.Component {
         })
       }).then((res) => {
         if (res.status === 201) {
-          sessionUtils.setSession(this.state.username, this.state.password, this)
+          sessionUtils.setSession(this.state.username, this.state.password, this, this.props.getAuthLevel.bind(this), this.props.loadGlobalUserInfo.bind(this))
             .then(() => {
               this.setState({
                 signupSuccessful: true
               }, () => setTimeout(this.redirectToHome, 1000));
-            });
+            })
         } else {
           //if name exist
           this.setState({usernameIsUsed: true}, () => setTimeout(() =>
@@ -141,7 +141,7 @@ const mapStateToProps = function(store) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ticketActionCreators, dispatch);
+  return bindActionCreators(actionCreators, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);

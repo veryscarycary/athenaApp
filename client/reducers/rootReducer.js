@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {articlesList, articleDisplay, editModal, searchResults, create, status } from './articlesReducer';
 import ticketsReducer, {ticketModal} from './ticketsReducer';
+import userReducer from './userReducer';
 import { ticketPage, ticketArticlesSearch, ticketPageArticleModal } from './ticketPageReducer';
 import auth from './sessionReducer';
 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   ticketsReducer,
   ticketPage,
   ticketArticlesSearch,
-  ticketPageArticleModal
+  ticketPageArticleModal,
+  userReducer
 })
 
 export default rootReducer;

@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import Cookies from 'js-cookie';
 
 const sessionUtils = {
-  setSession: (username, password, context, getAuthLevel) => {
+  setSession: (username, password, context, getAuthLevel, loadGlobalUserInfo) => {
     return fetch(`http://localhost:3000/api/signin/${username}/${password}`, {
       method: 'GET',
       credentials: 'same-origin'
@@ -16,7 +16,7 @@ const sessionUtils = {
           Cookies.set('roles', JSON.stringify(sessionObj.roles)); // Cookies only hold strings
 
           getAuthLevel(JSON.parse(Cookies.get('roles')));
-          browserHistory.push('/');
+          loadGlobalUserInfo(sessionObj._id).then(() => browserHistory.push('/'));
         });
       } else {
         context.setState({userNameDoesNotExist: true}, () => setTimeout(() =>

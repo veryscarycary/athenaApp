@@ -25,7 +25,9 @@ class AppContainer extends React.Component {
 }
 
 const mapStateToProps = function(store) {
+  console.log(store, 'this is the store at the home page!');
   return {
+    userInfo: store.userReducer.userInfo
   };
 };
 
