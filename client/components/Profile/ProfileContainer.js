@@ -48,7 +48,7 @@ class ProfileContainer extends AuthorizedComponent {
 
         <div className='row'>
           <div className='col-xs-4 col-xs-push-1'>
-            <img src={this.state.pictureUrl} className='profilePicture' />
+            <img src={this.state.user.pictureUrl} className='profilePicture' />
           </div>
 
           <div className='col-xs-6 col-xs-push-2'>
@@ -62,7 +62,6 @@ class ProfileContainer extends AuthorizedComponent {
             <EditPictureForm user={this.state.user} className='collapse' id='content' />
           </div>
         </div>
-        <button onClick={()=> {alert(JSON.stringify(this.state))} }>Check Me</button>
 
         <div className='row'>
           <div className='col-xs-10 col-xs-push-1'>
