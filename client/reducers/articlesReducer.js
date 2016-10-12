@@ -38,6 +38,8 @@ export const articlesList = (state = [], action) => {
         ...state.slice(0, action.payload-1),
         ...state.slice(action.payload)
       ]
+//    case 'SEARCH_ARTICLES_FULFILLED':
+//      return action.payload
     case 'CREATE_ARTICLE_FULFILLED':
       return state.concat(action.payload);
     case 'GET_ARTICLES_FULFILLED':
