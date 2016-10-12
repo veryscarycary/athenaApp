@@ -35,7 +35,7 @@ module.exports = {
     request({
       method: 'GET',
       uri: `${ticket}/metrics`
-    }, (err, resp, body) => sendRes(res, err, resp, body));
+    }, (err, resp, body) => sendRes(res, err, resp, JSON.parse(body)));
   }
 };
 
