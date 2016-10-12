@@ -55,7 +55,7 @@ export default {
     .catch(err => console.log(err, 'There was an error while submitting the ticket!'));
   },
   putTicket (ticket) {
-    return new Promise((resolve, reject) => fetch(`/api/ticket/${ticket._id}`, {
+    return new Promise((resolve, reject) => fetch(`/api/ticket/${ticket.id}`, {
       method:'PUT',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(ticket)
