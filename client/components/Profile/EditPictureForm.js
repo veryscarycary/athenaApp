@@ -20,22 +20,20 @@ export default class EditPictureForm extends React.Component {
   }
 
   editProfilePicture () {
-    userUtils.editProfilePicture()
+    userUtils.editProfilePicture(this.props.user._id, this.props.user.password);
   }
 
   render () {
     return (
-      <div className='row'>
-        <div className='col-xs-12 editTicketForm'>
-          <form action='/profile' method='' onSubmit={() => {this.editProfilePicture(this.props.ticket._id)}}>
-            <div className='form-group'>
-              <label htmlFor='pictureUrl'>Picture:</label>
-              <input type='text' className='form-control' id={`pictureUrl${this.props.ticket._id}`} onChange={this.setPicture.bind(this)} value={this.state.pictureUrl} />
-            </div>
-            <div className='form-group'>
-              <input type='submit' className='btn btn-default' id='Submit' />
-            </div>
-          </form>
+      <form action='/profile' method='' onSubmit={() => {this.editProfilePicture(this.state.pictureUrl)}}>
+        <div className='form-group'>
+          <label htmlFor='pictureUrl'>Picture Url:</label>
+          <input type='text' className='form-control' id='pictureUrl' onChange={this.setPicture.bind(this)} value={this.state.pictureUrl} />
+        </div>
+        <div className='form-group'>
+          <input type='submit' className='btn btn-default' id='Submit' />
+        </div>
+      </form>
     );
   }
 };
