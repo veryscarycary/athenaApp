@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { AuthorizedComponent } from 'react-router-role-authorization';
-
+import sessionUtils from '../../utils/sessionUtils';
 import ProfileInfo from './ProfileInfo';
 import UsersDisplay from './UsersDisplay';
 
@@ -11,6 +11,10 @@ class ProfileContainer extends AuthorizedComponent {
 
     this.userRoles = JSON.parse(Cookies.get('roles')); //deserialize json array
     this.notAuthorizedPath = '/not-found';
+  }
+
+  componentWillMount () {
+    sessionUtils.checkSession();
   }
 
   render () {

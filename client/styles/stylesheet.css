@@ -475,10 +475,29 @@ only screen and (max-width: 760px),
   margin-right: 30px;
 }
 
-.loginTop {
+.browseArticles {
+  margin-left: 30px;
+}
+
+.signupTop {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  color: #9d9d9d;
+  height: 60px;
+  width: 100%;
+  top: 0px;
+  background-color: #fcf6d7;
+}
+
+.loginTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;

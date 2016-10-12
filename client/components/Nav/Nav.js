@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
 import beefalo from '../../images/beefalo.png';
 import DashboardButton from './DashboardButton';
+import TicketsButton from './TicketsButton';
 import ProfileButton from './ProfileButton';
 import SettingsButton from './SettingsButton';
 import { connect } from 'react-redux';
@@ -44,9 +45,7 @@ const NavContainer = ({dispatch}) => {
                     <li>
                       <Link to='/articles'>Articles</Link>
                     </li>
-                    <li>
-                      <Link to='/tickets'>Tickets</Link>
-                    </li>
+                    <TicketsButton />
                     <DashboardButton />
                     <ProfileButton />
                     <SettingsButton />

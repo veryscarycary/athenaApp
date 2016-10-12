@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 import { AuthorizedComponent } from 'react-router-role-authorization';
 
+import sessionUtils from '../../utils/sessionUtils';
 import PermissionsTable from './PermissionsTable';
 import RolesTable from './RolesTable';
 import userUtils from '../../utils/userUtils';
@@ -19,7 +20,10 @@ class SettingsContainer extends AuthorizedComponent {
     this.notAuthorizedPath = '/not-found';
   }
 
+
+
   componentWillMount () {
+    sessionUtils.checkSession();
     // // set users in state
     // this.props.loadTicketState();
     userUtils.getUsers().then( (users)=> this.setState({users: users}) );
