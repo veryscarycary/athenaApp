@@ -20,7 +20,7 @@ export default class EditPictureForm extends React.Component {
   }
 
   editProfilePicture () {
-    userUtils.changeProfilePicture(this.props.user._id, this.props.user.password).then( () => this.props.renderPic() );
+    userUtils.changeProfilePicture(this.props.user._id, this.props.user.password);
   }
 
   render () {
