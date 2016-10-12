@@ -14,7 +14,7 @@ class ProfileModal extends React.Component {
 
         <div id={`openProfileModal`} className="modalDialog">
           <div>
-            <a href="#closeModal" title="Close" className="closeModal">X</a>
+            <a href="#closeProfileModal" title="Close" className="closeModal">X</a>
 
             <EditProfileForm userInfo={this.props.userInfo} />
           </div>

@@ -9,7 +9,7 @@ import TicketDisplay from './TicketDisplay';
 import Search from './Search';
 import CreateTicket from './CreateTicket';
 
-class MainLayoutContainer extends React.Component {
+class MainLayoutContainer extends AuthorizedComponent {
   constructor (props) {
     super(props)
 
