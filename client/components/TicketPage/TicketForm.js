@@ -48,11 +48,11 @@ class TicketFormContainer extends Component {
             issue: issue.value,
             solution: solution.value,
             customerId: customerId.value,
-            id: uuid.v4(),
           }
           if (this.props.id !== 'create') {
-            ticket._id = this.props.ticket._id;
+            ticket.id = this.props.ticket.id;
           }
+          console.log(ticket);
           this.submitForm(ticket);
         }}>
           <label htmlFor='title'>Title</label>

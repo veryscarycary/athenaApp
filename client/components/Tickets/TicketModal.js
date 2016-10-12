@@ -50,7 +50,7 @@ class TicketModalContainer extends React.Component {
 
   render () {
     return (
-      <div id={`openModal${this.props.ticket._id}`} className="modalDialog">
+      <div id={`openModal${this.props.ticket._id}`} className="ticketModalDialog">
         <div>
           <a onClick={this.handleToggle.bind(this)} title="Close" className="closeModal">X</a>
           <h2>Ticket Details</h2>
