@@ -42,12 +42,30 @@ const userUtils = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        firstName: document.getElementById('editName').value.split(' ')[0],
-        lastName: document.getElementById('editName').value.split(' ')[1],
-        username: document.getElementById('editUsername').value,
-        phoneNumber: document.getElementById('editPhoneNumber').value,
-        email: document.getElementById('editEmail').value,
-        bio: document.getElementById('editBio').value
+        firstName: document.getElementById('editName').value.split(' ')[0].trim(),
+        lastName: document.getElementById('editName').value.split(' ')[1].trim(),
+        username: document.getElementById('editUsername').value.trim(),
+        phoneNumber: document.getElementById('editPhoneNumber').value.trim(),
+        email: document.getElementById('editEmail').value.trim(),
+        bio: document.getElementById('editBio').value.trim()
+      })
+    })
+    .then(function (response) {
+      return response.json();
+    })
+    .catch(error => {
+      console.log(error, 'There was an error while editing the ticket!');
+    });
+  },
+  changeProfilePicture: (sessionId, password) => {
+    return fetch(`http://localhost:3000/api/user/${sessionId}/${password}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pictureUrl: document.getElementById('pictureUrl').value.trim()
       })
     })
     .then(function (response) {
