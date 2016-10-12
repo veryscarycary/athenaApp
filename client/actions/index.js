@@ -22,6 +22,9 @@ export const getArticle = (id) => ({
     promise: articleUtils.getArticle(id)
   }
 });
+export const clearArticle = () => ({
+  type: 'CLEAR_ARTICLE',
+})
 
 export const toggleArticle = () => ({
   type: 'TOGGLE_DISPLAY',

@@ -43,7 +43,7 @@ export const articlesList = (state = [], action) => {
     case 'CREATE_ARTICLE_FULFILLED':
       return state.concat(action.payload);
     case 'GET_ARTICLES_FULFILLED':
-      return state.concat(action.payload);
+      return action.payload;
     case 'SUBMIT_EDIT_FULFILLED':
       return state.map((item) => {
         if (item.id === action.payload.id) {
@@ -56,12 +56,10 @@ export const articlesList = (state = [], action) => {
   }
 }
 
-export const articleDisplay = (state = {hidden:true}, action) => {
+export const articleDisplay = (state = {}, action) => {
   switch (action.type) {
-    case 'DELETE_ARTICLE_FULFILLED':
-      return {
-        hidden: true,
-      }
+    case 'CLEAR_ARTICLE':
+      return {}
     case 'SUBMIT_EDIT_FULFILLED':
       return {
         ...state,
@@ -78,11 +76,7 @@ export const articleDisplay = (state = {hidden:true}, action) => {
         _id: action.payload[0]._id,
         issuePreview: action.payload[0].issuePreview,
         id: action.payload[0].id,
-        hidden: false,
-        status: 'fulfilled'
       }
-    case 'TOGGLE_DISPLAY':
-      return Object.assign({}, {hidden: !state.hidden});
     default:
       return state
   }
