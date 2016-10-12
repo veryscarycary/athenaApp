@@ -24,6 +24,10 @@ const common = {
         exclude: /node_modules/,
       },
       {
+        test: /\.json$/,
+        loader:'json-loader',
+      },
+      {
         test: /\.(jpg|png)$/,
         loader: 'file',
         include: path.resolve(__dirname, 'client/images'),
