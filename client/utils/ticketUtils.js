@@ -18,6 +18,12 @@ export default {
       .then(json => resolve(json)))
       .catch(err => reject(err)));
   },
+  searchTickets(term) {
+    return new Promise((resolve, reject) => fetch(`/api/ticket/search=${term}`)
+      .then(response => response.json())
+      .then(json => resolve(json))
+      .catch(err => reject(err)));
+  },
   createTicket(ticket) {
     return new Promise((resolve, reject) => fetch('/api/ticket', {
       method:'POST',

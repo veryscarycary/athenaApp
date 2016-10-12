@@ -155,5 +155,13 @@ export const closeTicketArticleModal = () => ({
 export const setModalArticles = (articles) => ({
   type: 'SET_MODAL_ARTICLES',
   payload: articles,
+});
+
+export const ticketSearch = (options) => ({
+  type: 'TICKET_SEARCH',
+  payload: searchUtils.search(options)
 })
 
+export const clearTicketSearch = (options) => ({
+  type: 'CLEAR_TICKET_SEARCH',
+})

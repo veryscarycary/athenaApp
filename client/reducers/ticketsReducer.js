@@ -1,6 +1,7 @@
 const initialState = {
   tickets: [],
   filteredTickets: [],
+  past: [],
   searchText: '',
   createTicketToggled: false,
   ticketsPage: 1
@@ -39,9 +40,11 @@ const ticketsReducer = function(state = initialState, action) {
         status: 'rejected'
       };
     case 'SET_NEW_TICKETS_FULFILLED':
+      const addToPast = state.past.concat([action.payload]);
       return {
         tickets: action.payload,
         filteredTickets: action.payload,
+        past: addToPast,
         status: 'fulfilled'
       };
     case 'SET_NEW_TICKETS_PENDING':
@@ -50,7 +53,19 @@ const ticketsReducer = function(state = initialState, action) {
         ...state,
         status: 'pending'
       };
-
+    case 'TICKET_SEARCH_FULFILLED':
+      return {
+        ...state,
+        filteredTickets: action.payload,
+      }
+    case 'CLEAR_TICKET_SEARCH':
+      const present = state.past[state.past.length - 1];
+      const newPast = state.past.slice(0, state.past.length - 1);
+      return {
+        ...state,
+        filteredTickets: present,
+        past: newPast,
+      }
     case 'SET_NEW_SEARCHTEXT':
       return Object.assign({}, state, { searchText: action.searchText });
 
@@ -78,6 +93,22 @@ export const ticketModal = (state = {ticket:{}, hidden:true, articles:[]}, actio
       return {
         ...state,
         articles: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
+export const ticketSearchResults = (state = {results:[]}, action) => {
+  switch(action.type) {
+    case 'TICKET_SEARCH_FULFILLED':
+      return {
+        ...state,
+        results: action.payload,
+      }
+    case 'CLEAR_TICKET_SEARCH':
+      return {
+        results: []
       }
     default:
       return state
