@@ -2,15 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
+import { toggleTicketModal } from '../../actions';
 
 import TicketModal from './TicketModal';
 
-const status = (ticket) => {
-  if (ticket.checkedOut) { return 'Open';}
-  return ticket.resolved === true ? 'Resolved' : 'Unresolved';
-};
 
-const Ticket = ({ticket}) => {
+
+const TicketContainer = ({ticket, toggleTicketModal}) => {
+  const handleToggleModal = (ticket) => {
+    console.log('I WAS CALLED');
+    toggleTicketModal(ticket);
+  }
+  const status = (ticket) => {
+    if (ticket.checkedOut) { return 'Open';}
+    return ticket.resolved === true ? 'Resolved' : 'Unresolved';
+  };
+
   return (
     <tr>
       <td>
@@ -24,7 +31,12 @@ const Ticket = ({ticket}) => {
       <td>
         {ticket.customerId}
       </td>
-      <TicketModal ticket={ticket} />
+      <td>
+        <a
+          onClick={() => handleToggleModal(ticket)}>
+          MoreInfo
+        </a>
+      </td>
       {ticket.checkedOut ?
         <td className='badge openTicketColor'>
           {status(ticket)}
@@ -45,8 +57,14 @@ const Ticket = ({ticket}) => {
   );
 }
 
-//const mapDispatchToProps = (dispatch) => bindActionCreators({
-//  getTicketForModal,
-//}, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  toggleTicketModal,
+}, dispatch)
+
+
+const Ticket = connect(
+  () => ({}),
+  mapDispatchToProps
+)(TicketContainer);
 
 export default Ticket;

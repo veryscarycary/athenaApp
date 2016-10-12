@@ -85,6 +85,11 @@ export const loadFilteredTicketState = (filteredTickets) => ({
   filteredTickets
 });
 
+export const toggleTicketModal = (ticket) => ({
+  type: 'TOGGLE_TICKET_MODAL',
+  ticket,
+});
+
 // NO LONGER NEED SESSION INFO ON PROPS, KEEPING JUST IN CASE
 // export const loadSessionId = (sessionId) => ({
 //   type: 'SET_SESSION_ID',
@@ -143,4 +148,9 @@ export const getArticleForTicketSearch = (id) => ({
 export const closeTicketArticleModal = () => ({
   type: 'CLOSE_TICKET_ARTICLE_MODAL',
 });
+
+export const setModalArticles = (articles) => ({
+  type: 'SET_MODAL_ARTICLES',
+  payload: articles,
+})
 

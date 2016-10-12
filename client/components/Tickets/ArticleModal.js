@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { getArticle } from '../../actions';
 
-const ArticleModal = ({ dispatch, article }) => {
+const ArticleModalContainer = ({ article, getArticle }) => {
   const handleToggle = (article) => {
-    dispatch(getArticle(article.id));
+    getArticle(article.id);
   }
   return (
     <div>
       <button
+        data-toggle="collapse"
+        data-target={`#articleModal${article.id}`}
         onClick={e => {
           e.preventDefault();
+          console.log(article)
           handleToggle(article);
         }} >
         Close</button>
@@ -25,14 +29,13 @@ const ArticleModal = ({ dispatch, article }) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    article: state.articleDisplay
-  }
-}
+const mapDispatchToProps = dispatch => bindActionCreators({
+  getArticle,
+}, dispatch)
 
-const FullArticle = connect(
-  mapStateToProps
-)(ArticleModal);
+const ArticleModal = connect(
+  () => ({}),
+  mapDispatchToProps,
+)(ArticleModalContainer);
 
 export default ArticleModal;

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ticketUtils from '../../utils/ticketUtils';
 import { Link } from 'react-router';
+import TicketModal from './TicketModal';
 
 import * as ticketActionCreators from '../../actions/index';
 import Ticket from './Ticket';
@@ -55,6 +56,7 @@ class TicketDisplay extends React.Component {
             Create ticket
           </button>
         </Link>
+        { this.props.hidden ? null : <TicketModal ticket={this.props.ticket}/>}
       </div>
     )
   };
@@ -64,6 +66,8 @@ class TicketDisplay extends React.Component {
 const mapStateToProps = function(store) {
   return {
     tickets: store.ticketsReducer.tickets,
+    ticket: store.ticketModal.ticket,
+    hidden: store.ticketModal.hidden,
     filteredTickets: store.ticketsReducer.filteredTickets
   };
 };
