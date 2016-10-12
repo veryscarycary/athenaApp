@@ -23,6 +23,17 @@ export default class User extends React.Component {
     })
   }
 
+  componentDidMount() {
+    // if roles contains admin, select admin
+    if (this.props.user.roles.indexOf('admin') !== -1) {
+      document.getElementById(`${this.props.user.username}AdminRadio`).checked = 'checked';
+    } else if (this.props.user.roles.indexOf('userPlus') !== -1) {
+      document.getElementById(`${this.props.user.username}UserPlusRadio`).checked = 'checked';
+    } else if (this.props.user.roles.indexOf('user') !== -1) {
+      document.getElementById(`${this.props.user.username}UserRadio`).checked = 'checked';
+    }
+  }
+
   submitPermissions (sessionId, password, radioElements, e, username) {
     e.preventDefault();
 
@@ -46,13 +57,13 @@ export default class User extends React.Component {
           {this.props.user.username}
         </td>
         <td data-th="User">
-          <input type="radio" name={this.props.user.username} value='user' />
+          <input type="radio" id={`${this.props.user.username}UserRadio`} name={this.props.user.username} value='user' />
         </td>
         <td data-th="User Plus">
-          <input type="radio" name={this.props.user.username} value='userPlus'/>
+          <input type="radio" id={`${this.props.user.username}UserPlusRadio`} name={this.props.user.username} value='userPlus'/>
         </td>
         <td data-th="Admin">
-          <input type="radio" name={this.props.user.username} value='admin' />
+          <input type="radio" id={`${this.props.user.username}AdminRadio`} name={this.props.user.username} value='admin' />
         </td>
         <td>
             <div>
