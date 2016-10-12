@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
+import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { getArticle, clearArticle } from '../../actions';
 
@@ -8,16 +9,12 @@ export class ArticleContainer extends Component {
   constructor(props) {
     super(props)
   }
-
   componentWillMount() {
     this.props.getArticle(this.props.id);
   }
-  componentWillUnmount() {
-    this.props.clearArticle();
-  }
 
   render() {
-    const {article, title, issue, issuePreview, solution} = this.props;
+    const {article, title, issue, issuePreview, solution, auth} = this.props;
     return(
       <div>
         <h3 className="full-article-title main">{article.title}</h3>
@@ -36,18 +33,28 @@ export class ArticleContainer extends Component {
           escapeHTML="true"
           source={article.solution}
           className="content" />
+          {
+            auth[0] === 'userPlus' || auth[0] === 'admin'
+              ? <Link to={`/articles/edit/${article.id}`}>
+                  <button
+                    className="article-list-button">
+                      edit
+                  </button>
+                </Link>
+              : null
+          }
       </div>
     )
   }
 }
 
-    //{auth && auth[0] === 'admin' ? <EditButton /> : null}
 const mapStateToProps = (state) => ({
   article: state.articleDisplay,
+  auth: state.auth.level,
 })
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getArticle,
-  clearArticle
+  clearArticle,
 }, dispatch)
 
 const Article = connect(

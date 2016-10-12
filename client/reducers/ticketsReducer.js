@@ -54,13 +54,15 @@ const ticketsReducer = function(state = initialState, action) {
         status: 'pending'
       };
     case 'TICKET_SEARCH_FULFILLED':
+      let past = state.filteredTickets;
       return {
         ...state,
         filteredTickets: action.payload,
+        past: state.past.concat(present)
       }
     case 'CLEAR_TICKET_SEARCH':
-      const present = state.past[state.past.length - 1];
-      const newPast = state.past.slice(0, state.past.length - 1);
+      let present = state.past[state.past.length - 1];
+      let newPast = state.past.slice(0, state.past.length - 1);
       return {
         ...state,
         filteredTickets: present,

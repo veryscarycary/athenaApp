@@ -54,7 +54,7 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
 
 let article = {
   mapStateToProps: (state) => ({
-    articles: state.articlesList,
+    articles: state.articlesList.articles,
     auth: state.auth.level,
     article: state.articleDisplay,
   }),

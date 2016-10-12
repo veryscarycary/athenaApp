@@ -22,6 +22,7 @@ export const getArticle = (id) => ({
     promise: articleUtils.getArticle(id)
   }
 });
+
 export const clearArticle = () => ({
   type: 'CLEAR_ARTICLE',
 })
@@ -57,22 +58,25 @@ export const editField = (field, value) => ({
     value,
   }
 });
-export const getAuthLevel = (level) => {
-  return({
+
+export const getAuthLevel = (level) => ({
   type: 'GET_AUTH_LEVEL',
   payload: level,
 });
-}
+
 export const searchArticles = (options) => ({
   type: 'SEARCH_ARTICLES',
   payload: searchUtils.search({...options, type:'kb'})
 });
+
 export const clearSearch = (options) => ({
   type: 'CLEAR_SEARCH',
 });
+
 export const toggleCreate = () => ({
   type: 'TOGGLE_CREATE',
 });
+
 export const submitEdit = (article) => ({
   type: 'SUBMIT_EDIT',
   payload: articleUtils.editArticle(article)
@@ -164,4 +168,9 @@ export const ticketSearch = (options) => ({
 
 export const clearTicketSearch = (options) => ({
   type: 'CLEAR_TICKET_SEARCH',
+})
+
+export const setEditArticle = (id) => ({
+  type: 'SET_EDIT_ARTICLE',
+  payload: articleUtils.getArticle(id),
 })

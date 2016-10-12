@@ -30,27 +30,52 @@ export const article = (state = {}, action) => {
   }
 }
 
-export const articlesList = (state = [], action) => {
+export const articlesList = (state = {articles:[], past:[]}, action) => {
   switch (action.type) {
     case 'DELETE_ARTICLE_FULFILLED':
-      console.log('PAYLOAD ', action.payload);
-      return [
-        ...state.slice(0, action.payload-1),
-        ...state.slice(action.payload)
-      ]
+      return {
+        ...state,
+        articles: [
+          ...state.slice(0, action.payload-1),
+          ...state.slice(action.payload)
+        ]
+      }
     case 'SEARCH_ARTICLES_FULFILLED':
-      return action.payload
+      let past = state.articles
+      return {
+        ...state,
+        articles: action.payload,
+        past: state.past.concat(present)
+      }
+    case 'CLEAR_SEARCH':
+      let present = state.past[state.past.length - 1];
+      let newPast = state.past.slice(0, state.past.length - 1);
+      return {
+        ...state,
+        articles: present,
+        past: newPast,
+      }
     case 'CREATE_ARTICLE_FULFILLED':
-      return state.concat(action.payload);
+      return {
+        ...state,
+        articles: state.articles.concat(action.payload)
+      }
     case 'GET_ARTICLES_FULFILLED':
-      return action.payload;
-    case 'SUBMIT_EDIT_FULFILLED':
-      return state.map((item) => {
-        if (item.id === action.payload.id) {
-          return action.payload;
-        }
-        return item;
-      })
+      return {
+        ...state,
+        articles:action.payload
+      }
+//    case 'SUBMIT_EDIT_FULFILLED':
+//      console.log(state.articles);
+//      return {
+//        ...state,
+//        articles: state.articles.map((item) => {
+//          if (item.id === action.payload.id) {
+//            return action.payload;
+//          }
+//          return item;
+//        })
+//      }
     default:
       return state
   }
@@ -82,19 +107,18 @@ export const articleDisplay = (state = {}, action) => {
   }
 }
 
-export const editModal = (state = {hidden:true, article:{}}, action) => {
+export const editModal = (state = {article:{}}, action) => {
   switch (action.type) {
     case 'DELETE_ARTICLE_FULFILLED':
       return {
-          hidden: true,
-          article:{},
-        }
-    case 'TOGGLE_EDIT_MODAL':
-      return Object.assign({},
-        {
-          hidden: !state.hidden,
-          article:action.payload
-        });
+        ...state,
+        article:{},
+      }
+    case 'SET_EDIT_ARTICLE_FULFILLED':
+      return {
+        ...state,
+        article: action.payload[0]
+      };
     case 'EDIT_FIELD':
       return {
         ...state,
@@ -109,17 +133,6 @@ export const editModal = (state = {hidden:true, article:{}}, action) => {
         article: action.payload,
       }
     default: return state
-  }
-}
-
-export const create = (state = {hidden: true}, action) => {
-  switch (action.type) {
-    case 'TOGGLE_CREATE':
-      return {
-        hidden: !state.hidden
-      }
-    default:
-      return state
   }
 }
 
