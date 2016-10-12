@@ -3,6 +3,7 @@ import articleUtils from '../utils/articleUtils';
 import ticketUtils from '../utils/ticketUtils';
 import sessionUtils from '../utils/sessionUtils';
 import searchUtils from '../utils/searchUtils';
+import userUtils from '../utils/userUtils';
 
 export const createArticle = (article) => ({
     type: 'CREATE_ARTICLE',
@@ -97,13 +98,15 @@ export const toggleTicketModal = (ticket) => ({
   ticket,
 });
 
-// NO LONGER NEED SESSION INFO ON PROPS, KEEPING JUST IN CASE
-// export const loadSessionId = (sessionId) => ({
-//   type: 'SET_SESSION_ID',
-//   sessionId
-// });
-//
-//
+
+
+
+export const loadGlobalUserInfo = (sessionId) => ({
+  type: 'SET_USER_INFO',
+  payload: userUtils.getUser(sessionId)
+});
+
+
 /* TICKET PAGE ACTIONS ARE DOWN HERE */
 
 export const editTicketField = (field, value) => ({

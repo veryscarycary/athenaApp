@@ -3,11 +3,11 @@ import { RoleAwareComponent } from 'react-router-role-authorization';
 import { Link } from 'react-router';
 import Cookies from 'js-cookie';
 
-class DashboardButton extends RoleAwareComponent {
+class TicketsButton extends RoleAwareComponent {
   constructor(props) {
     super(props);
 
-    this.allowedRoles = ['admin'];
+    this.allowedRoles = ['user', 'admin'];
 
     if (Cookies.get('roles')) {
       this.userRoles = JSON.parse(Cookies.get('roles'));
@@ -19,7 +19,7 @@ class DashboardButton extends RoleAwareComponent {
   render() {
     const jsx = (
       <li>
-        <Link to='/dashboard'>Dashboard</Link>
+        <Link to='/tickets'>Tickets</Link>
       </li>
     );
 
@@ -27,4 +27,4 @@ class DashboardButton extends RoleAwareComponent {
   }
 }
 
-export default DashboardButton;
+export default TicketsButton;

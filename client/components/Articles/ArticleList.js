@@ -34,9 +34,9 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
             <div
               className="article-list-content">
               <h3 className="article-list-title">{article.title}</h3>
-              <ReactMarkdown
-                source={article.issuePreview}
-                escapeHTML="true" />
+              <div>
+                {article.issuePreview}
+                </div>
             </div>
             <Link to={`/articles/${article.id}`}>
               <button

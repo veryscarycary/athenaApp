@@ -5,8 +5,9 @@ import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux';
 
+import userUtils from '../../utils/userUtils';
 import sessionUtils from '../../utils/sessionUtils';
-import * as ticketActionCreators from '../../actions/index';
+import * as actionCreators from '../../actions/index';
 
 class SignupContainer extends React.Component {
   constructor (props) {
@@ -38,33 +39,41 @@ class SignupContainer extends React.Component {
     var roles = [];
     if (document.getElementById('userBox').checked) {roles.push('user');}
     if (document.getElementById('adminBox').checked) {roles.push('admin');}
-    //make a post request to server
-    fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username:this.state.username,
-        password:this.state.password,
-        roles:roles
-      })
-    }).then((res) => {
-      if (res.status === 201) {
-        sessionUtils.setSession(this.state.username, this.state.password, this)
-          .then(() => {
-            this.setState({
-              signupSuccessful: true
-            }, () => setTimeout(this.redirectToHome, 1000));
-          });
-      } else {
-        //if name exist
-        this.setState({usernameIsUsed: true}, () => setTimeout(() =>
-          {this.setState({usernameIsUsed: false})}, 3000));
+
+    // check to see if they are the first user on the service
+    userUtils.getUsers().then((users) => {
+      if (users.length === 0) {
+        roles = ['admin'];
       }
-    }).catch((err) => {
-      console.log('There was an error during signup! =(', err);
+    }).then(() => {
+      //make a post request to server
+      fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username:this.state.username,
+          password:this.state.password,
+          roles:roles
+        })
+      }).then((res) => {
+        if (res.status === 201) {
+          sessionUtils.setSession(this.state.username, this.state.password, this, this.props.getAuthLevel.bind(this), this.props.loadGlobalUserInfo.bind(this))
+            .then(() => {
+              this.setState({
+                signupSuccessful: true
+              }, () => setTimeout(this.redirectToHome, 1000));
+            })
+        } else {
+          //if name exist
+          this.setState({usernameIsUsed: true}, () => setTimeout(() =>
+            {this.setState({usernameIsUsed: false})}, 3000));
+        }
+      }).catch((err) => {
+        console.log('There was an error during signup! =(', err);
+      });
     });
   }
 
@@ -76,8 +85,13 @@ class SignupContainer extends React.Component {
     return (
       <div>
         <div className='loginTop'>
-          <Link className='linkMargins' to='/login'>Login</Link>
-          <Link className='linkMargins' to='/signup'>Signup</Link>
+          <div>
+            <Link className='browseArticles' to='/articles'>Browse Articles</Link>
+          </div>
+          <div>
+            <Link className='linkMargins' to='/login'>Login</Link>
+            <Link className='linkMargins' to='/signup'>Signup</Link>
+          </div>
         </div>
 
         <div className='loginTopTrim'>
@@ -127,7 +141,7 @@ const mapStateToProps = function(store) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ticketActionCreators, dispatch);
+  return bindActionCreators(actionCreators, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer);

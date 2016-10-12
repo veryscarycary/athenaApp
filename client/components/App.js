@@ -23,11 +23,11 @@ export default class App extends Component {
           <Route path="/articles" component={Articles} />
           <Route path="/tickets" authorize={['user', 'admin']} component={MainLayoutContainer} />
           <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
-          <Route path="/settings" authorize={['admin']} component={SettingsContainer} />
           <Route path="/tickets/:id" component={TicketDetailsPage} />
           <Route path="/articles/:id" component={ArticleViewPage} />
           <Route path="/articles/edit/:id" component={ArticleEditPage} />
           <Route path="/profile" authorize={['user', 'admin']} component={ProfileContainer} />
+          <Route path="/settings" authorize={['admin']} component={SettingsContainer} />
         </Route>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
