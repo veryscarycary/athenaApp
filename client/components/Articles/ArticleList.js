@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getArticle, toggleArticle, toggleCreate} from '../../actions';
 import { Button } from './ButtonContainer';
+import ReactMarkdown from 'react-markdown';
 
 
-export const ArticleListItems = ({auth, articles, getArticle, toggleArticle}) => {
+export const ArticleListItems = ({auth, articles, article, getArticle, toggleArticle}) => {
   const handleToggle = (article) => {
     return Promise.resolve(toggleArticle())
     .then(() => getArticle(article.id));
@@ -28,7 +29,9 @@ export const ArticleListItems = ({auth, articles, getArticle, toggleArticle}) =>
             <div
               className="article-list-content">
               <h3 className="article-list-title">{article.title}</h3>
-              <div>{article.issuePreview}</div>
+              <ReactMarkdown
+                source={article.issuePreview}
+                escapeHTML="true" />
             </div>
             <button
               className="article-list-button"
@@ -50,6 +53,7 @@ let article = {
   mapStateToProps: (state) => ({
     articles: state.articlesList,
     auth: state.auth.level,
+    article: state.articleDisplay,
   }),
 
   mapDispatchToProps: dispatch => bindActionCreators({

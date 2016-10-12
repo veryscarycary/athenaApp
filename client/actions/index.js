@@ -42,7 +42,7 @@ export const loadTicketState = () => ({
   payload: ticketUtils.getTickets()
 });
 
-export const toggleEdit = (article = {}) => ({
+export const toggleEdit = (article) => ({
   type: 'TOGGLE_EDIT_MODAL',
   payload: article
 });
@@ -85,8 +85,72 @@ export const loadFilteredTicketState = (filteredTickets) => ({
   filteredTickets
 });
 
+export const toggleTicketModal = (ticket) => ({
+  type: 'TOGGLE_TICKET_MODAL',
+  ticket,
+});
+
 // NO LONGER NEED SESSION INFO ON PROPS, KEEPING JUST IN CASE
 // export const loadSessionId = (sessionId) => ({
 //   type: 'SET_SESSION_ID',
 //   sessionId
 // });
+//
+//
+/* TICKET PAGE ACTIONS ARE DOWN HERE */
+
+export const editTicketField = (field, value) => ({
+  type: 'EDIT_TICKET_FIELD',
+  payload: {
+    field,
+    value
+  }
+});
+
+export const submitTicketEdit = (ticket) => ({
+  type: 'SUBMIT_TICKET_EDIT',
+  payload: ticketUtils.putTicket(ticket)
+});
+
+export const createTicket = (ticket) => ({
+  type: 'CREATE_TICKET',
+  payload: ticketUtils.createTicket(ticket)
+});
+
+export const getTicketForModal = (id) => ({
+  type: 'GET_TICKET_FOR_MODAL',
+  payload: ticketUtils.getTicket(id)
+});
+
+export const clearTicketForModal = () => ({
+  type: 'CLEAR_TICKET_FOR_MODAL'
+});
+
+export const submitNewTicket = (ticket) => ({
+  type: 'SUBMIT_NEW_TICKET',
+  payload: ticketUtils.createTicket(ticket)
+});
+
+export const searchTicketArticles = (options) => ({
+  type: 'SEARCH_TICKET_ARTICLES',
+  payload: searchUtils.search({...options, type:'kb'})
+});
+
+export const clearTicketArticlesSearch = () => ({
+  type: 'CLEAR_TICKET_ARTICLES_SEARCH',
+});
+
+export const getArticleForTicketSearch = (id) => ({
+  type: 'GET_ARTICLE_FOR_TICKET_SEARCH',
+  payload: articleUtils.getArticle(id),
+});
+
+export const closeTicketArticleModal = () => ({
+  type: 'CLOSE_TICKET_ARTICLE_MODAL',
+});
+
+export const setModalArticles = (articles) => ({
+  type: 'SET_MODAL_ARTICLES',
+  payload: articles,
+})
+

@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { toggleArticle, toggleEdit } from '../../actions';
 import { EditButtonContainer } from './ButtonContainer';
 import { bindActionCreators } from 'redux';
+import ReactMarkdown from 'react-markdown';
 
-export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
+export const FullArticleContainer = ({ toggleArticle, article, auth, useOption }) => {
   const handleToggle = () => {
     toggleArticle();
   }
@@ -29,13 +30,15 @@ export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
       </div>
       <h3 className="full-article-title main">{article.title}</h3>
       <h5 className="full-article-title">Issue</h5>
-      <div className="content">
-        {article.issue}
-      </div>
+      <ReactMarkdown
+        escapeHTML="true"
+        source={article.issue}
+        className="content" />
       <h5 className="full-article-title">Solution</h5>
-      <div className="content">
-        {article.solution}
-      </div>
+      <ReactMarkdown
+        escapeHTML="true"
+        source={article.solution}
+        className="content" />
       {auth && auth[0] === 'admin' ? <EditButton /> : null}
      </div>
     </div>
@@ -45,7 +48,7 @@ export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
 let article = {
   mapStateToProps: (state) => ({
     article: state.articleDisplay,
-    auth: state.auth.level
+    auth: state.auth.level,
   }),
   mapDispatchToProps: (dispatch) => bindActionCreators({
     toggleArticle,
@@ -58,7 +61,7 @@ let button = {
     cssClass: 'article-list-button',
     article: state.articleDisplay,
   }),
-  mapDispatchToProps: (dispatch, ownProps) => bindActionCreators({
+  mapDispatchToProps: (dispatch) => bindActionCreators({
     toggleEdit,
   }, dispatch),
 }

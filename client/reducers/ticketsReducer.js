@@ -65,4 +65,23 @@ const ticketsReducer = function(state = initialState, action) {
   }
 };
 
+export const ticketModal = (state = {ticket:{}, hidden:true, articles:[]}, action) => {
+  switch (action.type) {
+    case 'TOGGLE_TICKET_MODAL':
+      return {
+        ...state,
+        articles:[],
+        ticket: action.ticket,
+        hidden: !state.hidden,
+      }
+    case 'SET_MODAL_ARTICLES':
+      return {
+        ...state,
+        articles: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
 export default ticketsReducer;
