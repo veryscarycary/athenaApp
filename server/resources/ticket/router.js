@@ -2,9 +2,6 @@
 const router = require('../../config/middleware.js').router();
 const api = require('./controller.js');
 
-// //returns stub list based on search params from search service. also used to get individual stubs.
-// router.get('/api/ticket/search', api.searchTicket); TODO: PENDING IMPLEMENTATION OF SEARCH SERVICE
-
 router.route('/api/ticketMetrics')
   .get(api.getTicketRelations);
 
