@@ -48,11 +48,21 @@ export default class User extends React.Component {
       .catch(() => alert('Error! Permissions were not changed.'));
   };
 
+  deleteUser (sessionId, password, e, username) {
+    e.preventDefault();
+
+    userUtils.deleteUser(sessionId, password)
+      .then(() => document.getElementById(`${this.props.user.username}Row`)
+        .parentNode.removeChild( document.getElementById(`${this.props.user.username}Row`) ))
+      .then(() => this.toggleNotification(username))
+      .catch(() => console.log('Error! User was not deleted!'));
+  }
+
   render () {
     const { isActive } = this.state;
 
     return (
-      <tr>
+      <tr id={`${this.props.user.username}Row`}>
         <td>
           {this.props.user.username}
         </td>
@@ -72,14 +82,20 @@ export default class User extends React.Component {
               children={!isActive ? "Show notification" : "Hide notification"}
               >Change</button>
 
+              <button
+              onClick={ (e) => {this.deleteUser(this.props.user._id, this.props.user.password, e, this.props.user.username);} }
+              children={!isActive ? "Show notification" : "Hide notification"}
+              >Delete User</button>
+
               <Notification
               isActive={this.state.isActive}
-              message={`Permissions for ${this.state.usernameChanged} were changed!`}
+              message={`Permissions for ${this.state.usernameChanged} were updated!`}
               action="Dismiss"
               title="Success!"
               onDismiss={this.toggleNotification.bind(this)}
               onClick={() =>  this.setState({ isActive: false })}
               />
+
             </div>
         </td>
       </tr>

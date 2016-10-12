@@ -91,12 +91,12 @@ export const toggleTicketModal = (ticket) => ({
 });
 
 // NO LONGER NEED SESSION INFO ON PROPS, KEEPING JUST IN CASE
-// export const loadSessionId = (sessionId) => ({
+// export const loadGlobalUserInfo = (sessionId) => ({
 //   type: 'SET_SESSION_ID',
 //   sessionId
 // });
-//
-//
+
+
 /* TICKET PAGE ACTIONS ARE DOWN HERE */
 
 export const editTicketField = (field, value) => ({
@@ -153,4 +153,3 @@ export const setModalArticles = (articles) => ({
   type: 'SET_MODAL_ARTICLES',
   payload: articles,
 })
-

@@ -92,6 +92,21 @@ const userUtils = {
     .catch(error => {
       console.log(error, 'There was an error while editing the ticket!');
     });
+  },
+  deleteUser: (sessionId, password) => {
+    return fetch(`http://localhost:3000/api/user/${sessionId}/${password}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(function (response) {
+      return response;
+    })
+    .catch(error => {
+      console.log(error, 'There was an error while editing the ticket!');
+    });
   }
 };
 
