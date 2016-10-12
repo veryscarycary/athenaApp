@@ -50,6 +50,8 @@ const sessionUtils = {
     });
   },
   signout: () => {
+    Cookies.set('roles', ['guest']);
+    Cookies.remove('sessionId');
     return fetch('http://localhost:3000/api/session', {
       method: 'DELETE',
       credentials: 'same-origin'
