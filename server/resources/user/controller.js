@@ -21,10 +21,10 @@ module.exports = {
           : res.status(200).send(req.session.user);
   },
   getUser(req, res) {
-    var id = req.params.id;
+    let id = req.query.id;
     request({
       method: 'GET',
-      uri: `${url}/api/user${id ? `/${req.params.id}` : ''}`
+      uri: `${url}/api/user${id != undefined ? `?id=${id}` : ''}`
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : res.status(resp.statusCode).send(JSON.parse(body))
@@ -33,8 +33,9 @@ module.exports = {
 
   signin(req, res) {
     request({
-      method: 'GET',
-      uri: `${url}/api/signin/${req.params.username}/${req.params.password}`
+      method: 'PUT',
+      uri: `${url}/api/signin`,
+      json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (resp.statusCode === 404 || resp.statusCode === 401) ?
@@ -53,7 +54,7 @@ module.exports = {
   createUser(req, res) {
     request({
       method: 'POST',
-      uri:`${url}/api/signin/${req.params.username}/${req.params.password}`,
+      uri:`${url}/api/signin`,
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
@@ -65,7 +66,7 @@ module.exports = {
   editUser(req, res) {
     request({
       method: 'PUT',
-      uri: `${url}/api/user/${req.params.id}/${req.params.password}`,
+      uri: `${url}/api/user`,
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
@@ -77,11 +78,12 @@ module.exports = {
   },
   deleteUser(req, res) {
     request({
-      method: 'DELETE',
-      uri: `${url}/api/user/${req.params.id}/${req.params.password}`
+      method: 'POST',
+      uri: `${url}/api/user`,
+      json: req.body
     }, (err, resp, body) => err ? 
       res.status(err.statusCode).send(err)
-      : destroySession(req, ()=> res.status(resp.statusCode).send(JSON.parse(body)))
+      : destroySession(req, ()=> res.status(resp.statusCode).send(body))
     );
   }
 };
