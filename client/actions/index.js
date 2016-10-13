@@ -101,8 +101,8 @@ export const toggleTicketModal = (ticket) => ({
 
 
 
-export const loadGlobalUserInfo = (sessionId) => ({
-  type: 'SET_USER_INFO',
+export const loadCurrentUser = (sessionId) => ({
+  type: 'SET_CURRENT_USER',
   payload: userUtils.getUser(sessionId)
 });
 
