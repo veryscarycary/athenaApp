@@ -564,7 +564,7 @@ only screen and (max-width: 760px),
   background-color: green;
 }
 
-.centerFlex {
+.centerFlexHomePage {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -574,6 +574,12 @@ only screen and (max-width: 760px),
   left: 0;
   right: 0;
   margin: auto;
+}
+
+.centerFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .centerItem {
