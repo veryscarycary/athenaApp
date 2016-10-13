@@ -34,7 +34,7 @@ export default class User extends React.Component {
     }
   }
 
-  submitPermissions (sessionId, password, radioElements, e, username) {
+  submitPermissions (sessionId, radioElements, e, username) {
     e.preventDefault();
 
     for(var i = 0; i < radioElements.length; i++){
@@ -43,7 +43,7 @@ export default class User extends React.Component {
       }
     }
 
-    userUtils.submitPermissions(sessionId, password, role)
+    userUtils.submitPermissions(sessionId, role)
       .then(() => this.toggleNotification(username))
       .catch(() => alert('Error! Permissions were not changed.'));
   };
@@ -78,7 +78,7 @@ export default class User extends React.Component {
         <td>
             <div>
               <button
-              onClick={ (e) => {this.submitPermissions(this.props.user._id, this.props.user.password, document.getElementsByName(this.props.user.username), e, this.props.user.username);} }
+              onClick={ (e) => {this.submitPermissions(this.props.user._id, document.getElementsByName(this.props.user.username), e, this.props.user.username);} }
               children={!isActive ? "Show notification" : "Hide notification"}
               >Change</button>
 

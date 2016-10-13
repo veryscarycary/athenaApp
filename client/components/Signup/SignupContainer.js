@@ -121,41 +121,43 @@ class SignupContainer extends React.Component {
           <div className='col-xs-12 col-xs-push-4'>
             <form action='' method='' onSubmit={this.handleSignup.bind(this)}>
             {/*^onSubmit invoke fetch post to user server*/}
-              <div className='form-group'>
+              <div className='form-group signupLineHeight'>
                 <label htmlFor='username'>Username:</label>
                 <input type='text' className='form-control signupFormWidth' id='username' onChange={(e)=>this.setState({username: e.target.value})} />
               </div>
-              <div className='form-group'>
+              <div className='form-group signupLineHeight'>
               <label htmlFor='password'>Password:</label>
               <input type='password' className='form-control signupFormWidth' id='password' onChange={(e)=>this.setState({password: e.target.value})} />
               </div>
-              <div className='form-group'>
+              <div className='form-group signupLineHeight'>
               <label htmlFor='repeatPassword'>Repeat Password:</label>
               <input type='password' className='form-control signupFormWidth' id='repeatPassword' onChange={(e)=>this.setState({repeatPassword: e.target.value})} />
               </div>
               <br />
 
 
-              <div className='form-group'>
+              <div className='form-group signupLineHeight'>
                 <label htmlFor='fullName'>Full Name:</label>
                 <input type='text' className='form-control signupFormWidth' id='fullName' onChange={(e)=>this.setState({fullName: e.target.value})} />
               </div>
-              <div className='form-group'>
+              <div className='form-group signupLineHeight'>
                 <label htmlFor='email'>Email:</label>
                 <input type='text' className='form-control signupFormWidth' id='email' onChange={(e)=>this.setState({email: e.target.value})} />
               </div>
-              <div className='form-group'>
+              <div className='form-group signupLineHeight'>
                 <label htmlFor='phoneNumber'>Phone Number:</label>
                 <input type='text' className='form-control signupFormWidth' id='phoneNumber' onChange={(e)=>this.setState({phoneNumber: e.target.value})} />
               </div>
-              <div className='form-group'>
+              <div className='form-group signupLineHeight'>
                 <input type='submit' className='btn btn-default' id='submit' value='Signup' />
               </div>
             </form>
+            <div>
+              {this.state.usernameIsUsed ? <div>That username has already been taken. Try again.</div> : null}
+              {this.state.pwMismatch ? <div>Password does not match. Try again.</div> : null}
+              {this.state.signupSuccessful ? <div>Account creation successful!</div> : null}
+            </div>
           </div>
-          {this.state.usernameIsUsed ? <div>That username has already been taken. Try again.</div> : null}
-          {this.state.pwMismatch ? <div>Password does not match. Try again.</div> : null}
-          {this.state.signupSuccessful ? <div>Account creation successful!</div> : null}
         </div>
       </div>
     )
