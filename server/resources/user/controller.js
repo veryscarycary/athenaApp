@@ -21,7 +21,7 @@ module.exports = {
           : res.status(200).send(req.session.user);
   },
   getUser(req, res) {
-    let id = req.query.id;
+    var id = req.query.id;
     request({
       method: 'GET',
       uri: `${url}/api/user${id != undefined ? `?id=${id}` : ''}`
