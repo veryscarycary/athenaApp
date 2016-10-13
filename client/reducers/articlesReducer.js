@@ -41,20 +41,18 @@ export const articlesList = (state = {articles:[], past:[]}, action) => {
         ]
       }
     case 'SEARCH_ARTICLES_FULFILLED':
-      let past = state.articles
       return {
         ...state,
         articles: action.payload,
-        past: state.past.concat(present)
       }
-    case 'CLEAR_SEARCH':
-      let present = state.past[state.past.length - 1];
-      let newPast = state.past.slice(0, state.past.length - 1);
-      return {
-        ...state,
-        articles: present,
-        past: newPast,
-      }
+//    case 'CLEAR_SEARCH':
+//      let present = state.past[state.past.length - 1];
+//      let newPast = state.past.slice(0, state.past.length - 1);
+//      return {
+//        ...state,
+//        articles: present,
+//        past: newPast,
+//      }
     case 'CREATE_ARTICLE_FULFILLED':
       return {
         ...state,

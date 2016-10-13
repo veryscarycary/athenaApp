@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   ticketPage,
   ticketArticlesSearch,
   ticketSearchResults,
-  ticketPageArticleModal
+  ticketPageArticleModal,
   userReducer
 })
 

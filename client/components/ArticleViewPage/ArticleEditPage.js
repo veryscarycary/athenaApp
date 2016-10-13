@@ -14,6 +14,7 @@ export class EditArticleContainer extends Component {
   }
   handleSubmit(edits) {
     this.props.submitEdit(edits)
+      .then(() => this.props.history.push(`/articles/${this.props.params.id}`));
   }
   handleChange(e) {
     this.props.editField(e.target.name, e.target.value);

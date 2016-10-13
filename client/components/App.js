@@ -13,6 +13,7 @@ import ProfileContainer from './Profile/ProfileContainer';
 import TicketDetailsPage from './TicketPage/TicketDetailsPage';
 import ArticleViewPage from './ArticleViewPage/ArticleViewPage';
 import ArticleEditPage from './ArticleViewPage/ArticleEditPage';
+import ArticleCreatePage from './ArticleViewPage/ArticleCreatePage';
 
 export default class App extends Component {
   render() {
@@ -24,6 +25,7 @@ export default class App extends Component {
           <Route path="/tickets" authorize={['user', 'admin']} component={MainLayoutContainer} />
           <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
           <Route path="/tickets/:id" component={TicketDetailsPage} />
+          <Route path="/articles/create" component={ArticleCreatePage} />
           <Route path="/articles/:id" component={ArticleViewPage} />
           <Route path="/articles/edit/:id" component={ArticleEditPage} />
           <Route path="/profile" authorize={['user', 'admin']} component={ProfileContainer} />
