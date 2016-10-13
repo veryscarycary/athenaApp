@@ -3,7 +3,7 @@ import { RoleAwareComponent } from 'react-router-role-authorization';
 import { Link } from 'react-router';
 import Cookies from 'js-cookie';
 
-class ProfileButton extends RoleAwareComponent {
+class LogoutButton extends RoleAwareComponent {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,7 @@ class ProfileButton extends RoleAwareComponent {
   render() {
     const jsx = (
       <li>
-        <Link to='/profile'>Profile</Link>
+        <Link onClick={this.props.signout}>Logout</Link>
       </li>
     );
 
@@ -27,4 +27,4 @@ class ProfileButton extends RoleAwareComponent {
   }
 }
 
-export default ProfileButton;
+export default LogoutButton;
