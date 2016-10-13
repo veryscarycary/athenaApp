@@ -27,7 +27,7 @@ module.exports = {
       uri: `${url}/api/user${id != undefined ? `?id=${id}` : ''}`
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.stringify(body))
+      : res.status(resp.statusCode).send(body)
     );
   },
 
