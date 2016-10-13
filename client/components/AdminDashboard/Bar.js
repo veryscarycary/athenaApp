@@ -13,13 +13,20 @@ var barData = [
     "values": []
   }
 ];
-for (var i = 0; i < 30; i++) {
-  barData[0].values.push({ "x": i, "y": Math.random() * 100});
-  barData[1].values.push({ "x": i, "y": Math.random() * 100});
-}
 
-var Bar = React.createClass({
-  render: function() {
+class Bar extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+
+  render () {
+    for (var i = 0; i < this.props.articles.length; i++) {
+      barData[0].values.push({ "x": i, "y": this.props.articles[i].viewCount});
+      barData[1].values.push({ "x": i, "y": this.props.articles[i].useCount});
+    }
+
     return  (
     	<BarChart
       data={barData}
@@ -29,7 +36,8 @@ var Bar = React.createClass({
       xAxisLabel="Articles"
       yAxisLabel="#"
       />
-  )}
-});
+    );
+  }
+};
 
 export default Bar;
