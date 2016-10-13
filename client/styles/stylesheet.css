@@ -21,6 +21,15 @@ body {
     }
 }
 
+.homepageBackground {
+  background: url(../images/homepage4.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
 /* start Users table*/
 
 /* = table
@@ -559,7 +568,16 @@ only screen and (max-width: 760px),
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.centerItem {
+  align-self: center;
 }
 
 .rowFlexClose {

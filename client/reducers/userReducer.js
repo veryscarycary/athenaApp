@@ -1,5 +1,5 @@
 const initialState = {
-  userInfo: {
+  currentUser: {
     firstName: '',
     lastName: '',
     username: '',
@@ -18,18 +18,18 @@ const initialState = {
 const userReducer = function(state = initialState, action) {
   switch(action.type) {
 
-    case 'SET_USER_INFO_REJECTED':
+    case 'SET_CURRENT_USER_REJECTED':
       console.log('rejected')
       return {
         ...state,
         status: 'rejected'
       };
-    case 'SET_USER_INFO_FULFILLED':
+    case 'SET_CURRENT_USER_FULFILLED':
       return {
-        userInfo: action.payload[0],
+        currentUser: action.payload[0],
         status: 'fulfilled'
       };
-    case 'SET_USER_INFO_PENDING':
+    case 'SET_CURRENT_USER_PENDING':
       console.log('pending')
       return {
         ...state,

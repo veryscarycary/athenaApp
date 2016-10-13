@@ -60,7 +60,7 @@ class SignupContainer extends React.Component {
         })
       }).then((res) => {
         if (res.status === 201) {
-          sessionUtils.setSession(this.state.username, this.state.password, this, this.props.getAuthLevel.bind(this), this.props.loadGlobalUserInfo.bind(this))
+          sessionUtils.setSession(this.state.username, this.state.password, this, this.props.getAuthLevel.bind(this), this.props.loadCurrentUser.bind(this))
             .then(() => {
               this.setState({
                 signupSuccessful: true
