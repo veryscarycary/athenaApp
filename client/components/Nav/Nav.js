@@ -25,41 +25,34 @@ const NavContainer = ({dispatch}) => {
     browserHistory.push('/login');
   }
   return (
-    <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div className="container">
-            <div className="navbar-header">
-                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span className="sr-only">Toggle navigation</span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                </button>
+    <div className="nav-container">
+      <nav className="side-nav" role="navigation">
+        <ul className="nav-items">
+          <li>
+            <Link to='/articles'
+              activeClassName="active">
+              Articles
+            </Link>
 
-                <a className="navbar-brand" onClick={goToHomePage}>
-                  <img id='beefaloLogo' src={beefalo} alt="" />
-                </a>
-            </div>
-
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav">
-                    <li>
-                      <Link to='/articles'>Articles</Link>
-                    </li>
-                    <TicketsButton />
-                    <DashboardButton />
-                    <ProfileButton />
-                    <SettingsButton />
-                    <li>
-                      <Link onClick={signout}
-                       className='logoutNav'>Logout</Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+          </li>
+          <TicketsButton />
+          <DashboardButton />
+          <ProfileButton />
+          <SettingsButton />
+        </ul>
+      </nav>
+      <div className="top-nav">
+        <Link onClick={signout}
+          className='logoutnav'>Logout</Link>
+      </div>
+    </div>
   )
 };
 
 const Nav = connect()(NavContainer);
 
 export default Nav;
+
+//                <a className="navbar-brand" onClick={goToHomePage}>
+//                  <img id='beefaloLogo' src={beefalo} alt="" />
+//                </a>

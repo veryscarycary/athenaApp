@@ -5,7 +5,7 @@ import { getArticle, toggleArticle, toggleCreate} from '../../actions';
 import { Button } from './ButtonContainer';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router';
-
+import SearchArticles from './SearchArticles';
 
 export const ArticleListItems = ({auth, articles, article, getArticle, toggleArticle}) => {
   const handleToggle = (article) => {
@@ -20,12 +20,13 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
     <div className="article-list-container">
       <div className="button-float">
         <Link to="/articles/create">
-          <button className="full-article-button">
-            <i className="material-icons">create</i>
+          <button className="round-button">
+            <i className="material-icons">add</i>
           </button>
         </Link>
       </div>
       <div className="article-list">
+      <SearchArticles />
       <ul>
         {articles.slice().map(article => (
           <li
@@ -34,16 +35,18 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
             <div
               className="article-list-content">
               <h3 className="article-list-title">{article.title}</h3>
-              <div>
+              <div className="article-list-preview">
                 {article.issuePreview}
                 </div>
             </div>
-            <Link to={`/articles/${article.id}`}>
-              <button
-                className="article-list-button">
-                Read more
-              </button>
+            <div className="article-list-item-button">
+              <Link to={`/articles/${article.id}`}>
+                <button
+                  className="read-more">
+                  Read more
+                </button>
             </Link>
+            </div>
           </li>
         ))}
       </ul>

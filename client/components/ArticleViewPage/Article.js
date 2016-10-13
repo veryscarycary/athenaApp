@@ -16,33 +16,35 @@ export class ArticleContainer extends Component {
   render() {
     const {article, title, issue, issuePreview, solution, auth} = this.props;
     return(
-      <div>
-        <h3 className="full-article-title main">{article.title}</h3>
-        <h5 className="full-article-title">Summary</h5>
-        <ReactMarkdown
-          escapeHTML="true"
-          source={article.issuePreview}
-          className="content" />
-        <h5 className="full-article-title">Issue</h5>
-        <ReactMarkdown
-          escapeHTML="true"
-          source={article.issue}
-          className="content" />
-        <h5 className="full-article-title">Solution</h5>
-        <ReactMarkdown
-          escapeHTML="true"
-          source={article.solution}
-          className="content" />
-          {
-            auth[0] === 'userPlus' || auth[0] === 'admin'
-              ? <Link to={`/articles/edit/${article.id}`}>
-                  <button
-                    className="article-list-button">
-                      edit
-                  </button>
-                </Link>
-              : null
-          }
+      <div className="article-list-container">
+        <div className="full-article">
+          <h3 className="main">{article.title}</h3>
+          <h5 className="full-article-title">Summary</h5>
+          <ReactMarkdown
+            escapeHTML="true"
+            source={article.issuePreview}
+            className="content" />
+          <h5 className="full-article-title">Issue</h5>
+          <ReactMarkdown
+            escapeHTML="true"
+            source={article.issue}
+            className="content" />
+          <h5 className="full-article-title">Solution</h5>
+          <ReactMarkdown
+            escapeHTML="true"
+            source={article.solution}
+            className="content" />
+            {
+              auth[0] === 'userPlus' || auth[0] === 'admin'
+                ? <Link to={`/articles/edit/${article.id}`}>
+                    <button
+                      className="article-list-button">
+                        edit
+                    </button>
+                  </Link>
+                : null
+            }
+        </div>
       </div>
     )
   }

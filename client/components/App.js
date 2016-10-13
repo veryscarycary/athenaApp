@@ -22,14 +22,29 @@ export default class App extends Component {
         <Route path="/" component={AppContainer}>
           <IndexRoute component={Home} />
           <Route path="/articles" component={Articles} />
-          <Route path="/tickets" authorize={['user', 'admin']} component={MainLayoutContainer} />
-          <Route path="/dashboard" authorize={['admin']} component={DashboardContainer} />
-          <Route path="/tickets/:id" authorize={['user','userPlus','admin']}component={TicketDetailsPage} />
-          <Route path="/articles/create" authorize={['userPlus','user','admin']}component={ArticleCreatePage} />
-          <Route path="/articles/:id" component={ArticleViewPage} />
-          <Route path="/articles/edit/:id" authorize={['userPlus', 'admin']}component={ArticleEditPage} />
-          <Route path="/profile" authorize={['user', 'admin']} component={ProfileContainer} />
-          <Route path="/settings" authorize={['admin']} component={SettingsContainer} />
+          <Route path="/tickets"
+            authorize={['user', 'admin']}
+            component={MainLayoutContainer} />
+          <Route path="/dashboard"
+            authorize={['admin']}
+            component={DashboardContainer} />
+          <Route path="/tickets/:id"
+            authorize={['user','userPlus','admin']}
+            component={TicketDetailsPage} />
+          <Route path="/articles/create"
+            authorize={['userPlus','user','admin']}
+            component={ArticleCreatePage} />
+          <Route path="/articles/:id"
+            component={ArticleViewPage} />
+          <Route path="/articles/edit/:id"
+            authorize={['userPlus', 'admin']}
+            component={ArticleEditPage} />
+          <Route path="/profile"
+            authorize={['user', 'admin']}
+            component={ProfileContainer} />
+          <Route path="/settings"
+            authorize={['admin']}
+            component={SettingsContainer} />
         </Route>
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

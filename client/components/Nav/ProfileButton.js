@@ -19,7 +19,9 @@ class ProfileButton extends RoleAwareComponent {
   render() {
     const jsx = (
       <li>
-        <Link to='/profile'>Profile</Link>
+        <Link
+        activeClassName="active"
+        to='/profile'>Profile</Link>
       </li>
     );
 

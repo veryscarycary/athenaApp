@@ -11,24 +11,31 @@ const ArticleCreatePageContainer = ({createArticle, history}) => {
       .then(resp => history.push(`/articles/${resp.value[0].id}`))
   }
   return (
-    <div>
-      <h3 className="full-article-title main">Create new article</h3>
+    <div className='article-list-container'>
+    <div className='article-create'>
+      <h3 className="title">Create new article</h3>
+      <h3 className="subtitle">Title</h3>
       <input
+        placeholder="eg. How to troubleshoot a network connection"
         className="edit-modal-input"
         ref={node => title=node}
       />
-      <h5 className="full-article-title">Summary</h5>
+      <h5 className="subtitle">Summary</h5>
       <input
+        placeholder="brief summary of the problem"
         ref={node => issuePreview=node}
         className="edit-modal-input" />
-      <h5 className="full-article-title">Issue</h5>
+      <h5 className="subtitle">Issue</h5>
       <textarea
+        placeholder="detailed description of the problem"
         ref={node => issue=node}
         className="edit-modal-textarea" />
-      <h5 className="full-article-title">Solution</h5>
+      <h5 className="subtitle">Solution</h5>
       <textarea
+        placeholder="describe how you solved the problem"
         ref={node => solution=node}
         className="edit-modal-textarea" />
+       <div className='button-right-float'>
        <button
         onClick={() => {
           let article = {
@@ -42,6 +49,8 @@ const ArticleCreatePageContainer = ({createArticle, history}) => {
         className="article-list-button">
           submit
        </button>
+       </div>
+       </div>
     </div>
   )
 }
