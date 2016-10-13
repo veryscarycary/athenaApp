@@ -1,47 +1,28 @@
 import fetch from 'isomorphic-fetch';
 
+const STD_HDR = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+};
+
 const userUtils = {
-  getUsers: () => {
-    return fetch('http://localhost:3000/api/user', {
+  getUser: sessionId => {
+    return fetch(`/api/user${sessionId != undefined ? `?id=${sessionId}` : ''}`, {
       method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: STD_HDR
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error getting the tickets!');
-    })
+    .then(response => response.json())
+    .catch(error => console.log(error, 'There was an error getting the tickets!'))
   },
-  getUser: (sessionId) => {
-    return fetch(`http://localhost:3000/api/user/${sessionId}`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error getting the tickets!');
-    })
-  },
-  submitProfileEdits: (sessionId, password) => {
+  submitProfileEdits: (sessionId) => {
     if (document.getElementById(`editName`).value.split(' ').length > 2) {
       alert('Please enter only your first name and last name.');
     }
-    return fetch(`http://localhost:3000/api/user/${sessionId}/${password}`, {
+    return fetch(`/api/user`, {
       method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: STD_HDR,
       body: JSON.stringify({
+        id: sessionId,
         firstName: document.getElementById('editName').value.split(' ')[0],
         lastName: document.getElementById('editName').value.split(' ')[1],
         username: document.getElementById('editUsername').value,
@@ -50,30 +31,33 @@ const userUtils = {
         bio: document.getElementById('editBio').value
       })
     })
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(error => {
-      console.log(error, 'There was an error while editing the ticket!');
-    });
+    .then(response => response.json())
+    .catch(error => console.log(error, 'There was an error while editing the ticket!'));
   },
   submitPermissions: (sessionId, password, role) => {
-    return fetch(`http://localhost:3000/api/user/${sessionId}/${password}`, {
+    return fetch(`/api/user`, {
       method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: STD_HDR,
       body: JSON.stringify({
+        id: sessionId,
         roles: [role]
       })
     })
-    .then(function (response) {
-      return response.json();
+    .then(response => response.json())
+    .catch(error => console.log(error, 'There was an error while editing the ticket!'));
+  },
+  changePassword: (sessionId, password, newPassword) => {
+    return fetch(`/api/user`, {
+      method: 'PUT',
+      headers: STD_HDR,
+      body: JSON.stringify({
+        id: sessionId,
+        password: password,
+        newPassword: newPassword
+      })
     })
-    .catch(error => {
-      console.log(error, 'There was an error while editing the ticket!');
-    });
+    .then(response => response.json())
+    .catch(error => console.log(error, 'There was an error while editing the ticket!'));
   }
 };
 
