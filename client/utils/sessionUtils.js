@@ -2,12 +2,21 @@ import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 import Cookies from 'js-cookie';
 
-const sessionUtils = {
-  setSession: (username, password, context, getAuthLevel, loadCurrentUser) => {
-    return fetch(`http://localhost:3000/api/signin/${username}/${password}`, {
-      method: 'GET',
-      credentials: 'same-origin'
-    }).then((res) => {
+const cred = 'same-origin'
+const STD_HDR = {
+  'Content-Type': 'application/json'
+};
+export default {
+  setSession (username, password, context, getAuthLevel, loadCurrentUser) {
+    return fetch(`/api/signin`, {
+      method: 'PUT',
+      headers: STD_HDR,
+      credentials: cred,
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    }).then(res => {
       if (res.status === 200) {
         //redirect to homepage
         return res.json().then(sessionObj => {
@@ -19,20 +28,22 @@ const sessionUtils = {
           loadCurrentUser(sessionObj._id).then(() => browserHistory.push('/'));
         });
       } else {
-        context.setState({userNameDoesNotExist: true}, () => setTimeout(() =>
-        {context.setState({userNameDoesNotExist: false})}, 3000));
+        context.setState({userNameDoesNotExist: true}, () => 
+            setTimeout(() => 
+              context.setState({userNameDoesNotExist: false}), 
+            3000)
+        );
       }
-    }).catch((err) => {
-      console.log('There was an error during Login! D=', err);
-    });
+    }).catch(err => console.log('There was an error during Login! D=', err));
   },
 
-  checkSession: () => {
-    return fetch('http://localhost:3000/api/session', {
+  checkSession () {
+    return fetch('/api/signin', {
       method: 'GET',
-      credentials: 'same-origin'
+      headers: STD_HDR,
+      credentials: cred
     })
-    .then(function (res) {
+    .then(res => {
       if (res.status === 401 || res.status === 404) {
         // you don't belong here, stranger
         browserHistory.push('/login');
@@ -48,21 +59,16 @@ const sessionUtils = {
         });
       }
     })
-    .catch(error => {
-      console.log(error, 'There was an error getting the session!');
-    });
+    .catch(error => console.log(error, 'There was an error getting the session!'));
   },
-  signout: () => {
+  signout () {
     Cookies.set('roles', ['guest']);
     Cookies.remove('sessionId');
-    return fetch('http://localhost:3000/api/session', {
+    return fetch('/api/signin', {
       method: 'DELETE',
-      credentials: 'same-origin'
+      headers: STD_HDR,
+      credentials: cred
     })
-    .catch(error => {
-      console.log(error, 'There was an error getting the session!');
-    });
+    .catch(error => console.log(error, 'There was an error getting the session!'));
   }
 };
-
-export default sessionUtils;

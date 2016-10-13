@@ -27,11 +27,12 @@ module.exports = {
       uri: `${url}/api/user${id != undefined ? `?id=${id}` : ''}`
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.parse(body))
+      : res.status(resp.statusCode).send(JSON.stringify(body))
     );
   },
 
   signin(req, res) {
+    console.log(req.body);
     request({
       method: 'PUT',
       uri: `${url}/api/signin`,
@@ -39,14 +40,15 @@ module.exports = {
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (resp.statusCode === 404 || resp.statusCode === 401) ?
-          res.status(resp.statusCode).send(body)
-          : (() => { //create new session for new login
-              body = JSON.parse(body);
-              // returns entire user object from db fetch
-              createSession(req, { _id: body._id, roles: body.roles },
-                () => res.status(resp.statusCode).send({ _id: body._id, roles: body.roles }));
-            })()
-    );
+          res.status(resp.statusCode).send(JSON.stringify(body))
+          : createSession(req, JSON.stringify({ 
+              _id: body._id, 
+              roles: body.roles 
+            }), () => res.status(resp.statusCode).send(JSON.stringify({ 
+                  _id: body._id, 
+                  roles: body.roles 
+                }))
+            ));
   },
   signout(req, res) {
     destroySession(req, () => res.status(200).send('signed out'));
@@ -59,7 +61,7 @@ module.exports = {
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (() => createSession(req, body,
-          () => res.status(resp.statusCode).send(body))
+          () => res.status(resp.statusCode).send(JSON.stringify(body)))
         )()
     );
   },
@@ -73,7 +75,7 @@ module.exports = {
       : (resp.statusCode === 404 || resp.statusCode === 401) ?
           res.status(resp.statusCode).send(body)
           : (() => createSession(req, { _id: body },
-              () => res.status(resp.statusCode).send(body)))()
+              () => res.status(resp.statusCode).send(JSON.stringify(body))))()
     );
   },
   deleteUser(req, res) {
@@ -83,7 +85,7 @@ module.exports = {
       json: req.body
     }, (err, resp, body) => err ? 
       res.status(err.statusCode).send(err)
-      : destroySession(req, ()=> res.status(resp.statusCode).send(body))
+      : destroySession(req, ()=> res.status(resp.statusCode).send(JSON.stringify(body)))
     );
   }
 };
