@@ -71,13 +71,12 @@ export default {
     .then(response => response.json())
     .catch(error => console.log(error, 'There was an error while editing the ticket!'));
   },
-  deleteUser (sessionId, password) {
+  deleteUser (sessionId) {
     return fetch(`/api/user`, {
       method: 'POST',
       headers: STD_HDR,
       body: JSON.stringify({
-        id: sessionId,
-        password: password
+        id: sessionId
       })
     })
     .then(response => response.json())
