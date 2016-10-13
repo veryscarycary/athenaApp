@@ -14,7 +14,7 @@ class UsersDisplay extends React.Component {
 
   componentWillMount () {
     // set users in state
-    userUtils.getUsers().then( (users)=> this.setState({users: users}, () => {console.log(this.state)}) );
+    userUtils.getUser().then( (users)=> this.setState({users: users}, () => {console.log(this.state)}) );
   }
 
   render () {

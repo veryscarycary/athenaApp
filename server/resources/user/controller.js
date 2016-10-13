@@ -21,31 +21,34 @@ module.exports = {
           : res.status(200).send(req.session.user);
   },
   getUser(req, res) {
-    var id = req.params.id;
+    let id = req.query.id;
     request({
       method: 'GET',
-      uri: `${url}/api/user${id ? `/${req.params.id}` : ''}`
+      uri: `${url}/api/user${id != undefined ? `?id=${id}` : ''}`
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
-      : res.status(resp.statusCode).send(JSON.parse(body))
+      : res.status(resp.statusCode).send(body)
     );
   },
 
   signin(req, res) {
+    console.log(req.body);
     request({
-      method: 'GET',
-      uri: `${url}/api/signin/${req.params.username}/${req.params.password}`
+      method: 'PUT',
+      uri: `${url}/api/signin`,
+      json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (resp.statusCode === 404 || resp.statusCode === 401) ?
-          res.status(resp.statusCode).send(body)
-          : (() => { //create new session for new login
-              body = JSON.parse(body);
-              // returns entire user object from db fetch
-              createSession(req, { _id: body._id, roles: body.roles },
-                () => res.status(resp.statusCode).send({ _id: body._id, roles: body.roles }));
-            })()
-    );
+          res.status(resp.statusCode).send(JSON.stringify(body))
+          : createSession(req, JSON.stringify({ 
+              _id: body._id, 
+              roles: body.roles 
+            }), () => res.status(resp.statusCode).send(JSON.stringify({ 
+                  _id: body._id, 
+                  roles: body.roles 
+                }))
+            ));
   },
   signout(req, res) {
     destroySession(req, () => res.status(200).send('signed out'));
@@ -53,35 +56,36 @@ module.exports = {
   createUser(req, res) {
     request({
       method: 'POST',
-      uri:`${url}/api/signin/${req.params.username}/${req.params.password}`,
+      uri:`${url}/api/signin`,
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (() => createSession(req, body,
-          () => res.status(resp.statusCode).send(body))
+          () => res.status(resp.statusCode).send(JSON.stringify(body)))
         )()
     );
   },
   editUser(req, res) {
     request({
       method: 'PUT',
-      uri: `${url}/api/user/${req.params.id}/${req.params.password}`,
+      uri: `${url}/api/user`,
       json: req.body
     }, (err, resp, body) => err ?
       res.status(err.statusCode).send(err)
       : (resp.statusCode === 404 || resp.statusCode === 401) ?
           res.status(resp.statusCode).send(body)
           : (() => createSession(req, { _id: body },
-              () => res.status(resp.statusCode).send(body)))()
+              () => res.status(resp.statusCode).send(JSON.stringify(body))))()
     );
   },
   deleteUser(req, res) {
     request({
-      method: 'DELETE',
-      uri: `${url}/api/user/${req.params.id}/${req.params.password}`
+      method: 'POST',
+      uri: `${url}/api/user`,
+      json: req.body
     }, (err, resp, body) => err ? 
       res.status(err.statusCode).send(err)
-      : destroySession(req, ()=> res.status(resp.statusCode).send(JSON.parse(body)))
+      : destroySession(req, ()=> res.status(resp.statusCode).send(JSON.stringify(body)))
     );
   }
 };
