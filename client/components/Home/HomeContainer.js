@@ -47,8 +47,8 @@ class HomeContainer extends React.Component {
         <div className='centerFlex'>
           <h1 className='centerItem'>Athena</h1>
           <h2 className='centerItem'>Smart Support Platform</h2>
-          {this.props.userInfo.roles.indexOf('guest') === -1 ?
-          <h4 className='centerItem'>Hi, {this.props.userInfo.firstName}! Ready to solve some issues?</h4>
+          {this.props.currentUser.roles.indexOf('guest') === -1 ?
+          <h4 className='centerItem'>Hi, {this.props.currentUser.firstName}! Ready to solve some issues?</h4>
             : null}
         </div>
       </div>
@@ -59,7 +59,7 @@ class HomeContainer extends React.Component {
 const mapStateToProps = function(store) {
   console.log(store, 'this is the store at the home page!');
   return {
-    userInfo: store.userReducer.userInfo
+    currentUser: store.userReducer.currentUser
   };
 };
 

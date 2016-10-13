@@ -22,7 +22,7 @@ class LoginContainer extends React.Component {
 
   handleLogin(e) {
     e.preventDefault();
-    sessionUtils.setSession(this.state.username, this.state.password, this, this.props.getAuthLevel.bind(this), this.props.loadGlobalUserInfo.bind(this));
+    sessionUtils.setSession(this.state.username, this.state.password, this, this.props.getAuthLevel.bind(this), this.props.loadCurrentUser.bind(this));
   }
 
   render () {
