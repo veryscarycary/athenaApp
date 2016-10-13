@@ -5,30 +5,18 @@ import rd3 from 'rd3';
 var BarChart = rd3.BarChart
 var barData = [
   {
-    "name": "Series A",
-    "values": [
-      { "x": 1, "y":  91},
-      { "x": 2, "y": 290},
-      { "x": 3, "y": -25},
-    ]
+    "name": "Views",
+    "values": []
   },
   {
-    "name": "Series B",
-    "values": [
-      { "x": 1, "y":  9},
-      { "x": 2, "y": 49},
-      { "x": 3, "y": -20},
-    ]
-  },
-  {
-    "name": "Series C",
-    "values": [
-      { "x": 1, "y":  14},
-      { "x": 2, "y": 77},
-      { "x": 3, "y": -70},
-    ]
+    "name": "Uses",
+    "values": []
   }
 ];
+for (var i = 0; i < 30; i++) {
+  barData[0].values.push({ "x": i, "y": Math.random() * 100});
+  barData[1].values.push({ "x": i, "y": Math.random() * 100});
+}
 
 var Bar = React.createClass({
   render: function() {
@@ -37,9 +25,9 @@ var Bar = React.createClass({
       data={barData}
       width={450}
       height={400}
-      title="Bar Chart"
-      xAxisLabel="Value"
-      yAxisLabel="Label"
+      title="Viewed Articles vs Used Articles "
+      xAxisLabel="Articles"
+      yAxisLabel="#"
       />
   )}
 });
