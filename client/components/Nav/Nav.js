@@ -8,6 +8,7 @@ import ProfileButton from './ProfileButton';
 import SettingsButton from './SettingsButton';
 import { connect } from 'react-redux';
 import { getAuthLevel } from '../../actions';
+import { resetCurrentUser } from '../../actions';
 
 import sessionUtils from '../../utils/sessionUtils';
 
@@ -21,7 +22,8 @@ const NavContainer = ({dispatch}) => {
 
   const signout = () => {
     sessionUtils.signout();
-    dispatch(getAuthLevel(['guest']))
+    dispatch(resetCurrentUser());
+    dispatch(getAuthLevel(['guest']));
     browserHistory.push('/login');
   }
   return (

@@ -99,6 +99,10 @@ export const loadCurrentUser = (sessionId) => ({
   payload: userUtils.getUser(sessionId)
 });
 
+export const resetCurrentUser = () => ({
+  type: 'RESET_CURRENT_USER'
+});
+
 
 /* TICKET PAGE ACTIONS ARE DOWN HERE */
 
