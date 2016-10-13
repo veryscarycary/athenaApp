@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 import RouteHandler from '../RouteHandler';
 import { AuthorizedComponent } from 'react-router-role-authorization';
-import Scatter from './Scatter';
+import sessionUtils from '../../utils/sessionUtils';
+import Bar from './Bar';
 import Pie from './Pie';
 import Area from './Area';
 
@@ -15,6 +16,10 @@ class DashboardContainer extends AuthorizedComponent {
     this.notAuthorizedPath = '/not-found';
   }
 
+  componentWillMount () {
+    sessionUtils.checkSession();
+  }
+
   render () {
     return (
       <div className='container bg-warning'>
@@ -23,7 +28,7 @@ class DashboardContainer extends AuthorizedComponent {
         <br />
         <div className='row'>
           <div className='col-xs-6 col-xs-push-1'>
-            <Scatter />
+            <Bar />
           </div>
           <div className='col-xs-6'>
             <Pie />

@@ -5,8 +5,8 @@ const STD_HDR = {
   'Content-Type': 'application/json'
 };
 
-const userUtils = {
-  getUser: sessionId => {
+export default {
+  getUser (sessionId) {
     return fetch(`/api/user${sessionId != undefined ? `?id=${sessionId}` : ''}`, {
       method: 'GET',
       headers: STD_HDR
@@ -14,7 +14,7 @@ const userUtils = {
     .then(response => response.json())
     .catch(error => console.log(error, 'There was an error getting the tickets!'))
   },
-  submitProfileEdits: (sessionId) => {
+  submitProfileEdits (sessionId) {
     if (document.getElementById(`editName`).value.split(' ').length > 2) {
       alert('Please enter only your first name and last name.');
     }
@@ -23,18 +23,30 @@ const userUtils = {
       headers: STD_HDR,
       body: JSON.stringify({
         id: sessionId,
-        firstName: document.getElementById('editName').value.split(' ')[0],
-        lastName: document.getElementById('editName').value.split(' ')[1],
-        username: document.getElementById('editUsername').value,
-        phoneNumber: document.getElementById('editPhoneNumber').value,
-        email: document.getElementById('editEmail').value,
-        bio: document.getElementById('editBio').value
+        firstName: document.getElementById('editName').value.split(' ')[0].trim(),
+        lastName: document.getElementById('editName').value.split(' ')[1].trim(),
+        username: document.getElementById('editUsername').value.trim(),
+        phoneNumber: document.getElementById('editPhoneNumber').value.trim(),
+        email: document.getElementById('editEmail').value.trim(),
+        bio: document.getElementById('editBio').value.trim()
       })
     })
     .then(response => response.json())
     .catch(error => console.log(error, 'There was an error while editing the ticket!'));
   },
-  submitPermissions: (sessionId, password, role) => {
+  changeProfilePicture (sessionId) {
+    return fetch(`/api/user`, {
+      method: 'PUT',
+      headers: STD_HDR,
+      body: JSON.stringify({
+        id: sessionId,
+        pictureUrl: document.getElementById('pictureUrl').value.trim()
+      })
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error, 'There was an error while editing the ticket!'));
+  },
+  submitPermissions (sessionId, password, role) {
     return fetch(`/api/user`, {
       method: 'PUT',
       headers: STD_HDR,
@@ -46,7 +58,7 @@ const userUtils = {
     .then(response => response.json())
     .catch(error => console.log(error, 'There was an error while editing the ticket!'));
   },
-  changePassword: (sessionId, password, newPassword) => {
+  changePassword (sessionId, password, newPassword) {
     return fetch(`/api/user`, {
       method: 'PUT',
       headers: STD_HDR,
@@ -58,7 +70,17 @@ const userUtils = {
     })
     .then(response => response.json())
     .catch(error => console.log(error, 'There was an error while editing the ticket!'));
+  },
+  deleteUser (sessionId, password) {
+    return fetch(`/api/user`, {
+      method: 'POST',
+      headers: STD_HDR,
+      body: JSON.stringify({
+        id: sessionId,
+        password: password
+      })
+    })
+    .then(response => response.json())
+    .catch(error => console.log(error, 'There was an error while editing the ticket!'));
   }
 };
-
-export default userUtils;

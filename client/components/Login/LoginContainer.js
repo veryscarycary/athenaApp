@@ -22,11 +22,7 @@ class LoginContainer extends React.Component {
 
   handleLogin(e) {
     e.preventDefault();
-    sessionUtils.setSession(this.state.username, this.state.password, this)
-      .then(()=> {
-        this.props.getAuthLevel(JSON.parse(Cookies.get('roles')));
-        return browserHistory.push('/');
-      });
+    sessionUtils.setSession(this.state.username, this.state.password, this, this.props.getAuthLevel.bind(this), this.props.loadCurrentUser.bind(this));
   }
 
   render () {
@@ -34,8 +30,13 @@ class LoginContainer extends React.Component {
       <div>
 
         <div className='loginTop'>
-          <Link className='linkMargins' to='/login'>Login</Link>
-          <Link className='linkMargins' to='/signup'>Signup</Link>
+          <div>
+            <Link className='browseArticles' to='/articles'>Browse Articles</Link>
+          </div>
+          <div>
+            <Link className='linkMargins' to='/login'>Login</Link>
+            <Link className='linkMargins' to='/signup'>Signup</Link>
+          </div>
         </div>
 
         <div className='loginTopTrim'>
