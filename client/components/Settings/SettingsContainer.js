@@ -26,7 +26,7 @@ class SettingsContainer extends AuthorizedComponent {
     sessionUtils.checkSession();
     // // set users in state
     // this.props.loadTicketState();
-    userUtils.getUsers().then( (users)=> this.setState({users: users}) );
+    userUtils.getUser().then( (users)=> this.setState({users: users}) );
   }
 
   render () {
