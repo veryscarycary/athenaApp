@@ -41,13 +41,13 @@ class SignupContainer extends React.Component {
     if (document.getElementById('adminBox').checked) {roles.push('admin');}
 
     // check to see if they are the first user on the service
-    userUtils.getUsers().then((users) => {
+    userUtils.getUser().then((users) => {
       if (users.length === 0) {
         roles = ['admin'];
       }
     }).then(() => {
       //make a post request to server
-      fetch(`http://localhost:3000/api/signin/${this.state.username}/${this.state.password}`, {
+      fetch(`/api/signin`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
