@@ -59,9 +59,10 @@ export const articlesList = (state = {articles:[], past:[]}, action) => {
         articles: state.articles.concat(action.payload)
       }
     case 'GET_ARTICLES_FULFILLED':
+      let ordered = action.payload.reverse()
       return {
         ...state,
-        articles:action.payload
+        articles:ordered
       }
 //    case 'SUBMIT_EDIT_FULFILLED':
 //      console.log(state.articles);

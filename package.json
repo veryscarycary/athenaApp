@@ -39,7 +39,8 @@
     "react-notification": "^6.2.1",
     "redux-localstorage": "^0.4.1",
     "request": "^2.74.0",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "socket.io": "^1.5.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.5",

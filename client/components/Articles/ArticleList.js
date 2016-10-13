@@ -27,7 +27,7 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
       </div>
       <div className="article-list">
       <ul>
-        {articles.slice().reverse().map(article => (
+        {articles.slice().map(article => (
           <li
             className="article-list-item"
             key={article.id}>

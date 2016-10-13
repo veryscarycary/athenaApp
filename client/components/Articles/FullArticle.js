@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { toggleArticle, toggleEdit } from '../../actions';
 import { EditButtonContainer } from './ButtonContainer';
 import { bindActionCreators } from 'redux';
-//import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
 
 export const FullArticleContainer = ({ toggleArticle, article, auth, useOption }) => {
   const handleToggle = () => {

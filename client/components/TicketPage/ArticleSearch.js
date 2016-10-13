@@ -5,7 +5,7 @@ import { searchTicketArticles, clearTicketArticlesSearch } from '../../actions';
 import ArticleSearchResults from './ArticleSearchResults';
 import ArticleModal from './ArticleModal';
 
-export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicketArticles, results, article }) => {
+export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicketArticles, article }) => {
   const handleSearch = (options) => {
     searchTicketArticles(options)
   }
@@ -38,7 +38,7 @@ export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicket
             var options = {term: search}
             handleSearch({term: search.value, archived:false})
           }} />
-          { results ? <ArticleSearchResults /> : null}
+          <ArticleSearchResults />
       </div>
     </div>
   )
@@ -50,7 +50,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 const mapStateToProps = state => ({
-  results: state.ticketArticlesSearch.results,
   article: state.ticketPageArticleModal.article,
 });
 
