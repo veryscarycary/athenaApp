@@ -19,26 +19,24 @@ const TicketContainer = ({ticket, toggleTicketModal}) => {
   };
 
   return (
-    <tr>
-      <td>
+    <tr className='ticket-list-item'>
+      <td className='table-issuePreview'>
+        {ticket.issuePreview}
       </td>
-      <td>
-        {ticket.issue}
-      </td>
-      <td>
+      <td className='table-product'>
         {ticket.product}
       </td>
-      <td>
+      <td className='table-customerId'>
         {ticket.customerId}
       </td>
-      <td>
+      <td className='table-moreInfo'>
         <a
           onClick={() => handleToggleModal(ticket)}>
-          MoreInfo
+          More Info
         </a>
-      </td>
+      </td >
       {ticket.checkedOut ?
-        <td className='badge openTicketColor'>
+        <td className='badge openTicketColor' className="table-status">
           {status(ticket)}
         </td>
         :
@@ -46,7 +44,7 @@ const TicketContainer = ({ticket, toggleTicketModal}) => {
           {status(ticket)}
         </td>
       }
-      <td>
+      <td className='table-open-button'>
         <Link to={`/tickets/${ticket.id}`}>
           <button className="open-ticket">
             Open

@@ -14,8 +14,8 @@ export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicket
   }
   let search;
   return (
-    <div>
-      { article? <div className="ticket-article-modal"><ArticleModal /></div> : null}
+    <div className="search-sidebar">
+      <h3 className="title">Search articles</h3>
       <div
         tabIndex="0"
         className="search-articles"
@@ -27,7 +27,7 @@ export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicket
           ref={node => {
             search = node;
           }}
-          className='edit-modal-input'
+          className='search-sidebar-searchbar'
           type="text"
           placeholder="search"
           onChange={e => {
@@ -40,6 +40,7 @@ export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicket
           }} />
           <ArticleSearchResults />
       </div>
+      { article? <div className="ticket-article-modal"><ArticleModal /></div> : null}
     </div>
   )
 }
