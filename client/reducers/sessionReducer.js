@@ -13,8 +13,10 @@ const sessionReducer = function(state = {}, action) {
   }
 };
 
-// var level = JSON.parse(Cookies.get('roles'));
-const auth = function(state = {level: 'user'}, action) {
+var level = Cookies.get('roles')
+                       ? JSON.parse(Cookies.get('roles'))
+                       : 'guest'
+const auth = function(state = {level: level}, action) {
   console.log(state);
   switch(action.type) {
     case 'GET_AUTH_LEVEL':

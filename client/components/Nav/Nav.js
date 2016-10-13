@@ -5,6 +5,7 @@ import beefalo from '../../images/beefalo.png';
 import DashboardButton from './DashboardButton';
 import TicketsButton from './TicketsButton';
 import ProfileButton from './ProfileButton';
+import Cookies from 'js-cookie';
 import SettingsButton from './SettingsButton';
 import { connect } from 'react-redux';
 import { getAuthLevel } from '../../actions';
@@ -13,7 +14,7 @@ import sessionUtils from '../../utils/sessionUtils';
 
 
 
-const NavContainer = ({dispatch}) => {
+const NavContainer = ({dispatch, auth}) => {
   const goToHomePage = () => {
     // e.preventDefault();
     browserHistory.push('/');
@@ -42,12 +43,21 @@ const NavContainer = ({dispatch}) => {
         </ul>
       </nav>
       <div className="top-nav">
-        <Link onClick={signout}
-          className='logoutnav'>Logout</Link>
+      { JSON.parse(Cookies.get('roles'))
+          && JSON.parse(Cookies.get('roles'))[0] === 'guest'
+        ? <Link to='/login'
+           className='logoutnav'>Login</Link>
+        : <Link onClick={signout}
+            className='logoutnav'>Logout</Link>
+      }
       </div>
     </div>
   )
 };
+
+const mapStateToProps = state => ({
+  auth: state.userReducer
+})
 
 const Nav = connect()(NavContainer);
 

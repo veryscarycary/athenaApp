@@ -23,27 +23,27 @@ export default class App extends Component {
           <IndexRoute component={Home} />
           <Route path="/articles" component={Articles} />
           <Route path="/tickets"
-          /*authorize={['user', 'admin']}*/
+          authorize={['user', 'admin']}
             component={MainLayoutContainer} />
           <Route path="/dashboard"
-          /*            authorize={['admin']}*/
+            authorize={['admin']}
             component={DashboardContainer} />
           <Route path="/tickets/:id"
-          /*authorize={['user','userPlus','admin']}*/
+            authorize={['user','userPlus','admin']}
             component={TicketDetailsPage} />
           <Route path="/articles/create"
-          /*authorize={['userPlus','user','admin']}*/
+            authorize={['userPlus','user','admin']}
             component={ArticleCreatePage} />
           <Route path="/articles/:id"
             component={ArticleViewPage} />
           <Route path="/articles/edit/:id"
-          /*authorize={['userPlus', 'admin']}*/
+            authorize={['userPlus', 'admin']}
             component={ArticleEditPage} />
           <Route path="/profile"
-          /*authorize={['user', 'admin']}*/
+            authorize={['user', 'admin']}
             component={ProfileContainer} />
           <Route path="/settings"
-          /*authorize={['admin']}*/
+            authorize={['admin']}
             component={SettingsContainer} />
         </Route>
         <Route path="/login" component={Login} />
