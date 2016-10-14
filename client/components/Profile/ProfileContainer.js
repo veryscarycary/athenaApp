@@ -7,9 +7,12 @@ import UsersDisplay from './UsersDisplay';
 import userUtils from '../../utils/userUtils';
 import EditPictureForm from './EditPictureForm';
 import profilePhoto from '../../images/profilePicture.png'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {togglePictureEdit} from '../../actions';
 
 
-class ProfileContainer extends AuthorizedComponent {
+class ProfileContainerContainer extends AuthorizedComponent {
   constructor (props) {
     super(props)
 
@@ -32,7 +35,9 @@ class ProfileContainer extends AuthorizedComponent {
       }
     };
   }
-
+  handleToggle() {
+    this.props.togglePictureEdit()
+  }
   componentWillMount () {
     sessionUtils.checkSession();
 
@@ -48,24 +53,20 @@ class ProfileContainer extends AuthorizedComponent {
         </div>
         <div className="profile-section">
 
-        <div className='row'>
           <div className='picture-container'>
             <img src={this.state.user.pictureUrl ? this.state.user.pictureUrl : profilePhoto} className='profilePicture' />
+           <div className='edit-form'>
+          <div className='picture-edit' id='content'>
+          <button className="edit-profile-button" onClick={this.handleToggle.bind(this)}>Change Profile Picture</button>
+          {this.props.editPictureHidden ? null : <EditPictureForm user={this.state.user} className='collapse' id='content' />}
           </div>
+        </div>
+         </div>
 
           <div className='profile-info'>
             <ProfileInfo user={this.state.user} />
           </div>
         </div>
-        </div>
-
-        <div className='edit-form'>
-          <button className='edit-profile' data-toggle='collapse' data-target='#content'>Change Profile Picture</button>
-          <div className='collapse' id='content'>
-            <EditPictureForm user={this.state.user} className='collapse' id='content' />
-          </div>
-        </div>
-
         <div className='row'>
           <div className='col-xs-10 col-xs-push-1'>
             <h2 className="title">Search Users</h2>
@@ -80,5 +81,18 @@ class ProfileContainer extends AuthorizedComponent {
     );
   }
 };
+
+const mapStateToProps = state => ({
+  editPictureHidden: state.userReducer.pictureEditHidden,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  togglePictureEdit
+},dispatch)
+
+const ProfileContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileContainerContainer);
 
 export default ProfileContainer;

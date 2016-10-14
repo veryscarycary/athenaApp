@@ -33,12 +33,15 @@ class SettingsContainer extends AuthorizedComponent {
 
   render () {
     return (
-      <div className='container bg-warning centerFlex'>
-        <h1>Settings</h1>
-        <h4>Roles and Permissions</h4>
+      <div className='settingsContainer'>
+      <div className="headings">
+        <h1 className="title">Settings</h1>
+        <h4 className="subtitle">Roles and Permissions</h4>
+      </div>
         <RolesTable />
-        <br />
+        <div className="headings gap">
         <h4>Manage user permissions here</h4>
+        </div>
         <PermissionsTable users={this.state.users} />
         {/*return a list of users and their respective roles*/}
         {/*return a list of users and their respective roles*/}

@@ -3,7 +3,10 @@
 @import 'articleViewPage'
 
 .profile
-  @extend .card-large
+  background: $white
+  border-radius: 3px
+  @extend .shallow-shadow
+  padding: 24px
   width: 880px
   margin: 120px auto
   display: flex
@@ -18,9 +21,16 @@
   height: 280px
   width: 280px
   margin-right: 24px
+  margin-bottom: 240px
 .profilePicture
   height: 280px
   width: auto
+.edit-profile-button, .picture-submit
+  @extend .square-button
+  background: $darkgrey
+  color: $white
+  border: none
+  margin: 16px 0
 
 .edit-profile
   @extend .square-button
@@ -40,4 +50,27 @@ strong
     color: $slate
     &:hover
       color: $lightslate
+
+.picture-edit-form,
+  padding: 24px 24px 0
+  width: 280px
+  background: $white
+  @extend .deep-shadow
+  border-radius: 3px
+
+.profile-edit-input, .profile-edit-textarea
+  background: transparentize($lightgrey, 0.8)
+  border: none
+  width: 100%
+  font-size: 14px
+  color: $textgrey
+  line-height: 24px
+  margin: 8px 0
+  resize: none
+
+.profile-edit-modal
+  @extend .deep-shadow
+  background: $white
+  border-radius: 3px
+  padding: 24px 24px 0
 
