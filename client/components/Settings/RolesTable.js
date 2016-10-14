@@ -1,5 +1,8 @@
 import React from 'react';
 
+import check from "../../images/check.png";
+import cross from "../../images/cross.png";
+
 const RolesTable = () => (
   <table>
     <thead>

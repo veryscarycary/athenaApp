@@ -90,6 +90,7 @@ export class EditArticleContainer extends Component {
             edits.issue = title.issue;
             edits.solution = title.solution;
             this.handleSubmit(edits)
+            this.props.history.push(`/articles/${article.id}`)
           }}
           className="article-list-button">
             submit
