@@ -95,6 +95,21 @@ export class EditModalContainer extends Component {
               this.handleToggle();
             }} >
               Submit</button>
+          <button
+            className="article-list-button"
+            onClick={e => {
+              e.preventDefault();
+              var article = this.props.article;
+              article.issue = issue.value;
+              article.archived = true;
+              article.status = 'archived';
+              article.solution = solution.value;
+              article.title = title.value;
+              article.status = "active";
+              this.handleSubmit(article);
+              this.handleToggle();
+            }} >
+              Archive</button>
               {this.allowedRoles, this.props.auth}
             {this.props.auth && this.allowedRoles[this.props.auth] ? <DeleteButton /> : null}
       </div>

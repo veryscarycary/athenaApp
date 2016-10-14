@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getArticle, toggleArticle, toggleCreate} from '../../actions';
 import { Button } from './ButtonContainer';
 import ReactMarkdown from 'react-markdown';
+import { Link } from 'react-router';
 
 
 export const ArticleListItems = ({auth, articles, article, getArticle, toggleArticle}) => {
@@ -18,7 +19,11 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
   return (
     <div className="article-list-container">
       <div className="button-float">
-        <CreateButton />
+        <Link to="/articles/create">
+          <button className="full-article-button">
+            <i className="material-icons">create</i>
+          </button>
+        </Link>
       </div>
       <div className="article-list">
       <ul>
@@ -33,14 +38,12 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
                 {article.issuePreview}
                 </div>
             </div>
-            <button
-              className="article-list-button"
-              onClick={e => {
-              e.preventDefault();
-              handleToggle(article);
-            }}>
-            Read more
-            </button>
+            <Link to={`/articles/${article.id}`}>
+              <button
+                className="article-list-button">
+                Read more
+              </button>
+            </Link>
           </li>
         ))}
       </ul>
@@ -51,7 +54,7 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
 
 let article = {
   mapStateToProps: (state) => ({
-    articles: state.articlesList,
+    articles: state.articlesList.articles,
     auth: state.auth.level,
     article: state.articleDisplay,
   }),

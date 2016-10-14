@@ -19,10 +19,7 @@ export class ArticlesDisplay extends Component {
     return(
       <div className="articles">
         <SearchArticles />
-        <CreateArticle />
         <ArticleList />
-        <FullArticle />
-        <EditModal />
       </div>
     )
   }

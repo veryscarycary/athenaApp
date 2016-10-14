@@ -8,7 +8,6 @@ import { closeTicketArticleModal } from '../../actions';
 const mapStateToProps = state => ({
   article: state.ticketPageArticleModal.article,
   auth: state.auth.level,
-  useOption: true,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

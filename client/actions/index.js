@@ -24,6 +24,29 @@ export const getArticle = (id) => ({
   }
 });
 
+export const useArticle = (article, ticketId) => {
+  var articleWithRelation = article
+  articleWithRelation.relatedTickets.push(ticketId)
+  return ({
+    type: 'USE_ARTICLE',
+    payload: articleUtils.editArticle(articleWithRelation)
+  })
+}
+
+export const useTicket = (articleId, ticket) => {
+  var ticketWithRelation = ticket
+  console.log('I AM TICKET', ticket)
+  ticketWithRelation.relatedArticles.push(articleId)
+  return ({
+    type: 'USE_TICKET',
+    payload: ticketUtils.putTicket(ticketWithRelation)
+  })
+}
+
+export const clearArticle = () => ({
+  type: 'CLEAR_ARTICLE',
+})
+
 export const toggleArticle = () => ({
   type: 'TOGGLE_DISPLAY',
 })
@@ -55,22 +78,25 @@ export const editField = (field, value) => ({
     value,
   }
 });
-export const getAuthLevel = (level) => {
-  return({
+
+export const getAuthLevel = (level) => ({
   type: 'GET_AUTH_LEVEL',
   payload: level,
 });
-}
+
 export const searchArticles = (options) => ({
   type: 'SEARCH_ARTICLES',
   payload: searchUtils.search({...options, type:'kb'})
 });
+
 export const clearSearch = (options) => ({
   type: 'CLEAR_SEARCH',
 });
+
 export const toggleCreate = () => ({
   type: 'TOGGLE_CREATE',
 });
+
 export const submitEdit = (article) => ({
   type: 'SUBMIT_EDIT',
   payload: articleUtils.editArticle(article)
@@ -155,4 +181,18 @@ export const closeTicketArticleModal = () => ({
 export const setModalArticles = (articles) => ({
   type: 'SET_MODAL_ARTICLES',
   payload: articles,
+});
+
+export const ticketSearch = (options) => ({
+  type: 'TICKET_SEARCH',
+  payload: searchUtils.search(options)
+})
+
+export const clearTicketSearch = (options) => ({
+  type: 'CLEAR_TICKET_SEARCH',
+})
+
+export const setEditArticle = (id) => ({
+  type: 'SET_EDIT_ARTICLE',
+  payload: articleUtils.getArticle(id),
 })
