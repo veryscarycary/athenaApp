@@ -2,7 +2,7 @@ import React from 'react';
 import { Notification } from 'react-notification';
 
 import userUtils from '../../utils/userUtils';
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
 
 export default class User extends React.Component {
