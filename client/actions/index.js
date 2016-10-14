@@ -108,6 +108,14 @@ export const loadSearchState = (searchText) => ({
   searchText
 });
 
+export const toggleProfileModal = () => ({
+  type: 'TOGGLE_PROFILE_MODAL',
+});
+
+export const togglePictureEdit = () => ({
+  type: 'TOGGLE_PICTURE_EDIT'
+})
+
 export const loadFilteredTicketState = (filteredTickets) => ({
   type: 'SET_FILTERED_TICKETS',
   filteredTickets

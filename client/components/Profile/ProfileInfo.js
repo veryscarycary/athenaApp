@@ -4,7 +4,12 @@ import Cookies from 'js-cookie';
 import userUtils from '../../utils/userUtils';
 import ProfileModal from './ProfileModal';
 
-export default class ProfileInfo extends React.Component {
+import { toggleProfileModal } from '../../actions'
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+export class ProfileInfoContainer extends React.Component {
   constructor (props) {
     super(props)
 
@@ -27,6 +32,9 @@ export default class ProfileInfo extends React.Component {
   displayDate (date) {
     return this._convertTime(date) + ', ' + this._convertDate(date);
   }
+  handleToggle() {
+    return this.props.toggleProfileModal();
+  }
 
   render () {
 
@@ -41,8 +49,24 @@ export default class ProfileInfo extends React.Component {
         <p><strong>Account Created: </strong>{this.displayDate(this.props.user.dateSignedUp)}</p>
         <p><strong>Last Login: </strong>{this.displayDate(this.props.user.dateLastLogin)}</p>
         <p><strong>Profile Last Updated: </strong>{this.displayDate(this.props.user.dateProfileLastUpdated)}</p>
-        <ProfileModal userInfo={this.props.user} />
+        <button onClick={this.handleToggle.bind(this)} className="edit-profile-button">Edit Profile</button>
+        {this.props.hidden ? null : <ProfileModal userInfo={this.props.user} /> }
       </div>
     )
   }
 };
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  toggleProfileModal,
+},dispatch)
+
+const mapStateToProps = state => ({
+  hidden: state.userReducer.hidden
+})
+
+const ProfileInfo = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileInfoContainer)
+
+export default ProfileInfo

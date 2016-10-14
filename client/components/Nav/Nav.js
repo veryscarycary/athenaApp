@@ -12,6 +12,7 @@ import LoginButton from './LoginButton';
 import { connect } from 'react-redux';
 import { getAuthLevel } from '../../actions';
 import { resetCurrentUser } from '../../actions';
+import ram from '../../images/beefalo.png';
 
 import sessionUtils from '../../utils/sessionUtils';
 
@@ -73,7 +74,10 @@ const NavContainer = ({dispatch, auth, location}) => {
       </nav>
       : null}
       <div className="top-nav">
-      { JSON.parse(Cookies.get('roles'))
+        <Link to='/' className="logo">
+          <img src={ ram } alt="logo"/>
+        </Link>
+        { JSON.parse(Cookies.get('roles'))
           && JSON.parse(Cookies.get('roles'))[0] === 'guest'
         ? <Link to='/login'
            className='logoutnav'>Login</Link>
