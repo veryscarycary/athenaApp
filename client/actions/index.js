@@ -35,7 +35,6 @@ export const useArticle = (article, ticketId) => {
 
 export const useTicket = (articleId, ticket) => {
   var ticketWithRelation = ticket
-  console.log('I AM TICKET', ticket)
   ticketWithRelation.relatedArticles.push(articleId)
   return ({
     type: 'USE_TICKET',

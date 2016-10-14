@@ -87,10 +87,10 @@ export const articleDisplay = (state = {}, action) => {
     case 'SUBMIT_EDIT_FULFILLED':
       return {
         ...state,
-        issue: action.payload.issue,
-        solution: action.payload.solution,
-        title: action.payload.title,
-        issuePreview: action.payload.issuePreview,
+        issue: action.payload[0].issue,
+        solution: action.payload[0].solution,
+        title: action.payload[0].title,
+        issuePreview: action.payload[0].issuePreview,
       }
     case 'GET_ARTICLE_FULFILLED':
       return action.payload[0]
