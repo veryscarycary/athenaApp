@@ -7,7 +7,7 @@ class TicketsButton extends RoleAwareComponent {
   constructor(props) {
     super(props);
 
-    this.allowedRoles = ['user', 'admin'];
+    this.allowedRoles = ['user', 'userPlus', 'admin'];
 
     if (Cookies.get('roles')) {
       this.userRoles = JSON.parse(Cookies.get('roles'));

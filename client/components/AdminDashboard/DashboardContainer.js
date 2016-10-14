@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Cookies from 'js-cookie';
 import RouteHandler from '../RouteHandler';
 import { AuthorizedComponent } from 'react-router-role-authorization';
 import sessionUtils from '../../utils/sessionUtils';
+import articleUtils from '../../utils/articleUtils';
 import Bar from './Bar';
 import Pie from './Pie';
 import Area from './Area';
@@ -14,10 +16,19 @@ class DashboardContainer extends AuthorizedComponent {
 
     this.userRoles = JSON.parse(Cookies.get('roles')); //deserialize json array
     this.notAuthorizedPath = '/not-found';
+
+    this.state = {
+      articles: []
+    };
   }
 
   componentWillMount () {
-    sessionUtils.checkSession();
+    if (!JSON.parse(Cookies.get('roles')).includes('admin')) {browserHistory.push('/not-found');}
+
+    sessionUtils.checkSession().then(() => {
+      articleUtils.getArticles()
+      .then(articles => this.setState({articles}));
+    });
   }
 
   render () {
@@ -28,7 +39,7 @@ class DashboardContainer extends AuthorizedComponent {
         <br />
         <div className='row'>
           <div className='col-xs-6 col-xs-push-1'>
-            <Bar />
+            <Bar articles={this.state.articles} />
           </div>
           <div className='col-xs-6'>
             <Pie />

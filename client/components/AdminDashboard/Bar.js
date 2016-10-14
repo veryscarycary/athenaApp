@@ -5,43 +5,39 @@ import rd3 from 'rd3';
 var BarChart = rd3.BarChart
 var barData = [
   {
-    "name": "Series A",
-    "values": [
-      { "x": 1, "y":  91},
-      { "x": 2, "y": 290},
-      { "x": 3, "y": -25},
-    ]
+    "name": "Views",
+    "values": []
   },
   {
-    "name": "Series B",
-    "values": [
-      { "x": 1, "y":  9},
-      { "x": 2, "y": 49},
-      { "x": 3, "y": -20},
-    ]
-  },
-  {
-    "name": "Series C",
-    "values": [
-      { "x": 1, "y":  14},
-      { "x": 2, "y": 77},
-      { "x": 3, "y": -70},
-    ]
+    "name": "Uses",
+    "values": []
   }
 ];
 
-var Bar = React.createClass({
-  render: function() {
+class Bar extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+
+  render () {
+    for (var i = 0; i < this.props.articles.length; i++) {
+      barData[0].values.push({ "x": i, "y": this.props.articles[i].viewCount});
+      barData[1].values.push({ "x": i, "y": this.props.articles[i].useCount});
+    }
+
     return  (
     	<BarChart
       data={barData}
       width={450}
       height={400}
-      title="Bar Chart"
-      xAxisLabel="Value"
-      yAxisLabel="Label"
+      title="Viewed Articles vs Used Articles "
+      xAxisLabel="Articles"
+      yAxisLabel="Count"
       />
-  )}
-});
+    );
+  }
+};
 
 export default Bar;

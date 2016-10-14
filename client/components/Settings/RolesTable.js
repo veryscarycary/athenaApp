@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RolesTable = () => (
-  <table class="rolesTable">
+  <table>
     <thead>
       <tr>
         <td></td>
