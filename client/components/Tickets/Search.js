@@ -33,7 +33,7 @@ class Search extends React.Component {
         }} >
         <input id="searchBar"
           ref={node => {
-            term = node
+            term=node
           }}
           onChange={() => {
             if (!term.value.trim()) {

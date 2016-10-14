@@ -1,0 +1,75 @@
+@import 'nav'
+@import 'articleList'
+@import 'articleViewPage'
+
+.article-create
+  @extend .card-large
+
+.edit-modal-input
+  width: 512px
+  font-size: 14px
+  margin: 8px 0
+  padding: 8px
+  background: transparentize($lightgrey, 0.7)
+  border: none
+  color: $textgrey
+  border-bottom: 1px solid $lightslate
+
+.edit-modal-textarea
+  width: 512px
+  padding: 8px
+  font-size: 14px
+  margin: 16px 0
+  background: transparentize($lightgrey, 0.7)
+  height: 120px
+  color: $textgrey
+  resize: none
+  border: none
+  border-left: 1px solid $lightslate
+
+.subtitle
+  margin-top: 32px
+
+.article-list-button
+  background: $darkgrey
+  color: $white
+  border: none
+  border-radius: 3px
+  @extend .square-button
+
+.grey-button-visit-page
+  height: 32px
+  display: inline-block
+  line-height: 32px
+  position: absolute
+  bottom: 24px
+  left: 24px
+  padding: 0 8px
+  border-radius: 3px
+  text-decoration: none
+  text-transform: uppercase
+  background: $lightgrey
+  color: $darkgrey
+
+.button-right-float
+  margin: 16px 0
+  display: flex
+  justify-content: flex-end
+
+select
+  border: none
+  background: $lightgrey
+  height: 32px
+  border-radius: 3px
+  @extend .shallow-shadow
+  display: block
+  font-size: 14px
+  margin: 16px 0
+
+.ticket-edit-modal-submit
+  @extend .square-button
+  background: $darkgrey
+  color: $white
+  border: none
+  font-weight: 400
+

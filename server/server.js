@@ -11,6 +11,7 @@ app.use(
   mw.morgan('dev'),
   mw.bodyParser.json(),
   mw.bodyParser.urlencoded({extended: true}),
+  mw.json2xls.middleware,
   mw.session({
     secret: 'It\'s a SECRET: bri6CMg5Te85s0790VhSVlf51T5yd086',
     saveUninitialized: false,

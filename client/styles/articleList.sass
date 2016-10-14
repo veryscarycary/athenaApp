@@ -1,0 +1,87 @@
+@import 'nav'
+
+.card-small
+  min-height: 120px
+  width: 560px
+  padding: 24px
+  background: $white
+  margin-bottom: 16px
+  @extend .shallow-shadow
+
+.article-list-container
+  padding-top: 128px
+  display: flex
+  align-items: flex-start
+  justify-content: center
+  flex-direction: row-reverse
+
+.article-list-item
+  display: flex
+  justify-content: space-between
+  @extend .card-small
+
+.round-button
+  height: 46px
+  width: 46px
+  background: $darkgrey
+  color: $white
+  border: none
+  border-radius: 50%
+  @extend .shallow-shadow
+  &:hover
+    background: $slate
+
+.multiple-buttons
+  button
+    margin-left: 16px
+
+.grey-button
+  @extend .square-button
+  border: none
+  background: $lightgrey
+  color: $darkgrey
+
+.article-create-button
+  margin: 80px -40px 40px 40px
+  @extend .round-button
+
+label
+  display: inline-block
+
+.article-list-item-button
+  min-width: 100px
+  display: flex
+  align-items: flex-end
+
+.read-more
+  border: none
+  color: $white
+  background: $lightslate
+  font-size: 14px
+  @extend .square-button
+  &:hover
+    background: $slate
+
+.title
+  color: $black
+  font-size: 20px
+  margin-bottom: 16px
+
+.article-list-title
+  @extend .title
+
+.article-list-preview
+  padding-right: 24px
+  color: $textgrey
+
+.search-articles
+  width: 560px
+  margin-bottom: 32px
+  input
+    width: 560px
+    height: 32px
+    font-size: 16px
+    padding: 4px
+
+
+

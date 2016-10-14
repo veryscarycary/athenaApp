@@ -22,19 +22,20 @@ export class EditArticleContainer extends Component {
     this.props.editField(e.target.name, e.target.value);
   }
   render() {
-    const { article, submitEdit, editField, authorId } = this.props;
+    const { article, submitEdit, editField, authorId, auth } = this.props;
     let title, issuePreview, issue, solution;
     return (
-      <div>
-        <h3>Edit</h3>
-        <h3 className="full-article-title main">Title:</h3>
+      <div className="article-list-container">
+      <div className="article-edit">
+        <h3 className="title">Edit</h3>
+        <h3 className="subtitle">Title:</h3>
         <input name="title"
           value={article.title}
           className="edit-modal-input"
           onChange={this.handleChange}
           ref={node => title=node} />
 
-        <h5 className="full-article-title">Summary:</h5>
+        <h5 className="subtitle">Summary:</h5>
         <textarea
           value={article.issuePreview}
           className="edit-modal-textarea"
@@ -42,7 +43,7 @@ export class EditArticleContainer extends Component {
           ref={node => issuePreview=node}
         />
 
-        <h5 className="full-article-title">Issue:</h5>
+        <h5 className="subtitle">Issue:</h5>
         <textarea
           value={article.issue}
           className="edit-modal-textarea"
@@ -50,25 +51,15 @@ export class EditArticleContainer extends Component {
           ref={node => issue=node}
         />
 
-        <h5 className="full-article-title">Solution:</h5>
+        <h5 className="subtitle">Solution:</h5>
         <textarea
           value={article.solution}
           className="edit-modal-textarea"
           onChange={this.handleChange}
           ref={node => solution=node}
         />
-        <button
-          onClick={() => {
-            var edits = article;
-            edits.title = title.value;
-            edits.issuePreview = title.issuePreview;
-            edits.issue = title.issue;
-            edits.solution = title.solution;
-            this.handleSubmit(edits)
-          }}
-          className="article-list-button">
-            edit
-        </button>
+        <div className="button-right-float multiple-buttons">
+        {auth[0] === 'userPlus' || auth[0] === 'admin' ?
         <button
           onClick={() => {
             var edits = article;
@@ -80,17 +71,32 @@ export class EditArticleContainer extends Component {
             edits.solution = title.solution;
             this.handleSubmit(edits)
           }}
-          className="article-list-button">
+          className="grey-button">
             archive
-        </button>
+        </button> : null }
+        {auth[0] === 'userPlus' || auth[0] === 'admin' ?
         <button
           onClick={() => {
             this.handleDelete(article.id)
           }}
-          className="article-list-button">
+          className="grey-button">
             delete
+        </button> : null}
+        <button
+          onClick={() => {
+            var edits = article;
+            edits.title = title.value;
+            edits.issuePreview = title.issuePreview;
+            edits.issue = title.issue;
+            edits.solution = title.solution;
+            this.handleSubmit(edits)
+          }}
+          className="article-list-button">
+            submit
         </button>
 
+      </div>
+      </div>
       </div>
     )
   }
@@ -99,6 +105,7 @@ export class EditArticleContainer extends Component {
 
 const mapStateToProps = state => ({
   article: state.editModal.article,
+  auth: state.userReducer.currentUser.roles,
   authorId: state.userReducer.currentUser._id,
 });
 

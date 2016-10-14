@@ -17,7 +17,7 @@ class AppContainer extends React.Component {
   render () {
     return (
       <div className="landing-page">
-      <Nav />
+      <Nav location={this.props.location} />
         {this.props.children}
       </div>
     );
@@ -25,7 +25,6 @@ class AppContainer extends React.Component {
 }
 
 const mapStateToProps = function(store) {
-  console.log(store, 'this is the store at the home page!');
   return {
     currentUser: store.userReducer.currentUser
   };

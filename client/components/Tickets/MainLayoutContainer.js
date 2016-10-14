@@ -29,11 +29,8 @@ class MainLayoutContainer extends AuthorizedComponent {
         <div className='row col-md-12'>
           Ticket Home
           <div className='ticketsAndSearch'>
-            <TicketDisplay />
             <Search />
-          </div>
-          <div className='col-md-12'>
-            <CreateTicket />
+            <TicketDisplay />
           </div>
         </div>
       </div>

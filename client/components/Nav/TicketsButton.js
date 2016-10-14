@@ -19,7 +19,9 @@ class TicketsButton extends RoleAwareComponent {
   render() {
     const jsx = (
       <li>
-        <Link to='/tickets'>Tickets</Link>
+        <Link to='/tickets'
+          activeClassName="active">
+        Tickets</Link>
       </li>
     );
 

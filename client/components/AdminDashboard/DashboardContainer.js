@@ -16,12 +16,33 @@ class DashboardContainer extends AuthorizedComponent {
 
     this.userRoles = JSON.parse(Cookies.get('roles')); //deserialize json array
     this.notAuthorizedPath = '/not-found';
-
     this.state = {
-      articles: []
-    };
+      articles: [],
+      exportOptions: 
+        [
+          {
+            description: 'Articles', 
+            endpoint: 'kbExport'
+          }, {
+            description: 'Article-Ticket Relations', 
+            endpoint: 'kbRelationsExport'
+          }, {
+            description: 'Tickets', 
+            endpoint: 'ticketExport'
+          }, {
+            description: 'Ticket-Article Relations', 
+            endpoint: 'ticketRelationsExport'
+          }
+        ] 
+    }
+    this.handleTable = this.handleTable.bind(this);
   }
-
+  handleTable(e) {
+    this.setState({
+      exportTable: this.state.exportOptions
+        .find(table => table.description === e.target.value).endpoint
+    });
+  }
   componentWillMount () {
     if (!JSON.parse(Cookies.get('roles')).includes('admin')) {browserHistory.push('/not-found');}
 
@@ -33,20 +54,29 @@ class DashboardContainer extends AuthorizedComponent {
 
   render () {
     return (
-      <div className='container bg-warning'>
-        <h1 className='centerText'>Admin Dashboard</h1>
-        <h4 className='centerText'>Your one-stop source for intelligent product analytics.</h4>
-        <br />
+      <div className='dashboard-container bg-warning'>
+        <div className="textContainer">
+        <h1 className='centerText title'>Admin Dashboard</h1>
+        <h4 className='centerText content'>Your one-stop source for intelligent product analytics.</h4>
+        </div>
+        <div className='exportDiv'>
+          <select id="tableSelect" onChange={this.handleTable} defaultValue="default">
+            <option value="default" disabled>Select Table</option>
+            {this.state.exportOptions.map((table, i) => 
+              <option>{table.description}</option>)}
+          </select>&nbsp;
+          <a className="exportButton" href={this.state.exportTable ? `/api/${this.state.exportTable}` : '#'}>Export</a>
+        </div>
         <div className='row'>
-          <div className='col-xs-6 col-xs-push-1'>
+          <div className='graph'>
             <Bar articles={this.state.articles} />
           </div>
-          <div className='col-xs-6'>
+          <div className='graph'>
             <Pie />
           </div>
         </div>
         <div className='row'>
-          <div className='col-xs-12 col-xs-push-1'>
+          <div className='graph horizontal'>
             <Area />
           </div>
         </div>

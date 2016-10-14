@@ -44,6 +44,11 @@ export const ticketPage = (state={ticket:{},}, action) => {
 
 export const ticketArticlesSearch = (state={results:[]}, action) => {
   switch (action.type) {
+    case 'GET_ARTICLES_FULFILLED':
+      return {
+        ...state,
+        results:action.payload
+      }
     case 'SEARCH_TICKET_ARTICLES_FULFILLED':
       return {
         ...state,
