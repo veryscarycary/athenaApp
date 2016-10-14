@@ -4,10 +4,15 @@ import rd3 from 'rd3';
 
 
 var PieChart = rd3.PieChart;
-var pieData = [{label: "Margarita", value: 20.0}, {label: "John", value: 55.0}, {label: "Tim", value: 25.0 }];
+var pieData = [{label: "Camera", value: 20.0}, {label: "Computer", value: 55.0}, {label: "Monitor", value: 25.0 }, {label: "Printer", value: 25.0 }];
 
-var Pie = React.createClass({
-  render: function() {
+class Pie extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+
+  render() {
     return  (
       <div className='brownContainer'>
       	<PieChart
@@ -17,9 +22,10 @@ var Pie = React.createClass({
         radius={110}
         innerRadius={20}
         sectorBorderColor="white"
-        title="Pie Chart" />
+        title="Outstanding Issues" />
       </div>
-  )}
-});
+    );
+  };
+};
 
 export default Pie;

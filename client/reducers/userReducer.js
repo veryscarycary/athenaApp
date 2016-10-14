@@ -3,11 +3,11 @@ const initialState = {
     firstName: '',
     lastName: '',
     username: '',
-    roles: [],
+    roles: ['guest'],
     email: '',
     phoneNumber: '',
     bio: '',
-    pictureUrl: '',
+    pictureUrl: '../images/profilePicture.png',
     dateSignedUp: '',
     dateLastLogin: '',
     dateProfileLastUpdated: ''
@@ -35,6 +35,8 @@ const userReducer = function(state = initialState, action) {
         ...state,
         status: 'pending'
       };
+    case 'RESET_CURRENT_USER':
+      return Object.assign({}, state, initialState);
 
     default:
       return state

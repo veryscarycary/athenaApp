@@ -44,7 +44,7 @@ class HomeContainer extends React.Component {
   render () {
     return (
       <div className='homepageBackground'>
-        <div className='centerFlex'>
+        <div className='centerFlexHomePage'>
           <h1 className='centerItem'>Athena</h1>
           <h2 className='centerItem'>Smart Support Platform</h2>
           {this.props.currentUser.roles.indexOf('guest') === -1 ?
