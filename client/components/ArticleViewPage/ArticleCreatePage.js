@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { createArticle } from '../../actions';
 
-const ArticleCreatePageContainer = ({createArticle, history}) => {
-  let title, issuePreview, issue, solution;
+const ArticleCreatePageContainer = ({createArticle, history, authorId, products}) => {
+  let title, issuePreview, issue, solution, product;
   const handleSubmit = (article) => {
     createArticle(article)
       .then(resp => history.push(`/articles/${resp.value[0].id}`))
@@ -29,10 +29,20 @@ const ArticleCreatePageContainer = ({createArticle, history}) => {
       <textarea
         ref={node => solution=node}
         className="edit-modal-textarea" />
+      <select name='product'
+        ref={node=>product=node}>
+        <option value={products[0]}>{products[0]}</option>
+        <option value={products[1]}>{products[1]}</option>
+        <option value={products[2]}>{products[2]}</option>
+        <option value={products[3]}>{products[3]}</option>
+      </select>
        <button
         onClick={() => {
+          var selectedProduct = product.options[product.options.selectedIndex].value;
           let article = {
               title: title.value,
+              authorId: authorId,
+              product: selectedProduct,
               issuePreview: issuePreview.value,
               issue: issue.value,
               solution: solution.value,
@@ -50,8 +60,13 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   createArticle,
 }, dispatch);
 
+const mapStateToProps = state => ({
+  products: ['camera','printer','computer','monitor'],
+  authorId: state.userReducer.currentUser._id,
+})
+
 const ArticleCreatePage = connect(
-  () => ({}),
+  mapStateToProps,
   mapDispatchToProps
 )(ArticleCreatePageContainer)
 

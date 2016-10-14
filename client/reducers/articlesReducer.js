@@ -21,6 +21,7 @@ export const article = (state = {}, action) => {
         id: action.payload.id,
         issuePreview: action.payload.issuePreview,
         title: action.payload.title,
+        archived: action.payload.archived,
         issue: action.payload.issue,
         solution: action.payload.solution,
         status: 'fulfilled'
@@ -92,14 +93,7 @@ export const articleDisplay = (state = {}, action) => {
         issuePreview: action.payload.issuePreview,
       }
     case 'GET_ARTICLE_FULFILLED':
-      return {
-        title: action.payload[0].title,
-        solution: action.payload[0].solution,
-        issue: action.payload[0].issue,
-        _id: action.payload[0]._id,
-        issuePreview: action.payload[0].issuePreview,
-        id: action.payload[0].id,
-      }
+      return action.payload[0]
     default:
       return state
   }

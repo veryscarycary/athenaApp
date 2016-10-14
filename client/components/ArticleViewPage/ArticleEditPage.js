@@ -1,7 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-
-import { submitEdit, editField, setEditArticle } from '../../actions';
-
+import { deleteArticle, submitEdit, editField, setEditArticle } from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,6 +10,10 @@ export class EditArticleContainer extends Component {
   componentWillMount() {
     this.props.setEditArticle(this.props.params.id);
   }
+  handleDelete(id) {
+    this.props.deleteArticle(id);
+    this.props.history.push('/articles');
+  }
   handleSubmit(edits) {
     this.props.submitEdit(edits)
       .then(() => this.props.history.push(`/articles/${this.props.params.id}`));
@@ -20,7 +22,7 @@ export class EditArticleContainer extends Component {
     this.props.editField(e.target.name, e.target.value);
   }
   render() {
-    const { article, submitEdit, editField } = this.props;
+    const { article, submitEdit, editField, authorId } = this.props;
     let title, issuePreview, issue, solution;
     return (
       <div>
@@ -67,6 +69,28 @@ export class EditArticleContainer extends Component {
           className="article-list-button">
             edit
         </button>
+        <button
+          onClick={() => {
+            var edits = article;
+            edits.title = title.value;
+            edits.archived = 'true';
+            edits.status = 'archived';
+            edits.issuePreview = title.issuePreview;
+            edits.issue = title.issue;
+            edits.solution = title.solution;
+            this.handleSubmit(edits)
+          }}
+          className="article-list-button">
+            archive
+        </button>
+        <button
+          onClick={() => {
+            this.handleDelete(article.id)
+          }}
+          className="article-list-button">
+            delete
+        </button>
+
       </div>
     )
   }
@@ -75,11 +99,13 @@ export class EditArticleContainer extends Component {
 
 const mapStateToProps = state => ({
   article: state.editModal.article,
+  authorId: state.userReducer.currentUser._id,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   submitEdit,
   editField,
+  deleteArticle,
   setEditArticle,
 }, dispatch)
 

@@ -24,6 +24,25 @@ export const getArticle = (id) => ({
   }
 });
 
+export const useArticle = (article, ticketId) => {
+  var articleWithRelation = article
+  articleWithRelation.relatedTickets.push(ticketId)
+  return ({
+    type: 'USE_ARTICLE',
+    payload: articleUtils.editArticle(articleWithRelation)
+  })
+}
+
+export const useTicket = (articleId, ticket) => {
+  var ticketWithRelation = ticket
+  console.log('I AM TICKET', ticket)
+  ticketWithRelation.relatedArticles.push(articleId)
+  return ({
+    type: 'USE_TICKET',
+    payload: ticketUtils.putTicket(ticketWithRelation)
+  })
+}
+
 export const clearArticle = () => ({
   type: 'CLEAR_ARTICLE',
 })
