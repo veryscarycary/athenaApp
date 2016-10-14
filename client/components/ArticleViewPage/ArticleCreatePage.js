@@ -35,6 +35,7 @@ const ArticleCreatePageContainer = ({createArticle, history, authorId, products}
         placeholder="describe how you solved the problem"
         ref={node => solution=node}
         className="edit-modal-textarea" />
+      <h5 className="subtitle">Product</h5>
       <select name='product'
         ref={node=>product=node}>
         <option value={products[0]}>{products[0]}</option>

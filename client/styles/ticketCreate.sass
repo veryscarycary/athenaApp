@@ -3,32 +3,59 @@
 @import 'articleList'
 
 .ticket-page-container
-  padding-top: 128px
+  padding: 128px 24px
   display: flex
   justify-content: space-around
 
 .search-sidebar
-  padding-top: 24px
   width: 336px
 
-.search-articles .search-sidebar-searchbar
+.search-sidebar
   width: 336px
   margin: 0 auto
-  border: none
-  font-size: 14px
-  color: $textgrey
+  input
+    width: 336px
+    border: none
+    font-size: 14px
+    background: $lightgrey
+    border-bottom: 1px solid $lightslate
+    margin-bottom: 24px
+    color: $textgrey
+
 
 .search-results-item
   @extend .shallow-shadow
   width: 336px
   height: 64px
+  color: $textgrey
   background: $white
   border-radius: 3px
-  margin: 8px 0
+  margin: 16px 0
   padding: 24px 16px
   &:hover
     background: transparentize($lightgrey, 0.9)
     color: $textgrey
+
+.ticket-article-container
+  @extend .shallow-shadow
+  background: $white
+  border-radius: 3px
+  padding: 24px
+  width: 336px
+  position: relative
+  .full-article-button
+    position: absolute
+    right: -24px
+    top: 24px
+    @extend .round-button
+  .ticket-article-modal-use-button
+    @extend .square-button
+    background: $darkgrey
+    color: $white
+    border: none
+    position: absolute
+    bottom: 24px
+    right: 24px
 
 .ticket-article-modal > .full-article
   width: 336px

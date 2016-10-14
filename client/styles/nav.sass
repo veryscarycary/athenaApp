@@ -12,11 +12,11 @@ $darkgrey: #263238
 body
   font-family: 'Roboto', sans-serif
   background: $lightgrey
-  padding: 0 0 120px 320px
+  margin: 0 0 120px 320px
   font-size: 14px
 
 .shallow-shadow
-  box-shadow: 0 2px 3px 2px rgba(0,0,0,0.2)
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,0.2)
 .deep-shadow
   box-shadow: 0 4px 9px 0 rgba(0,0,0,0.4)
 
@@ -25,6 +25,7 @@ body
   height: 100vh
   position: fixed
   padding-top: 128px
+  z-index: 3
   left: 0
   top: 0
   background: $white
@@ -47,6 +48,7 @@ body
   left: 0
   width: 100vw
   height: 64px
+  z-index: 6
   background: $slate
   display: flex
   justify-content: flex-end

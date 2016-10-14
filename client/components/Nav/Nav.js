@@ -17,7 +17,7 @@ import sessionUtils from '../../utils/sessionUtils';
 
 
 
-const NavContainer = ({dispatch, auth}) => {
+const NavContainer = ({dispatch, auth, location}) => {
   const goToHomePage = () => {
     // e.preventDefault();
     browserHistory.push('/');
@@ -31,6 +31,8 @@ const NavContainer = ({dispatch, auth}) => {
   }
   return (
     <div className="nav-container">
+    {console.log(location)}
+      { location.pathname !== '/' ?
       <nav className="side-nav" role="navigation">
         <ul className="nav-items">
           <li>
@@ -38,7 +40,7 @@ const NavContainer = ({dispatch, auth}) => {
               activeClassName="active">
               Articles
             </Link>
-
+            {/*
 //<<<<<<< HEAD
                 //<a className="navbar-brand" onClick={goToHomePage}>
                   //<img id='beefaloLogo' src={beefalo} alt="" />
@@ -61,6 +63,7 @@ const NavContainer = ({dispatch, auth}) => {
         //</div>
     //</nav>
 //=======
+//*/}
           </li>
           <TicketsButton />
           <DashboardButton />
@@ -68,6 +71,7 @@ const NavContainer = ({dispatch, auth}) => {
           <SettingsButton />
         </ul>
       </nav>
+      : null}
       <div className="top-nav">
       { JSON.parse(Cookies.get('roles'))
           && JSON.parse(Cookies.get('roles'))[0] === 'guest'

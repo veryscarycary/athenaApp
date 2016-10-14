@@ -34,7 +34,7 @@ export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
 
         className="content">{article.issue} </div>
       <h5 className="full-article-title">Solution</h5>
-      {auth && auth[0] === 'admin' ? <EditButton /> : null}
+      {auth && auth[0] === 'admin' && !ticketPage ? <EditButton /> : null}
      </div>
     </div>
   )

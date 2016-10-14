@@ -94,6 +94,7 @@ export class EditArticleContainer extends Component {
         </button>
       </div>
       </div>
+      </div>
     )
   }
 }

@@ -20,7 +20,7 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
     <div className="article-list-container">
       <div className="button-float">
         <Link to="/articles/create">
-          <button className="round-button">
+          <button className="article-create-button">
             <i className="material-icons">add</i>
           </button>
         </Link>

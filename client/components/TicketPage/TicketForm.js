@@ -98,15 +98,9 @@ class TicketFormContainer extends Component {
             }}
             onChange={this.handleChange}
             value={this.props.ticket.solution}/>
-          <label htmlFor='product'>Product</label>
-          <select name='product'
-            ref={node=>product=node}>
-            <option value={this.props.products[0]}>{this.props.products[0]}</option>
-            <option value={this.props.products[1]}>{this.props.products[1]}</option>
-            <option value={this.props.products[2]}>{this.props.products[2]}</option>
-            <option value={this.props.products[3]}>{this.props.products[3]}</option>
-          </select>
-          <label htmlFor='customerId'>Customer Id</label>
+          <label
+          className="subtitle"
+          htmlFor='customerId'>Customer Id</label>
           <input
             className='edit-modal-input'
             type='text'
@@ -116,10 +110,23 @@ class TicketFormContainer extends Component {
             }}
             onChange={this.handleChange}
             value={this.props.ticket.number}/>
+        <label
+          className="subtitle"
+          htmlFor='product'>Product</label>
+          <select name='product'
+            ref={node=>product=node}>
+            <option value={this.props.products[0]}>{this.props.products[0]}</option>
+            <option value={this.props.products[1]}>{this.props.products[1]}</option>
+            <option value={this.props.products[2]}>{this.props.products[2]}</option>
+            <option value={this.props.products[3]}>{this.props.products[3]}</option>
+          </select>
+        <div className="button-right-float">
           <button
+            className="ticket-edit-modal-submit"
             type='submit'>
             Submit { this.props.id === 'create' ? 'ticket' : 'edits' }
           </button>
+          </div>
         </form>
       </div>
     )
