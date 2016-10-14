@@ -34,7 +34,7 @@ class Bar extends React.Component {
       height={400}
       title="Viewed Articles vs Used Articles "
       xAxisLabel="Articles"
-      yAxisLabel="#"
+      yAxisLabel="Count"
       />
     );
   }
