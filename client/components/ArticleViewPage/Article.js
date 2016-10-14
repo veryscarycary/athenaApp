@@ -3,14 +3,19 @@ import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
-import { getArticle, clearArticle } from '../../actions';
+import { getArticle, clearArticle, submitEdit } from '../../actions';
 
 export class ArticleContainer extends Component {
   constructor(props) {
     super(props)
   }
   componentWillMount() {
-    this.props.getArticle(this.props.id);
+    this.props.getArticle(this.props.id)
+      .then(article => {
+        var upViewCount = this.props.article;
+        upViewCount.viewCount++;
+        this.props.submitEdit(upViewCount);
+      })
   }
 
   render() {
@@ -54,6 +59,7 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getArticle,
+  submitEdit,
   clearArticle,
 }, dispatch)
 
