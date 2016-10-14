@@ -58,6 +58,7 @@ class ProfileContainerContainer extends AuthorizedComponent {
            <div className='edit-form'>
           <div className='picture-edit' id='content'>
           <button className="edit-profile-button" onClick={this.handleToggle.bind(this)}>Change Profile Picture</button>
+          {console.log(this.props.editPictureHidden)}
           {this.props.editPictureHidden ? null : <EditPictureForm user={this.state.user} className='collapse' id='content' />}
           </div>
         </div>

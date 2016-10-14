@@ -11,16 +11,16 @@ export class EditProfileFormContainer extends React.Component {
     this.state = {};
   }
 
-//  componentWillReceiveProps () {
-//    this.setState({
-//      userInfo: this.props.userInfo,
-//      editName: `${this.props.userInfo.firstName} ${this.props.userInfo.lastName}`,
-//     editUsername: this.props.userInfo.username,
-//      editEmail: this.props.userInfo.email,
-//      editPhoneNumber: this.props.userInfo.phoneNumber,
-//      editBio: this.props.userInfo.bio
-//    });
-//  }
+  componentWillReceiveProps () {
+    this.setState({
+      userInfo: this.props.userInfo,
+      editName: `${this.props.userInfo.firstName} ${this.props.userInfo.lastName}`,
+     editUsername: this.props.userInfo.username,
+      editEmail: this.props.userInfo.email,
+      editPhoneNumber: this.props.userInfo.phoneNumber,
+      editBio: this.props.userInfo.bio
+    });
+  }
 
   setName (event) {
     this.setState({
