@@ -5,6 +5,7 @@ const express = require('express');
 module.exports = {
   bodyParser: require('body-parser'),
   morgan: require('morgan'),
+  json2xls: require('json2xls'),
   express: express,
   session: require('express-session'),
   router: express.Router,

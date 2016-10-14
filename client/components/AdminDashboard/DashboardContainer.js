@@ -14,8 +14,32 @@ class DashboardContainer extends AuthorizedComponent {
 
     this.userRoles = JSON.parse(Cookies.get('roles')); //deserialize json array
     this.notAuthorizedPath = '/not-found';
+    this.state = {
+      exportOptions: 
+        [
+          {
+            description: 'Articles', 
+            endpoint: 'kbExport'
+          }, {
+            description: 'Article-Ticket Relations', 
+            endpoint: 'kbRelationsExport'
+          }, {
+            description: 'Tickets', 
+            endpoint: 'ticketExport'
+          }, {
+            description: 'Ticket-Article Relations', 
+            endpoint: 'ticketRelationsExport'
+          }
+        ] 
+    }
+    this.handleTable = this.handleTable.bind(this);
   }
-
+  handleTable(e) {
+    this.setState({
+      exportTable: this.state.exportOptions
+        .find(table => table.description === e.target.value).endpoint
+    });
+  }
   componentWillMount () {
     sessionUtils.checkSession();
   }
@@ -26,6 +50,14 @@ class DashboardContainer extends AuthorizedComponent {
         <h1 className='centerText'>Admin Dashboard</h1>
         <h4 className='centerText'>Your one-stop source for intelligent product analytics.</h4>
         <br />
+        <div className='export'>
+          <select id="tableSelect" onChange={this.handleTable} defaultValue="default">
+            <option value="default" disabled>Select Table</option>
+            {this.state.exportOptions.map((table, i) => 
+              <option dataIndex={i}>{table.description}</option>)}
+          </select>
+          <a href={this.state.exportTable ? `/api/${this.state.exportTable}` : '#'}>Export</a>
+        </div>
         <div className='row'>
           <div className='col-xs-6 col-xs-push-1'>
             <Bar />

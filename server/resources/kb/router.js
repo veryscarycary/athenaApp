@@ -5,6 +5,12 @@ const api = require('./controller.js');
 router.route('/api/kbMetrics')
   .get(api.getArticleRelations);
 
+router.route('/api/kbExport')
+  .get(api.exportKb);
+
+router.route('/api/kbRelationsExport')
+  .get(api.exportKbRelations);
+
 router.route('/api/kb')
   .get(api.getArticle) //gets all KBs
   .post(api.createArticle);//creates a KB

@@ -35,17 +35,51 @@ module.exports = {
     request({
       method: 'GET',
       uri: `${kb}/metrics`
-    }, (err, resp, body) => sendRes(res, err, resp, JSON.parse(body)));
+    }, (err, resp, body) => sendRes(res, err, resp, JSON.parse(body).sort((a,b) => a.articleId == b.articleId ? 
+        a.ticketId - b.ticketId
+        : a.articleId - b.articleId)));
+  },
+  exportKb(req, res) {
+    request({
+      method: 'GET',
+      uri: `${kb}/api`
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : (() =>{
+          body = JSON.parse(body)
+          getRelatedIds(body);
+          body.forEach(obj => obj.relatedTickets = obj.relatedTickets.reduce((str, ticket, i) => str + (i ? ', ' : '') + ticket, ''));
+          res.status(resp.statusCode).xls('articles.xlsx', body);
+        })())
+  },
+  exportKbRelations(req, res) {
+    request({
+      method: 'GET',
+      uri: `${kb}/metrics`
+    }, (err, resp, body) => err ?
+      res.status(err.statusCode).send(err)
+      : (() =>{
+          body = JSON.parse(body).sort((a,b) => a.ticketId - b.ticketId).sort((a,b) => a.articleId == b.articleId ? 
+              a.ticketId - b.ticketId
+              : a.articleId - b.articleId);
+          res.status(resp.statusCode).xls('articleRelations.xlsx', body);
+        })())
   }
 };
 
 function sendRes(res, err, resp, body) {
-  if(Array.isArray(body))
-    body.forEach(article => {
-      if(Array.isArray(article.relatedTickets) && article.relatedTickets.length > 0)
-      article.relatedTickets = article.relatedTickets.map(ticket => ticket.ticketId);
-    });
+  getRelatedIds(body);
   return err ?
     res.status(err.statusCode).send(err)
     : res.status(resp.statusCode).send(body);
+}
+
+function getRelatedIds(body) {
+  if(Array.isArray(body))
+    body.forEach(article => {
+      if(Array.isArray(article.relatedTickets) && article.relatedTickets.length > 0)
+      article.relatedTickets = article.relatedTickets
+        .map(ticket => ticket.ticketId)
+        .sort((a,b) => a - b);
+    });
 }
