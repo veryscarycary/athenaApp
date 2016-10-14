@@ -6,6 +6,8 @@ import ProfileInfo from './ProfileInfo';
 import UsersDisplay from './UsersDisplay';
 import userUtils from '../../utils/userUtils';
 import EditPictureForm from './EditPictureForm';
+import profilePhoto from '../../images/profilePicture.png'
+
 
 class ProfileContainer extends AuthorizedComponent {
   constructor (props) {
@@ -34,9 +36,8 @@ class ProfileContainer extends AuthorizedComponent {
   componentWillMount () {
     sessionUtils.checkSession();
 
-    userUtils.getUser(Cookies.get('sessionId')).then( (users)=> this.setState({user: users[0]}) );
+    userUtils.getUser(Cookies.get('sessionId')).then( (users) => this.setState({user: users[0]}) );
   }
-
   render () {
     return (
       <div className='profile'>
@@ -49,7 +50,7 @@ class ProfileContainer extends AuthorizedComponent {
 
         <div className='row'>
           <div className='picture-container'>
-            <img src={this.state.user.pictureUrl} className='profilePicture' />
+            <img src={this.state.user.pictureUrl ? this.state.user.pictureUrl : profilePhoto} className='profilePicture' />
           </div>
 
           <div className='profile-info'>
@@ -59,7 +60,7 @@ class ProfileContainer extends AuthorizedComponent {
         </div>
 
         <div className='edit-form'>
-          <button className='btn btn-default' data-toggle='collapse' data-target='#content'>Change Profile Picture</button>
+          <button className='edit-profile' data-toggle='collapse' data-target='#content'>Change Profile Picture</button>
           <div className='collapse' id='content'>
             <EditPictureForm user={this.state.user} className='collapse' id='content' />
           </div>

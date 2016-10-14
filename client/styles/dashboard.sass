@@ -4,7 +4,7 @@
 
 .dashboard-container
   display: flex
-  width: 960px
+  width: 880px
   margin: 0 auto
   flex-direction: column
   justify-content: center
@@ -13,7 +13,7 @@
 
 .row
   display: flex
-  width: 960px
+  width: 880px
   justify-content: space-between
 
 .graph
@@ -24,7 +24,7 @@
   padding: 24px 8px
 
 .textContainer
-  width: 960px
+  width: 880px
   margin: 0 auto 8px
   background: $white
   border-radius: 3px
@@ -35,4 +35,18 @@
   padding-bottom: 16px
 
 .horizontal
-  width: 960px
+  width: 880px
+
+.exportButton
+  @extend .square-button
+  @extend .shallow-shadow
+  text-decoration: none
+  color: $slate
+  background: $white
+
+.exportDiv
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 50%
+
