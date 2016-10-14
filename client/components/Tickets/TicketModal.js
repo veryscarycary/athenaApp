@@ -56,10 +56,10 @@ class TicketModalContainer extends React.Component {
           <h2>Ticket Details</h2>
           <p>
             {this.ticketModalInfo(this.props.ticket).map(ticketInfo => (
-              <span id={`preview${ticketInfo[0]}`}>{ticketInfo.join(': ')}<br /></span>
+              <span id={`preview${ticketInfo[0]}`}><strong>{`${ticketInfo[0][0].toUpperCase() + ticketInfo[0].slice(1)}`}</strong>{`: ${ticketInfo[1]}`}<br /></span>
             ))
             }
-            relatedArticles:
+            <strong>RelatedArticles</strong>:
             {this.props.articles.map(article => (<button data-toggle='collapse' data-target={`#articleModal${article.id}`}>{article.title}</button>))}
           </p>
           <button className='btn btn-default' data-toggle='collapse' data-target={`#editTicket${this.props.ticket._id}`}>Edit Ticket</button>
