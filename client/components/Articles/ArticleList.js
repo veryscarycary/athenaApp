@@ -18,13 +18,16 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
 
   return (
     <div className="article-list-container">
-      <div className="button-float">
+    { auth[0] === 'guest'
+      ? null
+      : <div className="button-float">
         <Link to="/articles/create">
           <button className="article-create-button">
             <i className="material-icons">add</i>
           </button>
         </Link>
       </div>
+    }
       <div className="article-list">
       <SearchArticles />
       <ul>
@@ -58,7 +61,7 @@ export const ArticleListItems = ({auth, articles, article, getArticle, toggleArt
 let article = {
   mapStateToProps: (state) => ({
     articles: state.articlesList.articles,
-    auth: state.auth.level,
+    auth: state.userReducer.currentUser.roles,
     article: state.articleDisplay,
   }),
 

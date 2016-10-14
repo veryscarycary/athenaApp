@@ -45,23 +45,26 @@ class LoginContainer extends React.Component {
         <div className="login">
 
         <div className='loginSignupContainer'>
-          <form action='' method='' onSubmit={this.handleLogin.bind(this)}>
+          <form action='' method='' className="loginform" onSubmit={this.handleLogin.bind(this)}>
+          <h3 className="title">Log in</h3>
           {/*^onSubmit invoke fetch post to user server*/}
             <div className='form-group'>
               <label htmlFor='username' className="subtitle">Username:</label>
-              <input type='text' className='login-input' id='username' onChange={(e)=>this.setState({username: e.target.value})} required />
+              <input type='text' placeholder="username" className='login-input' id='username' onChange={(e)=>this.setState({username: e.target.value})} required />
             </div>
             <div className='form-group'>
               <label className="subtitle"htmlFor='password'>Password:</label>
-              <input type='password' className='login-input' id='password' onChange={(e)=>this.setState({password: e.target.value})} required />
-            </div>
-            <div className='form-group'>
-              <input type='submit' className='btn btn-default' id='submit' value='Login' />
+              <input type='password' placeholder="password" className='login-input' id='password' onChange={(e)=>this.setState({password: e.target.value})} required />
             </div>
             <Link to='/signup'>Create a new account</Link>
+            <div className="button-right-float">
+            <div className='form-group'>
+              <input type='submit' className='login-button' id='submit' value='Login' />
+            </div>
+            </div>
           </form>
-          {this.state.userNameDoesNotExist ? <div>username or password is incorrect</div> : null}
-          {this.state.isLoggedIn ? <div>Login Successful!</div> : null}
+          {this.state.userNameDoesNotExist ? <div className="info warning">username or password is incorrect</div> : null}
+          {this.state.isLoggedIn ? <div className="info success">Login Successful!</div> : null}
         </div>
         </div>
       </div>

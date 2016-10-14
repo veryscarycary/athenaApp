@@ -58,7 +58,30 @@ export class EditArticleContainer extends Component {
           onChange={this.handleChange}
           ref={node => solution=node}
         />
-        <div className="button-right-float">
+        <div className="button-right-float multiple-buttons">
+        {auth[0] === 'userPlus' || auth[0] === 'admin' ?
+        <button
+          onClick={() => {
+            var edits = article;
+            edits.title = title.value;
+            edits.archived = 'true';
+            edits.status = 'archived';
+            edits.issuePreview = title.issuePreview;
+            edits.issue = title.issue;
+            edits.solution = title.solution;
+            this.handleSubmit(edits)
+          }}
+          className="grey-button">
+            archive
+        </button> : null }
+        {auth[0] === 'userPlus' || auth[0] === 'admin' ?
+        <button
+          onClick={() => {
+            this.handleDelete(article.id)
+          }}
+          className="grey-button">
+            delete
+        </button> : null}
         <button
           onClick={() => {
             var edits = article;
@@ -71,27 +94,7 @@ export class EditArticleContainer extends Component {
           className="article-list-button">
             submit
         </button>
-        <button
-          onClick={() => {
-            var edits = article;
-            edits.title = title.value;
-            edits.archived = 'true';
-            edits.status = 'archived';
-            edits.issuePreview = title.issuePreview;
-            edits.issue = title.issue;
-            edits.solution = title.solution;
-            this.handleSubmit(edits)
-          }}
-          className="article-list-button">
-            archive
-        </button>
-        <button
-          onClick={() => {
-            this.handleDelete(article.id)
-          }}
-          className="article-list-button">
-            delete
-        </button>
+
       </div>
       </div>
       </div>

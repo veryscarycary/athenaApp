@@ -39,6 +39,7 @@ export class ArticleContainer extends Component {
             escapeHTML="true"
             source={article.solution}
             className="content" />
+            {console.log(auth)}
             {
               auth[0] === 'userPlus' || auth[0] === 'admin'
                 ? <Link to={`/articles/edit/${article.id}`}>

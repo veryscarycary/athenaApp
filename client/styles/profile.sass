@@ -1,0 +1,36 @@
+@import 'nav'
+@import 'articleList'
+@import 'articleViewPage'
+
+.profile
+  @extend .card-large
+  width: 980px
+  margin: 120px auto
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+.profile-section
+  display: flex
+  justify-content: space-between
+
+.picture-container
+  height: 360px
+  width: 360px
+  overflow: hidden
+.profile-picture
+  height: 360px
+  width: auto
+
+strong
+  color: $darkgrey
+  padding-right: 8px
+
+.profile-info
+  color: $textgrey
+  line-height: 2
+  a
+    color: $slate
+    &:hover
+      color: $lightslate
+

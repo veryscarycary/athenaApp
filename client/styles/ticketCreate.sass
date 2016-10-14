@@ -40,7 +40,7 @@
   @extend .shallow-shadow
   background: $white
   border-radius: 3px
-  padding: 24px
+  padding: 24px 24px 64px
   width: 336px
   position: relative
   .full-article-button
@@ -59,3 +59,15 @@
 
 .ticket-article-modal > .full-article
   width: 336px
+
+.ticketModalDialog
+  position: relative
+  background: $white
+  padding: 24px
+  @extend .shallow-shadow
+  border-radius: 3px
+  margin: 64px auto
+  width: 960px
+
+.closeModal
+  @extend .round-button

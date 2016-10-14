@@ -7,9 +7,6 @@
   background: $white
   margin-bottom: 16px
   @extend .shallow-shadow
-  &:hover
-    background: transparentize($lightgrey, 0.9)
-    color: $textgrey
 
 .article-list-container
   padding-top: 128px
@@ -33,6 +30,16 @@
   @extend .shallow-shadow
   &:hover
     background: $slate
+
+.multiple-buttons
+  button
+    margin-left: 16px
+
+.grey-button
+  @extend .square-button
+  border: none
+  background: $lightgrey
+  color: $darkgrey
 
 .article-create-button
   margin: 80px -40px 40px 40px

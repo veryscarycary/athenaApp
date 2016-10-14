@@ -55,8 +55,8 @@ class TicketDisplay extends React.Component {
             <i className="material-icons">add</i>
           </button>
         </Link>
-        { this.props.hidden ? null : <TicketModal ticket={this.props.ticket}/>}
         </div>
+        { this.props.hidden ? null : <TicketModal ticket={this.props.ticket}/>}
       </div>
     )
   };

@@ -39,24 +39,26 @@ class ProfileContainer extends AuthorizedComponent {
 
   render () {
     return (
-      <div className='container bg-warning'>
+      <div className='profile'>
         <div className='row'>
           <div className='col-xs-4 col-xs-push-1'>
-            <h1>Profile</h1>
+            <h1 className="title">Profile</h1>
           </div>
         </div>
+        <div className="profile-section">
 
         <div className='row'>
-          <div className='col-xs-4 col-xs-push-1'>
+          <div className='picture-container'>
             <img src={this.state.user.pictureUrl} className='profilePicture' />
           </div>
 
-          <div className='col-xs-6 col-xs-push-2'>
+          <div className='profile-info'>
             <ProfileInfo user={this.state.user} />
           </div>
         </div>
+        </div>
 
-        <div className='row col-md-6 col-md-push-1'>
+        <div className='edit-form'>
           <button className='btn btn-default' data-toggle='collapse' data-target='#content'>Change Profile Picture</button>
           <div className='collapse' id='content'>
             <EditPictureForm user={this.state.user} className='collapse' id='content' />
@@ -65,7 +67,7 @@ class ProfileContainer extends AuthorizedComponent {
 
         <div className='row'>
           <div className='col-xs-10 col-xs-push-1'>
-            <h2>Search Users</h2>
+            <h2 className="title">Search Users</h2>
             <UsersDisplay />
           </div>
         </div>

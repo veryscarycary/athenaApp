@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router'
 
 import * as actionCreators from '../../actions/index';
 
@@ -45,12 +46,14 @@ class HomeContainer extends React.Component {
     return (
       <div className='homepageBackground'>
         <div className='centerFlexHomePage'>
-          <h1 className='centerItem'>Athena</h1>
-          <h2 className='centerItem'>Smart Support Platform</h2>
+          <h1 className='centerItem title'>Athena</h1>
+          <h2 className='centerItem title'>Smart Support Platform</h2>
           {this.props.currentUser.roles.indexOf('guest') === -1 ?
-          <h4 className='centerItem'>Hi, {this.props.currentUser.firstName}! Ready to solve some issues?</h4>
+          <h4 className='centerItem subtitle'>Hi, {this.props.currentUser.firstName}! Ready to solve some issues?</h4>
             : null}
-        </div>
+        <Link to='/articles' className="enter-app-button">
+              Go to app
+          </Link></div>
       </div>
     );
   }

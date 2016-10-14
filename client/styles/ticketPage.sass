@@ -76,6 +76,12 @@ tbody tr:hover
   @extend .round-button
   margin-left: -48px
 
+.closeModal
+  @extend .round-button
+  position: absolute
+  top: 24px
+  right: -24px
+
 .search-tickets
   width: 960px
   height: 32px
@@ -90,4 +96,13 @@ tbody tr:hover
     border-bottom: 1px solid $lightslate
     color: $textgrey
 
+.text
+  color: $textgrey
+  line-height: 1.3
 
+.relatedArticles
+  padding: 16px 24px
+  a
+    color: $slate
+    &:hover
+      color: $lightslate

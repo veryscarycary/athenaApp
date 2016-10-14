@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router'
 import articleUtils from '../../utils/articleUtils'
 import ticketUtils from '../../utils/ticketUtils';
 import * as ticketActionCreators from '../../actions/index';
@@ -52,31 +52,26 @@ class TicketModalContainer extends React.Component {
     return (
       <div id={`openModal${this.props.ticket._id}`} className="ticketModalDialog">
         <div>
-          <a onClick={this.handleToggle.bind(this)} title="Close" className="closeModal">X</a>
-          <h2>Ticket Details</h2>
+          <button onClick={this.handleToggle.bind(this)} title="Close" className="closeModal">
+            <i className="material-icons">
+              exit
+            </i>
+          </button>
+          <h2 className="title">Ticket Details</h2>
           <p>
             {this.ticketModalInfo(this.props.ticket).map(ticketInfo => (
-              <span id={`preview${ticketInfo[0]}`}><strong>{`${ticketInfo[0][0].toUpperCase() + ticketInfo[0].slice(1)}`}</strong>{`: ${ticketInfo[1]}`}<br /></span>
+              <span id={`preview${ticketInfo[0]}`}>
+                <h3 className="subtitle">
+                  {`${ticketInfo[0][0].toUpperCase() + ticketInfo[0].slice(1)}`}</h3>
+                <h3 className="text">{`${ticketInfo[1]}`}</h3>
+              </span>
             ))
             }
-            <strong>RelatedArticles</strong>:
-            {this.props.articles.map(article => (<button data-toggle='collapse' data-target={`#articleModal${article.id}`}>{article.title}</button>))}
+            <h3 className="subtitle">RelatedArticles</h3>
+            {this.props.articles.map(article => (<div className="relatedArticles">
+                                                  <Link to={`/articles/${article.id}`}>{article.title}</Link>
+                                                 </div>))}
           </p>
-          <button className='btn btn-default' data-toggle='collapse' data-target={`#editTicket${this.props.ticket._id}`}>Edit Ticket</button>
-
-          <form action='/tickets' method=''>
-            <button type='submit' className='btn btn-default' onClick={() => {this.deleteTicket(this.props.ticket._id)}} name='delete'>Delete Ticket</button>
-          </form>
-
-          <div className='collapse' id={`editTicket${this.props.ticket._id}`}>
-            <EditTicketForm ticket={this.props.ticket} className='collapse' />
-          </div>
-
-          {this.props.articles.map(article => (
-            <div className='collapse' id={`articleModal${article.id}`}>
-              <ArticleModal article={article} className='collapse modalbutton' />
-            </div>
-          ))}
         </div>
       </div>
     );

@@ -22,15 +22,21 @@
   justify-content: center
 
 .loginSignupContainer
-  width: 360px
+  width: 312px
   margin: 0 auto
   display: flex
   align-items: center
+  justify-content: center
   padding: 24px
-  background: transparentize($darkgrey, 0.9)
-
+  background: $white
+  @extend .deep-shadow
+  border-radius: 3px
+  a
+    color: $slate
+.loginform
+  width: 100%
 .loginTop
-  position: relative
+  position: fixed
   width: 100vw
   display: flex
   justify-content: space-between
@@ -53,19 +59,33 @@
     text-decoration: none
     margin-right: 16px
 
-.subtitle
-  display: block
+.loginSignupContainer
+  .subtitle
+    display: block
+    color: $textgrey
+    text-transform: uppercase
+    margin: 8px 0
 
 .login-input
-  background-color: $white
-  width: 240px
+  background-color: #f7f7f7
+  width: 264px
   height: 24px
-  margin: 8px 0
+  padding: 8px
+  margin: 8px 0 8px
   font-size: 14px
-  border: none
   color: $textgrey
-
+  border: none
+  &::-webkit-input-placeholder
+    color: $textgrey
 
 input:-webkit-autofill
-  box-shadow: 0 0 0px 1000px $white inset
-  padding: 4px
+  box-shadow: 0 0 0px 1000px #f7f7f7 inset
+  padding: 8px
+
+.login-button
+  @extend .square-button
+  background: $slate
+  color: $white
+  margin-top: 32px
+  border: none
+
