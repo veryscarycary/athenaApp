@@ -1,5 +1,4 @@
 import React, { Component } from  'react';
-import SearchArticles from './SearchArticles';
 import CreateArticle from './CreateArticle';
 import ArticleList from './ArticleList';
 import FullArticle from './FullArticle';
@@ -18,7 +17,6 @@ export class ArticlesDisplay extends Component {
   render() {
     return(
       <div className="articles">
-        <SearchArticles />
         <ArticleList />
       </div>
     )

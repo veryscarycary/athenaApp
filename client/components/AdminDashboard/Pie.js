@@ -17,7 +17,7 @@ class Pie extends React.Component {
       <div className='brownContainer'>
       	<PieChart
         data={pieData}
-        width={450}
+        width={400}
         height={400}
         radius={110}
         innerRadius={20}

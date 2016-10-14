@@ -8,7 +8,7 @@ import TicketModal from './TicketModal';
 
 
 
-const TicketContainer = ({ticket, toggleTicketModal}) => {
+const TicketContainer = ({ticket, toggleTicketModal, auth}) => {
   const handleToggleModal = (ticket) => {
     console.log('I WAS CALLED');
     toggleTicketModal(ticket);
@@ -19,26 +19,24 @@ const TicketContainer = ({ticket, toggleTicketModal}) => {
   };
 
   return (
-    <tr>
-      <td>
+    <tr className='ticket-list-item'>
+      <td className='table-issuePreview'>
+        {ticket.issuePreview}
       </td>
-      <td>
-        {ticket.issue}
-      </td>
-      <td>
+      <td className='table-product'>
         {ticket.product}
       </td>
-      <td>
+      <td className='table-customerId'>
         {ticket.customerId}
       </td>
-      <td>
+      <td className='table-moreInfo'>
         <a
           onClick={() => handleToggleModal(ticket)}>
-          MoreInfo
+          More Info
         </a>
-      </td>
+      </td >
       {ticket.checkedOut ?
-        <td className='badge openTicketColor'>
+        <td className='badge openTicketColor' className="table-status">
           {status(ticket)}
         </td>
         :
@@ -46,13 +44,15 @@ const TicketContainer = ({ticket, toggleTicketModal}) => {
           {status(ticket)}
         </td>
       }
-      <td>
+      { auth[0] !== 'guest' ?
+      <td className='table-open-button'>
         <Link to={`/tickets/${ticket.id}`}>
           <button className="open-ticket">
             Open
           </button>
         </Link>
       </td>
+      : null}
     </tr>
   );
 }
@@ -61,9 +61,13 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   toggleTicketModal,
 }, dispatch)
 
+const mapStateToProps = state => ({
+  auth: state.userReducer.currentUser.roles,
+})
+
 
 const Ticket = connect(
-  () => ({}),
+  mapStateToProps,
   mapDispatchToProps
 )(TicketContainer);
 

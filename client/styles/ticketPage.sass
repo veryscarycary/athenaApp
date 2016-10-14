@@ -1,0 +1,108 @@
+@import 'articleList'
+@import 'nav'
+@import 'articleViewPage'
+
+.ticketsAndSearch
+  margin-top: 120px
+  display: flex
+  flex-direction: column
+  align-items: center
+.ticket-table-container
+  @extend .shallow-shadow
+  background: $white
+  border-radius: 3px
+  padding: 24px
+  width: 880px
+  display: flex
+
+.ticket-list-item
+  width: 880px
+
+thead
+  width: 880px
+  height: 32px
+  color: $textgrey
+  border-bottom: 1px solid $lightgrey
+  align-items: center
+
+.table-rows
+  width: 880px
+  display: flex
+  justify-content: flex-start
+  line-height: 48px
+
+thead, tr
+  @extend .table-rows
+
+td:first-child
+  text-align: left
+th:first-child
+  text-align: left
+
+td, th
+  padding: 8px 16px
+  text-align: right
+  width: 128px
+
+.table-issuePreview
+  width: 200px
+
+tr:nth-child(even)
+  background: transparentize($lightgrey, 0.7)
+
+tbody tr:hover
+  background: transparentize($lightgrey, 0.9)
+  color: $textgrey
+
+.open-ticket
+  @extend .square-button
+  height: 32px
+  background: $darkgrey
+  color: $white
+  border: none
+  margin: 0 24px
+  &:hover
+    background: $slate
+
+.table-moreInfo
+  a
+    @extend .square-button
+    background: $white
+    border: 1px solid $darkgrey
+    color: $darkgrey
+    text-transform: none
+
+.ticket-create
+  @extend .round-button
+  margin-left: -48px
+
+.closeModal
+  @extend .round-button
+  position: absolute
+  top: 24px
+  right: -24px
+
+.search-tickets
+  width: 880px
+  height: 32px
+  margin-bottom: 32px
+  input
+    margin-left: 4px
+    width: 880px
+    border: none
+    font-size: 16px
+    padding: 8px
+    background: $lightgrey
+    border-bottom: 1px solid $lightslate
+    color: $textgrey
+
+.text
+  color: $textgrey
+  line-height: 1.3
+
+.relatedArticles
+  padding: 16px 24px
+  a
+    color: $slate
+    &:hover
+      color: $lightslate

@@ -30,7 +30,7 @@ class Bar extends React.Component {
     return  (
     	<BarChart
       data={barData}
-      width={450}
+      width={400}
       height={400}
       title="Viewed Articles vs Used Articles "
       xAxisLabel="Articles"

@@ -35,7 +35,6 @@ export const SearchArticlesContainer = ({ clearSearch,searchArticles, results })
           var options = {term: search}
           handleSearch({term: search.value, archived:false})
         }} />
-        { results ? <SearchResults /> : null}
     </div>
   )
 }

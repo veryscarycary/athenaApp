@@ -7,7 +7,8 @@ import { closeTicketArticleModal } from '../../actions';
 
 const mapStateToProps = state => ({
   article: state.ticketPageArticleModal.article,
-  auth: state.auth.level,
+  auth: state.userReducer.currentUser.roles,
+  ticketPage: true,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
