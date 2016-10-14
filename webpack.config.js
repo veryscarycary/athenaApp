@@ -19,7 +19,7 @@ const common = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(scss|css)$/,
+        test: /\.(sass|css)$/,
         loader: 'style!css!sass',
         exclude: /node_modules/,
       },

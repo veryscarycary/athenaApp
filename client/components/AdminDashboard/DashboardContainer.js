@@ -33,20 +33,21 @@ class DashboardContainer extends AuthorizedComponent {
 
   render () {
     return (
-      <div className='container bg-warning'>
-        <h1 className='centerText'>Admin Dashboard</h1>
-        <h4 className='centerText'>Your one-stop source for intelligent product analytics.</h4>
-        <br />
+      <div className='dashboard-container bg-warning'>
+        <div className="textContainer">
+        <h1 className='centerText title'>Admin Dashboard</h1>
+        <h4 className='centerText content'>Your one-stop source for intelligent product analytics.</h4>
+        </div>
         <div className='row'>
-          <div className='col-xs-6 col-xs-push-1'>
+          <div className='graph'>
             <Bar articles={this.state.articles} />
           </div>
-          <div className='col-xs-6'>
+          <div className='graph'>
             <Pie />
           </div>
         </div>
         <div className='row'>
-          <div className='col-xs-12 col-xs-push-1'>
+          <div className='graph horizontal'>
             <Area />
           </div>
         </div>

@@ -1,0 +1,43 @@
+@import 'nav'
+@import 'articleList'
+@import 'articleViewPage'
+
+.profile
+  @extend .card-large
+  width: 880px
+  margin: 120px auto
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+.profile-section
+  display: flex
+  justify-content: space-between
+
+.picture-container
+  height: 280px
+  width: 280px
+  margin-right: 24px
+.profilePicture
+  height: 280px
+  width: auto
+
+.edit-profile
+  @extend .square-button
+  background: $slate
+  color: $white
+  border: none
+  padding: 0 8px
+
+strong
+  color: $darkgrey
+  padding-right: 8px
+
+.profile-info
+  color: $textgrey
+  line-height: 2
+  a
+    color: $slate
+    &:hover
+      color: $lightslate
+
