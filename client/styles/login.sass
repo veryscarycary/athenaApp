@@ -1,0 +1,91 @@
+@import 'nav'
+@import 'articleList'
+@import 'articleViewPage'
+@import 'articleCreate'
+
+
+.login-container
+  background-image: url(../images/homepage4.jpg)
+  width: 100vw
+  height: 100vh
+  background-size: cover
+  margin: 0 auto
+  position: absolute
+  left: 0
+  top: 0
+
+.login
+  width: 100vw
+  height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+
+.loginSignupContainer
+  width: 312px
+  margin: 0 auto
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 24px
+  background: $white
+  @extend .deep-shadow
+  border-radius: 3px
+  a
+    color: $slate
+.loginform
+  width: 100%
+.loginTop
+  position: fixed
+  width: 100vw
+  display: flex
+  justify-content: space-between
+  height: 64px
+  align-items: center
+  background: $slate
+  padding: 0 64px
+  line-height: 64px
+  a
+    color: $slate
+    display: inline-block
+    height: 32px
+    line-height: 32px
+    text-transform: uppercase
+    background: $white
+    min-width: 88px
+    padding: 0 5px
+    text-align: center
+    border-radius: 3px
+    text-decoration: none
+    margin-right: 16px
+
+.loginSignupContainer
+  .subtitle
+    display: block
+    color: $textgrey
+    text-transform: uppercase
+    margin: 8px 0
+
+.login-input
+  background-color: #f7f7f7
+  width: 264px
+  height: 24px
+  padding: 8px
+  margin: 8px 0 8px
+  font-size: 14px
+  color: $textgrey
+  border: none
+  &::-webkit-input-placeholder
+    color: $textgrey
+
+input:-webkit-autofill
+  box-shadow: 0 0 0px 1000px #f7f7f7 inset
+  padding: 8px
+
+.login-button
+  @extend .square-button
+  background: $slate
+  color: $white
+  margin-top: 32px
+  border: none
+

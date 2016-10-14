@@ -19,7 +19,10 @@ class DashboardButton extends RoleAwareComponent {
   render() {
     const jsx = (
       <li>
-        <Link to='/dashboard'>Dashboard</Link>
+        <Link
+        activeClassName="active"
+        to='/dashboard'>
+        Dashboard</Link>
       </li>
     );
 

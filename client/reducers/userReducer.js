@@ -17,7 +17,6 @@ const initialState = {
 
 const userReducer = function(state = initialState, action) {
   switch(action.type) {
-
     case 'SET_CURRENT_USER_REJECTED':
       console.log('rejected')
       return {
@@ -37,7 +36,6 @@ const userReducer = function(state = initialState, action) {
       };
     case 'RESET_CURRENT_USER':
       return Object.assign({}, state, initialState);
-
     default:
       return state
   }
