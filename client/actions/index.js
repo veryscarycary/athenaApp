@@ -118,9 +118,6 @@ export const toggleTicketModal = (ticket) => ({
   ticket,
 });
 
-
-
-
 export const loadCurrentUser = (sessionId) => ({
   type: 'SET_CURRENT_USER',
   payload: userUtils.getUser(sessionId)

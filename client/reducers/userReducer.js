@@ -7,7 +7,7 @@ const initialState = {
     email: '',
     phoneNumber: '',
     bio: '',
-    pictureUrl: '../images/profilePicture.png',
+    pictureUrl: '../../images/profilePicture.png',
     dateSignedUp: '',
     dateLastLogin: '',
     dateProfileLastUpdated: ''
