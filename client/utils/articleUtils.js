@@ -26,12 +26,6 @@ export default {
       .then(json => resolve(json))
       .catch(err => reject(err)));
   },
-  searchArticles (term) {
-    return new Promise((resolve, reject) => fetch(`/api/kb/search=${term}`)
-      .then(response => response.json())
-      .then(json => resolve(json))
-      .catch(err => reject(err)));
-  },
   postArticle (article) {
     return new Promise((resolve, reject) => fetch('/api/kb', {
         method: 'POST',

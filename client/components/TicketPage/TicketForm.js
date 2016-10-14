@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editTicketField, submitTicketEdit, clearTicketForModal, getTicketForModal, submitNewTicket } from '../../actions';
+import { editTicketField, submitTicketEdit, clearTicketForModal, getTicketForModal, submitNewTicket, closeTicketArticleModal } from '../../actions';
 import uuid from 'uuid';
 import { browserHistory } from 'react-router';
 
@@ -17,6 +17,7 @@ class TicketFormContainer extends Component {
   }
   componentWillUnmount() {
     this.props.clearTicketForModal()
+    this.props.closeTicketArticleModal()
   }
 
   submitForm(ticket) {
@@ -33,7 +34,7 @@ class TicketFormContainer extends Component {
   }
 
   render() {
-    let title, issue, issuePreview, solution, customerId;
+    let title, issue, issuePreview, solution, customerId, product;
     return (
       <div className="ticket-page-form">
         <h2>{
@@ -42,17 +43,19 @@ class TicketFormContainer extends Component {
           your ticket</h2>
         <form action='/tickets' method='' onSubmit={(e) => {
           e.preventDefault();
+          var selectedProduct = product.options[product.options.selectedIndex].value;
           var ticket = {
             title: title.value,
             issuePreview: issuePreview.value,
             issue: issue.value,
             solution: solution.value,
+            product: selectedProduct,
             customerId: customerId.value,
           }
           if (this.props.id !== 'create') {
             ticket.id = this.props.ticket.id;
+            ticket.authorId = this.props.authorId;
           }
-          console.log(ticket);
           this.submitForm(ticket);
         }}>
           <label htmlFor='title'>Title</label>
@@ -95,6 +98,14 @@ class TicketFormContainer extends Component {
             }}
             onChange={this.handleChange}
             value={this.props.ticket.solution}/>
+          <label htmlFor='product'>Product</label>
+          <select name='product'
+            ref={node=>product=node}>
+            <option value={this.props.products[0]}>{this.props.products[0]}</option>
+            <option value={this.props.products[1]}>{this.props.products[1]}</option>
+            <option value={this.props.products[2]}>{this.props.products[2]}</option>
+            <option value={this.props.products[3]}>{this.props.products[3]}</option>
+          </select>
           <label htmlFor='customerId'>Customer Id</label>
           <input
             className='edit-modal-input'
@@ -118,7 +129,9 @@ class TicketFormContainer extends Component {
 
 
 const mapStateToProps = (state) => ({
-  ticket: state.ticketPage.ticket
+  ticket: state.ticketPage.ticket,
+  authorId: state.userReducer.currentUser._id,
+  products: ['camera','printer','computer','monitor'],
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -127,6 +140,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   submitTicketEdit,
   submitNewTicket,
   clearTicketForModal,
+  closeTicketArticleModal,
 }, dispatch)
 
 const TicketForm = connect(

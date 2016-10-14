@@ -46,7 +46,7 @@ export default {
     .then(response => response.json())
     .catch(error => console.log(error, 'There was an error while editing the ticket!'));
   },
-  submitPermissions (sessionId, password, role) {
+  submitPermissions (sessionId, role) {
     return fetch(`/api/user`, {
       method: 'PUT',
       headers: STD_HDR,

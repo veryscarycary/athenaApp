@@ -6,8 +6,11 @@ import DashboardButton from './DashboardButton';
 import TicketsButton from './TicketsButton';
 import ProfileButton from './ProfileButton';
 import SettingsButton from './SettingsButton';
+import LogoutButton from './LogoutButton';
+import LoginButton from './LoginButton';
 import { connect } from 'react-redux';
 import { getAuthLevel } from '../../actions';
+import { resetCurrentUser } from '../../actions';
 
 import sessionUtils from '../../utils/sessionUtils';
 
@@ -21,9 +24,11 @@ const NavContainer = ({dispatch}) => {
 
   const signout = () => {
     sessionUtils.signout();
-    dispatch(getAuthLevel(['guest']))
+    dispatch(resetCurrentUser());
+    dispatch(getAuthLevel(['guest']));
     browserHistory.push('/login');
   }
+  
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className="container">
@@ -49,10 +54,8 @@ const NavContainer = ({dispatch}) => {
                     <DashboardButton />
                     <ProfileButton />
                     <SettingsButton />
-                    <li>
-                      <Link onClick={signout}
-                       className='logoutNav'>Logout</Link>
-                    </li>
+                    <LogoutButton signout={signout.bind(this)} />
+                    <LoginButton />
                 </ul>
             </div>
         </div>

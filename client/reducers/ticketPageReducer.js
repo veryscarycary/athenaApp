@@ -67,6 +67,12 @@ export const ticketPageArticleModal = (state={article:false}, action) => {
         ...state,
         article: action.payload[0]
       }
+    case 'USE_ARTICLE':
+      return {
+        ...state,
+        article:false
+      }
+
     case 'CLOSE_TICKET_ARTICLE_MODAL':
       return {
         ...state,

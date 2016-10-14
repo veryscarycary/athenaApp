@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Cookies from 'js-cookie';
 import { AuthorizedComponent } from 'react-router-role-authorization';
 
@@ -23,6 +24,7 @@ class SettingsContainer extends AuthorizedComponent {
 
 
   componentWillMount () {
+    if (!JSON.parse(Cookies.get('roles')).includes('admin')) {browserHistory.push('/not-found');}
     sessionUtils.checkSession();
     // // set users in state
     // this.props.loadTicketState();

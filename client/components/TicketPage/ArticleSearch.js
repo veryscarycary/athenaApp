@@ -1,21 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { searchTicketArticles, clearTicketArticlesSearch } from '../../actions';
+import { searchTicketArticles, clearTicketArticlesSearch, useArticle, useTicket } from '../../actions';
 import ArticleSearchResults from './ArticleSearchResults';
 import ArticleModal from './ArticleModal';
 
-export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicketArticles, results, article }) => {
+export const SearchArticlesContainer = ({ ticket, clearTicketArticlesSearch, searchTicketArticles, results, article, useArticle, useTicket }) => {
   const handleSearch = (options) => {
     searchTicketArticles(options)
   }
   const handleClearSearch = (e) => {
     clearTicketArticlesSearch()
   }
+  const handleUse = () => {
+    useArticle(article, ticket.id);
+    useTicket(article.id, ticket);
+  }
   let search;
   return (
     <div>
-      { article? <div className="ticket-article-modal"><ArticleModal /></div> : null}
+      { article ?
+        <div className="ticket-article-modal">
+          <button className='ticket-article-modal-use-button'
+          onClick={handleUse}>
+            use
+          </button>
+          <ArticleModal />
+        </div> : null
+      }
       <div
         tabIndex="0"
         className="search-articles"
@@ -47,11 +59,14 @@ export const SearchArticlesContainer = ({ clearTicketArticlesSearch,searchTicket
 const mapDispatchToProps = dispatch => bindActionCreators({
   searchTicketArticles,
   clearTicketArticlesSearch,
+  useArticle,
+  useTicket
 }, dispatch);
 
 const mapStateToProps = state => ({
   results: state.ticketArticlesSearch.results,
   article: state.ticketPageArticleModal.article,
+  ticket: state.ticketPage.ticket,
 });
 
 const SearchTicketArticles = connect(

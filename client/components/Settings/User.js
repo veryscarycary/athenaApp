@@ -2,6 +2,7 @@ import React from 'react';
 import { Notification } from 'react-notification';
 
 import userUtils from '../../utils/userUtils';
+// import swal from 'sweetalert';
 
 
 export default class User extends React.Component {
@@ -34,7 +35,7 @@ export default class User extends React.Component {
     }
   }
 
-  submitPermissions (sessionId, password, radioElements, e, username) {
+  submitPermissions (sessionId, radioElements, e, username) {
     e.preventDefault();
 
     for(var i = 0; i < radioElements.length; i++){
@@ -43,15 +44,15 @@ export default class User extends React.Component {
       }
     }
 
-    userUtils.submitPermissions(sessionId, password, role)
+    userUtils.submitPermissions(sessionId, role)
       .then(() => this.toggleNotification(username))
       .catch(() => alert('Error! Permissions were not changed.'));
   };
 
-  deleteUser (sessionId, password, e, username) {
+  deleteUser (sessionId, e, username) {
     e.preventDefault();
 
-    userUtils.deleteUser(sessionId, password)
+    userUtils.deleteUser(sessionId)
       .then(() => document.getElementById(`${this.props.user.username}Row`)
         .parentNode.removeChild( document.getElementById(`${this.props.user.username}Row`) ))
       .then(() => this.toggleNotification(username))
@@ -66,7 +67,7 @@ export default class User extends React.Component {
         <td>
           {this.props.user.username}
         </td>
-        <td data-th="User">
+        <td onClick={() => swal("Hello world!")} data-th="User">
           <input type="radio" id={`${this.props.user.username}UserRadio`} name={this.props.user.username} value='user' />
         </td>
         <td data-th="User Plus">
@@ -76,27 +77,27 @@ export default class User extends React.Component {
           <input type="radio" id={`${this.props.user.username}AdminRadio`} name={this.props.user.username} value='admin' />
         </td>
         <td>
-            <div>
-              <button
-              onClick={ (e) => {this.submitPermissions(this.props.user._id, this.props.user.password, document.getElementsByName(this.props.user.username), e, this.props.user.username);} }
-              children={!isActive ? "Show notification" : "Hide notification"}
-              >Change</button>
+          <div>
+            <button
+            onClick={ (e) => {this.submitPermissions(this.props.user._id, document.getElementsByName(this.props.user.username), e, this.props.user.username);} }
+            children={!isActive ? "Show notification" : "Hide notification"}
+            >Change</button>
 
-              <button
-              onClick={ (e) => {this.deleteUser(this.props.user._id, this.props.user.password, e, this.props.user.username);} }
-              children={!isActive ? "Show notification" : "Hide notification"}
-              >Delete User</button>
+            <button
+            onClick={ (e) => {this.deleteUser(this.props.user._id, e, this.props.user.username);} }
+            children={!isActive ? "Show notification" : "Hide notification"}
+            >Delete User</button>
 
-              <Notification
-              isActive={this.state.isActive}
-              message={`Permissions for ${this.state.usernameChanged} were updated!`}
-              action="Dismiss"
-              title="Success!"
-              onDismiss={this.toggleNotification.bind(this)}
-              onClick={() =>  this.setState({ isActive: false })}
-              />
+            <Notification
+            isActive={this.state.isActive}
+            message={`Permissions for ${this.state.usernameChanged} were updated!`}
+            action="Dismiss"
+            title="Success!"
+            onDismiss={this.toggleNotification.bind(this)}
+            onClick={() =>  this.setState({ isActive: false })}
+            />
 
-            </div>
+          </div>
         </td>
       </tr>
     );

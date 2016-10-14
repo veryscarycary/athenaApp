@@ -5,7 +5,7 @@ import { EditButtonContainer } from './ButtonContainer';
 import { bindActionCreators } from 'redux';
 //import ReactMarkdown from 'react-markdown';
 
-export const FullArticleContainer = ({ toggleArticle, article, auth, useOption }) => {
+export const FullArticleContainer = ({ toggleArticle, article, auth }) => {
   const handleToggle = () => {
     toggleArticle();
   }
@@ -16,7 +16,7 @@ export const FullArticleContainer = ({ toggleArticle, article, auth, useOption }
     guest: false,
   }
   return (
-    <div className={article.hidden ? "hidden full-article article-modal" : "full-article"}>
+    <div>
       <div className="full-article-content">
       <div className="button-float">
         <button

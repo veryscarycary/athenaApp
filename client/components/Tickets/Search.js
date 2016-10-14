@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { ticketSearch, clearTicketSearch } from '../../actions';
 import * as ticketActionCreators from '../../actions/index';
 
 class Search extends React.Component {
@@ -9,24 +10,40 @@ class Search extends React.Component {
     super(props)
 
   }
-
-
-  setSearchToState (event) {
-    // set searchText in state
-    var filteredTickets = this.props.tickets.filter(function(ticket) {
-      if (ticket.issue.includes(event.target.value) || ticket.customerId.includes(event.target.value)) {
-        return ticket;
-      }
-    });
-    this.props.loadSearchState(event.target.value);
-    this.props.loadFilteredTicketState(filteredTickets);
+  handleSearch(term) {
+    var options = {
+      term:term,
+      type:'ticket',
+    }
+    this.props.ticketSearch(options)
+  }
+  clearSearch() {
+    this.props.clearTicketSearch();
   }
 
-// onChange
   render () {
+    let term;
     return (
-      <div>
-        <input id="searchBar" onChange={this.setSearchToState.bind(this)} type="text" placeholder="Search Tickets..." />
+      <div
+        tabIndex="0"
+        className="search-tickets"
+        onBlur={e => {
+          term.value='';
+          this.clearSearch(e);
+        }} >
+        <input id="searchBar"
+          ref={node => {
+            term = node
+          }}
+          onChange={() => {
+            if (!term.value.trim()) {
+              this.clearSearch();
+            } else {
+              this.handleSearch(term.value)
+            }
+          }}
+          type="text"
+          placeholder="Search Tickets..." />
       </div>
     )
   }
@@ -40,8 +57,9 @@ const mapStateToProps = function(store) {
   };
 };
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ticketActionCreators, dispatch);
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  ticketSearch,
+  clearTicketSearch,
+}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

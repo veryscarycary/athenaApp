@@ -47,11 +47,11 @@ class LoginContainer extends React.Component {
           {/*^onSubmit invoke fetch post to user server*/}
             <div className='form-group'>
               <label htmlFor='username'>Username:</label>
-              <input type='text' className='form-control' id='username' onChange={(e)=>this.setState({username: e.target.value})} />
+              <input type='text' className='form-control' id='username' onChange={(e)=>this.setState({username: e.target.value})} required />
             </div>
             <div className='form-group'>
               <label htmlFor='password'>Password:</label>
-              <input type='password' className='form-control' id='password' onChange={(e)=>this.setState({password: e.target.value})} />
+              <input type='password' className='form-control' id='password' onChange={(e)=>this.setState({password: e.target.value})} required />
             </div>
             <div className='form-group'>
               <input type='submit' className='btn btn-default' id='submit' value='Login' />
