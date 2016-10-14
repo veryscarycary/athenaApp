@@ -5,6 +5,12 @@ const api = require('./controller.js');
 router.route('/api/ticketMetrics')
   .get(api.getTicketRelations);
 
+router.route('/api/ticketExport')
+  .get(api.exportTickets);
+
+router.route('/api/ticketRelationsExport')
+  .get(api.exportTicketRelations);
+
 router.route('/api/ticket')
   .get(api.getTicket) //gets all tickets
   .post(api.createTicket);//creates a ticket
