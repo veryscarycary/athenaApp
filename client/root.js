@@ -9,7 +9,8 @@ import rootReducer from './reducers/rootReducer';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-import 'styles/stylesheet.css';
+//import 'styles/stylesheet.css';
+import 'styles/main.sass';
 
 const loggerMiddleware = createLogger();
 

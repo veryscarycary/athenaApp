@@ -18,9 +18,26 @@ export const SearchArticlesContainer = ({ ticket, clearTicketArticlesSearch, sea
   }
   let search;
   return (
-    <div>
+    <div className="search-sidebar">
+      <input
+          ref={node => {
+            search = node;
+          }}
+          className='search-sidebar-searchbar'
+          type="text"
+          placeholder="search articles"
+          onChange={e => {
+            e.preventDefault();
+            if (!search.value.trim()) {
+              return handleClearSearch(e);
+            }
+            var options = {term: search}
+            handleSearch({term: search.value, archived:false})
+          }} />
+
+
       { article ?
-        <div className="ticket-article-modal">
+        <div className="ticket-article-container">
           <button className='ticket-article-modal-use-button'
           onClick={handleUse}>
             use
@@ -35,22 +52,7 @@ export const SearchArticlesContainer = ({ ticket, clearTicketArticlesSearch, sea
             search.value = '';
             handleClearSearch(e);
           }}>
-        <input
-          ref={node => {
-            search = node;
-          }}
-          className='edit-modal-input'
-          type="text"
-          placeholder="search"
-          onChange={e => {
-            e.preventDefault();
-            if (!search.value.trim()) {
-              return handleClearSearch(e);
-            }
-            var options = {term: search}
-            handleSearch({term: search.value, archived:false})
-          }} />
-          { results ? <ArticleSearchResults /> : null}
+                  <ArticleSearchResults />
       </div>
     </div>
   )
@@ -64,7 +66,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 const mapStateToProps = state => ({
-  results: state.ticketArticlesSearch.results,
   article: state.ticketPageArticleModal.article,
   ticket: state.ticketPage.ticket,
 });

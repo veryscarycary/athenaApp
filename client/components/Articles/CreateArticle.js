@@ -12,8 +12,7 @@ export const CreateArticleModal = ({ toggleCreate, hidden }) => {
   let issuePreview, title, issue, solution;
 
   return (
-    <div className={hidden ? "full-article hidden" : "full-article"}>
-    <div className='create-article-container'>
+    <div className='article-list-container'>
       <div className='button-float'>
         <button
           className="full-article-button"
@@ -84,7 +83,6 @@ export const CreateArticleModal = ({ toggleCreate, hidden }) => {
         solution.value='';
         issue.value='';
       }}>Create</button>
-    </div>
     </div>
   )
 }

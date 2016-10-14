@@ -26,6 +26,7 @@ export const getArticle = (id) => ({
 
 export const useArticle = (article, ticketId) => {
   var articleWithRelation = article
+  articleWithRelation.relatedTickets = articleWithRelation.relatedTickets || [];
   articleWithRelation.relatedTickets.push(ticketId)
   return ({
     type: 'USE_ARTICLE',
@@ -35,6 +36,7 @@ export const useArticle = (article, ticketId) => {
 
 export const useTicket = (articleId, ticket) => {
   var ticketWithRelation = ticket
+  ticketWithRelation.relatedTickets = ticketWithRelation.relatedTickets || [];
   ticketWithRelation.relatedArticles.push(articleId)
   return ({
     type: 'USE_TICKET',
