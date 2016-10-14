@@ -55,7 +55,7 @@ export class ArticleContainer extends Component {
 
 const mapStateToProps = (state) => ({
   article: state.articleDisplay,
-  auth: state.auth.level,
+  auth: state.userReducer.currentUser.roles,
 })
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getArticle,
