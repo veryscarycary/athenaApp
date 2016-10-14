@@ -68,25 +68,30 @@ export default class User extends React.Component {
           {this.props.user.username}
         </td>
         <td onClick={() => swal("Hello world!")} data-th="User">
+          <label htmlFor={`${this.props.user.username}UserRadio`}></label>
           <input type="radio" id={`${this.props.user.username}UserRadio`} name={this.props.user.username} value='user' />
         </td>
         <td data-th="User Plus">
+          <label htmlFor={`${this.props.user.username}UserPlusRadio`}></label>
           <input type="radio" id={`${this.props.user.username}UserPlusRadio`} name={this.props.user.username} value='userPlus'/>
         </td>
         <td data-th="Admin">
+          <label htmlFor={`${this.props.user.username}AdminRadio`}></label>
           <input type="radio" id={`${this.props.user.username}AdminRadio`} name={this.props.user.username} value='admin' />
         </td>
-        <td>
+        <td className="button-container-settings">
           <div>
             <button
+            className="change-button"
             onClick={ (e) => {this.submitPermissions(this.props.user._id, document.getElementsByName(this.props.user.username), e, this.props.user.username);} }
             children={!isActive ? "Show notification" : "Hide notification"}
             >Change</button>
 
             <button
+            className="delete-button"
             onClick={ (e) => {this.deleteUser(this.props.user._id, e, this.props.user.username);} }
             children={!isActive ? "Show notification" : "Hide notification"}
-            >Delete User</button>
+            >Delete</button>
 
             <Notification
             isActive={this.state.isActive}
@@ -96,7 +101,6 @@ export default class User extends React.Component {
             onDismiss={this.toggleNotification.bind(this)}
             onClick={() =>  this.setState({ isActive: false })}
             />
-
           </div>
         </td>
       </tr>

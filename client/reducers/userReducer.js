@@ -11,7 +11,9 @@ const initialState = {
     dateSignedUp: '',
     dateLastLogin: '',
     dateProfileLastUpdated: ''
-  }
+  },
+  hidden:true,
+  pictureEditHidden:true,
 };
 
 
@@ -28,6 +30,16 @@ const userReducer = function(state = initialState, action) {
         currentUser: action.payload[0],
         status: 'fulfilled'
       };
+    case 'TOGGLE_PICTURE_EDIT':
+      return {
+        ...state,
+        pictureEditHidden: !state.pictureEditHidden
+      }
+    case 'TOGGLE_PROFILE_MODAL':
+      return {
+        ...state,
+        hidden: !state.hidden,
+      }
     case 'SET_CURRENT_USER_PENDING':
       console.log('pending')
       return {
