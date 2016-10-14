@@ -26,13 +26,11 @@ class MainLayoutContainer extends AuthorizedComponent {
   render () {
     return (
       <div className='container bg-warning'>
-        <div className='row col-md-12'>
           Ticket Home
           <div className='ticketsAndSearch'>
             <Search />
             <TicketDisplay />
           </div>
-        </div>
       </div>
     )
   }

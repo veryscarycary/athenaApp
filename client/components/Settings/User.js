@@ -79,7 +79,7 @@ export default class User extends React.Component {
           <label htmlFor={`${this.props.user.username}AdminRadio`}></label>
           <input type="radio" id={`${this.props.user.username}AdminRadio`} name={this.props.user.username} value='admin' />
         </td>
-        <td>
+        <td className="button-container-settings">
           <div>
             <button
             className="change-button"
@@ -101,7 +101,6 @@ export default class User extends React.Component {
             onDismiss={this.toggleNotification.bind(this)}
             onClick={() =>  this.setState({ isActive: false })}
             />
-
           </div>
         </td>
       </tr>
