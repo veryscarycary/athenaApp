@@ -20,7 +20,8 @@ export const SearchArticlesContainer = ({ ticket, clearTicketArticlesSearch, sea
   return (
     <div>
       { article ?
-        <div className="ticket-article-modal">
+        <div className="search-sidebar">
+        <h3 className="title">Search articles</h3>
           <button className='ticket-article-modal-use-button'
           onClick={handleUse}>
             use
@@ -39,7 +40,7 @@ export const SearchArticlesContainer = ({ ticket, clearTicketArticlesSearch, sea
           ref={node => {
             search = node;
           }}
-          className='edit-modal-input'
+          className='search-sidebar-searchbar'
           type="text"
           placeholder="search"
           onChange={e => {
@@ -50,8 +51,9 @@ export const SearchArticlesContainer = ({ ticket, clearTicketArticlesSearch, sea
             var options = {term: search}
             handleSearch({term: search.value, archived:false})
           }} />
-          { results ? <ArticleSearchResults /> : null}
+          <ArticleSearchResults />
       </div>
+      { article? <div className="ticket-article-modal"><ArticleModal /></div> : null}
     </div>
   )
 }
@@ -64,7 +66,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 const mapStateToProps = state => ({
-  results: state.ticketArticlesSearch.results,
   article: state.ticketPageArticleModal.article,
   ticket: state.ticketPage.ticket,
 });

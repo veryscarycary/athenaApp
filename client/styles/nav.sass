@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto')
+$white: #fff
+$slate: #607D8B
+$lightslate: #B0BEC5
+$textgrey: rgba(0,0,0,0.5)
+$black: #333333
+$lightgrey: #ECEFF1
+$darkgrey: #263238
+
+*
+  box-sizing: border-box
+body
+  font-family: 'Roboto', sans-serif
+  background: $lightgrey
+  padding: 0 0 120px 320px
+  font-size: 14px
+
+.shallow-shadow
+  box-shadow: 0 2px 3px 2px rgba(0,0,0,0.2)
+.deep-shadow
+  box-shadow: 0 4px 9px 0 rgba(0,0,0,0.4)
+
+.side-nav
+  width: 320px
+  height: 100vh
+  position: fixed
+  padding-top: 128px
+  left: 0
+  top: 0
+  background: $white
+  @extend .shallow-shadow
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+.nav-items
+  padding-left: 72px
+  height: 48px
+  line-height: 48px
+  a
+    color: $black
+    text-decoration: none
+
+.top-nav
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 64px
+  background: $slate
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  @extend .deep-shadow
+
+.square-button
+  font-size: 14px
+  border-radius: 3px
+  min-width: 88px
+  padding: 0 8px
+  text-transform: uppercase
+  line-height: 32px
+  text-align: center
+  cursor: pointer
+  text-transform: uppercase
+  &:hover
+    background: $slate
+    color: $white
+
+.active
+  border-bottom: 1px solid $darkgrey
+  padding-bottom: 8px
+  padding-right: 72px
+
+.logoutnav
+  background: $white
+  color: $slate
+  text-decoration: none
+  margin-right: 64px
+  @extend .square-button
+

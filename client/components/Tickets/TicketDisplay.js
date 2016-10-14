@@ -21,28 +21,27 @@ class TicketDisplay extends React.Component {
 
   render () {
     return (
-      <div className='col-xs-6'>
+      <div className='ticket-container'>
+      <div className="ticket-table-container">
         <table className='table table-striped table-hover'>
           <thead>
             <tr>
-            <th>
-              #
-            </th>
-            <th>
+            <th className="table-issuePreview">
               Issue
             </th>
-            <th>
+            <th className="table-product">
               Product
             </th>
-            <th>
+            <th className='table-customerId'>
               Customer Id
             </th>
-            <th>
+            <th className='table-moreInfo'>
               Details
             </th>
-            <th>
+            <th className='table-status'>
               Status
             </th>
+            <th className='table-open-button'></th>
             </tr>
           </thead>
           <tbody>
@@ -52,11 +51,12 @@ class TicketDisplay extends React.Component {
           </tbody>
         </table>
         <Link to={'/tickets/create'}>
-          <button>
-            Create ticket
+          <button className='ticket-create'>
+            <i className="material-icons">add</i>
           </button>
         </Link>
         { this.props.hidden ? null : <TicketModal ticket={this.props.ticket}/>}
+        </div>
       </div>
     )
   };

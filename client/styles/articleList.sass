@@ -1,0 +1,74 @@
+@import 'nav'
+
+.card-small
+  min-height: 120px
+  width: 680px
+  padding: 24px
+  background: $white
+  margin-bottom: 16px
+  @extend .shallow-shadow
+  &:hover
+    background: transparentize($lightgrey, 0.9)
+    color: $textgrey
+
+.article-list-container
+  padding-top: 128px
+  display: flex
+  align-items: flex-start
+  justify-content: center
+  flex-direction: row-reverse
+
+.article-list-item
+  display: flex
+  justify-content: space-between
+  @extend .card-small
+
+.round-button
+  height: 46px
+  width: 46px
+  background: $darkgrey
+  color: $white
+  border: none
+  border-radius: 50%
+  margin: 0 -40px 40px 40px
+  @extend .shallow-shadow
+  &:hover
+    background: $slate
+
+.article-list-item-button
+  min-width: 100px
+  display: flex
+  align-items: flex-end
+
+.read-more
+  border: none
+  color: $white
+  background: $lightslate
+  font-size: 14px
+  @extend .square-button
+  &:hover
+    background: $slate
+
+.title
+  color: $black
+  font-size: 20px
+  margin-bottom: 16px
+
+.article-list-title
+  @extend .title
+
+.article-list-preview
+  padding-right: 24px
+  color: $textgrey
+
+.search-articles
+  width: 680px
+  margin-bottom: 32px
+  input
+    width: 678px
+    height: 32px
+    font-size: 16px
+    padding: 4px
+
+
+

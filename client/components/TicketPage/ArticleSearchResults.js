@@ -20,10 +20,12 @@ export const SearchResultsContainer = ({ clearTicketArticlesSearch, getArticleFo
           }}
           className="search-results-item"
           key={result.id}>
-          <a
+          <div
            className="search-results-title">
+           <span>
           {result.title}
-          </a>
+          </span>
+          </div>
         </li>
       ))}
     </ul>

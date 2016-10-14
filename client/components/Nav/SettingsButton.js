@@ -19,7 +19,8 @@ class SettingsButton extends RoleAwareComponent {
   render() {
     const jsx = (
       <li>
-        <Link to='/settings'>Settings</Link>
+        <Link to='/settings'
+        activeClassName="active">Settings</Link>
       </li>
     );
 

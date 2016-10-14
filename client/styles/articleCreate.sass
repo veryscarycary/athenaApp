@@ -1,0 +1,43 @@
+@import 'nav'
+@import 'articleList'
+@import 'articleViewPage'
+
+.article-create
+  @extend .card-large
+
+.edit-modal-input
+  width: 632px
+  padding: 4px
+  font-size: 14px
+  margin: 8px 0
+  background: transparentize($lightgrey, 0.7)
+  border: none
+  color: $textgrey
+  border-bottom: 1px solid $lightslate
+
+.edit-modal-textarea
+  width: 632px
+  padding: 4px
+  font-size: 14px
+  margin: 16px 0
+  background: transparentize($lightgrey, 0.7)
+  height: 120px
+  color: $textgrey
+  resize: none
+  border: none
+  border-left: 1px solid $lightslate
+
+.subtitle
+  margin-top: 32px
+
+.article-list-button
+  background: $darkgrey
+  color: $white
+  border: none
+  border-radius: 3px
+  @extend .square-button
+
+.button-right-float
+  margin: 16px 0
+  display: flex
+  justify-content: flex-end

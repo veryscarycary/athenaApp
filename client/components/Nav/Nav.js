@@ -5,6 +5,7 @@ import beefalo from '../../images/beefalo.png';
 import DashboardButton from './DashboardButton';
 import TicketsButton from './TicketsButton';
 import ProfileButton from './ProfileButton';
+import Cookies from 'js-cookie';
 import SettingsButton from './SettingsButton';
 import LogoutButton from './LogoutButton';
 import LoginButton from './LoginButton';
@@ -16,7 +17,7 @@ import sessionUtils from '../../utils/sessionUtils';
 
 
 
-const NavContainer = ({dispatch}) => {
+const NavContainer = ({dispatch, auth}) => {
   const goToHomePage = () => {
     // e.preventDefault();
     browserHistory.push('/');
@@ -28,41 +29,66 @@ const NavContainer = ({dispatch}) => {
     dispatch(getAuthLevel(['guest']));
     browserHistory.push('/login');
   }
-  
   return (
-    <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div className="container">
-            <div className="navbar-header">
-                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span className="sr-only">Toggle navigation</span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                </button>
+    <div className="nav-container">
+      <nav className="side-nav" role="navigation">
+        <ul className="nav-items">
+          <li>
+            <Link to='/articles'
+              activeClassName="active">
+              Articles
+            </Link>
 
-                <a className="navbar-brand" onClick={goToHomePage}>
-                  <img id='beefaloLogo' src={beefalo} alt="" />
-                </a>
-            </div>
+//<<<<<<< HEAD
+                //<a className="navbar-brand" onClick={goToHomePage}>
+                  //<img id='beefaloLogo' src={beefalo} alt="" />
+                //</a>
+            //</div>
 
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav">
-                    <li>
-                      <Link to='/articles'>Articles</Link>
-                    </li>
-                    <TicketsButton />
-                    <DashboardButton />
-                    <ProfileButton />
-                    <SettingsButton />
-                    <LogoutButton signout={signout.bind(this)} />
-                    <LoginButton />
-                </ul>
-            </div>
-        </div>
-    </nav>
+            //<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                //<ul className="nav navbar-nav">
+                    //<li>
+                      //<Link to='/articles'>Articles</Link>
+                    //</li>
+                    //<TicketsButton />
+                    //<DashboardButton />
+                    //<ProfileButton />
+                    //<SettingsButton />
+                    //<LogoutButton signout={signout.bind(this)} />
+                    //<LoginButton />
+                //</ul>
+            //</div>
+        //</div>
+    //</nav>
+//=======
+          </li>
+          <TicketsButton />
+          <DashboardButton />
+          <ProfileButton />
+          <SettingsButton />
+        </ul>
+      </nav>
+      <div className="top-nav">
+      { JSON.parse(Cookies.get('roles'))
+          && JSON.parse(Cookies.get('roles'))[0] === 'guest'
+        ? <Link to='/login'
+           className='logoutnav'>Login</Link>
+        : <Link onClick={signout}
+            className='logoutnav'>Logout</Link>
+      }
+      </div>
+    </div>
   )
 };
+
+const mapStateToProps = state => ({
+  auth: state.userReducer
+})
 
 const Nav = connect()(NavContainer);
 
 export default Nav;
+
+//                <a className="navbar-brand" onClick={goToHomePage}>
+//                  <img id='beefaloLogo' src={beefalo} alt="" />
+//                </a>

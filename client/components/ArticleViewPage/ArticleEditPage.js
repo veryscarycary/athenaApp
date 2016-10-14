@@ -25,16 +25,17 @@ export class EditArticleContainer extends Component {
     const { article, submitEdit, editField, authorId } = this.props;
     let title, issuePreview, issue, solution;
     return (
-      <div>
-        <h3>Edit</h3>
-        <h3 className="full-article-title main">Title:</h3>
+      <div className="article-list-container">
+      <div className="article-edit">
+        <h3 className="title">Edit</h3>
+        <h3 className="subtitle">Title:</h3>
         <input name="title"
           value={article.title}
           className="edit-modal-input"
           onChange={this.handleChange}
           ref={node => title=node} />
 
-        <h5 className="full-article-title">Summary:</h5>
+        <h5 className="subtitle">Summary:</h5>
         <textarea
           value={article.issuePreview}
           className="edit-modal-textarea"
@@ -42,7 +43,7 @@ export class EditArticleContainer extends Component {
           ref={node => issuePreview=node}
         />
 
-        <h5 className="full-article-title">Issue:</h5>
+        <h5 className="subtitle">Issue:</h5>
         <textarea
           value={article.issue}
           className="edit-modal-textarea"
@@ -50,13 +51,14 @@ export class EditArticleContainer extends Component {
           ref={node => issue=node}
         />
 
-        <h5 className="full-article-title">Solution:</h5>
+        <h5 className="subtitle">Solution:</h5>
         <textarea
           value={article.solution}
           className="edit-modal-textarea"
           onChange={this.handleChange}
           ref={node => solution=node}
         />
+        <div className="button-right-float">
         <button
           onClick={() => {
             var edits = article;
@@ -67,7 +69,7 @@ export class EditArticleContainer extends Component {
             this.handleSubmit(edits)
           }}
           className="article-list-button">
-            edit
+            submit
         </button>
         <button
           onClick={() => {
@@ -90,7 +92,7 @@ export class EditArticleContainer extends Component {
           className="article-list-button">
             delete
         </button>
-
+      </div>
       </div>
     )
   }
