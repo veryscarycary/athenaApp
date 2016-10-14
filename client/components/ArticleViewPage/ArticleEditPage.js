@@ -22,7 +22,7 @@ export class EditArticleContainer extends Component {
     this.props.editField(e.target.name, e.target.value);
   }
   render() {
-    const { article, submitEdit, editField, authorId } = this.props;
+    const { article, submitEdit, editField, authorId, auth } = this.props;
     let title, issuePreview, issue, solution;
     return (
       <div className="article-list-container">
@@ -105,6 +105,7 @@ export class EditArticleContainer extends Component {
 
 const mapStateToProps = state => ({
   article: state.editModal.article,
+  auth: state.userReducer.currentUser.roles,
   authorId: state.userReducer.currentUser._id,
 });
 

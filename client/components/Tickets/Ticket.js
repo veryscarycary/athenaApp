@@ -8,7 +8,7 @@ import TicketModal from './TicketModal';
 
 
 
-const TicketContainer = ({ticket, toggleTicketModal}) => {
+const TicketContainer = ({ticket, toggleTicketModal, auth}) => {
   const handleToggleModal = (ticket) => {
     console.log('I WAS CALLED');
     toggleTicketModal(ticket);
@@ -44,6 +44,7 @@ const TicketContainer = ({ticket, toggleTicketModal}) => {
           {status(ticket)}
         </td>
       }
+      { auth[0] !== 'guest' ?
       <td className='table-open-button'>
         <Link to={`/tickets/${ticket.id}`}>
           <button className="open-ticket">
@@ -51,6 +52,7 @@ const TicketContainer = ({ticket, toggleTicketModal}) => {
           </button>
         </Link>
       </td>
+      : null}
     </tr>
   );
 }
@@ -59,9 +61,13 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   toggleTicketModal,
 }, dispatch)
 
+const mapStateToProps = state => ({
+  auth: state.userReducer.currentUser.roles,
+})
+
 
 const Ticket = connect(
-  () => ({}),
+  mapStateToProps,
   mapDispatchToProps
 )(TicketContainer);
 
