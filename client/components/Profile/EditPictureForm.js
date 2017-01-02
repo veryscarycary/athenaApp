@@ -21,7 +21,8 @@ export class EditPictureFormContainer extends React.Component {
     });
   }
 
-  editProfilePicture () {
+  editProfilePicture (e) {
+    e.preventDefault();
     userUtils.changeProfilePicture(this.props.user._id);
   }
 
@@ -31,7 +32,7 @@ export class EditPictureFormContainer extends React.Component {
 
   render () {
     return (
-      <form action='/profile' className="picture-edit-form" method='' onSubmit={() => {this.editProfilePicture()} }>
+      <form action='/profile' className="picture-edit-form" method='' onSubmit={(e) => {this.editProfilePicture(e)} }>
         <div>
           <label htmlFor='pictureUrl'>Picture Url:</label>
           <input type='text' className='profile-edit-input' id='pictureUrl' onChange={this.setPicture.bind(this)} value={this.state.pictureUrl} />
