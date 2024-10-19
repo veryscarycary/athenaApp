@@ -1,14 +1,29 @@
-# Use phusion/baseimage as base image. To make your builds
-# reproducible, make sure you lock down to a specific version, not
-# to `latest`! See
-# https://github.com/phusion/baseimage-docker/blob/master/Changelog.md
-# for a list of version numbers.
-FROM phusion/baseimage:<VERSION>
+# Use the Node.js 8.17.0 based on Debian Buster
+FROM node:8.17.0-buster
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+# Install Python 2
+RUN apt-get update && apt-get install -y python2 python2-dev \
+    && if [ ! -f /usr/bin/python ]; then ln -s /usr/bin/python2 /usr/bin/python; fi \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# ...put your own build instructions here...
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of your application code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Expose any ports your application needs
+EXPOSE 3000
+
+# Command to run your application (adjust as necessary)
+CMD ["npm", "start"]
