@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+RUN npm install --production --legacy-peer-deps
 
 # Copy the rest of your application code
 COPY . .
@@ -26,4 +26,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Command to run application, devDependency phantomJS-prebuilt fails on ARM prod instance
-CMD ["npm", "start", "--production"]
+CMD ["npm", "start"]
