@@ -25,5 +25,5 @@ RUN npm run build
 # Expose any ports your application needs
 EXPOSE 3000
 
-# Command to run your application (adjust as necessary)
-CMD ["npm", "start"]
+# Command to run application, devDependency phantomJS-prebuilt fails on ARM prod instance
+CMD ["npm", "start", "--production"]
