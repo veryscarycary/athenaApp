@@ -1,5 +1,5 @@
 # Use the Node.js 8.17.0 based on Debian Buster
-FROM node:8.17.0-buster
+FROM node:10
 
 # Install Python 2
 RUN apt-get update && apt-get install -y python2 python2-dev \
