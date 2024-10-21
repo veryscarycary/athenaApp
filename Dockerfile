@@ -1,12 +1,6 @@
 # Use the Node.js 8.17.0 based on Debian Buster
 FROM node:10
 
-# Install Python 2
-RUN apt-get update && apt-get install -y python2 python2-dev \
-    && if [ ! -f /usr/bin/python ]; then ln -s /usr/bin/python2 /usr/bin/python; fi \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set the working directory
 WORKDIR /usr/src/app
 
