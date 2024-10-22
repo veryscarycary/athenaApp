@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 export default {
   getTickets () {
-    return fetch('http://localhost:3000/api/ticket', {
+    return fetch(`${window.document.location.origin}/api/ticket`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -35,7 +35,7 @@ export default {
     .catch(err => reject(err)));
   },
   submitNewTicket () {
-    return fetch('http://localhost:3000/api/ticket', {
+    return fetch(`${window.document.location.origin}/api/ticket`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -71,7 +71,7 @@ export default {
     .catch(err => reject(err)));
   },
   editTicket (ticketId) {
-    return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
+    return fetch(`${window.document.location.origin}/api/ticket/${ticketId}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -95,7 +95,7 @@ export default {
     .catch(err => console.log(err, 'There was an error while editing the ticket!'));
   },
   deleteTicket (ticketId) {
-    return fetch(`http://localhost:3000/api/ticket/${ticketId}`, {
+    return fetch(`${window.document.location.origin}/api/ticket/${ticketId}`, {
       method: 'DELETE'
     })
     .then(res => res.json())
