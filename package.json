@@ -19,6 +19,7 @@
     "url": ""
   },
   "dependencies": {
+    "babel-core": "6.26.3",
     "babel-loader": "6.2.5",
     "babel-plugin-transform-react-jsx-img-import": "0.1.2",
     "babel-polyfill": "6.13.0",
