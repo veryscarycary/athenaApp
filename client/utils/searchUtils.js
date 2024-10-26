@@ -22,11 +22,11 @@ export default {
       .then(response => response.json())
       .then(json => resolve(json
         .map(result => ({
-          issue: result._source.issue,
-          solution: result._source.solution,
-          issuePreview: result._source.issuePreview,
-          id: result._source.id,
-          title: result._source.title
+          issue: result._source.doc.issue,
+          solution: result._source.doc.solution,
+          issuePreview: result._source.doc.issuePreview,
+          id: result._source.doc.id,
+          title: result._source.doc.title
         })
       )))
       .catch(err => reject(err))
